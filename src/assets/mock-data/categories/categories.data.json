@@ -1,0 +1,75 @@
+[
+  {
+    "id": "apparel-textiles",
+    "name": "Apparel & Textiles",
+    "slug": "apparel-textiles",
+    "subCategories": [
+      { "id": "tshirts-polo", "name": "T-shirts & Polo Shirts", "slug": "t-shirts-polo-shirts" },
+      { "id": "cotton-shirts", "name": "Cotton Shirts", "slug": "cotton-shirts" },
+      { "id": "sarees-dress", "name": "Sarees & Dress Materials", "slug": "sarees-dress-materials" },
+      { "id": "scarves-stoles", "name": "Scarves & Stoles", "slug": "scarves-stoles" },
+      { "id": "home-textiles", "name": "Home textiles (bedsheets, towels)", "slug": "home-textiles" }
+    ]
+  },
+  {
+    "id": "handicrafts-decor",
+    "name": "Handicrafts & Decor",
+    "slug": "handicrafts-decor",
+    "subCategories": [
+      { "id": "wooden", "name": "Wooden handicrafts", "slug": "wooden-handicrafts" },
+      { "id": "brass-metal", "name": "Brass & metal decor", "slug": "brass-metal-decor" },
+      { "id": "wall-art", "name": "Wall art", "slug": "wall-art" },
+      { "id": "candle-holders", "name": "Candle holders", "slug": "candle-holders" },
+      { "id": "hand-painted", "name": "Hand-painted items", "slug": "hand-painted-items" }
+    ]
+  },
+  {
+    "id": "home-living",
+    "name": "Home & Living",
+    "slug": "home-living",
+    "subCategories": [
+      { "id": "kitchenware", "name": "Kitchenware", "slug": "kitchenware" },
+      { "id": "storage", "name": "Storage baskets", "slug": "storage-baskets" },
+      { "id": "tableware", "name": "Tableware", "slug": "tableware" },
+      { "id": "rugs", "name": "Rugs & carpets", "slug": "rugs-carpets" },
+      { "id": "cushions", "name": "Cushion covers", "slug": "cushion-covers" }
+    ]
+  },
+  {
+    "id": "fmcg-food",
+    "name": "FMCG / Food Products",
+    "slug": "fmcg-food",
+    "subCategories": [
+      { "id": "spices", "name": "Spices", "slug": "spices" },
+      { "id": "tea-coffee", "name": "Tea & coffee", "slug": "tea-coffee" },
+      { "id": "dry-fruits", "name": "Dry fruits", "slug": "dry-fruits" },
+      { "id": "pickles", "name": "Pickles & sauces", "slug": "pickles-sauces" },
+      { "id": "ready-cook", "name": "Ready-to-cook mixes", "slug": "ready-to-cook-mixes" }
+    ]
+  },
+  {
+    "id": "personal-care",
+    "name": "Personal Care & Wellness",
+    "slug": "personal-care",
+    "subCategories": [
+      { "id": "herbal", "name": "Herbal cosmetics", "slug": "herbal-cosmetics" },
+      { "id": "oils", "name": "Essential oils", "slug": "essential-oils" },
+      { "id": "soaps", "name": "Soaps", "slug": "soaps" },
+      { "id": "incense", "name": "Incense sticks", "slug": "incense-sticks" },
+      { "id": "organic", "name": "Organic products", "slug": "organic-products" }
+    ]
+  },
+  {
+    "id": "corporate-bulk",
+    "name": "Corporate & Bulk Supplies",
+    "slug": "corporate-bulk",
+    "subCategories": [
+      { "id": "promo", "name": "Promotional gifts", "slug": "promotional-gifts" },
+      { "id": "packaging", "name": "Custom packaging", "slug": "custom-packaging" },
+      { "id": "stationery", "name": "Stationery", "slug": "stationery" },
+      { "id": "uniforms", "name": "Uniforms", "slug": "uniforms" },
+      { "id": "private-label", "name": "Private label products", "slug": "private-label-products" },
+      { "id": "branded", "name": "Branded merchandise", "slug": "branded-merchandise" }
+    ]
+  }
+]
