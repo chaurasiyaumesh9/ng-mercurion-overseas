@@ -1,7 +1,6 @@
-import { Component, inject, OnInit, effect } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsStore } from './state/products.store';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-products-page',
@@ -15,12 +14,35 @@ import { Router } from '@angular/router';
   <div class="mb-6">
     <h1 class="text-2xl font-bold text-gray-800">
     @switch (true) {
-        @case (!!search()) { Search results for "{{ search() }}" }
-        @case (!!subCategorySlug()) { {{ subCategorySlug() | titlecase }} }
-        @case (!!categorySlug()) { {{ categorySlug() | titlecase }} }
-        @default { All Products }
+        @case (!!search()) { 
+          Search results for "{{ search() }}" 
+        }
+        @case (!!subCategoryName()) { 
+          {{ subCategoryName() }}
+        }
+        @case (!!categoryName()) { 
+          {{ categoryName() }}
+        }
+        @default { 
+          All Products 
+        }
     }
     </h1>
+    
+    <!-- Breadcrumb -->
+    @if (categoryName()) {
+      <nav class="text-sm text-gray-600 mt-2">
+        <a href="/" class="hover:text-blue-600">Home</a>
+        <span class="mx-2">/</span>
+        <a [href]="'/' + store.categorySlug()" class="hover:text-blue-600">
+          {{ categoryName() }}
+        </a>
+        @if (subCategoryName()) {
+          <span class="mx-2">/</span>
+          <span class="font-semibold">{{ subCategoryName() }}</span>
+        }
+      </nav>
+    }
   </div>
 
   <!-- Loading -->
@@ -75,12 +97,13 @@ import { Router } from '@angular/router';
                 ⭐ {{ product.rating }}
               </div>
 
+              <!-- Show category breadcrumb on product card -->
               <div class="text-xs text-gray-400">
-                {{ product.categorySlug }} / {{ product.subCategorySlug }}
+                {{ product.category.name }} / {{ product.subCategory.name }}
               </div>
 
               <button
-                class="mt-2 bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
+                class="mt-2 bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
                 View product
               </button>
             </div>
@@ -100,10 +123,15 @@ import { Router } from '@angular/router';
 export class ProductsPage {
     readonly store = inject(ProductsStore);
 
+    // Signals from store
     products = this.store.filteredProducts;
     loading = this.store.loading;
-    categorySlug = this.store.categorySlug;
-    subCategorySlug = this.store.subCategorySlug;
+    
+    // Display names (derived from products)
+    categoryName = this.store.categoryName;
+    subCategoryName = this.store.subCategoryName;
+    
+    // Search term
     search = this.store.search;
 
     constructor() {

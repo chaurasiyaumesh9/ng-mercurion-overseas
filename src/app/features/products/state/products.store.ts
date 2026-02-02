@@ -41,29 +41,40 @@ export const ProductsStore = signalStore(
     withComputed((store) => ({
         filteredProducts: computed(() => {
             let list = store.products();
-            //console.log('Filtering with:', store.categorySlug(), store.subCategorySlug(), store.search());
 
+            // Use nested properties for filtering
             if (store.categorySlug()) {
-                list = list.filter(
-                    p => p.categorySlug === store.categorySlug()
-                );
+                list = list.filter(p => p.category.slug === store.categorySlug());
             }
 
             if (store.subCategorySlug()) {
-                list = list.filter(
-                    p => p.subCategorySlug === store.subCategorySlug()
-                );
-            }
-
-            if (store.search()) {
-                const q = store.search()!.toLowerCase();
-                list = list.filter(p =>
-                    p.name.toLowerCase().includes(q) ||
-                    p.tags?.some(t => t.toLowerCase().includes(q))
-                );
+                list = list.filter(p => p.subCategory.slug === store.subCategorySlug());
             }
 
             return list;
+        })
+    })),
+
+    withComputed((store) => ({
+        // NEW: Derive display names from products
+        categoryName: computed(() => {
+            const products = store.filteredProducts();
+            return products.length > 0 && store.categorySlug() ? products[0].category.name : null;
+        }),
+
+        subCategoryName: computed(() => {
+            const products = store.filteredProducts();
+            return products.length > 0 && store.subCategorySlug() ? products[0].subCategory.name : null;
+        }),
+
+        currentCategory: computed(() => {
+            const products = store.filteredProducts();
+            return products.length > 0  && store.categorySlug() ? products[0].category : null;
+        }),
+
+        currentSubCategory: computed(() => {
+            const products = store.filteredProducts();
+            return products.length > 0 && store.subCategorySlug() ? products[0].subCategory : null;
         })
     })),
 

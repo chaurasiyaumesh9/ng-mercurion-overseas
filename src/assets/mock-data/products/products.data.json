@@ -25,10 +25,44 @@
     ],
     "inStock": true,
     "featured": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "t-shirts-and-polo-shirts",
-    "subCategorySlug": "t-shirts-and-polo-shirts"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "tshirts-polo",
+      "name": "T-shirts & Polo Shirts",
+      "slug": "t-shirts-polo-shirts"
+    },
+    "url": "/apparel-textiles/t-shirts-polo-shirts/ap-ts-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "T-shirts & Polo Shirts",
+        "url": "/apparel-textiles/t-shirts-polo-shirts"
+      },
+      {
+        "name": "Premium Cotton Polo Shirt",
+        "url": "/apparel-textiles/t-shirts-polo-shirts/ap-ts-001"
+      }
+    ],
+    "meta": {
+      "title": "Premium Cotton Polo Shirt - T-shirts & Polo Shirts | Mercurion Overseas",
+      "description": "High-quality cotton polo shirt with modern fit. Perfect for casual and semi-formal occasions.",
+      "keywords": [
+        "Apparel & Textiles",
+        "T-shirts & Polo Shirts",
+        "Premium Cotton Polo Shirt"
+      ]
+    }
   },
   {
     "id": "ap-ts-002",
@@ -39,10 +73,44 @@
     "rating": 4.2,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "t-shirts-and-polo-shirts",
-    "subCategorySlug": "t-shirts-and-polo-shirts"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "tshirts-polo",
+      "name": "T-shirts & Polo Shirts",
+      "slug": "t-shirts-polo-shirts"
+    },
+    "url": "/apparel-textiles/t-shirts-polo-shirts/ap-ts-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "T-shirts & Polo Shirts",
+        "url": "/apparel-textiles/t-shirts-polo-shirts"
+      },
+      {
+        "name": "Classic V-Neck T-Shirt Pack",
+        "url": "/apparel-textiles/t-shirts-polo-shirts/ap-ts-002"
+      }
+    ],
+    "meta": {
+      "title": "Classic V-Neck T-Shirt Pack - T-shirts & Polo Shirts | Mercurion Overseas",
+      "description": "Pack of 3 comfortable v-neck t-shirts in assorted colors.",
+      "keywords": [
+        "Apparel & Textiles",
+        "T-shirts & Polo Shirts",
+        "Classic V-Neck T-Shirt Pack"
+      ]
+    }
   },
   {
     "id": "ap-ts-003",
@@ -53,10 +121,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "t-shirts-and-polo-shirts",
-    "subCategorySlug": "t-shirts-and-polo-shirts"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "tshirts-polo",
+      "name": "T-shirts & Polo Shirts",
+      "slug": "t-shirts-polo-shirts"
+    },
+    "url": "/apparel-textiles/t-shirts-polo-shirts/ap-ts-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "T-shirts & Polo Shirts",
+        "url": "/apparel-textiles/t-shirts-polo-shirts"
+      },
+      {
+        "name": "Organic Cotton Crew Neck Tee",
+        "url": "/apparel-textiles/t-shirts-polo-shirts/ap-ts-003"
+      }
+    ],
+    "meta": {
+      "title": "Organic Cotton Crew Neck Tee - T-shirts & Polo Shirts | Mercurion Overseas",
+      "description": "Eco-friendly organic cotton t-shirt with a classic crew neck.",
+      "keywords": [
+        "Apparel & Textiles",
+        "T-shirts & Polo Shirts",
+        "Organic Cotton Crew Neck Tee"
+      ]
+    }
   },
   {
     "id": "ap-ts-004",
@@ -68,10 +170,44 @@
     "reviews": [],
     "inStock": true,
     "featured": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "t-shirts-and-polo-shirts",
-    "subCategorySlug": "t-shirts-and-polo-shirts"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "tshirts-polo",
+      "name": "T-shirts & Polo Shirts",
+      "slug": "t-shirts-polo-shirts"
+    },
+    "url": "/apparel-textiles/t-shirts-polo-shirts/ap-ts-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "T-shirts & Polo Shirts",
+        "url": "/apparel-textiles/t-shirts-polo-shirts"
+      },
+      {
+        "name": "Sports Performance Polo",
+        "url": "/apparel-textiles/t-shirts-polo-shirts/ap-ts-004"
+      }
+    ],
+    "meta": {
+      "title": "Sports Performance Polo - T-shirts & Polo Shirts | Mercurion Overseas",
+      "description": "Moisture-wicking polo shirt designed for active wear.",
+      "keywords": [
+        "Apparel & Textiles",
+        "T-shirts & Polo Shirts",
+        "Sports Performance Polo"
+      ]
+    }
   },
   {
     "id": "ap-ts-005",
@@ -82,10 +218,44 @@
     "rating": 4.3,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "t-shirts-and-polo-shirts",
-    "subCategorySlug": "t-shirts-and-polo-shirts"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "tshirts-polo",
+      "name": "T-shirts & Polo Shirts",
+      "slug": "t-shirts-polo-shirts"
+    },
+    "url": "/apparel-textiles/t-shirts-polo-shirts/ap-ts-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "T-shirts & Polo Shirts",
+        "url": "/apparel-textiles/t-shirts-polo-shirts"
+      },
+      {
+        "name": "Graphic Print T-Shirt",
+        "url": "/apparel-textiles/t-shirts-polo-shirts/ap-ts-005"
+      }
+    ],
+    "meta": {
+      "title": "Graphic Print T-Shirt - T-shirts & Polo Shirts | Mercurion Overseas",
+      "description": "Trendy graphic print t-shirt with premium fabric.",
+      "keywords": [
+        "Apparel & Textiles",
+        "T-shirts & Polo Shirts",
+        "Graphic Print T-Shirt"
+      ]
+    }
   },
   {
     "id": "ap-cs-001",
@@ -96,10 +266,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "cotton-shirts",
-    "subCategorySlug": "cotton-shirts"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "cotton-shirts",
+      "name": "Cotton Shirts",
+      "slug": "cotton-shirts"
+    },
+    "url": "/apparel-textiles/cotton-shirts/ap-cs-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Cotton Shirts",
+        "url": "/apparel-textiles/cotton-shirts"
+      },
+      {
+        "name": "Formal Cotton Dress Shirt",
+        "url": "/apparel-textiles/cotton-shirts/ap-cs-001"
+      }
+    ],
+    "meta": {
+      "title": "Formal Cotton Dress Shirt - Cotton Shirts | Mercurion Overseas",
+      "description": "Classic formal cotton shirt with button-down collar.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Cotton Shirts",
+        "Formal Cotton Dress Shirt"
+      ]
+    }
   },
   {
     "id": "ap-cs-002",
@@ -110,10 +314,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "cotton-shirts",
-    "subCategorySlug": "cotton-shirts"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "cotton-shirts",
+      "name": "Cotton Shirts",
+      "slug": "cotton-shirts"
+    },
+    "url": "/apparel-textiles/cotton-shirts/ap-cs-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Cotton Shirts",
+        "url": "/apparel-textiles/cotton-shirts"
+      },
+      {
+        "name": "Casual Check Shirt",
+        "url": "/apparel-textiles/cotton-shirts/ap-cs-002"
+      }
+    ],
+    "meta": {
+      "title": "Casual Check Shirt - Cotton Shirts | Mercurion Overseas",
+      "description": "Comfortable check pattern shirt for everyday wear.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Cotton Shirts",
+        "Casual Check Shirt"
+      ]
+    }
   },
   {
     "id": "ap-cs-003",
@@ -124,10 +362,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "cotton-shirts",
-    "subCategorySlug": "cotton-shirts"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "cotton-shirts",
+      "name": "Cotton Shirts",
+      "slug": "cotton-shirts"
+    },
+    "url": "/apparel-textiles/cotton-shirts/ap-cs-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Cotton Shirts",
+        "url": "/apparel-textiles/cotton-shirts"
+      },
+      {
+        "name": "Slim Fit Oxford Shirt",
+        "url": "/apparel-textiles/cotton-shirts/ap-cs-003"
+      }
+    ],
+    "meta": {
+      "title": "Slim Fit Oxford Shirt - Cotton Shirts | Mercurion Overseas",
+      "description": "Premium oxford cotton shirt with slim fit design.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Cotton Shirts",
+        "Slim Fit Oxford Shirt"
+      ]
+    }
   },
   {
     "id": "ap-cs-004",
@@ -138,10 +410,44 @@
     "rating": 4.3,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "cotton-shirts",
-    "subCategorySlug": "cotton-shirts"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "cotton-shirts",
+      "name": "Cotton Shirts",
+      "slug": "cotton-shirts"
+    },
+    "url": "/apparel-textiles/cotton-shirts/ap-cs-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Cotton Shirts",
+        "url": "/apparel-textiles/cotton-shirts"
+      },
+      {
+        "name": "Linen Blend Short Sleeve Shirt",
+        "url": "/apparel-textiles/cotton-shirts/ap-cs-004"
+      }
+    ],
+    "meta": {
+      "title": "Linen Blend Short Sleeve Shirt - Cotton Shirts | Mercurion Overseas",
+      "description": "Breathable linen-cotton blend perfect for summer.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Cotton Shirts",
+        "Linen Blend Short Sleeve Shirt"
+      ]
+    }
   },
   {
     "id": "ap-cs-005",
@@ -152,10 +458,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "cotton-shirts",
-    "subCategorySlug": "cotton-shirts"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "cotton-shirts",
+      "name": "Cotton Shirts",
+      "slug": "cotton-shirts"
+    },
+    "url": "/apparel-textiles/cotton-shirts/ap-cs-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Cotton Shirts",
+        "url": "/apparel-textiles/cotton-shirts"
+      },
+      {
+        "name": "Denim Chambray Shirt",
+        "url": "/apparel-textiles/cotton-shirts/ap-cs-005"
+      }
+    ],
+    "meta": {
+      "title": "Denim Chambray Shirt - Cotton Shirts | Mercurion Overseas",
+      "description": "Stylish chambray shirt with vintage wash.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Cotton Shirts",
+        "Denim Chambray Shirt"
+      ]
+    }
   },
   {
     "id": "ap-sd-001",
@@ -168,10 +508,44 @@
     "reviews": [],
     "inStock": true,
     "featured": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "sarees-and-dress-materials",
-    "subCategorySlug": "sarees-and-dress-materials"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "sarees-dress",
+      "name": "Sarees & Dress Materials",
+      "slug": "sarees-dress-materials"
+    },
+    "url": "/apparel-textiles/sarees-dress-materials/ap-sd-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Sarees & Dress Materials",
+        "url": "/apparel-textiles/sarees-dress-materials"
+      },
+      {
+        "name": "Silk Saree with Zari Work",
+        "url": "/apparel-textiles/sarees-dress-materials/ap-sd-001"
+      }
+    ],
+    "meta": {
+      "title": "Silk Saree with Zari Work - Sarees & Dress Materials | Mercurion Overseas",
+      "description": "Elegant silk saree with traditional zari embroidery.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Sarees & Dress Materials",
+        "Silk Saree with Zari Work"
+      ]
+    }
   },
   {
     "id": "ap-sd-002",
@@ -182,10 +556,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "sarees-and-dress-materials",
-    "subCategorySlug": "sarees-and-dress-materials"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "sarees-dress",
+      "name": "Sarees & Dress Materials",
+      "slug": "sarees-dress-materials"
+    },
+    "url": "/apparel-textiles/sarees-dress-materials/ap-sd-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Sarees & Dress Materials",
+        "url": "/apparel-textiles/sarees-dress-materials"
+      },
+      {
+        "name": "Cotton Salwar Suit Set",
+        "url": "/apparel-textiles/sarees-dress-materials/ap-sd-002"
+      }
+    ],
+    "meta": {
+      "title": "Cotton Salwar Suit Set - Sarees & Dress Materials | Mercurion Overseas",
+      "description": "Comfortable cotton dress material with dupatta.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Sarees & Dress Materials",
+        "Cotton Salwar Suit Set"
+      ]
+    }
   },
   {
     "id": "ap-sd-003",
@@ -196,10 +604,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "sarees-and-dress-materials",
-    "subCategorySlug": "sarees-and-dress-materials"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "sarees-dress",
+      "name": "Sarees & Dress Materials",
+      "slug": "sarees-dress-materials"
+    },
+    "url": "/apparel-textiles/sarees-dress-materials/ap-sd-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Sarees & Dress Materials",
+        "url": "/apparel-textiles/sarees-dress-materials"
+      },
+      {
+        "name": "Chanderi Saree",
+        "url": "/apparel-textiles/sarees-dress-materials/ap-sd-003"
+      }
+    ],
+    "meta": {
+      "title": "Chanderi Saree - Sarees & Dress Materials | Mercurion Overseas",
+      "description": "Lightweight Chanderi saree with intricate designs.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Sarees & Dress Materials",
+        "Chanderi Saree"
+      ]
+    }
   },
   {
     "id": "ap-sd-004",
@@ -210,10 +652,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "sarees-and-dress-materials",
-    "subCategorySlug": "sarees-and-dress-materials"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "sarees-dress",
+      "name": "Sarees & Dress Materials",
+      "slug": "sarees-dress-materials"
+    },
+    "url": "/apparel-textiles/sarees-dress-materials/ap-sd-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Sarees & Dress Materials",
+        "url": "/apparel-textiles/sarees-dress-materials"
+      },
+      {
+        "name": "Embroidered Dress Material",
+        "url": "/apparel-textiles/sarees-dress-materials/ap-sd-004"
+      }
+    ],
+    "meta": {
+      "title": "Embroidered Dress Material - Sarees & Dress Materials | Mercurion Overseas",
+      "description": "Beautiful embroidered unstitched dress material.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Sarees & Dress Materials",
+        "Embroidered Dress Material"
+      ]
+    }
   },
   {
     "id": "ap-sd-005",
@@ -224,10 +700,44 @@
     "rating": 4.9,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "sarees-and-dress-materials",
-    "subCategorySlug": "sarees-and-dress-materials"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "sarees-dress",
+      "name": "Sarees & Dress Materials",
+      "slug": "sarees-dress-materials"
+    },
+    "url": "/apparel-textiles/sarees-dress-materials/ap-sd-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Sarees & Dress Materials",
+        "url": "/apparel-textiles/sarees-dress-materials"
+      },
+      {
+        "name": "Banarasi Silk Saree",
+        "url": "/apparel-textiles/sarees-dress-materials/ap-sd-005"
+      }
+    ],
+    "meta": {
+      "title": "Banarasi Silk Saree - Sarees & Dress Materials | Mercurion Overseas",
+      "description": "Premium Banarasi silk saree with gold work.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Sarees & Dress Materials",
+        "Banarasi Silk Saree"
+      ]
+    }
   },
   {
     "id": "ap-ss-001",
@@ -238,10 +748,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "scarves-and-stoles",
-    "subCategorySlug": "scarves-and-stoles"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "scarves-stoles",
+      "name": "Scarves & Stoles",
+      "slug": "scarves-stoles"
+    },
+    "url": "/apparel-textiles/scarves-stoles/ap-ss-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Scarves & Stoles",
+        "url": "/apparel-textiles/scarves-stoles"
+      },
+      {
+        "name": "Pashmina Wool Shawl",
+        "url": "/apparel-textiles/scarves-stoles/ap-ss-001"
+      }
+    ],
+    "meta": {
+      "title": "Pashmina Wool Shawl - Scarves & Stoles | Mercurion Overseas",
+      "description": "Luxurious pashmina wool shawl in classic colors.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Scarves & Stoles",
+        "Pashmina Wool Shawl"
+      ]
+    }
   },
   {
     "id": "ap-ss-002",
@@ -252,10 +796,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "scarves-and-stoles",
-    "subCategorySlug": "scarves-and-stoles"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "scarves-stoles",
+      "name": "Scarves & Stoles",
+      "slug": "scarves-stoles"
+    },
+    "url": "/apparel-textiles/scarves-stoles/ap-ss-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Scarves & Stoles",
+        "url": "/apparel-textiles/scarves-stoles"
+      },
+      {
+        "name": "Silk Printed Scarf",
+        "url": "/apparel-textiles/scarves-stoles/ap-ss-002"
+      }
+    ],
+    "meta": {
+      "title": "Silk Printed Scarf - Scarves & Stoles | Mercurion Overseas",
+      "description": "Elegant silk scarf with beautiful prints.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Scarves & Stoles",
+        "Silk Printed Scarf"
+      ]
+    }
   },
   {
     "id": "ap-ss-003",
@@ -266,10 +844,44 @@
     "rating": 4.3,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "scarves-and-stoles",
-    "subCategorySlug": "scarves-and-stoles"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "scarves-stoles",
+      "name": "Scarves & Stoles",
+      "slug": "scarves-stoles"
+    },
+    "url": "/apparel-textiles/scarves-stoles/ap-ss-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Scarves & Stoles",
+        "url": "/apparel-textiles/scarves-stoles"
+      },
+      {
+        "name": "Cotton Block Print Stole",
+        "url": "/apparel-textiles/scarves-stoles/ap-ss-003"
+      }
+    ],
+    "meta": {
+      "title": "Cotton Block Print Stole - Scarves & Stoles | Mercurion Overseas",
+      "description": "Hand block printed cotton stole.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Scarves & Stoles",
+        "Cotton Block Print Stole"
+      ]
+    }
   },
   {
     "id": "ap-ss-004",
@@ -280,10 +892,44 @@
     "rating": 4.8,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "scarves-and-stoles",
-    "subCategorySlug": "scarves-and-stoles"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "scarves-stoles",
+      "name": "Scarves & Stoles",
+      "slug": "scarves-stoles"
+    },
+    "url": "/apparel-textiles/scarves-stoles/ap-ss-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Scarves & Stoles",
+        "url": "/apparel-textiles/scarves-stoles"
+      },
+      {
+        "name": "Cashmere Blend Winter Scarf",
+        "url": "/apparel-textiles/scarves-stoles/ap-ss-004"
+      }
+    ],
+    "meta": {
+      "title": "Cashmere Blend Winter Scarf - Scarves & Stoles | Mercurion Overseas",
+      "description": "Warm cashmere blend scarf for winter.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Scarves & Stoles",
+        "Cashmere Blend Winter Scarf"
+      ]
+    }
   },
   {
     "id": "ap-ss-005",
@@ -294,10 +940,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "scarves-and-stoles",
-    "subCategorySlug": "scarves-and-stoles"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "scarves-stoles",
+      "name": "Scarves & Stoles",
+      "slug": "scarves-stoles"
+    },
+    "url": "/apparel-textiles/scarves-stoles/ap-ss-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Scarves & Stoles",
+        "url": "/apparel-textiles/scarves-stoles"
+      },
+      {
+        "name": "Bandhani Tie-Dye Stole",
+        "url": "/apparel-textiles/scarves-stoles/ap-ss-005"
+      }
+    ],
+    "meta": {
+      "title": "Bandhani Tie-Dye Stole - Scarves & Stoles | Mercurion Overseas",
+      "description": "Traditional Bandhani tie-dye stole.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Scarves & Stoles",
+        "Bandhani Tie-Dye Stole"
+      ]
+    }
   },
   {
     "id": "ap-ht-001",
@@ -308,10 +988,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "home-textiles-bedsheets-towels",
-    "subCategorySlug": "home-textiles-bedsheets-towels"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "home-textiles",
+      "name": "Home textiles (bedsheets, towels)",
+      "slug": "home-textiles"
+    },
+    "url": "/apparel-textiles/home-textiles/ap-ht-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Home textiles (bedsheets, towels)",
+        "url": "/apparel-textiles/home-textiles"
+      },
+      {
+        "name": "Egyptian Cotton Bedsheet Set",
+        "url": "/apparel-textiles/home-textiles/ap-ht-001"
+      }
+    ],
+    "meta": {
+      "title": "Egyptian Cotton Bedsheet Set - Home textiles (bedsheets, towels) | Mercurion Overseas",
+      "description": "Luxury Egyptian cotton bedsheet set with pillowcases.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Home textiles (bedsheets, towels)",
+        "Egyptian Cotton Bedsheet Set"
+      ]
+    }
   },
   {
     "id": "ap-ht-002",
@@ -322,10 +1036,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "home-textiles-bedsheets-towels",
-    "subCategorySlug": "home-textiles-bedsheets-towels"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "home-textiles",
+      "name": "Home textiles (bedsheets, towels)",
+      "slug": "home-textiles"
+    },
+    "url": "/apparel-textiles/home-textiles/ap-ht-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Home textiles (bedsheets, towels)",
+        "url": "/apparel-textiles/home-textiles"
+      },
+      {
+        "name": "Turkish Cotton Towel Set",
+        "url": "/apparel-textiles/home-textiles/ap-ht-002"
+      }
+    ],
+    "meta": {
+      "title": "Turkish Cotton Towel Set - Home textiles (bedsheets, towels) | Mercurion Overseas",
+      "description": "Premium Turkish cotton bath towel set.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Home textiles (bedsheets, towels)",
+        "Turkish Cotton Towel Set"
+      ]
+    }
   },
   {
     "id": "ap-ht-003",
@@ -336,10 +1084,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "home-textiles-bedsheets-towels",
-    "subCategorySlug": "home-textiles-bedsheets-towels"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "home-textiles",
+      "name": "Home textiles (bedsheets, towels)",
+      "slug": "home-textiles"
+    },
+    "url": "/apparel-textiles/home-textiles/ap-ht-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Home textiles (bedsheets, towels)",
+        "url": "/apparel-textiles/home-textiles"
+      },
+      {
+        "name": "Printed Bedsheet with Comforter",
+        "url": "/apparel-textiles/home-textiles/ap-ht-003"
+      }
+    ],
+    "meta": {
+      "title": "Printed Bedsheet with Comforter - Home textiles (bedsheets, towels) | Mercurion Overseas",
+      "description": "Complete bedding set with comforter and pillows.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Home textiles (bedsheets, towels)",
+        "Printed Bedsheet with Comforter"
+      ]
+    }
   },
   {
     "id": "ap-ht-004",
@@ -350,10 +1132,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "home-textiles-bedsheets-towels",
-    "subCategorySlug": "home-textiles-bedsheets-towels"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "home-textiles",
+      "name": "Home textiles (bedsheets, towels)",
+      "slug": "home-textiles"
+    },
+    "url": "/apparel-textiles/home-textiles/ap-ht-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Home textiles (bedsheets, towels)",
+        "url": "/apparel-textiles/home-textiles"
+      },
+      {
+        "name": "Bamboo Fiber Towel Set",
+        "url": "/apparel-textiles/home-textiles/ap-ht-004"
+      }
+    ],
+    "meta": {
+      "title": "Bamboo Fiber Towel Set - Home textiles (bedsheets, towels) | Mercurion Overseas",
+      "description": "Eco-friendly bamboo fiber towels.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Home textiles (bedsheets, towels)",
+        "Bamboo Fiber Towel Set"
+      ]
+    }
   },
   {
     "id": "ap-ht-005",
@@ -364,10 +1180,44 @@
     "rating": 4.3,
     "reviews": [],
     "inStock": true,
-    "categoryId": "apparel-textiles",
-    "categorySlug": "apparel-textiles",
-    "subCategoryId": "home-textiles-bedsheets-towels",
-    "subCategorySlug": "home-textiles-bedsheets-towels"
+    "category": {
+      "id": "apparel-textiles",
+      "name": "Apparel & Textiles",
+      "slug": "apparel-textiles"
+    },
+    "subCategory": {
+      "id": "home-textiles",
+      "name": "Home textiles (bedsheets, towels)",
+      "slug": "home-textiles"
+    },
+    "url": "/apparel-textiles/home-textiles/ap-ht-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Apparel & Textiles",
+        "url": "/apparel-textiles"
+      },
+      {
+        "name": "Home textiles (bedsheets, towels)",
+        "url": "/apparel-textiles/home-textiles"
+      },
+      {
+        "name": "Microfiber Bedsheet Set",
+        "url": "/apparel-textiles/home-textiles/ap-ht-005"
+      }
+    ],
+    "meta": {
+      "title": "Microfiber Bedsheet Set - Home textiles (bedsheets, towels) | Mercurion Overseas",
+      "description": "Soft microfiber bedsheet set in various colors.",
+      "keywords": [
+        "Apparel & Textiles",
+        "Home textiles (bedsheets, towels)",
+        "Microfiber Bedsheet Set"
+      ]
+    }
   },
   {
     "id": "hd-wh-001",
@@ -379,10 +1229,44 @@
     "reviews": [],
     "inStock": true,
     "featured": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "wooden-handicrafts",
-    "subCategorySlug": "wooden-handicrafts"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "wooden",
+      "name": "Wooden handicrafts",
+      "slug": "wooden-handicrafts"
+    },
+    "url": "/handicrafts-decor/wooden-handicrafts/hd-wh-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Wooden handicrafts",
+        "url": "/handicrafts-decor/wooden-handicrafts"
+      },
+      {
+        "name": "Carved Wooden Elephant",
+        "url": "/handicrafts-decor/wooden-handicrafts/hd-wh-001"
+      }
+    ],
+    "meta": {
+      "title": "Carved Wooden Elephant - Wooden handicrafts | Mercurion Overseas",
+      "description": "Handcrafted wooden elephant with intricate carvings.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Wooden handicrafts",
+        "Carved Wooden Elephant"
+      ]
+    }
   },
   {
     "id": "hd-wh-002",
@@ -393,10 +1277,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "wooden-handicrafts",
-    "subCategorySlug": "wooden-handicrafts"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "wooden",
+      "name": "Wooden handicrafts",
+      "slug": "wooden-handicrafts"
+    },
+    "url": "/handicrafts-decor/wooden-handicrafts/hd-wh-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Wooden handicrafts",
+        "url": "/handicrafts-decor/wooden-handicrafts"
+      },
+      {
+        "name": "Wooden Decorative Bowl",
+        "url": "/handicrafts-decor/wooden-handicrafts/hd-wh-002"
+      }
+    ],
+    "meta": {
+      "title": "Wooden Decorative Bowl - Wooden handicrafts | Mercurion Overseas",
+      "description": "Beautiful hand-turned wooden bowl.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Wooden handicrafts",
+        "Wooden Decorative Bowl"
+      ]
+    }
   },
   {
     "id": "hd-wh-003",
@@ -407,10 +1325,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "wooden-handicrafts",
-    "subCategorySlug": "wooden-handicrafts"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "wooden",
+      "name": "Wooden handicrafts",
+      "slug": "wooden-handicrafts"
+    },
+    "url": "/handicrafts-decor/wooden-handicrafts/hd-wh-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Wooden handicrafts",
+        "url": "/handicrafts-decor/wooden-handicrafts"
+      },
+      {
+        "name": "Teak Wood Photo Frame",
+        "url": "/handicrafts-decor/wooden-handicrafts/hd-wh-003"
+      }
+    ],
+    "meta": {
+      "title": "Teak Wood Photo Frame - Wooden handicrafts | Mercurion Overseas",
+      "description": "Elegant teak wood photo frame.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Wooden handicrafts",
+        "Teak Wood Photo Frame"
+      ]
+    }
   },
   {
     "id": "hd-wh-004",
@@ -421,10 +1373,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "wooden-handicrafts",
-    "subCategorySlug": "wooden-handicrafts"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "wooden",
+      "name": "Wooden handicrafts",
+      "slug": "wooden-handicrafts"
+    },
+    "url": "/handicrafts-decor/wooden-handicrafts/hd-wh-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Wooden handicrafts",
+        "url": "/handicrafts-decor/wooden-handicrafts"
+      },
+      {
+        "name": "Wooden Wall Shelf",
+        "url": "/handicrafts-decor/wooden-handicrafts/hd-wh-004"
+      }
+    ],
+    "meta": {
+      "title": "Wooden Wall Shelf - Wooden handicrafts | Mercurion Overseas",
+      "description": "Handcrafted decorative wall shelf.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Wooden handicrafts",
+        "Wooden Wall Shelf"
+      ]
+    }
   },
   {
     "id": "hd-wh-005",
@@ -435,10 +1421,44 @@
     "rating": 4.8,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "wooden-handicrafts",
-    "subCategorySlug": "wooden-handicrafts"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "wooden",
+      "name": "Wooden handicrafts",
+      "slug": "wooden-handicrafts"
+    },
+    "url": "/handicrafts-decor/wooden-handicrafts/hd-wh-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Wooden handicrafts",
+        "url": "/handicrafts-decor/wooden-handicrafts"
+      },
+      {
+        "name": "Carved Jewelry Box",
+        "url": "/handicrafts-decor/wooden-handicrafts/hd-wh-005"
+      }
+    ],
+    "meta": {
+      "title": "Carved Jewelry Box - Wooden handicrafts | Mercurion Overseas",
+      "description": "Ornate wooden jewelry box with velvet lining.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Wooden handicrafts",
+        "Carved Jewelry Box"
+      ]
+    }
   },
   {
     "id": "hd-bm-001",
@@ -449,10 +1469,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "brass-and-metal-decor",
-    "subCategorySlug": "brass-and-metal-decor"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "brass-metal",
+      "name": "Brass & metal decor",
+      "slug": "brass-metal-decor"
+    },
+    "url": "/handicrafts-decor/brass-metal-decor/hd-bm-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Brass & metal decor",
+        "url": "/handicrafts-decor/brass-metal-decor"
+      },
+      {
+        "name": "Brass Diya Set",
+        "url": "/handicrafts-decor/brass-metal-decor/hd-bm-001"
+      }
+    ],
+    "meta": {
+      "title": "Brass Diya Set - Brass & metal decor | Mercurion Overseas",
+      "description": "Traditional brass oil lamp set.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Brass & metal decor",
+        "Brass Diya Set"
+      ]
+    }
   },
   {
     "id": "hd-bm-002",
@@ -463,10 +1517,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "brass-and-metal-decor",
-    "subCategorySlug": "brass-and-metal-decor"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "brass-metal",
+      "name": "Brass & metal decor",
+      "slug": "brass-metal-decor"
+    },
+    "url": "/handicrafts-decor/brass-metal-decor/hd-bm-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Brass & metal decor",
+        "url": "/handicrafts-decor/brass-metal-decor"
+      },
+      {
+        "name": "Antique Brass Vase",
+        "url": "/handicrafts-decor/brass-metal-decor/hd-bm-002"
+      }
+    ],
+    "meta": {
+      "title": "Antique Brass Vase - Brass & metal decor | Mercurion Overseas",
+      "description": "Vintage-style brass vase with engravings.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Brass & metal decor",
+        "Antique Brass Vase"
+      ]
+    }
   },
   {
     "id": "hd-bm-003",
@@ -477,10 +1565,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "brass-and-metal-decor",
-    "subCategorySlug": "brass-and-metal-decor"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "brass-metal",
+      "name": "Brass & metal decor",
+      "slug": "brass-metal-decor"
+    },
+    "url": "/handicrafts-decor/brass-metal-decor/hd-bm-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Brass & metal decor",
+        "url": "/handicrafts-decor/brass-metal-decor"
+      },
+      {
+        "name": "Metal Wall Hanging",
+        "url": "/handicrafts-decor/brass-metal-decor/hd-bm-003"
+      }
+    ],
+    "meta": {
+      "title": "Metal Wall Hanging - Brass & metal decor | Mercurion Overseas",
+      "description": "Decorative metal wall art piece.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Brass & metal decor",
+        "Metal Wall Hanging"
+      ]
+    }
   },
   {
     "id": "hd-bm-004",
@@ -491,10 +1613,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "brass-and-metal-decor",
-    "subCategorySlug": "brass-and-metal-decor"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "brass-metal",
+      "name": "Brass & metal decor",
+      "slug": "brass-metal-decor"
+    },
+    "url": "/handicrafts-decor/brass-metal-decor/hd-bm-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Brass & metal decor",
+        "url": "/handicrafts-decor/brass-metal-decor"
+      },
+      {
+        "name": "Brass Incense Holder",
+        "url": "/handicrafts-decor/brass-metal-decor/hd-bm-004"
+      }
+    ],
+    "meta": {
+      "title": "Brass Incense Holder - Brass & metal decor | Mercurion Overseas",
+      "description": "Elegant brass incense stick holder.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Brass & metal decor",
+        "Brass Incense Holder"
+      ]
+    }
   },
   {
     "id": "hd-bm-005",
@@ -505,10 +1661,44 @@
     "rating": 4.9,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "brass-and-metal-decor",
-    "subCategorySlug": "brass-and-metal-decor"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "brass-metal",
+      "name": "Brass & metal decor",
+      "slug": "brass-metal-decor"
+    },
+    "url": "/handicrafts-decor/brass-metal-decor/hd-bm-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Brass & metal decor",
+        "url": "/handicrafts-decor/brass-metal-decor"
+      },
+      {
+        "name": "Bronze Sculpture",
+        "url": "/handicrafts-decor/brass-metal-decor/hd-bm-005"
+      }
+    ],
+    "meta": {
+      "title": "Bronze Sculpture - Brass & metal decor | Mercurion Overseas",
+      "description": "Handcrafted bronze sculpture.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Brass & metal decor",
+        "Bronze Sculpture"
+      ]
+    }
   },
   {
     "id": "hd-wa-001",
@@ -519,10 +1709,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "wall-art",
-    "subCategorySlug": "wall-art"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "wall-art",
+      "name": "Wall art",
+      "slug": "wall-art"
+    },
+    "url": "/handicrafts-decor/wall-art/hd-wa-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Wall art",
+        "url": "/handicrafts-decor/wall-art"
+      },
+      {
+        "name": "Mandala Canvas Print",
+        "url": "/handicrafts-decor/wall-art/hd-wa-001"
+      }
+    ],
+    "meta": {
+      "title": "Mandala Canvas Print - Wall art | Mercurion Overseas",
+      "description": "Beautiful mandala design canvas wall art.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Wall art",
+        "Mandala Canvas Print"
+      ]
+    }
   },
   {
     "id": "hd-wa-002",
@@ -533,10 +1757,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "wall-art",
-    "subCategorySlug": "wall-art"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "wall-art",
+      "name": "Wall art",
+      "slug": "wall-art"
+    },
+    "url": "/handicrafts-decor/wall-art/hd-wa-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Wall art",
+        "url": "/handicrafts-decor/wall-art"
+      },
+      {
+        "name": "Abstract Metal Wall Art",
+        "url": "/handicrafts-decor/wall-art/hd-wa-002"
+      }
+    ],
+    "meta": {
+      "title": "Abstract Metal Wall Art - Wall art | Mercurion Overseas",
+      "description": "Modern abstract metal wall sculpture.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Wall art",
+        "Abstract Metal Wall Art"
+      ]
+    }
   },
   {
     "id": "hd-wa-003",
@@ -547,10 +1805,44 @@
     "rating": 4.8,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "wall-art",
-    "subCategorySlug": "wall-art"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "wall-art",
+      "name": "Wall art",
+      "slug": "wall-art"
+    },
+    "url": "/handicrafts-decor/wall-art/hd-wa-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Wall art",
+        "url": "/handicrafts-decor/wall-art"
+      },
+      {
+        "name": "Wooden Wall Panel",
+        "url": "/handicrafts-decor/wall-art/hd-wa-003"
+      }
+    ],
+    "meta": {
+      "title": "Wooden Wall Panel - Wall art | Mercurion Overseas",
+      "description": "Carved wooden decorative wall panel.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Wall art",
+        "Wooden Wall Panel"
+      ]
+    }
   },
   {
     "id": "hd-wa-004",
@@ -561,10 +1853,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "wall-art",
-    "subCategorySlug": "wall-art"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "wall-art",
+      "name": "Wall art",
+      "slug": "wall-art"
+    },
+    "url": "/handicrafts-decor/wall-art/hd-wa-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Wall art",
+        "url": "/handicrafts-decor/wall-art"
+      },
+      {
+        "name": "Framed Traditional Art",
+        "url": "/handicrafts-decor/wall-art/hd-wa-004"
+      }
+    ],
+    "meta": {
+      "title": "Framed Traditional Art - Wall art | Mercurion Overseas",
+      "description": "Traditional Indian art in premium frame.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Wall art",
+        "Framed Traditional Art"
+      ]
+    }
   },
   {
     "id": "hd-wa-005",
@@ -575,10 +1901,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "wall-art",
-    "subCategorySlug": "wall-art"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "wall-art",
+      "name": "Wall art",
+      "slug": "wall-art"
+    },
+    "url": "/handicrafts-decor/wall-art/hd-wa-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Wall art",
+        "url": "/handicrafts-decor/wall-art"
+      },
+      {
+        "name": "Macrame Wall Hanging",
+        "url": "/handicrafts-decor/wall-art/hd-wa-005"
+      }
+    ],
+    "meta": {
+      "title": "Macrame Wall Hanging - Wall art | Mercurion Overseas",
+      "description": "Handmade macrame wall decoration.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Wall art",
+        "Macrame Wall Hanging"
+      ]
+    }
   },
   {
     "id": "hd-ch-001",
@@ -589,10 +1949,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "candle-holders",
-    "subCategorySlug": "candle-holders"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "candle-holders",
+      "name": "Candle holders",
+      "slug": "candle-holders"
+    },
+    "url": "/handicrafts-decor/candle-holders/hd-ch-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Candle holders",
+        "url": "/handicrafts-decor/candle-holders"
+      },
+      {
+        "name": "Crystal Candle Holder Set",
+        "url": "/handicrafts-decor/candle-holders/hd-ch-001"
+      }
+    ],
+    "meta": {
+      "title": "Crystal Candle Holder Set - Candle holders | Mercurion Overseas",
+      "description": "Elegant crystal glass candle holder set.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Candle holders",
+        "Crystal Candle Holder Set"
+      ]
+    }
   },
   {
     "id": "hd-ch-002",
@@ -603,10 +1997,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "candle-holders",
-    "subCategorySlug": "candle-holders"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "candle-holders",
+      "name": "Candle holders",
+      "slug": "candle-holders"
+    },
+    "url": "/handicrafts-decor/candle-holders/hd-ch-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Candle holders",
+        "url": "/handicrafts-decor/candle-holders"
+      },
+      {
+        "name": "Brass Pillar Candle Stand",
+        "url": "/handicrafts-decor/candle-holders/hd-ch-002"
+      }
+    ],
+    "meta": {
+      "title": "Brass Pillar Candle Stand - Candle holders | Mercurion Overseas",
+      "description": "Vintage brass candle stand.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Candle holders",
+        "Brass Pillar Candle Stand"
+      ]
+    }
   },
   {
     "id": "hd-ch-003",
@@ -617,10 +2045,44 @@
     "rating": 4.3,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "candle-holders",
-    "subCategorySlug": "candle-holders"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "candle-holders",
+      "name": "Candle holders",
+      "slug": "candle-holders"
+    },
+    "url": "/handicrafts-decor/candle-holders/hd-ch-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Candle holders",
+        "url": "/handicrafts-decor/candle-holders"
+      },
+      {
+        "name": "Ceramic Tea Light Holders",
+        "url": "/handicrafts-decor/candle-holders/hd-ch-003"
+      }
+    ],
+    "meta": {
+      "title": "Ceramic Tea Light Holders - Candle holders | Mercurion Overseas",
+      "description": "Set of handcrafted ceramic tea light holders.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Candle holders",
+        "Ceramic Tea Light Holders"
+      ]
+    }
   },
   {
     "id": "hd-ch-004",
@@ -631,10 +2093,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "candle-holders",
-    "subCategorySlug": "candle-holders"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "candle-holders",
+      "name": "Candle holders",
+      "slug": "candle-holders"
+    },
+    "url": "/handicrafts-decor/candle-holders/hd-ch-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Candle holders",
+        "url": "/handicrafts-decor/candle-holders"
+      },
+      {
+        "name": "Iron Hurricane Candle Holder",
+        "url": "/handicrafts-decor/candle-holders/hd-ch-004"
+      }
+    ],
+    "meta": {
+      "title": "Iron Hurricane Candle Holder - Candle holders | Mercurion Overseas",
+      "description": "Decorative iron hurricane lantern.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Candle holders",
+        "Iron Hurricane Candle Holder"
+      ]
+    }
   },
   {
     "id": "hd-ch-005",
@@ -645,10 +2141,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "candle-holders",
-    "subCategorySlug": "candle-holders"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "candle-holders",
+      "name": "Candle holders",
+      "slug": "candle-holders"
+    },
+    "url": "/handicrafts-decor/candle-holders/hd-ch-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Candle holders",
+        "url": "/handicrafts-decor/candle-holders"
+      },
+      {
+        "name": "Wooden Candle Stand",
+        "url": "/handicrafts-decor/candle-holders/hd-ch-005"
+      }
+    ],
+    "meta": {
+      "title": "Wooden Candle Stand - Candle holders | Mercurion Overseas",
+      "description": "Rustic wooden candle holder.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Candle holders",
+        "Wooden Candle Stand"
+      ]
+    }
   },
   {
     "id": "hd-hp-001",
@@ -659,10 +2189,44 @@
     "rating": 4.8,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "hand-painted-items",
-    "subCategorySlug": "hand-painted-items"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "hand-painted",
+      "name": "Hand-painted items",
+      "slug": "hand-painted-items"
+    },
+    "url": "/handicrafts-decor/hand-painted-items/hd-hp-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Hand-painted items",
+        "url": "/handicrafts-decor/hand-painted-items"
+      },
+      {
+        "name": "Hand-Painted Ceramic Vase",
+        "url": "/handicrafts-decor/hand-painted-items/hd-hp-001"
+      }
+    ],
+    "meta": {
+      "title": "Hand-Painted Ceramic Vase - Hand-painted items | Mercurion Overseas",
+      "description": "Beautifully hand-painted ceramic vase.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Hand-painted items",
+        "Hand-Painted Ceramic Vase"
+      ]
+    }
   },
   {
     "id": "hd-hp-002",
@@ -673,10 +2237,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "hand-painted-items",
-    "subCategorySlug": "hand-painted-items"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "hand-painted",
+      "name": "Hand-painted items",
+      "slug": "hand-painted-items"
+    },
+    "url": "/handicrafts-decor/hand-painted-items/hd-hp-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Hand-painted items",
+        "url": "/handicrafts-decor/hand-painted-items"
+      },
+      {
+        "name": "Painted Wooden Boxes",
+        "url": "/handicrafts-decor/hand-painted-items/hd-hp-002"
+      }
+    ],
+    "meta": {
+      "title": "Painted Wooden Boxes - Hand-painted items | Mercurion Overseas",
+      "description": "Set of hand-painted decorative boxes.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Hand-painted items",
+        "Painted Wooden Boxes"
+      ]
+    }
   },
   {
     "id": "hd-hp-003",
@@ -687,10 +2285,44 @@
     "rating": 4.9,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "hand-painted-items",
-    "subCategorySlug": "hand-painted-items"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "hand-painted",
+      "name": "Hand-painted items",
+      "slug": "hand-painted-items"
+    },
+    "url": "/handicrafts-decor/hand-painted-items/hd-hp-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Hand-painted items",
+        "url": "/handicrafts-decor/hand-painted-items"
+      },
+      {
+        "name": "Madhubani Painting",
+        "url": "/handicrafts-decor/hand-painted-items/hd-hp-003"
+      }
+    ],
+    "meta": {
+      "title": "Madhubani Painting - Hand-painted items | Mercurion Overseas",
+      "description": "Traditional Madhubani art painting.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Hand-painted items",
+        "Madhubani Painting"
+      ]
+    }
   },
   {
     "id": "hd-hp-004",
@@ -701,10 +2333,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "hand-painted-items",
-    "subCategorySlug": "hand-painted-items"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "hand-painted",
+      "name": "Hand-painted items",
+      "slug": "hand-painted-items"
+    },
+    "url": "/handicrafts-decor/hand-painted-items/hd-hp-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Hand-painted items",
+        "url": "/handicrafts-decor/hand-painted-items"
+      },
+      {
+        "name": "Hand-Painted Coasters Set",
+        "url": "/handicrafts-decor/hand-painted-items/hd-hp-004"
+      }
+    ],
+    "meta": {
+      "title": "Hand-Painted Coasters Set - Hand-painted items | Mercurion Overseas",
+      "description": "Artistic hand-painted coaster set.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Hand-painted items",
+        "Hand-Painted Coasters Set"
+      ]
+    }
   },
   {
     "id": "hd-hp-005",
@@ -715,10 +2381,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "handicrafts-decor",
-    "categorySlug": "handicrafts-decor",
-    "subCategoryId": "hand-painted-items",
-    "subCategorySlug": "hand-painted-items"
+    "category": {
+      "id": "handicrafts-decor",
+      "name": "Handicrafts & Decor",
+      "slug": "handicrafts-decor"
+    },
+    "subCategory": {
+      "id": "hand-painted",
+      "name": "Hand-painted items",
+      "slug": "hand-painted-items"
+    },
+    "url": "/handicrafts-decor/hand-painted-items/hd-hp-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Handicrafts & Decor",
+        "url": "/handicrafts-decor"
+      },
+      {
+        "name": "Hand-painted items",
+        "url": "/handicrafts-decor/hand-painted-items"
+      },
+      {
+        "name": "Painted Terracotta Pots",
+        "url": "/handicrafts-decor/hand-painted-items/hd-hp-005"
+      }
+    ],
+    "meta": {
+      "title": "Painted Terracotta Pots - Hand-painted items | Mercurion Overseas",
+      "description": "Hand-painted terracotta plant pots.",
+      "keywords": [
+        "Handicrafts & Decor",
+        "Hand-painted items",
+        "Painted Terracotta Pots"
+      ]
+    }
   },
   {
     "id": "hl-kw-001",
@@ -729,10 +2429,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "kitchenware",
-    "subCategorySlug": "kitchenware"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "kitchenware",
+      "name": "Kitchenware",
+      "slug": "kitchenware"
+    },
+    "url": "/home-living/kitchenware/hl-kw-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Kitchenware",
+        "url": "/home-living/kitchenware"
+      },
+      {
+        "name": "Stainless Steel Cookware Set",
+        "url": "/home-living/kitchenware/hl-kw-001"
+      }
+    ],
+    "meta": {
+      "title": "Stainless Steel Cookware Set - Kitchenware | Mercurion Overseas",
+      "description": "Professional-grade stainless steel pot and pan set.",
+      "keywords": [
+        "Home & Living",
+        "Kitchenware",
+        "Stainless Steel Cookware Set"
+      ]
+    }
   },
   {
     "id": "hl-kw-002",
@@ -743,10 +2477,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "kitchenware",
-    "subCategorySlug": "kitchenware"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "kitchenware",
+      "name": "Kitchenware",
+      "slug": "kitchenware"
+    },
+    "url": "/home-living/kitchenware/hl-kw-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Kitchenware",
+        "url": "/home-living/kitchenware"
+      },
+      {
+        "name": "Ceramic Knife Set",
+        "url": "/home-living/kitchenware/hl-kw-002"
+      }
+    ],
+    "meta": {
+      "title": "Ceramic Knife Set - Kitchenware | Mercurion Overseas",
+      "description": "Sharp ceramic kitchen knife collection.",
+      "keywords": [
+        "Home & Living",
+        "Kitchenware",
+        "Ceramic Knife Set"
+      ]
+    }
   },
   {
     "id": "hl-kw-003",
@@ -757,10 +2525,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "kitchenware",
-    "subCategorySlug": "kitchenware"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "kitchenware",
+      "name": "Kitchenware",
+      "slug": "kitchenware"
+    },
+    "url": "/home-living/kitchenware/hl-kw-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Kitchenware",
+        "url": "/home-living/kitchenware"
+      },
+      {
+        "name": "Bamboo Cutting Board Set",
+        "url": "/home-living/kitchenware/hl-kw-003"
+      }
+    ],
+    "meta": {
+      "title": "Bamboo Cutting Board Set - Kitchenware | Mercurion Overseas",
+      "description": "Eco-friendly bamboo cutting boards.",
+      "keywords": [
+        "Home & Living",
+        "Kitchenware",
+        "Bamboo Cutting Board Set"
+      ]
+    }
   },
   {
     "id": "hl-kw-004",
@@ -771,10 +2573,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "kitchenware",
-    "subCategorySlug": "kitchenware"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "kitchenware",
+      "name": "Kitchenware",
+      "slug": "kitchenware"
+    },
+    "url": "/home-living/kitchenware/hl-kw-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Kitchenware",
+        "url": "/home-living/kitchenware"
+      },
+      {
+        "name": "Silicone Baking Set",
+        "url": "/home-living/kitchenware/hl-kw-004"
+      }
+    ],
+    "meta": {
+      "title": "Silicone Baking Set - Kitchenware | Mercurion Overseas",
+      "description": "Complete silicone baking utensils set.",
+      "keywords": [
+        "Home & Living",
+        "Kitchenware",
+        "Silicone Baking Set"
+      ]
+    }
   },
   {
     "id": "hl-kw-005",
@@ -785,10 +2621,44 @@
     "rating": 4.8,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "kitchenware",
-    "subCategorySlug": "kitchenware"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "kitchenware",
+      "name": "Kitchenware",
+      "slug": "kitchenware"
+    },
+    "url": "/home-living/kitchenware/hl-kw-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Kitchenware",
+        "url": "/home-living/kitchenware"
+      },
+      {
+        "name": "Copper Bottom Handi Set",
+        "url": "/home-living/kitchenware/hl-kw-005"
+      }
+    ],
+    "meta": {
+      "title": "Copper Bottom Handi Set - Kitchenware | Mercurion Overseas",
+      "description": "Traditional copper bottom cooking vessels.",
+      "keywords": [
+        "Home & Living",
+        "Kitchenware",
+        "Copper Bottom Handi Set"
+      ]
+    }
   },
   {
     "id": "hl-sb-001",
@@ -799,10 +2669,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "storage-baskets",
-    "subCategorySlug": "storage-baskets"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "storage",
+      "name": "Storage baskets",
+      "slug": "storage-baskets"
+    },
+    "url": "/home-living/storage-baskets/hl-sb-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Storage baskets",
+        "url": "/home-living/storage-baskets"
+      },
+      {
+        "name": "Woven Seagrass Basket Set",
+        "url": "/home-living/storage-baskets/hl-sb-001"
+      }
+    ],
+    "meta": {
+      "title": "Woven Seagrass Basket Set - Storage baskets | Mercurion Overseas",
+      "description": "Natural seagrass storage basket set of 3.",
+      "keywords": [
+        "Home & Living",
+        "Storage baskets",
+        "Woven Seagrass Basket Set"
+      ]
+    }
   },
   {
     "id": "hl-sb-002",
@@ -813,10 +2717,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "storage-baskets",
-    "subCategorySlug": "storage-baskets"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "storage",
+      "name": "Storage baskets",
+      "slug": "storage-baskets"
+    },
+    "url": "/home-living/storage-baskets/hl-sb-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Storage baskets",
+        "url": "/home-living/storage-baskets"
+      },
+      {
+        "name": "Cotton Rope Basket",
+        "url": "/home-living/storage-baskets/hl-sb-002"
+      }
+    ],
+    "meta": {
+      "title": "Cotton Rope Basket - Storage baskets | Mercurion Overseas",
+      "description": "Handwoven cotton rope storage basket.",
+      "keywords": [
+        "Home & Living",
+        "Storage baskets",
+        "Cotton Rope Basket"
+      ]
+    }
   },
   {
     "id": "hl-sb-003",
@@ -827,10 +2765,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "storage-baskets",
-    "subCategorySlug": "storage-baskets"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "storage",
+      "name": "Storage baskets",
+      "slug": "storage-baskets"
+    },
+    "url": "/home-living/storage-baskets/hl-sb-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Storage baskets",
+        "url": "/home-living/storage-baskets"
+      },
+      {
+        "name": "Bamboo Laundry Basket",
+        "url": "/home-living/storage-baskets/hl-sb-003"
+      }
+    ],
+    "meta": {
+      "title": "Bamboo Laundry Basket - Storage baskets | Mercurion Overseas",
+      "description": "Large bamboo laundry hamper with lid.",
+      "keywords": [
+        "Home & Living",
+        "Storage baskets",
+        "Bamboo Laundry Basket"
+      ]
+    }
   },
   {
     "id": "hl-sb-004",
@@ -841,10 +2813,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "storage-baskets",
-    "subCategorySlug": "storage-baskets"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "storage",
+      "name": "Storage baskets",
+      "slug": "storage-baskets"
+    },
+    "url": "/home-living/storage-baskets/hl-sb-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Storage baskets",
+        "url": "/home-living/storage-baskets"
+      },
+      {
+        "name": "Jute Storage Bins",
+        "url": "/home-living/storage-baskets/hl-sb-004"
+      }
+    ],
+    "meta": {
+      "title": "Jute Storage Bins - Storage baskets | Mercurion Overseas",
+      "description": "Eco-friendly jute storage containers.",
+      "keywords": [
+        "Home & Living",
+        "Storage baskets",
+        "Jute Storage Bins"
+      ]
+    }
   },
   {
     "id": "hl-sb-005",
@@ -855,10 +2861,44 @@
     "rating": 4.3,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "storage-baskets",
-    "subCategorySlug": "storage-baskets"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "storage",
+      "name": "Storage baskets",
+      "slug": "storage-baskets"
+    },
+    "url": "/home-living/storage-baskets/hl-sb-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Storage baskets",
+        "url": "/home-living/storage-baskets"
+      },
+      {
+        "name": "Wire Mesh Basket Set",
+        "url": "/home-living/storage-baskets/hl-sb-005"
+      }
+    ],
+    "meta": {
+      "title": "Wire Mesh Basket Set - Storage baskets | Mercurion Overseas",
+      "description": "Modern wire storage basket collection.",
+      "keywords": [
+        "Home & Living",
+        "Storage baskets",
+        "Wire Mesh Basket Set"
+      ]
+    }
   },
   {
     "id": "hl-tw-001",
@@ -871,10 +2911,44 @@
     "reviews": [],
     "inStock": true,
     "featured": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "tableware",
-    "subCategorySlug": "tableware"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "tableware",
+      "name": "Tableware",
+      "slug": "tableware"
+    },
+    "url": "/home-living/tableware/hl-tw-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Tableware",
+        "url": "/home-living/tableware"
+      },
+      {
+        "name": "Fine Bone China Dinner Set",
+        "url": "/home-living/tableware/hl-tw-001"
+      }
+    ],
+    "meta": {
+      "title": "Fine Bone China Dinner Set - Tableware | Mercurion Overseas",
+      "description": "24-piece fine bone china dinner set.",
+      "keywords": [
+        "Home & Living",
+        "Tableware",
+        "Fine Bone China Dinner Set"
+      ]
+    }
   },
   {
     "id": "hl-tw-002",
@@ -885,10 +2959,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "tableware",
-    "subCategorySlug": "tableware"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "tableware",
+      "name": "Tableware",
+      "slug": "tableware"
+    },
+    "url": "/home-living/tableware/hl-tw-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Tableware",
+        "url": "/home-living/tableware"
+      },
+      {
+        "name": "Stoneware Bowl Set",
+        "url": "/home-living/tableware/hl-tw-002"
+      }
+    ],
+    "meta": {
+      "title": "Stoneware Bowl Set - Tableware | Mercurion Overseas",
+      "description": "Rustic stoneware bowls in assorted sizes.",
+      "keywords": [
+        "Home & Living",
+        "Tableware",
+        "Stoneware Bowl Set"
+      ]
+    }
   },
   {
     "id": "hl-tw-003",
@@ -899,10 +3007,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "tableware",
-    "subCategorySlug": "tableware"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "tableware",
+      "name": "Tableware",
+      "slug": "tableware"
+    },
+    "url": "/home-living/tableware/hl-tw-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Tableware",
+        "url": "/home-living/tableware"
+      },
+      {
+        "name": "Copper Serving Platter",
+        "url": "/home-living/tableware/hl-tw-003"
+      }
+    ],
+    "meta": {
+      "title": "Copper Serving Platter - Tableware | Mercurion Overseas",
+      "description": "Elegant copper serving tray.",
+      "keywords": [
+        "Home & Living",
+        "Tableware",
+        "Copper Serving Platter"
+      ]
+    }
   },
   {
     "id": "hl-tw-004",
@@ -913,10 +3055,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "tableware",
-    "subCategorySlug": "tableware"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "tableware",
+      "name": "Tableware",
+      "slug": "tableware"
+    },
+    "url": "/home-living/tableware/hl-tw-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Tableware",
+        "url": "/home-living/tableware"
+      },
+      {
+        "name": "Glass Tumbler Set",
+        "url": "/home-living/tableware/hl-tw-004"
+      }
+    ],
+    "meta": {
+      "title": "Glass Tumbler Set - Tableware | Mercurion Overseas",
+      "description": "Premium glass drinking glasses set of 6.",
+      "keywords": [
+        "Home & Living",
+        "Tableware",
+        "Glass Tumbler Set"
+      ]
+    }
   },
   {
     "id": "hl-tw-005",
@@ -927,10 +3103,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "tableware",
-    "subCategorySlug": "tableware"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "tableware",
+      "name": "Tableware",
+      "slug": "tableware"
+    },
+    "url": "/home-living/tableware/hl-tw-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Tableware",
+        "url": "/home-living/tableware"
+      },
+      {
+        "name": "Bamboo Cutlery Set",
+        "url": "/home-living/tableware/hl-tw-005"
+      }
+    ],
+    "meta": {
+      "title": "Bamboo Cutlery Set - Tableware | Mercurion Overseas",
+      "description": "Eco-friendly bamboo utensil set.",
+      "keywords": [
+        "Home & Living",
+        "Tableware",
+        "Bamboo Cutlery Set"
+      ]
+    }
   },
   {
     "id": "hl-rc-001",
@@ -941,10 +3151,44 @@
     "rating": 4.9,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "rugs-and-carpets",
-    "subCategorySlug": "rugs-and-carpets"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "rugs",
+      "name": "Rugs & carpets",
+      "slug": "rugs-carpets"
+    },
+    "url": "/home-living/rugs-carpets/hl-rc-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Rugs & carpets",
+        "url": "/home-living/rugs-carpets"
+      },
+      {
+        "name": "Hand-Knotted Persian Rug",
+        "url": "/home-living/rugs-carpets/hl-rc-001"
+      }
+    ],
+    "meta": {
+      "title": "Hand-Knotted Persian Rug - Rugs & carpets | Mercurion Overseas",
+      "description": "Authentic hand-knotted Persian carpet.",
+      "keywords": [
+        "Home & Living",
+        "Rugs & carpets",
+        "Hand-Knotted Persian Rug"
+      ]
+    }
   },
   {
     "id": "hl-rc-002",
@@ -955,10 +3199,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "rugs-and-carpets",
-    "subCategorySlug": "rugs-and-carpets"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "rugs",
+      "name": "Rugs & carpets",
+      "slug": "rugs-carpets"
+    },
+    "url": "/home-living/rugs-carpets/hl-rc-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Rugs & carpets",
+        "url": "/home-living/rugs-carpets"
+      },
+      {
+        "name": "Jute Area Rug",
+        "url": "/home-living/rugs-carpets/hl-rc-002"
+      }
+    ],
+    "meta": {
+      "title": "Jute Area Rug - Rugs & carpets | Mercurion Overseas",
+      "description": "Natural jute area rug for living room.",
+      "keywords": [
+        "Home & Living",
+        "Rugs & carpets",
+        "Jute Area Rug"
+      ]
+    }
   },
   {
     "id": "hl-rc-003",
@@ -969,10 +3247,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "rugs-and-carpets",
-    "subCategorySlug": "rugs-and-carpets"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "rugs",
+      "name": "Rugs & carpets",
+      "slug": "rugs-carpets"
+    },
+    "url": "/home-living/rugs-carpets/hl-rc-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Rugs & carpets",
+        "url": "/home-living/rugs-carpets"
+      },
+      {
+        "name": "Modern Geometric Carpet",
+        "url": "/home-living/rugs-carpets/hl-rc-003"
+      }
+    ],
+    "meta": {
+      "title": "Modern Geometric Carpet - Rugs & carpets | Mercurion Overseas",
+      "description": "Contemporary geometric pattern carpet.",
+      "keywords": [
+        "Home & Living",
+        "Rugs & carpets",
+        "Modern Geometric Carpet"
+      ]
+    }
   },
   {
     "id": "hl-rc-004",
@@ -983,10 +3295,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "rugs-and-carpets",
-    "subCategorySlug": "rugs-and-carpets"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "rugs",
+      "name": "Rugs & carpets",
+      "slug": "rugs-carpets"
+    },
+    "url": "/home-living/rugs-carpets/hl-rc-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Rugs & carpets",
+        "url": "/home-living/rugs-carpets"
+      },
+      {
+        "name": "Cotton Dhurrie Rug",
+        "url": "/home-living/rugs-carpets/hl-rc-004"
+      }
+    ],
+    "meta": {
+      "title": "Cotton Dhurrie Rug - Rugs & carpets | Mercurion Overseas",
+      "description": "Handwoven cotton dhurrie floor rug.",
+      "keywords": [
+        "Home & Living",
+        "Rugs & carpets",
+        "Cotton Dhurrie Rug"
+      ]
+    }
   },
   {
     "id": "hl-rc-005",
@@ -997,10 +3343,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "rugs-and-carpets",
-    "subCategorySlug": "rugs-and-carpets"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "rugs",
+      "name": "Rugs & carpets",
+      "slug": "rugs-carpets"
+    },
+    "url": "/home-living/rugs-carpets/hl-rc-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Rugs & carpets",
+        "url": "/home-living/rugs-carpets"
+      },
+      {
+        "name": "Silk Carpet Runner",
+        "url": "/home-living/rugs-carpets/hl-rc-005"
+      }
+    ],
+    "meta": {
+      "title": "Silk Carpet Runner - Rugs & carpets | Mercurion Overseas",
+      "description": "Luxury silk hallway runner.",
+      "keywords": [
+        "Home & Living",
+        "Rugs & carpets",
+        "Silk Carpet Runner"
+      ]
+    }
   },
   {
     "id": "hl-cc-001",
@@ -1011,10 +3391,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "cushion-covers",
-    "subCategorySlug": "cushion-covers"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "cushions",
+      "name": "Cushion covers",
+      "slug": "cushion-covers"
+    },
+    "url": "/home-living/cushion-covers/hl-cc-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Cushion covers",
+        "url": "/home-living/cushion-covers"
+      },
+      {
+        "name": "Velvet Cushion Cover Set",
+        "url": "/home-living/cushion-covers/hl-cc-001"
+      }
+    ],
+    "meta": {
+      "title": "Velvet Cushion Cover Set - Cushion covers | Mercurion Overseas",
+      "description": "Luxurious velvet cushion covers set of 4.",
+      "keywords": [
+        "Home & Living",
+        "Cushion covers",
+        "Velvet Cushion Cover Set"
+      ]
+    }
   },
   {
     "id": "hl-cc-002",
@@ -1025,10 +3439,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "cushion-covers",
-    "subCategorySlug": "cushion-covers"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "cushions",
+      "name": "Cushion covers",
+      "slug": "cushion-covers"
+    },
+    "url": "/home-living/cushion-covers/hl-cc-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Cushion covers",
+        "url": "/home-living/cushion-covers"
+      },
+      {
+        "name": "Embroidered Cotton Covers",
+        "url": "/home-living/cushion-covers/hl-cc-002"
+      }
+    ],
+    "meta": {
+      "title": "Embroidered Cotton Covers - Cushion covers | Mercurion Overseas",
+      "description": "Hand-embroidered cotton cushion covers.",
+      "keywords": [
+        "Home & Living",
+        "Cushion covers",
+        "Embroidered Cotton Covers"
+      ]
+    }
   },
   {
     "id": "hl-cc-003",
@@ -1039,10 +3487,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "cushion-covers",
-    "subCategorySlug": "cushion-covers"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "cushions",
+      "name": "Cushion covers",
+      "slug": "cushion-covers"
+    },
+    "url": "/home-living/cushion-covers/hl-cc-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Cushion covers",
+        "url": "/home-living/cushion-covers"
+      },
+      {
+        "name": "Bohemian Pillow Covers",
+        "url": "/home-living/cushion-covers/hl-cc-003"
+      }
+    ],
+    "meta": {
+      "title": "Bohemian Pillow Covers - Cushion covers | Mercurion Overseas",
+      "description": "Boho-style decorative pillow covers.",
+      "keywords": [
+        "Home & Living",
+        "Cushion covers",
+        "Bohemian Pillow Covers"
+      ]
+    }
   },
   {
     "id": "hl-cc-004",
@@ -1053,10 +3535,44 @@
     "rating": 4.3,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "cushion-covers",
-    "subCategorySlug": "cushion-covers"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "cushions",
+      "name": "Cushion covers",
+      "slug": "cushion-covers"
+    },
+    "url": "/home-living/cushion-covers/hl-cc-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Cushion covers",
+        "url": "/home-living/cushion-covers"
+      },
+      {
+        "name": "Linen Throw Pillow Covers",
+        "url": "/home-living/cushion-covers/hl-cc-004"
+      }
+    ],
+    "meta": {
+      "title": "Linen Throw Pillow Covers - Cushion covers | Mercurion Overseas",
+      "description": "Natural linen cushion covers.",
+      "keywords": [
+        "Home & Living",
+        "Cushion covers",
+        "Linen Throw Pillow Covers"
+      ]
+    }
   },
   {
     "id": "hl-cc-005",
@@ -1067,10 +3583,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "home-living",
-    "categorySlug": "home-living",
-    "subCategoryId": "cushion-covers",
-    "subCategorySlug": "cushion-covers"
+    "category": {
+      "id": "home-living",
+      "name": "Home & Living",
+      "slug": "home-living"
+    },
+    "subCategory": {
+      "id": "cushions",
+      "name": "Cushion covers",
+      "slug": "cushion-covers"
+    },
+    "url": "/home-living/cushion-covers/hl-cc-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Home & Living",
+        "url": "/home-living"
+      },
+      {
+        "name": "Cushion covers",
+        "url": "/home-living/cushion-covers"
+      },
+      {
+        "name": "Silk Cushion Cover Set",
+        "url": "/home-living/cushion-covers/hl-cc-005"
+      }
+    ],
+    "meta": {
+      "title": "Silk Cushion Cover Set - Cushion covers | Mercurion Overseas",
+      "description": "Premium silk cushion covers.",
+      "keywords": [
+        "Home & Living",
+        "Cushion covers",
+        "Silk Cushion Cover Set"
+      ]
+    }
   },
   {
     "id": "fmcg-sp-001",
@@ -1081,10 +3631,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "spices",
-    "subCategorySlug": "spices"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "spices",
+      "name": "Spices",
+      "slug": "spices"
+    },
+    "url": "/fmcg-food/spices/fmcg-sp-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Spices",
+        "url": "/fmcg-food/spices"
+      },
+      {
+        "name": "Organic Spice Gift Box",
+        "url": "/fmcg-food/spices/fmcg-sp-001"
+      }
+    ],
+    "meta": {
+      "title": "Organic Spice Gift Box - Spices | Mercurion Overseas",
+      "description": "Premium organic spice collection in gift box.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Spices",
+        "Organic Spice Gift Box"
+      ]
+    }
   },
   {
     "id": "fmcg-sp-002",
@@ -1095,10 +3679,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "spices",
-    "subCategorySlug": "spices"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "spices",
+      "name": "Spices",
+      "slug": "spices"
+    },
+    "url": "/fmcg-food/spices/fmcg-sp-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Spices",
+        "url": "/fmcg-food/spices"
+      },
+      {
+        "name": "Garam Masala Blend",
+        "url": "/fmcg-food/spices/fmcg-sp-002"
+      }
+    ],
+    "meta": {
+      "title": "Garam Masala Blend - Spices | Mercurion Overseas",
+      "description": "Authentic Indian garam masala spice mix.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Spices",
+        "Garam Masala Blend"
+      ]
+    }
   },
   {
     "id": "fmcg-sp-003",
@@ -1109,10 +3727,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "spices",
-    "subCategorySlug": "spices"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "spices",
+      "name": "Spices",
+      "slug": "spices"
+    },
+    "url": "/fmcg-food/spices/fmcg-sp-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Spices",
+        "url": "/fmcg-food/spices"
+      },
+      {
+        "name": "Whole Spices Collection",
+        "url": "/fmcg-food/spices/fmcg-sp-003"
+      }
+    ],
+    "meta": {
+      "title": "Whole Spices Collection - Spices | Mercurion Overseas",
+      "description": "Set of premium whole spices.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Spices",
+        "Whole Spices Collection"
+      ]
+    }
   },
   {
     "id": "fmcg-sp-004",
@@ -1123,10 +3775,44 @@
     "rating": 4.9,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "spices",
-    "subCategorySlug": "spices"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "spices",
+      "name": "Spices",
+      "slug": "spices"
+    },
+    "url": "/fmcg-food/spices/fmcg-sp-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Spices",
+        "url": "/fmcg-food/spices"
+      },
+      {
+        "name": "Saffron Threads",
+        "url": "/fmcg-food/spices/fmcg-sp-004"
+      }
+    ],
+    "meta": {
+      "title": "Saffron Threads - Spices | Mercurion Overseas",
+      "description": "Premium quality saffron threads.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Spices",
+        "Saffron Threads"
+      ]
+    }
   },
   {
     "id": "fmcg-sp-005",
@@ -1137,10 +3823,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "spices",
-    "subCategorySlug": "spices"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "spices",
+      "name": "Spices",
+      "slug": "spices"
+    },
+    "url": "/fmcg-food/spices/fmcg-sp-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Spices",
+        "url": "/fmcg-food/spices"
+      },
+      {
+        "name": "Curry Powder Set",
+        "url": "/fmcg-food/spices/fmcg-sp-005"
+      }
+    ],
+    "meta": {
+      "title": "Curry Powder Set - Spices | Mercurion Overseas",
+      "description": "Variety pack of curry powders.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Spices",
+        "Curry Powder Set"
+      ]
+    }
   },
   {
     "id": "fmcg-tc-001",
@@ -1151,10 +3871,44 @@
     "rating": 4.8,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "tea-and-coffee",
-    "subCategorySlug": "tea-and-coffee"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "tea-coffee",
+      "name": "Tea & coffee",
+      "slug": "tea-coffee"
+    },
+    "url": "/fmcg-food/tea-coffee/fmcg-tc-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Tea & coffee",
+        "url": "/fmcg-food/tea-coffee"
+      },
+      {
+        "name": "Darjeeling Tea Gift Set",
+        "url": "/fmcg-food/tea-coffee/fmcg-tc-001"
+      }
+    ],
+    "meta": {
+      "title": "Darjeeling Tea Gift Set - Tea & coffee | Mercurion Overseas",
+      "description": "Premium Darjeeling tea collection.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Tea & coffee",
+        "Darjeeling Tea Gift Set"
+      ]
+    }
   },
   {
     "id": "fmcg-tc-002",
@@ -1165,10 +3919,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "tea-and-coffee",
-    "subCategorySlug": "tea-and-coffee"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "tea-coffee",
+      "name": "Tea & coffee",
+      "slug": "tea-coffee"
+    },
+    "url": "/fmcg-food/tea-coffee/fmcg-tc-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Tea & coffee",
+        "url": "/fmcg-food/tea-coffee"
+      },
+      {
+        "name": "Masala Chai Blend",
+        "url": "/fmcg-food/tea-coffee/fmcg-tc-002"
+      }
+    ],
+    "meta": {
+      "title": "Masala Chai Blend - Tea & coffee | Mercurion Overseas",
+      "description": "Traditional masala chai tea mix.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Tea & coffee",
+        "Masala Chai Blend"
+      ]
+    }
   },
   {
     "id": "fmcg-tc-003",
@@ -1179,10 +3967,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "tea-and-coffee",
-    "subCategorySlug": "tea-and-coffee"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "tea-coffee",
+      "name": "Tea & coffee",
+      "slug": "tea-coffee"
+    },
+    "url": "/fmcg-food/tea-coffee/fmcg-tc-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Tea & coffee",
+        "url": "/fmcg-food/tea-coffee"
+      },
+      {
+        "name": "Arabica Coffee Beans",
+        "url": "/fmcg-food/tea-coffee/fmcg-tc-003"
+      }
+    ],
+    "meta": {
+      "title": "Arabica Coffee Beans - Tea & coffee | Mercurion Overseas",
+      "description": "Premium Arabica coffee beans.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Tea & coffee",
+        "Arabica Coffee Beans"
+      ]
+    }
   },
   {
     "id": "fmcg-tc-004",
@@ -1193,10 +4015,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "tea-and-coffee",
-    "subCategorySlug": "tea-and-coffee"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "tea-coffee",
+      "name": "Tea & coffee",
+      "slug": "tea-coffee"
+    },
+    "url": "/fmcg-food/tea-coffee/fmcg-tc-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Tea & coffee",
+        "url": "/fmcg-food/tea-coffee"
+      },
+      {
+        "name": "Green Tea Variety Pack",
+        "url": "/fmcg-food/tea-coffee/fmcg-tc-004"
+      }
+    ],
+    "meta": {
+      "title": "Green Tea Variety Pack - Tea & coffee | Mercurion Overseas",
+      "description": "Assorted green tea flavors.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Tea & coffee",
+        "Green Tea Variety Pack"
+      ]
+    }
   },
   {
     "id": "fmcg-tc-005",
@@ -1207,10 +4063,44 @@
     "rating": 4.3,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "tea-and-coffee",
-    "subCategorySlug": "tea-and-coffee"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "tea-coffee",
+      "name": "Tea & coffee",
+      "slug": "tea-coffee"
+    },
+    "url": "/fmcg-food/tea-coffee/fmcg-tc-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Tea & coffee",
+        "url": "/fmcg-food/tea-coffee"
+      },
+      {
+        "name": "Instant Coffee Powder",
+        "url": "/fmcg-food/tea-coffee/fmcg-tc-005"
+      }
+    ],
+    "meta": {
+      "title": "Instant Coffee Powder - Tea & coffee | Mercurion Overseas",
+      "description": "Premium instant coffee powder.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Tea & coffee",
+        "Instant Coffee Powder"
+      ]
+    }
   },
   {
     "id": "fmcg-df-001",
@@ -1221,10 +4111,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "dry-fruits",
-    "subCategorySlug": "dry-fruits"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "dry-fruits",
+      "name": "Dry fruits",
+      "slug": "dry-fruits"
+    },
+    "url": "/fmcg-food/dry-fruits/fmcg-df-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Dry fruits",
+        "url": "/fmcg-food/dry-fruits"
+      },
+      {
+        "name": "Premium Almond Pack",
+        "url": "/fmcg-food/dry-fruits/fmcg-df-001"
+      }
+    ],
+    "meta": {
+      "title": "Premium Almond Pack - Dry fruits | Mercurion Overseas",
+      "description": "Premium quality almonds 500g.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Dry fruits",
+        "Premium Almond Pack"
+      ]
+    }
   },
   {
     "id": "fmcg-df-002",
@@ -1235,10 +4159,44 @@
     "rating": 4.8,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "dry-fruits",
-    "subCategorySlug": "dry-fruits"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "dry-fruits",
+      "name": "Dry fruits",
+      "slug": "dry-fruits"
+    },
+    "url": "/fmcg-food/dry-fruits/fmcg-df-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Dry fruits",
+        "url": "/fmcg-food/dry-fruits"
+      },
+      {
+        "name": "Cashew Nuts",
+        "url": "/fmcg-food/dry-fruits/fmcg-df-002"
+      }
+    ],
+    "meta": {
+      "title": "Cashew Nuts - Dry fruits | Mercurion Overseas",
+      "description": "Whole cashew nuts premium grade.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Dry fruits",
+        "Cashew Nuts"
+      ]
+    }
   },
   {
     "id": "fmcg-df-003",
@@ -1249,10 +4207,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "dry-fruits",
-    "subCategorySlug": "dry-fruits"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "dry-fruits",
+      "name": "Dry fruits",
+      "slug": "dry-fruits"
+    },
+    "url": "/fmcg-food/dry-fruits/fmcg-df-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Dry fruits",
+        "url": "/fmcg-food/dry-fruits"
+      },
+      {
+        "name": "Mixed Dry Fruits Box",
+        "url": "/fmcg-food/dry-fruits/fmcg-df-003"
+      }
+    ],
+    "meta": {
+      "title": "Mixed Dry Fruits Box - Dry fruits | Mercurion Overseas",
+      "description": "Assorted dry fruits gift box.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Dry fruits",
+        "Mixed Dry Fruits Box"
+      ]
+    }
   },
   {
     "id": "fmcg-df-004",
@@ -1263,10 +4255,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "dry-fruits",
-    "subCategorySlug": "dry-fruits"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "dry-fruits",
+      "name": "Dry fruits",
+      "slug": "dry-fruits"
+    },
+    "url": "/fmcg-food/dry-fruits/fmcg-df-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Dry fruits",
+        "url": "/fmcg-food/dry-fruits"
+      },
+      {
+        "name": "Dates (Khajoor)",
+        "url": "/fmcg-food/dry-fruits/fmcg-df-004"
+      }
+    ],
+    "meta": {
+      "title": "Dates (Khajoor) - Dry fruits | Mercurion Overseas",
+      "description": "Natural dried dates 1kg.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Dry fruits",
+        "Dates (Khajoor)"
+      ]
+    }
   },
   {
     "id": "fmcg-df-005",
@@ -1277,10 +4303,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "dry-fruits",
-    "subCategorySlug": "dry-fruits"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "dry-fruits",
+      "name": "Dry fruits",
+      "slug": "dry-fruits"
+    },
+    "url": "/fmcg-food/dry-fruits/fmcg-df-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Dry fruits",
+        "url": "/fmcg-food/dry-fruits"
+      },
+      {
+        "name": "Raisins & Figs Combo",
+        "url": "/fmcg-food/dry-fruits/fmcg-df-005"
+      }
+    ],
+    "meta": {
+      "title": "Raisins & Figs Combo - Dry fruits | Mercurion Overseas",
+      "description": "Dried raisins and figs combo pack.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Dry fruits",
+        "Raisins & Figs Combo"
+      ]
+    }
   },
   {
     "id": "fmcg-ps-001",
@@ -1291,10 +4351,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "pickles-and-sauces",
-    "subCategorySlug": "pickles-and-sauces"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "pickles",
+      "name": "Pickles & sauces",
+      "slug": "pickles-sauces"
+    },
+    "url": "/fmcg-food/pickles-sauces/fmcg-ps-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Pickles & sauces",
+        "url": "/fmcg-food/pickles-sauces"
+      },
+      {
+        "name": "Mango Pickle Jar",
+        "url": "/fmcg-food/pickles-sauces/fmcg-ps-001"
+      }
+    ],
+    "meta": {
+      "title": "Mango Pickle Jar - Pickles & sauces | Mercurion Overseas",
+      "description": "Traditional Indian mango pickle.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Pickles & sauces",
+        "Mango Pickle Jar"
+      ]
+    }
   },
   {
     "id": "fmcg-ps-002",
@@ -1305,10 +4399,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "pickles-and-sauces",
-    "subCategorySlug": "pickles-and-sauces"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "pickles",
+      "name": "Pickles & sauces",
+      "slug": "pickles-sauces"
+    },
+    "url": "/fmcg-food/pickles-sauces/fmcg-ps-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Pickles & sauces",
+        "url": "/fmcg-food/pickles-sauces"
+      },
+      {
+        "name": "Assorted Pickle Set",
+        "url": "/fmcg-food/pickles-sauces/fmcg-ps-002"
+      }
+    ],
+    "meta": {
+      "title": "Assorted Pickle Set - Pickles & sauces | Mercurion Overseas",
+      "description": "Variety pack of Indian pickles.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Pickles & sauces",
+        "Assorted Pickle Set"
+      ]
+    }
   },
   {
     "id": "fmcg-ps-003",
@@ -1319,10 +4447,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "pickles-and-sauces",
-    "subCategorySlug": "pickles-and-sauces"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "pickles",
+      "name": "Pickles & sauces",
+      "slug": "pickles-sauces"
+    },
+    "url": "/fmcg-food/pickles-sauces/fmcg-ps-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Pickles & sauces",
+        "url": "/fmcg-food/pickles-sauces"
+      },
+      {
+        "name": "Chili Sauce Collection",
+        "url": "/fmcg-food/pickles-sauces/fmcg-ps-003"
+      }
+    ],
+    "meta": {
+      "title": "Chili Sauce Collection - Pickles & sauces | Mercurion Overseas",
+      "description": "Hot and spicy chili sauce set.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Pickles & sauces",
+        "Chili Sauce Collection"
+      ]
+    }
   },
   {
     "id": "fmcg-ps-004",
@@ -1333,10 +4495,44 @@
     "rating": 4.3,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "pickles-and-sauces",
-    "subCategorySlug": "pickles-and-sauces"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "pickles",
+      "name": "Pickles & sauces",
+      "slug": "pickles-sauces"
+    },
+    "url": "/fmcg-food/pickles-sauces/fmcg-ps-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Pickles & sauces",
+        "url": "/fmcg-food/pickles-sauces"
+      },
+      {
+        "name": "Tamarind Chutney",
+        "url": "/fmcg-food/pickles-sauces/fmcg-ps-004"
+      }
+    ],
+    "meta": {
+      "title": "Tamarind Chutney - Pickles & sauces | Mercurion Overseas",
+      "description": "Sweet and tangy tamarind chutney.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Pickles & sauces",
+        "Tamarind Chutney"
+      ]
+    }
   },
   {
     "id": "fmcg-ps-005",
@@ -1347,10 +4543,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "pickles-and-sauces",
-    "subCategorySlug": "pickles-and-sauces"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "pickles",
+      "name": "Pickles & sauces",
+      "slug": "pickles-sauces"
+    },
+    "url": "/fmcg-food/pickles-sauces/fmcg-ps-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Pickles & sauces",
+        "url": "/fmcg-food/pickles-sauces"
+      },
+      {
+        "name": "Garlic Pickle",
+        "url": "/fmcg-food/pickles-sauces/fmcg-ps-005"
+      }
+    ],
+    "meta": {
+      "title": "Garlic Pickle - Pickles & sauces | Mercurion Overseas",
+      "description": "Spicy garlic pickle in oil.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Pickles & sauces",
+        "Garlic Pickle"
+      ]
+    }
   },
   {
     "id": "fmcg-rc-001",
@@ -1361,10 +4591,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "ready-to-cook-mixes",
-    "subCategorySlug": "ready-to-cook-mixes"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "ready-cook",
+      "name": "Ready-to-cook mixes",
+      "slug": "ready-to-cook-mixes"
+    },
+    "url": "/fmcg-food/ready-to-cook-mixes/fmcg-rc-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Ready-to-cook mixes",
+        "url": "/fmcg-food/ready-to-cook-mixes"
+      },
+      {
+        "name": "Biryani Masala Mix",
+        "url": "/fmcg-food/ready-to-cook-mixes/fmcg-rc-001"
+      }
+    ],
+    "meta": {
+      "title": "Biryani Masala Mix - Ready-to-cook mixes | Mercurion Overseas",
+      "description": "Authentic biryani spice mix.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Ready-to-cook mixes",
+        "Biryani Masala Mix"
+      ]
+    }
   },
   {
     "id": "fmcg-rc-002",
@@ -1375,10 +4639,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "ready-to-cook-mixes",
-    "subCategorySlug": "ready-to-cook-mixes"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "ready-cook",
+      "name": "Ready-to-cook mixes",
+      "slug": "ready-to-cook-mixes"
+    },
+    "url": "/fmcg-food/ready-to-cook-mixes/fmcg-rc-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Ready-to-cook mixes",
+        "url": "/fmcg-food/ready-to-cook-mixes"
+      },
+      {
+        "name": "Dosa Batter Mix",
+        "url": "/fmcg-food/ready-to-cook-mixes/fmcg-rc-002"
+      }
+    ],
+    "meta": {
+      "title": "Dosa Batter Mix - Ready-to-cook mixes | Mercurion Overseas",
+      "description": "Instant dosa and idli batter mix.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Ready-to-cook mixes",
+        "Dosa Batter Mix"
+      ]
+    }
   },
   {
     "id": "fmcg-rc-003",
@@ -1389,10 +4687,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "ready-to-cook-mixes",
-    "subCategorySlug": "ready-to-cook-mixes"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "ready-cook",
+      "name": "Ready-to-cook mixes",
+      "slug": "ready-to-cook-mixes"
+    },
+    "url": "/fmcg-food/ready-to-cook-mixes/fmcg-rc-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Ready-to-cook mixes",
+        "url": "/fmcg-food/ready-to-cook-mixes"
+      },
+      {
+        "name": "Curry Mix Collection",
+        "url": "/fmcg-food/ready-to-cook-mixes/fmcg-rc-003"
+      }
+    ],
+    "meta": {
+      "title": "Curry Mix Collection - Ready-to-cook mixes | Mercurion Overseas",
+      "description": "Variety of curry cooking mixes.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Ready-to-cook mixes",
+        "Curry Mix Collection"
+      ]
+    }
   },
   {
     "id": "fmcg-rc-004",
@@ -1403,10 +4735,44 @@
     "rating": 4.3,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "ready-to-cook-mixes",
-    "subCategorySlug": "ready-to-cook-mixes"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "ready-cook",
+      "name": "Ready-to-cook mixes",
+      "slug": "ready-to-cook-mixes"
+    },
+    "url": "/fmcg-food/ready-to-cook-mixes/fmcg-rc-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Ready-to-cook mixes",
+        "url": "/fmcg-food/ready-to-cook-mixes"
+      },
+      {
+        "name": "Paneer Tikka Masala Mix",
+        "url": "/fmcg-food/ready-to-cook-mixes/fmcg-rc-004"
+      }
+    ],
+    "meta": {
+      "title": "Paneer Tikka Masala Mix - Ready-to-cook mixes | Mercurion Overseas",
+      "description": "Easy paneer tikka masala mix.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Ready-to-cook mixes",
+        "Paneer Tikka Masala Mix"
+      ]
+    }
   },
   {
     "id": "fmcg-rc-005",
@@ -1417,10 +4783,44 @@
     "rating": 4.2,
     "reviews": [],
     "inStock": true,
-    "categoryId": "fmcg-food",
-    "categorySlug": "fmcg-food",
-    "subCategoryId": "ready-to-cook-mixes",
-    "subCategorySlug": "ready-to-cook-mixes"
+    "category": {
+      "id": "fmcg-food",
+      "name": "FMCG / Food Products",
+      "slug": "fmcg-food"
+    },
+    "subCategory": {
+      "id": "ready-cook",
+      "name": "Ready-to-cook mixes",
+      "slug": "ready-to-cook-mixes"
+    },
+    "url": "/fmcg-food/ready-to-cook-mixes/fmcg-rc-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "FMCG / Food Products",
+        "url": "/fmcg-food"
+      },
+      {
+        "name": "Ready-to-cook mixes",
+        "url": "/fmcg-food/ready-to-cook-mixes"
+      },
+      {
+        "name": "Samosa Filling Mix",
+        "url": "/fmcg-food/ready-to-cook-mixes/fmcg-rc-005"
+      }
+    ],
+    "meta": {
+      "title": "Samosa Filling Mix - Ready-to-cook mixes | Mercurion Overseas",
+      "description": "Ready mix for samosa filling.",
+      "keywords": [
+        "FMCG / Food Products",
+        "Ready-to-cook mixes",
+        "Samosa Filling Mix"
+      ]
+    }
   },
   {
     "id": "pc-hc-001",
@@ -1431,10 +4831,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "herbal-cosmetics",
-    "subCategorySlug": "herbal-cosmetics"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "herbal",
+      "name": "Herbal cosmetics",
+      "slug": "herbal-cosmetics"
+    },
+    "url": "/personal-care/herbal-cosmetics/pc-hc-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Herbal cosmetics",
+        "url": "/personal-care/herbal-cosmetics"
+      },
+      {
+        "name": "Ayurvedic Face Cream",
+        "url": "/personal-care/herbal-cosmetics/pc-hc-001"
+      }
+    ],
+    "meta": {
+      "title": "Ayurvedic Face Cream - Herbal cosmetics | Mercurion Overseas",
+      "description": "Natural ayurvedic face moisturizer.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Herbal cosmetics",
+        "Ayurvedic Face Cream"
+      ]
+    }
   },
   {
     "id": "pc-hc-002",
@@ -1445,10 +4879,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "herbal-cosmetics",
-    "subCategorySlug": "herbal-cosmetics"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "herbal",
+      "name": "Herbal cosmetics",
+      "slug": "herbal-cosmetics"
+    },
+    "url": "/personal-care/herbal-cosmetics/pc-hc-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Herbal cosmetics",
+        "url": "/personal-care/herbal-cosmetics"
+      },
+      {
+        "name": "Herbal Hair Oil",
+        "url": "/personal-care/herbal-cosmetics/pc-hc-002"
+      }
+    ],
+    "meta": {
+      "title": "Herbal Hair Oil - Herbal cosmetics | Mercurion Overseas",
+      "description": "Nourishing herbal hair growth oil.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Herbal cosmetics",
+        "Herbal Hair Oil"
+      ]
+    }
   },
   {
     "id": "pc-hc-003",
@@ -1459,10 +4927,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "herbal-cosmetics",
-    "subCategorySlug": "herbal-cosmetics"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "herbal",
+      "name": "Herbal cosmetics",
+      "slug": "herbal-cosmetics"
+    },
+    "url": "/personal-care/herbal-cosmetics/pc-hc-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Herbal cosmetics",
+        "url": "/personal-care/herbal-cosmetics"
+      },
+      {
+        "name": "Natural Face Pack Set",
+        "url": "/personal-care/herbal-cosmetics/pc-hc-003"
+      }
+    ],
+    "meta": {
+      "title": "Natural Face Pack Set - Herbal cosmetics | Mercurion Overseas",
+      "description": "Herbal face mask variety pack.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Herbal cosmetics",
+        "Natural Face Pack Set"
+      ]
+    }
   },
   {
     "id": "pc-hc-004",
@@ -1473,10 +4975,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "herbal-cosmetics",
-    "subCategorySlug": "herbal-cosmetics"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "herbal",
+      "name": "Herbal cosmetics",
+      "slug": "herbal-cosmetics"
+    },
+    "url": "/personal-care/herbal-cosmetics/pc-hc-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Herbal cosmetics",
+        "url": "/personal-care/herbal-cosmetics"
+      },
+      {
+        "name": "Turmeric Face Wash",
+        "url": "/personal-care/herbal-cosmetics/pc-hc-004"
+      }
+    ],
+    "meta": {
+      "title": "Turmeric Face Wash - Herbal cosmetics | Mercurion Overseas",
+      "description": "Turmeric-based facial cleanser.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Herbal cosmetics",
+        "Turmeric Face Wash"
+      ]
+    }
   },
   {
     "id": "pc-hc-005",
@@ -1487,10 +5023,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "herbal-cosmetics",
-    "subCategorySlug": "herbal-cosmetics"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "herbal",
+      "name": "Herbal cosmetics",
+      "slug": "herbal-cosmetics"
+    },
+    "url": "/personal-care/herbal-cosmetics/pc-hc-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Herbal cosmetics",
+        "url": "/personal-care/herbal-cosmetics"
+      },
+      {
+        "name": "Aloe Vera Gel",
+        "url": "/personal-care/herbal-cosmetics/pc-hc-005"
+      }
+    ],
+    "meta": {
+      "title": "Aloe Vera Gel - Herbal cosmetics | Mercurion Overseas",
+      "description": "Pure aloe vera gel for skin.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Herbal cosmetics",
+        "Aloe Vera Gel"
+      ]
+    }
   },
   {
     "id": "pc-eo-001",
@@ -1501,10 +5071,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "essential-oils",
-    "subCategorySlug": "essential-oils"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "oils",
+      "name": "Essential oils",
+      "slug": "essential-oils"
+    },
+    "url": "/personal-care/essential-oils/pc-eo-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Essential oils",
+        "url": "/personal-care/essential-oils"
+      },
+      {
+        "name": "Lavender Essential Oil",
+        "url": "/personal-care/essential-oils/pc-eo-001"
+      }
+    ],
+    "meta": {
+      "title": "Lavender Essential Oil - Essential oils | Mercurion Overseas",
+      "description": "Pure lavender essential oil.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Essential oils",
+        "Lavender Essential Oil"
+      ]
+    }
   },
   {
     "id": "pc-eo-002",
@@ -1515,10 +5119,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "essential-oils",
-    "subCategorySlug": "essential-oils"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "oils",
+      "name": "Essential oils",
+      "slug": "essential-oils"
+    },
+    "url": "/personal-care/essential-oils/pc-eo-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Essential oils",
+        "url": "/personal-care/essential-oils"
+      },
+      {
+        "name": "Tea Tree Oil",
+        "url": "/personal-care/essential-oils/pc-eo-002"
+      }
+    ],
+    "meta": {
+      "title": "Tea Tree Oil - Essential oils | Mercurion Overseas",
+      "description": "Natural tea tree essential oil.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Essential oils",
+        "Tea Tree Oil"
+      ]
+    }
   },
   {
     "id": "pc-eo-003",
@@ -1530,10 +5168,44 @@
     "reviews": [],
     "inStock": true,
     "featured": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "essential-oils",
-    "subCategorySlug": "essential-oils"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "oils",
+      "name": "Essential oils",
+      "slug": "essential-oils"
+    },
+    "url": "/personal-care/essential-oils/pc-eo-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Essential oils",
+        "url": "/personal-care/essential-oils"
+      },
+      {
+        "name": "Essential Oil Gift Set",
+        "url": "/personal-care/essential-oils/pc-eo-003"
+      }
+    ],
+    "meta": {
+      "title": "Essential Oil Gift Set - Essential oils | Mercurion Overseas",
+      "description": "Collection of 10 essential oils.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Essential oils",
+        "Essential Oil Gift Set"
+      ]
+    }
   },
   {
     "id": "pc-eo-004",
@@ -1544,10 +5216,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "essential-oils",
-    "subCategorySlug": "essential-oils"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "oils",
+      "name": "Essential oils",
+      "slug": "essential-oils"
+    },
+    "url": "/personal-care/essential-oils/pc-eo-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Essential oils",
+        "url": "/personal-care/essential-oils"
+      },
+      {
+        "name": "Eucalyptus Oil",
+        "url": "/personal-care/essential-oils/pc-eo-004"
+      }
+    ],
+    "meta": {
+      "title": "Eucalyptus Oil - Essential oils | Mercurion Overseas",
+      "description": "Pure eucalyptus essential oil.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Essential oils",
+        "Eucalyptus Oil"
+      ]
+    }
   },
   {
     "id": "pc-eo-005",
@@ -1558,10 +5264,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "essential-oils",
-    "subCategorySlug": "essential-oils"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "oils",
+      "name": "Essential oils",
+      "slug": "essential-oils"
+    },
+    "url": "/personal-care/essential-oils/pc-eo-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Essential oils",
+        "url": "/personal-care/essential-oils"
+      },
+      {
+        "name": "Peppermint Oil",
+        "url": "/personal-care/essential-oils/pc-eo-005"
+      }
+    ],
+    "meta": {
+      "title": "Peppermint Oil - Essential oils | Mercurion Overseas",
+      "description": "Refreshing peppermint oil.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Essential oils",
+        "Peppermint Oil"
+      ]
+    }
   },
   {
     "id": "pc-sp-001",
@@ -1572,10 +5312,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "soaps",
-    "subCategorySlug": "soaps"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "soaps",
+      "name": "Soaps",
+      "slug": "soaps"
+    },
+    "url": "/personal-care/soaps/pc-sp-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Soaps",
+        "url": "/personal-care/soaps"
+      },
+      {
+        "name": "Handmade Soap Gift Box",
+        "url": "/personal-care/soaps/pc-sp-001"
+      }
+    ],
+    "meta": {
+      "title": "Handmade Soap Gift Box - Soaps | Mercurion Overseas",
+      "description": "Assorted handmade natural soaps.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Soaps",
+        "Handmade Soap Gift Box"
+      ]
+    }
   },
   {
     "id": "pc-sp-002",
@@ -1586,10 +5360,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "soaps",
-    "subCategorySlug": "soaps"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "soaps",
+      "name": "Soaps",
+      "slug": "soaps"
+    },
+    "url": "/personal-care/soaps/pc-sp-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Soaps",
+        "url": "/personal-care/soaps"
+      },
+      {
+        "name": "Neem & Tulsi Soap",
+        "url": "/personal-care/soaps/pc-sp-002"
+      }
+    ],
+    "meta": {
+      "title": "Neem & Tulsi Soap - Soaps | Mercurion Overseas",
+      "description": "Antibacterial neem and tulsi soap.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Soaps",
+        "Neem & Tulsi Soap"
+      ]
+    }
   },
   {
     "id": "pc-sp-003",
@@ -1600,10 +5408,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "soaps",
-    "subCategorySlug": "soaps"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "soaps",
+      "name": "Soaps",
+      "slug": "soaps"
+    },
+    "url": "/personal-care/soaps/pc-sp-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Soaps",
+        "url": "/personal-care/soaps"
+      },
+      {
+        "name": "Sandalwood Soap",
+        "url": "/personal-care/soaps/pc-sp-003"
+      }
+    ],
+    "meta": {
+      "title": "Sandalwood Soap - Soaps | Mercurion Overseas",
+      "description": "Luxurious sandalwood fragrance soap.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Soaps",
+        "Sandalwood Soap"
+      ]
+    }
   },
   {
     "id": "pc-sp-004",
@@ -1614,10 +5456,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "soaps",
-    "subCategorySlug": "soaps"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "soaps",
+      "name": "Soaps",
+      "slug": "soaps"
+    },
+    "url": "/personal-care/soaps/pc-sp-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Soaps",
+        "url": "/personal-care/soaps"
+      },
+      {
+        "name": "Charcoal Detox Soap",
+        "url": "/personal-care/soaps/pc-sp-004"
+      }
+    ],
+    "meta": {
+      "title": "Charcoal Detox Soap - Soaps | Mercurion Overseas",
+      "description": "Activated charcoal cleansing soap.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Soaps",
+        "Charcoal Detox Soap"
+      ]
+    }
   },
   {
     "id": "pc-sp-005",
@@ -1628,10 +5504,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "soaps",
-    "subCategorySlug": "soaps"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "soaps",
+      "name": "Soaps",
+      "slug": "soaps"
+    },
+    "url": "/personal-care/soaps/pc-sp-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Soaps",
+        "url": "/personal-care/soaps"
+      },
+      {
+        "name": "Goat Milk Soap",
+        "url": "/personal-care/soaps/pc-sp-005"
+      }
+    ],
+    "meta": {
+      "title": "Goat Milk Soap - Soaps | Mercurion Overseas",
+      "description": "Moisturizing goat milk soap.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Soaps",
+        "Goat Milk Soap"
+      ]
+    }
   },
   {
     "id": "pc-is-001",
@@ -1642,10 +5552,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "incense-sticks",
-    "subCategorySlug": "incense-sticks"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "incense",
+      "name": "Incense sticks",
+      "slug": "incense-sticks"
+    },
+    "url": "/personal-care/incense-sticks/pc-is-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Incense sticks",
+        "url": "/personal-care/incense-sticks"
+      },
+      {
+        "name": "Sandalwood Incense Sticks",
+        "url": "/personal-care/incense-sticks/pc-is-001"
+      }
+    ],
+    "meta": {
+      "title": "Sandalwood Incense Sticks - Incense sticks | Mercurion Overseas",
+      "description": "Premium sandalwood agarbatti.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Incense sticks",
+        "Sandalwood Incense Sticks"
+      ]
+    }
   },
   {
     "id": "pc-is-002",
@@ -1656,10 +5600,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "incense-sticks",
-    "subCategorySlug": "incense-sticks"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "incense",
+      "name": "Incense sticks",
+      "slug": "incense-sticks"
+    },
+    "url": "/personal-care/incense-sticks/pc-is-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Incense sticks",
+        "url": "/personal-care/incense-sticks"
+      },
+      {
+        "name": "Lavender Incense",
+        "url": "/personal-care/incense-sticks/pc-is-002"
+      }
+    ],
+    "meta": {
+      "title": "Lavender Incense - Incense sticks | Mercurion Overseas",
+      "description": "Calming lavender incense sticks.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Incense sticks",
+        "Lavender Incense"
+      ]
+    }
   },
   {
     "id": "pc-is-003",
@@ -1670,10 +5648,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "incense-sticks",
-    "subCategorySlug": "incense-sticks"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "incense",
+      "name": "Incense sticks",
+      "slug": "incense-sticks"
+    },
+    "url": "/personal-care/incense-sticks/pc-is-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Incense sticks",
+        "url": "/personal-care/incense-sticks"
+      },
+      {
+        "name": "Incense Gift Set",
+        "url": "/personal-care/incense-sticks/pc-is-003"
+      }
+    ],
+    "meta": {
+      "title": "Incense Gift Set - Incense sticks | Mercurion Overseas",
+      "description": "Variety pack of aromatic incense.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Incense sticks",
+        "Incense Gift Set"
+      ]
+    }
   },
   {
     "id": "pc-is-004",
@@ -1684,10 +5696,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "incense-sticks",
-    "subCategorySlug": "incense-sticks"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "incense",
+      "name": "Incense sticks",
+      "slug": "incense-sticks"
+    },
+    "url": "/personal-care/incense-sticks/pc-is-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Incense sticks",
+        "url": "/personal-care/incense-sticks"
+      },
+      {
+        "name": "Rose Incense Sticks",
+        "url": "/personal-care/incense-sticks/pc-is-004"
+      }
+    ],
+    "meta": {
+      "title": "Rose Incense Sticks - Incense sticks | Mercurion Overseas",
+      "description": "Fragrant rose incense sticks.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Incense sticks",
+        "Rose Incense Sticks"
+      ]
+    }
   },
   {
     "id": "pc-is-005",
@@ -1698,10 +5744,44 @@
     "rating": 4.8,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "incense-sticks",
-    "subCategorySlug": "incense-sticks"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "incense",
+      "name": "Incense sticks",
+      "slug": "incense-sticks"
+    },
+    "url": "/personal-care/incense-sticks/pc-is-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Incense sticks",
+        "url": "/personal-care/incense-sticks"
+      },
+      {
+        "name": "Nag Champa Incense",
+        "url": "/personal-care/incense-sticks/pc-is-005"
+      }
+    ],
+    "meta": {
+      "title": "Nag Champa Incense - Incense sticks | Mercurion Overseas",
+      "description": "Classic Nag Champa incense.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Incense sticks",
+        "Nag Champa Incense"
+      ]
+    }
   },
   {
     "id": "pc-op-001",
@@ -1712,10 +5792,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "organic-products",
-    "subCategorySlug": "organic-products"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "organic",
+      "name": "Organic products",
+      "slug": "organic-products"
+    },
+    "url": "/personal-care/organic-products/pc-op-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Organic products",
+        "url": "/personal-care/organic-products"
+      },
+      {
+        "name": "Organic Toothpaste",
+        "url": "/personal-care/organic-products/pc-op-001"
+      }
+    ],
+    "meta": {
+      "title": "Organic Toothpaste - Organic products | Mercurion Overseas",
+      "description": "Natural organic toothpaste.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Organic products",
+        "Organic Toothpaste"
+      ]
+    }
   },
   {
     "id": "pc-op-002",
@@ -1726,10 +5840,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "organic-products",
-    "subCategorySlug": "organic-products"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "organic",
+      "name": "Organic products",
+      "slug": "organic-products"
+    },
+    "url": "/personal-care/organic-products/pc-op-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Organic products",
+        "url": "/personal-care/organic-products"
+      },
+      {
+        "name": "Bamboo Toothbrush Set",
+        "url": "/personal-care/organic-products/pc-op-002"
+      }
+    ],
+    "meta": {
+      "title": "Bamboo Toothbrush Set - Organic products | Mercurion Overseas",
+      "description": "Eco-friendly bamboo toothbrushes.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Organic products",
+        "Bamboo Toothbrush Set"
+      ]
+    }
   },
   {
     "id": "pc-op-003",
@@ -1740,10 +5888,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "organic-products",
-    "subCategorySlug": "organic-products"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "organic",
+      "name": "Organic products",
+      "slug": "organic-products"
+    },
+    "url": "/personal-care/organic-products/pc-op-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Organic products",
+        "url": "/personal-care/organic-products"
+      },
+      {
+        "name": "Organic Body Lotion",
+        "url": "/personal-care/organic-products/pc-op-003"
+      }
+    ],
+    "meta": {
+      "title": "Organic Body Lotion - Organic products | Mercurion Overseas",
+      "description": "All-natural body moisturizer.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Organic products",
+        "Organic Body Lotion"
+      ]
+    }
   },
   {
     "id": "pc-op-004",
@@ -1754,10 +5936,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "organic-products",
-    "subCategorySlug": "organic-products"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "organic",
+      "name": "Organic products",
+      "slug": "organic-products"
+    },
+    "url": "/personal-care/organic-products/pc-op-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Organic products",
+        "url": "/personal-care/organic-products"
+      },
+      {
+        "name": "Natural Deodorant",
+        "url": "/personal-care/organic-products/pc-op-004"
+      }
+    ],
+    "meta": {
+      "title": "Natural Deodorant - Organic products | Mercurion Overseas",
+      "description": "Aluminum-free natural deodorant.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Organic products",
+        "Natural Deodorant"
+      ]
+    }
   },
   {
     "id": "pc-op-005",
@@ -1768,10 +5984,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "personal-care",
-    "categorySlug": "personal-care",
-    "subCategoryId": "organic-products",
-    "subCategorySlug": "organic-products"
+    "category": {
+      "id": "personal-care",
+      "name": "Personal Care & Wellness",
+      "slug": "personal-care"
+    },
+    "subCategory": {
+      "id": "organic",
+      "name": "Organic products",
+      "slug": "organic-products"
+    },
+    "url": "/personal-care/organic-products/pc-op-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Personal Care & Wellness",
+        "url": "/personal-care"
+      },
+      {
+        "name": "Organic products",
+        "url": "/personal-care/organic-products"
+      },
+      {
+        "name": "Organic Lip Balm Set",
+        "url": "/personal-care/organic-products/pc-op-005"
+      }
+    ],
+    "meta": {
+      "title": "Organic Lip Balm Set - Organic products | Mercurion Overseas",
+      "description": "Set of natural lip balms.",
+      "keywords": [
+        "Personal Care & Wellness",
+        "Organic products",
+        "Organic Lip Balm Set"
+      ]
+    }
   },
   {
     "id": "cb-pg-001",
@@ -1782,10 +6032,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "promotional-gifts",
-    "subCategorySlug": "promotional-gifts"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "promo",
+      "name": "Promotional gifts",
+      "slug": "promotional-gifts"
+    },
+    "url": "/corporate-bulk/promotional-gifts/cb-pg-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Promotional gifts",
+        "url": "/corporate-bulk/promotional-gifts"
+      },
+      {
+        "name": "Branded Pen Set (Bulk)",
+        "url": "/corporate-bulk/promotional-gifts/cb-pg-001"
+      }
+    ],
+    "meta": {
+      "title": "Branded Pen Set (Bulk) - Promotional gifts | Mercurion Overseas",
+      "description": "Customizable promotional pen set of 50.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Promotional gifts",
+        "Branded Pen Set (Bulk)"
+      ]
+    }
   },
   {
     "id": "cb-pg-002",
@@ -1796,10 +6080,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "promotional-gifts",
-    "subCategorySlug": "promotional-gifts"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "promo",
+      "name": "Promotional gifts",
+      "slug": "promotional-gifts"
+    },
+    "url": "/corporate-bulk/promotional-gifts/cb-pg-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Promotional gifts",
+        "url": "/corporate-bulk/promotional-gifts"
+      },
+      {
+        "name": "Corporate Gift Hamper",
+        "url": "/corporate-bulk/promotional-gifts/cb-pg-002"
+      }
+    ],
+    "meta": {
+      "title": "Corporate Gift Hamper - Promotional gifts | Mercurion Overseas",
+      "description": "Premium corporate gift basket.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Promotional gifts",
+        "Corporate Gift Hamper"
+      ]
+    }
   },
   {
     "id": "cb-pg-003",
@@ -1810,10 +6128,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "promotional-gifts",
-    "subCategorySlug": "promotional-gifts"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "promo",
+      "name": "Promotional gifts",
+      "slug": "promotional-gifts"
+    },
+    "url": "/corporate-bulk/promotional-gifts/cb-pg-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Promotional gifts",
+        "url": "/corporate-bulk/promotional-gifts"
+      },
+      {
+        "name": "Customized Notebooks",
+        "url": "/corporate-bulk/promotional-gifts/cb-pg-003"
+      }
+    ],
+    "meta": {
+      "title": "Customized Notebooks - Promotional gifts | Mercurion Overseas",
+      "description": "Bulk order customizable notebooks.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Promotional gifts",
+        "Customized Notebooks"
+      ]
+    }
   },
   {
     "id": "cb-pg-004",
@@ -1824,10 +6176,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "promotional-gifts",
-    "subCategorySlug": "promotional-gifts"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "promo",
+      "name": "Promotional gifts",
+      "slug": "promotional-gifts"
+    },
+    "url": "/corporate-bulk/promotional-gifts/cb-pg-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Promotional gifts",
+        "url": "/corporate-bulk/promotional-gifts"
+      },
+      {
+        "name": "Branded Tote Bags",
+        "url": "/corporate-bulk/promotional-gifts/cb-pg-004"
+      }
+    ],
+    "meta": {
+      "title": "Branded Tote Bags - Promotional gifts | Mercurion Overseas",
+      "description": "Eco-friendly promotional tote bags.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Promotional gifts",
+        "Branded Tote Bags"
+      ]
+    }
   },
   {
     "id": "cb-pg-005",
@@ -1838,10 +6224,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "promotional-gifts",
-    "subCategorySlug": "promotional-gifts"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "promo",
+      "name": "Promotional gifts",
+      "slug": "promotional-gifts"
+    },
+    "url": "/corporate-bulk/promotional-gifts/cb-pg-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Promotional gifts",
+        "url": "/corporate-bulk/promotional-gifts"
+      },
+      {
+        "name": "USB Drive Set (Bulk)",
+        "url": "/corporate-bulk/promotional-gifts/cb-pg-005"
+      }
+    ],
+    "meta": {
+      "title": "USB Drive Set (Bulk) - Promotional gifts | Mercurion Overseas",
+      "description": "Customizable USB drives bulk order.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Promotional gifts",
+        "USB Drive Set (Bulk)"
+      ]
+    }
   },
   {
     "id": "cb-cp-001",
@@ -1852,10 +6272,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "custom-packaging",
-    "subCategorySlug": "custom-packaging"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "packaging",
+      "name": "Custom packaging",
+      "slug": "custom-packaging"
+    },
+    "url": "/corporate-bulk/custom-packaging/cb-cp-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Custom packaging",
+        "url": "/corporate-bulk/custom-packaging"
+      },
+      {
+        "name": "Custom Printed Boxes",
+        "url": "/corporate-bulk/custom-packaging/cb-cp-001"
+      }
+    ],
+    "meta": {
+      "title": "Custom Printed Boxes - Custom packaging | Mercurion Overseas",
+      "description": "Custom branded packaging boxes.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Custom packaging",
+        "Custom Printed Boxes"
+      ]
+    }
   },
   {
     "id": "cb-cp-002",
@@ -1866,10 +6320,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "custom-packaging",
-    "subCategorySlug": "custom-packaging"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "packaging",
+      "name": "Custom packaging",
+      "slug": "custom-packaging"
+    },
+    "url": "/corporate-bulk/custom-packaging/cb-cp-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Custom packaging",
+        "url": "/corporate-bulk/custom-packaging"
+      },
+      {
+        "name": "Eco-Friendly Packaging",
+        "url": "/corporate-bulk/custom-packaging/cb-cp-002"
+      }
+    ],
+    "meta": {
+      "title": "Eco-Friendly Packaging - Custom packaging | Mercurion Overseas",
+      "description": "Sustainable packaging solutions.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Custom packaging",
+        "Eco-Friendly Packaging"
+      ]
+    }
   },
   {
     "id": "cb-cp-003",
@@ -1880,10 +6368,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "custom-packaging",
-    "subCategorySlug": "custom-packaging"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "packaging",
+      "name": "Custom packaging",
+      "slug": "custom-packaging"
+    },
+    "url": "/corporate-bulk/custom-packaging/cb-cp-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Custom packaging",
+        "url": "/corporate-bulk/custom-packaging"
+      },
+      {
+        "name": "Branded Gift Wrapping",
+        "url": "/corporate-bulk/custom-packaging/cb-cp-003"
+      }
+    ],
+    "meta": {
+      "title": "Branded Gift Wrapping - Custom packaging | Mercurion Overseas",
+      "description": "Custom gift wrapping materials.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Custom packaging",
+        "Branded Gift Wrapping"
+      ]
+    }
   },
   {
     "id": "cb-cp-004",
@@ -1894,10 +6416,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "custom-packaging",
-    "subCategorySlug": "custom-packaging"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "packaging",
+      "name": "Custom packaging",
+      "slug": "custom-packaging"
+    },
+    "url": "/corporate-bulk/custom-packaging/cb-cp-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Custom packaging",
+        "url": "/corporate-bulk/custom-packaging"
+      },
+      {
+        "name": "Shipping Boxes (Bulk)",
+        "url": "/corporate-bulk/custom-packaging/cb-cp-004"
+      }
+    ],
+    "meta": {
+      "title": "Shipping Boxes (Bulk) - Custom packaging | Mercurion Overseas",
+      "description": "Custom printed shipping boxes.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Custom packaging",
+        "Shipping Boxes (Bulk)"
+      ]
+    }
   },
   {
     "id": "cb-cp-005",
@@ -1908,10 +6464,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "custom-packaging",
-    "subCategorySlug": "custom-packaging"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "packaging",
+      "name": "Custom packaging",
+      "slug": "custom-packaging"
+    },
+    "url": "/corporate-bulk/custom-packaging/cb-cp-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Custom packaging",
+        "url": "/corporate-bulk/custom-packaging"
+      },
+      {
+        "name": "Product Labels & Stickers",
+        "url": "/corporate-bulk/custom-packaging/cb-cp-005"
+      }
+    ],
+    "meta": {
+      "title": "Product Labels & Stickers - Custom packaging | Mercurion Overseas",
+      "description": "Custom product label printing.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Custom packaging",
+        "Product Labels & Stickers"
+      ]
+    }
   },
   {
     "id": "cb-st-001",
@@ -1922,10 +6512,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "stationery",
-    "subCategorySlug": "stationery"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "stationery",
+      "name": "Stationery",
+      "slug": "stationery"
+    },
+    "url": "/corporate-bulk/stationery/cb-st-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Stationery",
+        "url": "/corporate-bulk/stationery"
+      },
+      {
+        "name": "Office Stationery Kit",
+        "url": "/corporate-bulk/stationery/cb-st-001"
+      }
+    ],
+    "meta": {
+      "title": "Office Stationery Kit - Stationery | Mercurion Overseas",
+      "description": "Complete office stationery set.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Stationery",
+        "Office Stationery Kit"
+      ]
+    }
   },
   {
     "id": "cb-st-002",
@@ -1936,10 +6560,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "stationery",
-    "subCategorySlug": "stationery"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "stationery",
+      "name": "Stationery",
+      "slug": "stationery"
+    },
+    "url": "/corporate-bulk/stationery/cb-st-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Stationery",
+        "url": "/corporate-bulk/stationery"
+      },
+      {
+        "name": "Premium Diary Set",
+        "url": "/corporate-bulk/stationery/cb-st-002"
+      }
+    ],
+    "meta": {
+      "title": "Premium Diary Set - Stationery | Mercurion Overseas",
+      "description": "Corporate branded diary collection.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Stationery",
+        "Premium Diary Set"
+      ]
+    }
   },
   {
     "id": "cb-st-003",
@@ -1950,10 +6608,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "stationery",
-    "subCategorySlug": "stationery"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "stationery",
+      "name": "Stationery",
+      "slug": "stationery"
+    },
+    "url": "/corporate-bulk/stationery/cb-st-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Stationery",
+        "url": "/corporate-bulk/stationery"
+      },
+      {
+        "name": "Desk Organizer Set",
+        "url": "/corporate-bulk/stationery/cb-st-003"
+      }
+    ],
+    "meta": {
+      "title": "Desk Organizer Set - Stationery | Mercurion Overseas",
+      "description": "Office desk organization supplies.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Stationery",
+        "Desk Organizer Set"
+      ]
+    }
   },
   {
     "id": "cb-st-004",
@@ -1964,10 +6656,44 @@
     "rating": 4.3,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "stationery",
-    "subCategorySlug": "stationery"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "stationery",
+      "name": "Stationery",
+      "slug": "stationery"
+    },
+    "url": "/corporate-bulk/stationery/cb-st-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Stationery",
+        "url": "/corporate-bulk/stationery"
+      },
+      {
+        "name": "Writing Instruments Set",
+        "url": "/corporate-bulk/stationery/cb-st-004"
+      }
+    ],
+    "meta": {
+      "title": "Writing Instruments Set - Stationery | Mercurion Overseas",
+      "description": "Premium pens and markers set.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Stationery",
+        "Writing Instruments Set"
+      ]
+    }
   },
   {
     "id": "cb-st-005",
@@ -1978,10 +6704,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "stationery",
-    "subCategorySlug": "stationery"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "stationery",
+      "name": "Stationery",
+      "slug": "stationery"
+    },
+    "url": "/corporate-bulk/stationery/cb-st-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Stationery",
+        "url": "/corporate-bulk/stationery"
+      },
+      {
+        "name": "File & Folder Set",
+        "url": "/corporate-bulk/stationery/cb-st-005"
+      }
+    ],
+    "meta": {
+      "title": "File & Folder Set - Stationery | Mercurion Overseas",
+      "description": "Office filing solutions bulk pack.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Stationery",
+        "File & Folder Set"
+      ]
+    }
   },
   {
     "id": "cb-un-001",
@@ -1992,10 +6752,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "uniforms",
-    "subCategorySlug": "uniforms"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "uniforms",
+      "name": "Uniforms",
+      "slug": "uniforms"
+    },
+    "url": "/corporate-bulk/uniforms/cb-un-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Uniforms",
+        "url": "/corporate-bulk/uniforms"
+      },
+      {
+        "name": "Corporate Uniform Shirts",
+        "url": "/corporate-bulk/uniforms/cb-un-001"
+      }
+    ],
+    "meta": {
+      "title": "Corporate Uniform Shirts - Uniforms | Mercurion Overseas",
+      "description": "Customizable corporate shirts bulk order.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Uniforms",
+        "Corporate Uniform Shirts"
+      ]
+    }
   },
   {
     "id": "cb-un-002",
@@ -2006,10 +6800,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "uniforms",
-    "subCategorySlug": "uniforms"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "uniforms",
+      "name": "Uniforms",
+      "slug": "uniforms"
+    },
+    "url": "/corporate-bulk/uniforms/cb-un-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Uniforms",
+        "url": "/corporate-bulk/uniforms"
+      },
+      {
+        "name": "Work Aprons (Bulk)",
+        "url": "/corporate-bulk/uniforms/cb-un-002"
+      }
+    ],
+    "meta": {
+      "title": "Work Aprons (Bulk) - Uniforms | Mercurion Overseas",
+      "description": "Branded work aprons for hospitality.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Uniforms",
+        "Work Aprons (Bulk)"
+      ]
+    }
   },
   {
     "id": "cb-un-003",
@@ -2020,10 +6848,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "uniforms",
-    "subCategorySlug": "uniforms"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "uniforms",
+      "name": "Uniforms",
+      "slug": "uniforms"
+    },
+    "url": "/corporate-bulk/uniforms/cb-un-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Uniforms",
+        "url": "/corporate-bulk/uniforms"
+      },
+      {
+        "name": "Security Uniform Set",
+        "url": "/corporate-bulk/uniforms/cb-un-003"
+      }
+    ],
+    "meta": {
+      "title": "Security Uniform Set - Uniforms | Mercurion Overseas",
+      "description": "Professional security uniforms.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Uniforms",
+        "Security Uniform Set"
+      ]
+    }
   },
   {
     "id": "cb-un-004",
@@ -2034,10 +6896,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "uniforms",
-    "subCategorySlug": "uniforms"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "uniforms",
+      "name": "Uniforms",
+      "slug": "uniforms"
+    },
+    "url": "/corporate-bulk/uniforms/cb-un-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Uniforms",
+        "url": "/corporate-bulk/uniforms"
+      },
+      {
+        "name": "Chef Uniform Set",
+        "url": "/corporate-bulk/uniforms/cb-un-004"
+      }
+    ],
+    "meta": {
+      "title": "Chef Uniform Set - Uniforms | Mercurion Overseas",
+      "description": "Complete chef wear uniform.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Uniforms",
+        "Chef Uniform Set"
+      ]
+    }
   },
   {
     "id": "cb-un-005",
@@ -2048,10 +6944,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "uniforms",
-    "subCategorySlug": "uniforms"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "uniforms",
+      "name": "Uniforms",
+      "slug": "uniforms"
+    },
+    "url": "/corporate-bulk/uniforms/cb-un-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Uniforms",
+        "url": "/corporate-bulk/uniforms"
+      },
+      {
+        "name": "Polo Shirt Uniforms",
+        "url": "/corporate-bulk/uniforms/cb-un-005"
+      }
+    ],
+    "meta": {
+      "title": "Polo Shirt Uniforms - Uniforms | Mercurion Overseas",
+      "description": "Custom branded polo uniforms.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Uniforms",
+        "Polo Shirt Uniforms"
+      ]
+    }
   },
   {
     "id": "cb-pl-001",
@@ -2062,10 +6992,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "private-label-products",
-    "subCategorySlug": "private-label-products"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "private-label",
+      "name": "Private label products",
+      "slug": "private-label-products"
+    },
+    "url": "/corporate-bulk/private-label-products/cb-pl-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Private label products",
+        "url": "/corporate-bulk/private-label-products"
+      },
+      {
+        "name": "Private Label Skincare",
+        "url": "/corporate-bulk/private-label-products/cb-pl-001"
+      }
+    ],
+    "meta": {
+      "title": "Private Label Skincare - Private label products | Mercurion Overseas",
+      "description": "White label skincare product line.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Private label products",
+        "Private Label Skincare"
+      ]
+    }
   },
   {
     "id": "cb-pl-002",
@@ -2076,10 +7040,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "private-label-products",
-    "subCategorySlug": "private-label-products"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "private-label",
+      "name": "Private label products",
+      "slug": "private-label-products"
+    },
+    "url": "/corporate-bulk/private-label-products/cb-pl-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Private label products",
+        "url": "/corporate-bulk/private-label-products"
+      },
+      {
+        "name": "Private Label Supplements",
+        "url": "/corporate-bulk/private-label-products/cb-pl-002"
+      }
+    ],
+    "meta": {
+      "title": "Private Label Supplements - Private label products | Mercurion Overseas",
+      "description": "Custom supplement manufacturing.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Private label products",
+        "Private Label Supplements"
+      ]
+    }
   },
   {
     "id": "cb-pl-003",
@@ -2090,10 +7088,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "private-label-products",
-    "subCategorySlug": "private-label-products"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "private-label",
+      "name": "Private label products",
+      "slug": "private-label-products"
+    },
+    "url": "/corporate-bulk/private-label-products/cb-pl-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Private label products",
+        "url": "/corporate-bulk/private-label-products"
+      },
+      {
+        "name": "White Label Tea Blends",
+        "url": "/corporate-bulk/private-label-products/cb-pl-003"
+      }
+    ],
+    "meta": {
+      "title": "White Label Tea Blends - Private label products | Mercurion Overseas",
+      "description": "Private label tea products.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Private label products",
+        "White Label Tea Blends"
+      ]
+    }
   },
   {
     "id": "cb-pl-004",
@@ -2104,10 +7136,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "private-label-products",
-    "subCategorySlug": "private-label-products"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "private-label",
+      "name": "Private label products",
+      "slug": "private-label-products"
+    },
+    "url": "/corporate-bulk/private-label-products/cb-pl-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Private label products",
+        "url": "/corporate-bulk/private-label-products"
+      },
+      {
+        "name": "Custom Spice Blends",
+        "url": "/corporate-bulk/private-label-products/cb-pl-004"
+      }
+    ],
+    "meta": {
+      "title": "Custom Spice Blends - Private label products | Mercurion Overseas",
+      "description": "Private label spice manufacturing.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Private label products",
+        "Custom Spice Blends"
+      ]
+    }
   },
   {
     "id": "cb-pl-005",
@@ -2118,10 +7184,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "private-label-products",
-    "subCategorySlug": "private-label-products"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "private-label",
+      "name": "Private label products",
+      "slug": "private-label-products"
+    },
+    "url": "/corporate-bulk/private-label-products/cb-pl-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Private label products",
+        "url": "/corporate-bulk/private-label-products"
+      },
+      {
+        "name": "White Label Soaps",
+        "url": "/corporate-bulk/private-label-products/cb-pl-005"
+      }
+    ],
+    "meta": {
+      "title": "White Label Soaps - Private label products | Mercurion Overseas",
+      "description": "Custom branded soap products.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Private label products",
+        "White Label Soaps"
+      ]
+    }
   },
   {
     "id": "cb-bm-001",
@@ -2132,10 +7232,44 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "branded-merchandise",
-    "subCategorySlug": "branded-merchandise"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "branded",
+      "name": "Branded merchandise",
+      "slug": "branded-merchandise"
+    },
+    "url": "/corporate-bulk/branded-merchandise/cb-bm-001",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Branded merchandise",
+        "url": "/corporate-bulk/branded-merchandise"
+      },
+      {
+        "name": "Custom T-Shirts (Bulk)",
+        "url": "/corporate-bulk/branded-merchandise/cb-bm-001"
+      }
+    ],
+    "meta": {
+      "title": "Custom T-Shirts (Bulk) - Branded merchandise | Mercurion Overseas",
+      "description": "Branded t-shirts for events.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Branded merchandise",
+        "Custom T-Shirts (Bulk)"
+      ]
+    }
   },
   {
     "id": "cb-bm-002",
@@ -2146,10 +7280,44 @@
     "rating": 4.5,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "branded-merchandise",
-    "subCategorySlug": "branded-merchandise"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "branded",
+      "name": "Branded merchandise",
+      "slug": "branded-merchandise"
+    },
+    "url": "/corporate-bulk/branded-merchandise/cb-bm-002",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Branded merchandise",
+        "url": "/corporate-bulk/branded-merchandise"
+      },
+      {
+        "name": "Branded Caps & Hats",
+        "url": "/corporate-bulk/branded-merchandise/cb-bm-002"
+      }
+    ],
+    "meta": {
+      "title": "Branded Caps & Hats - Branded merchandise | Mercurion Overseas",
+      "description": "Custom embroidered caps bulk order.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Branded merchandise",
+        "Branded Caps & Hats"
+      ]
+    }
   },
   {
     "id": "cb-bm-003",
@@ -2160,10 +7328,44 @@
     "rating": 4.7,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "branded-merchandise",
-    "subCategorySlug": "branded-merchandise"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "branded",
+      "name": "Branded merchandise",
+      "slug": "branded-merchandise"
+    },
+    "url": "/corporate-bulk/branded-merchandise/cb-bm-003",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Branded merchandise",
+        "url": "/corporate-bulk/branded-merchandise"
+      },
+      {
+        "name": "Coffee Mugs (Branded)",
+        "url": "/corporate-bulk/branded-merchandise/cb-bm-003"
+      }
+    ],
+    "meta": {
+      "title": "Coffee Mugs (Branded) - Branded merchandise | Mercurion Overseas",
+      "description": "Custom printed coffee mugs.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Branded merchandise",
+        "Coffee Mugs (Branded)"
+      ]
+    }
   },
   {
     "id": "cb-bm-004",
@@ -2174,10 +7376,44 @@
     "rating": 4.4,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "branded-merchandise",
-    "subCategorySlug": "branded-merchandise"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "branded",
+      "name": "Branded merchandise",
+      "slug": "branded-merchandise"
+    },
+    "url": "/corporate-bulk/branded-merchandise/cb-bm-004",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Branded merchandise",
+        "url": "/corporate-bulk/branded-merchandise"
+      },
+      {
+        "name": "Promotional Keychains",
+        "url": "/corporate-bulk/branded-merchandise/cb-bm-004"
+      }
+    ],
+    "meta": {
+      "title": "Promotional Keychains - Branded merchandise | Mercurion Overseas",
+      "description": "Custom branded keychains.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Branded merchandise",
+        "Promotional Keychains"
+      ]
+    }
   },
   {
     "id": "cb-bm-005",
@@ -2188,9 +7424,43 @@
     "rating": 4.6,
     "reviews": [],
     "inStock": true,
-    "categoryId": "corporate-bulk",
-    "categorySlug": "corporate-bulk",
-    "subCategoryId": "branded-merchandise",
-    "subCategorySlug": "branded-merchandise"
+    "category": {
+      "id": "corporate-bulk",
+      "name": "Corporate & Bulk Supplies",
+      "slug": "corporate-bulk"
+    },
+    "subCategory": {
+      "id": "branded",
+      "name": "Branded merchandise",
+      "slug": "branded-merchandise"
+    },
+    "url": "/corporate-bulk/branded-merchandise/cb-bm-005",
+    "breadcrumbs": [
+      {
+        "name": "Home",
+        "url": "/"
+      },
+      {
+        "name": "Corporate & Bulk Supplies",
+        "url": "/corporate-bulk"
+      },
+      {
+        "name": "Branded merchandise",
+        "url": "/corporate-bulk/branded-merchandise"
+      },
+      {
+        "name": "Water Bottles (Branded)",
+        "url": "/corporate-bulk/branded-merchandise/cb-bm-005"
+      }
+    ],
+    "meta": {
+      "title": "Water Bottles (Branded) - Branded merchandise | Mercurion Overseas",
+      "description": "Custom water bottles bulk order.",
+      "keywords": [
+        "Corporate & Bulk Supplies",
+        "Branded merchandise",
+        "Water Bottles (Branded)"
+      ]
+    }
   }
 ]

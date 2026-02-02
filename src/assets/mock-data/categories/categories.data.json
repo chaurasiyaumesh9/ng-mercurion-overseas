@@ -3,73 +3,271 @@
     "id": "apparel-textiles",
     "name": "Apparel & Textiles",
     "slug": "apparel-textiles",
+    "url": "/apparel-textiles",
     "subCategories": [
-      { "id": "tshirts-polo", "name": "T-shirts & Polo Shirts", "slug": "t-shirts-polo-shirts" },
-      { "id": "cotton-shirts", "name": "Cotton Shirts", "slug": "cotton-shirts" },
-      { "id": "sarees-dress", "name": "Sarees & Dress Materials", "slug": "sarees-dress-materials" },
-      { "id": "scarves-stoles", "name": "Scarves & Stoles", "slug": "scarves-stoles" },
-      { "id": "home-textiles", "name": "Home textiles (bedsheets, towels)", "slug": "home-textiles" }
-    ]
+      {
+        "id": "tshirts-polo",
+        "name": "T-shirts & Polo Shirts",
+        "slug": "t-shirts-polo-shirts",
+        "url": "/apparel-textiles/t-shirts-polo-shirts",
+        "productCount": 5
+      },
+      {
+        "id": "cotton-shirts",
+        "name": "Cotton Shirts",
+        "slug": "cotton-shirts",
+        "url": "/apparel-textiles/cotton-shirts",
+        "productCount": 5
+      },
+      {
+        "id": "sarees-dress",
+        "name": "Sarees & Dress Materials",
+        "slug": "sarees-dress-materials",
+        "url": "/apparel-textiles/sarees-dress-materials",
+        "productCount": 5
+      },
+      {
+        "id": "scarves-stoles",
+        "name": "Scarves & Stoles",
+        "slug": "scarves-stoles",
+        "url": "/apparel-textiles/scarves-stoles",
+        "productCount": 5
+      },
+      {
+        "id": "home-textiles",
+        "name": "Home textiles (bedsheets, towels)",
+        "slug": "home-textiles",
+        "url": "/apparel-textiles/home-textiles",
+        "productCount": 5
+      }
+    ],
+    "productCount": 25
   },
   {
     "id": "handicrafts-decor",
     "name": "Handicrafts & Decor",
     "slug": "handicrafts-decor",
+    "url": "/handicrafts-decor",
     "subCategories": [
-      { "id": "wooden", "name": "Wooden handicrafts", "slug": "wooden-handicrafts" },
-      { "id": "brass-metal", "name": "Brass & metal decor", "slug": "brass-metal-decor" },
-      { "id": "wall-art", "name": "Wall art", "slug": "wall-art" },
-      { "id": "candle-holders", "name": "Candle holders", "slug": "candle-holders" },
-      { "id": "hand-painted", "name": "Hand-painted items", "slug": "hand-painted-items" }
-    ]
+      {
+        "id": "wooden",
+        "name": "Wooden handicrafts",
+        "slug": "wooden-handicrafts",
+        "url": "/handicrafts-decor/wooden-handicrafts",
+        "productCount": 5
+      },
+      {
+        "id": "brass-metal",
+        "name": "Brass & metal decor",
+        "slug": "brass-metal-decor",
+        "url": "/handicrafts-decor/brass-metal-decor",
+        "productCount": 5
+      },
+      {
+        "id": "wall-art",
+        "name": "Wall art",
+        "slug": "wall-art",
+        "url": "/handicrafts-decor/wall-art",
+        "productCount": 5
+      },
+      {
+        "id": "candle-holders",
+        "name": "Candle holders",
+        "slug": "candle-holders",
+        "url": "/handicrafts-decor/candle-holders",
+        "productCount": 5
+      },
+      {
+        "id": "hand-painted",
+        "name": "Hand-painted items",
+        "slug": "hand-painted-items",
+        "url": "/handicrafts-decor/hand-painted-items",
+        "productCount": 5
+      }
+    ],
+    "productCount": 25
   },
   {
     "id": "home-living",
     "name": "Home & Living",
     "slug": "home-living",
+    "url": "/home-living",
     "subCategories": [
-      { "id": "kitchenware", "name": "Kitchenware", "slug": "kitchenware" },
-      { "id": "storage", "name": "Storage baskets", "slug": "storage-baskets" },
-      { "id": "tableware", "name": "Tableware", "slug": "tableware" },
-      { "id": "rugs", "name": "Rugs & carpets", "slug": "rugs-carpets" },
-      { "id": "cushions", "name": "Cushion covers", "slug": "cushion-covers" }
-    ]
+      {
+        "id": "kitchenware",
+        "name": "Kitchenware",
+        "slug": "kitchenware",
+        "url": "/home-living/kitchenware",
+        "productCount": 5
+      },
+      {
+        "id": "storage",
+        "name": "Storage baskets",
+        "slug": "storage-baskets",
+        "url": "/home-living/storage-baskets",
+        "productCount": 5
+      },
+      {
+        "id": "tableware",
+        "name": "Tableware",
+        "slug": "tableware",
+        "url": "/home-living/tableware",
+        "productCount": 5
+      },
+      {
+        "id": "rugs",
+        "name": "Rugs & carpets",
+        "slug": "rugs-carpets",
+        "url": "/home-living/rugs-carpets",
+        "productCount": 5
+      },
+      {
+        "id": "cushions",
+        "name": "Cushion covers",
+        "slug": "cushion-covers",
+        "url": "/home-living/cushion-covers",
+        "productCount": 5
+      }
+    ],
+    "productCount": 25
   },
   {
     "id": "fmcg-food",
     "name": "FMCG / Food Products",
     "slug": "fmcg-food",
+    "url": "/fmcg-food",
     "subCategories": [
-      { "id": "spices", "name": "Spices", "slug": "spices" },
-      { "id": "tea-coffee", "name": "Tea & coffee", "slug": "tea-coffee" },
-      { "id": "dry-fruits", "name": "Dry fruits", "slug": "dry-fruits" },
-      { "id": "pickles", "name": "Pickles & sauces", "slug": "pickles-sauces" },
-      { "id": "ready-cook", "name": "Ready-to-cook mixes", "slug": "ready-to-cook-mixes" }
-    ]
+      {
+        "id": "spices",
+        "name": "Spices",
+        "slug": "spices",
+        "url": "/fmcg-food/spices",
+        "productCount": 5
+      },
+      {
+        "id": "tea-coffee",
+        "name": "Tea & coffee",
+        "slug": "tea-coffee",
+        "url": "/fmcg-food/tea-coffee",
+        "productCount": 5
+      },
+      {
+        "id": "dry-fruits",
+        "name": "Dry fruits",
+        "slug": "dry-fruits",
+        "url": "/fmcg-food/dry-fruits",
+        "productCount": 5
+      },
+      {
+        "id": "pickles",
+        "name": "Pickles & sauces",
+        "slug": "pickles-sauces",
+        "url": "/fmcg-food/pickles-sauces",
+        "productCount": 5
+      },
+      {
+        "id": "ready-cook",
+        "name": "Ready-to-cook mixes",
+        "slug": "ready-to-cook-mixes",
+        "url": "/fmcg-food/ready-to-cook-mixes",
+        "productCount": 5
+      }
+    ],
+    "productCount": 25
   },
   {
     "id": "personal-care",
     "name": "Personal Care & Wellness",
     "slug": "personal-care",
+    "url": "/personal-care",
     "subCategories": [
-      { "id": "herbal", "name": "Herbal cosmetics", "slug": "herbal-cosmetics" },
-      { "id": "oils", "name": "Essential oils", "slug": "essential-oils" },
-      { "id": "soaps", "name": "Soaps", "slug": "soaps" },
-      { "id": "incense", "name": "Incense sticks", "slug": "incense-sticks" },
-      { "id": "organic", "name": "Organic products", "slug": "organic-products" }
-    ]
+      {
+        "id": "herbal",
+        "name": "Herbal cosmetics",
+        "slug": "herbal-cosmetics",
+        "url": "/personal-care/herbal-cosmetics",
+        "productCount": 5
+      },
+      {
+        "id": "oils",
+        "name": "Essential oils",
+        "slug": "essential-oils",
+        "url": "/personal-care/essential-oils",
+        "productCount": 5
+      },
+      {
+        "id": "soaps",
+        "name": "Soaps",
+        "slug": "soaps",
+        "url": "/personal-care/soaps",
+        "productCount": 5
+      },
+      {
+        "id": "incense",
+        "name": "Incense sticks",
+        "slug": "incense-sticks",
+        "url": "/personal-care/incense-sticks",
+        "productCount": 5
+      },
+      {
+        "id": "organic",
+        "name": "Organic products",
+        "slug": "organic-products",
+        "url": "/personal-care/organic-products",
+        "productCount": 5
+      }
+    ],
+    "productCount": 25
   },
   {
     "id": "corporate-bulk",
     "name": "Corporate & Bulk Supplies",
     "slug": "corporate-bulk",
+    "url": "/corporate-bulk",
     "subCategories": [
-      { "id": "promo", "name": "Promotional gifts", "slug": "promotional-gifts" },
-      { "id": "packaging", "name": "Custom packaging", "slug": "custom-packaging" },
-      { "id": "stationery", "name": "Stationery", "slug": "stationery" },
-      { "id": "uniforms", "name": "Uniforms", "slug": "uniforms" },
-      { "id": "private-label", "name": "Private label products", "slug": "private-label-products" },
-      { "id": "branded", "name": "Branded merchandise", "slug": "branded-merchandise" }
-    ]
+      {
+        "id": "promo",
+        "name": "Promotional gifts",
+        "slug": "promotional-gifts",
+        "url": "/corporate-bulk/promotional-gifts",
+        "productCount": 5
+      },
+      {
+        "id": "packaging",
+        "name": "Custom packaging",
+        "slug": "custom-packaging",
+        "url": "/corporate-bulk/custom-packaging",
+        "productCount": 5
+      },
+      {
+        "id": "stationery",
+        "name": "Stationery",
+        "slug": "stationery",
+        "url": "/corporate-bulk/stationery",
+        "productCount": 5
+      },
+      {
+        "id": "uniforms",
+        "name": "Uniforms",
+        "slug": "uniforms",
+        "url": "/corporate-bulk/uniforms",
+        "productCount": 5
+      },
+      {
+        "id": "private-label",
+        "name": "Private label products",
+        "slug": "private-label-products",
+        "url": "/corporate-bulk/private-label-products",
+        "productCount": 5
+      },
+      {
+        "id": "branded",
+        "name": "Branded merchandise",
+        "slug": "branded-merchandise",
+        "url": "/corporate-bulk/branded-merchandise",
+        "productCount": 5
+      }
+    ],
+    "productCount": 30
   }
 ]
