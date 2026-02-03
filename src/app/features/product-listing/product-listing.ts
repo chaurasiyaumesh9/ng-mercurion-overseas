@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsStore } from './state/products.store';
-import { Icon } from '../../core/icons/icon';
+import { ProductTile } from './components/product-tile';
 
 @Component({
     selector: 'app-product-listing',
     standalone: true,
-    imports: [CommonModule, Icon],
+    imports: [CommonModule, ProductTile],
     providers: [ProductsStore],
     templateUrl: './product-listing.html',
 })
