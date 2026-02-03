@@ -23,16 +23,16 @@
                         (input)="searchQuery.set($any($event.target).value)"
                         class="w-full px-4 py-2 border rounded-l-md" />
                     <button type="submit"
-                        class="absolute right-0 top-0 h-full px-4 bg-blue-600 text-white rounded-r-md">
-                        🔍
+                        class="absolute right-0 top-0 h-full px-4 bg-blue-600 text-white rounded-r-md flex items-center justify-center">
+                        <app-icon name="search" class="w-5 h-5 text-white"></app-icon>
                     </button>
                 </div>
             </form>
 
             <!-- Desktop Actions -->
             <div class="hidden md:flex items-center gap-6">
-                <a routerLink="/account">👤 Account</a>
-                <a routerLink="/cart">🛒 Cart</a>
+                <a class="flex items-center gap-2" routerLink="/account"> <app-icon name="user" class="w-6 h-6 text-gray-700"></app-icon> <span>Account</span></a>
+                <a class="flex items-center gap-2" routerLink="/cart"> <app-icon name="cart" class="w-6 h-6 text-gray-700"></app-icon> <span>Cart</span></a>
             </div>
 
             <!-- Mobile Toggle -->

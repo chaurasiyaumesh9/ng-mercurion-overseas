@@ -4,12 +4,13 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CartService } from '../cart/services/cart.services';
 import { Category } from '../../core/models/category.model';
 import { Product } from '../../core/models/product.model';
+import { Icon } from '../../core/icons/icon';
 
 
 @Component({
   standalone: true,
   selector: 'app-home-page',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, Icon],
   providers: [CartService],
   templateUrl: './home.html',
 })

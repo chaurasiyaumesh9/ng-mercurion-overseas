@@ -70,18 +70,18 @@
 
                 <div class="flex items-center gap-2">
                     <span class="text-lg font-bold text-gray-900">
-                        {{ product.price }}
+                        ${{ product.price }}
                     </span>
 
                     @if (product.originalPrice) {
                     <span class="text-sm line-through text-gray-400">
-                        {{ product.originalPrice }}
+                        ${{ product.originalPrice }}
                     </span>
                     }
                 </div>
 
-                <div class="text-sm text-yellow-500">
-                    ⭐ {{ product.rating }}
+                <div class="text-sm text-yellow-700 flex items-center gap-2">
+                    <app-icon name="star" class="w-5 h-5 text-yellow-700"></app-icon> <span>{{ product.rating }}</span>
                 </div>
 
                 <!-- Show category breadcrumb on product card -->
