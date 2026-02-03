@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { Shell } from './shell/shell';
+import { ProductsService } from '../../features/product-listing/services/products.service';
 
 export const LAYOUT_ROUTES: Routes = [
     {
@@ -10,20 +11,15 @@ export const LAYOUT_ROUTES: Routes = [
                 path: '',
                 loadChildren: () => import('../../features/home/home.routes').then(m => m.homeRoutes)
             },
-            
             {
-                path: 'search',
+                path: '',
+                providers: [ProductsService],
                 loadChildren: () => import('../../features/product-listing/product-listing.routes').then(m => m.productListingRoutes)
             },
             {
-                path: ':categorySlug',
-                loadChildren: () => import('../../features/product-listing/product-listing.routes').then(m => m.productListingRoutes)
+                path: '',
+                loadChildren: () => import('../../features/product-details/product-details.routes').then(m => m.productDetailsRoutes)
             },
-            {
-                path: ':categorySlug/:subCategorySlug',
-                loadChildren: () => import('../../features/product-listing/product-listing.routes').then(m => m.productListingRoutes)
-            },
-
             {
                 path: 'cart',
                 loadChildren: () => import('../../features/cart/cart.routes').then(m => m.cartRoutes)
