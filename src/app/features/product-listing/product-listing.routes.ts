@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
-import { ProductsPage } from './products.page';
+import { ProductListing } from './product-listing';
 import { ProductsService } from './services/products.service';
 
-export const productsRoutes: Routes = [
+export const productListingRoutes: Routes = [
   {
     path: '',
     providers: [
         ProductsService
     ],
-    component: ProductsPage
+    component: ProductListing
   }
 ];

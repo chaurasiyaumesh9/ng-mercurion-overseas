@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { HomePage } from './home.page';
+import { Home } from './home';
 import { featuredProductsResolver } from './resolvers/featured-products.resolver';
 
 export const homeRoutes: Routes = [
   { 
-    path: '', component: HomePage ,
+    path: '', component: Home ,
     resolve: {
         featuredProducts: featuredProductsResolver
     },

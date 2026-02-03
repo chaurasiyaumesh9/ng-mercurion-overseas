@@ -1,0 +1,107 @@
+<footer class="w-full bg-gray-900 text-gray-300">
+    <div class="container mx-auto px-4 py-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+            <!-- Company Info -->
+            <div>
+                <h3 class="text-white text-lg font-bold mb-4">Mercurion Overseas</h3>
+                <p class="text-sm mb-4">
+                    Connecting markets worldwide with quality products and exceptional service.
+                </p>
+                <div class="space-y-2 text-sm">
+                    <div class="flex items-center gap-2">
+                        📍 <span>123 Export Avenue, Trade City</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        📞 <span>+1 (555) 123-4567</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        ✉️ <span>info@mercurionoverseas.com</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h3 class="text-white text-lg font-bold mb-4">Quick Links</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a routerLink="/products" class="hover:text-white">All Products</a></li>
+                    <li>
+                        <a [routerLink]="['/products']" [queryParams]="{ category: 'Apparel & Textiles' }"
+                            class="hover:text-white">
+                            Apparel & Textiles
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/products']" [queryParams]="{ category: 'Handicrafts & Decor' }"
+                            class="hover:text-white">
+                            Handicrafts & Decor
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/products']" [queryParams]="{ category: 'Home & Living' }"
+                            class="hover:text-white">
+                            Home & Living
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/products']" [queryParams]="{ category: 'Personal Care & Wellness' }"
+                            class="hover:text-white">
+                            Personal Care & Wellness
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Customer Service -->
+            <div>
+                <h3 class="text-white text-lg font-bold mb-4">Customer Service</h3>
+                <ul class="space-y-2 text-sm">
+                    <li><a routerLink="/account" class="hover:text-white">My Account</a></li>
+                    <li><a routerLink="/account/orders" class="hover:text-white">Order History</a></li>
+                    <li><a routerLink="/cart" class="hover:text-white">Shopping Cart</a></li>
+                    <li><a href="#" class="hover:text-white">Shipping Information</a></li>
+                    <li><a href="#" class="hover:text-white">Returns & Exchanges</a></li>
+                    <li><a href="#" class="hover:text-white">FAQ</a></li>
+                </ul>
+            </div>
+
+            <!-- Newsletter -->
+            <div>
+                <h3 class="text-white text-lg font-bold mb-4">Newsletter</h3>
+                <p class="text-sm mb-4">
+                    Subscribe to get special offers and updates.
+                </p>
+                <form class="space-y-2">
+                    <input type="email" placeholder="Enter your email"
+                        class="w-full px-4 py-2 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:border-blue-500 text-sm" />
+                    <button type="submit"
+                        class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition text-sm">
+                        Subscribe
+                    </button>
+                </form>
+
+                <div class="flex gap-4 mt-6">
+                    <a href="#" class="hover:text-white">📘</a>
+                    <a href="#" class="hover:text-white">🐦</a>
+                    <a href="#" class="hover:text-white">📸</a>
+                    <a href="#" class="hover:text-white">💼</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-gray-800">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+                <p>&copy; 2026 Mercurion Overseas. All rights reserved.</p>
+                <div class="flex gap-6">
+                    <a href="#" class="hover:text-white">Privacy Policy</a>
+                    <a href="#" class="hover:text-white">Terms of Service</a>
+                    <a href="#" class="hover:text-white">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
