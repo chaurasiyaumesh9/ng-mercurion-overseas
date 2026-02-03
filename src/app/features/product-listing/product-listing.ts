@@ -1,17 +1,17 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductsStore } from './state/products.store';
+import { ProductListingStore } from './state/product-listing.store';
 import { ProductTile } from './components/product-tile';
 
 @Component({
     selector: 'app-product-listing',
     standalone: true,
     imports: [CommonModule, ProductTile],
-    providers: [ProductsStore],
+    providers: [ProductListingStore],
     templateUrl: './product-listing.html',
 })
 export class ProductListing {
-    readonly store = inject(ProductsStore);
+    readonly store = inject(ProductListingStore);
 
     // Signals from store
     products = this.store.filteredProducts;
