@@ -1,115 +1,182 @@
-<header class="w-full bg-white border-b sticky top-0 z-50">
+<header class="w-full bg-white border-b sticky top-0 z-40">
 
-    <!-- Top strip -->
-    <div class="w-full bg-gray-900 text-white py-2">
-        <div class="container mx-auto px-4 text-center text-sm">
-            Free Shipping on Orders Over $100
+  <!-- Top strip -->
+  <div class="w-full bg-gray-900 text-white py-2">
+    <div class="container mx-auto px-4 text-center text-sm">
+      Free Shipping on Orders Over $100
+    </div>
+  </div>
+
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between py-4">
+
+      <!-- Logo -->
+      <a routerLink="/" class="flex flex-col">
+        <span class="text-2xl font-bold text-gray-900">Mercurion Overseas</span>
+        <span class="text-xs text-gray-600 italic">Connecting Markets Worldwide</span>
+      </a>
+
+      <!-- Desktop Search -->
+      <form
+        (submit)="handleSearch($event)"
+        class="hidden md:flex flex-1 max-w-md mx-8"
+      >
+        <div class="relative w-full">
+          <input
+            type="text"
+            placeholder="Search products..."
+            [value]="searchQuery()"
+            (input)="searchQuery.set($any($event.target).value)"
+            class="w-full px-4 py-2 border rounded-l-md"
+          />
+          <button
+            type="submit"
+            class="absolute right-0 top-0 h-full px-4 bg-blue-600 text-white rounded-r-md flex items-center justify-center"
+          >
+            <app-icon name="search" class="w-5 h-5 text-white"></app-icon>
+          </button>
         </div>
+      </form>
+
+      <!-- Desktop Actions -->
+      <div class="hidden md:flex items-center gap-6">
+        <a class="flex items-center gap-2" routerLink="/account">
+          <app-icon name="user" class="w-6 h-6 text-gray-700"></app-icon>
+          <span>Account</span>
+        </a>
+        <a class="flex items-center gap-2" routerLink="/cart">
+          <app-icon name="cart" class="w-6 h-6 text-gray-700"></app-icon>
+          <span>Cart</span>
+        </a>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button
+        class="md:hidden text-2xl"
+        (click)="mobileMenuOpen.set(true)"
+      >
+        ☰
+      </button>
     </div>
 
-    <div class="container mx-auto px-4">
-        <div class="flex items-center justify-between py-4">
+    <!-- Desktop Navigation -->
+    @defer (on idle) {
+      <nav class="hidden md:block border-t">
+        <ul class="flex items-center gap-8 py-3">
 
-            <!-- Logo -->
-            <a routerLink="/" class="flex flex-col">
-                <span class="text-2xl font-bold text-gray-900">Mercurion Overseas</span>
-                <span class="text-xs text-gray-600 italic">Connecting Markets Worldwide</span>
+          <li>
+            <a routerLink="/" class="text-gray-700 hover:text-blue-600">
+              Home
             </a>
+          </li>
 
-            <!-- Desktop Search -->
-            <form (submit)="handleSearch($event)" class="hidden md:flex flex-1 max-w-md mx-8">
-                <div class="relative w-full">
-                    <input type="text" placeholder="Search products..." [value]="searchQuery()"
-                        (input)="searchQuery.set($any($event.target).value)"
-                        class="w-full px-4 py-2 border rounded-l-md" />
-                    <button type="submit"
-                        class="absolute right-0 top-0 h-full px-4 bg-blue-600 text-white rounded-r-md flex items-center justify-center">
-                        <app-icon name="search" class="w-5 h-5 text-white"></app-icon>
-                    </button>
-                </div>
-            </form>
+          @for (category of categories(); track category.id) {
+            <li class="relative group">
 
-            <!-- Desktop Actions -->
-            <div class="hidden md:flex items-center gap-6">
-                <a class="flex items-center gap-2" routerLink="/account"> <app-icon name="user" class="w-6 h-6 text-gray-700"></app-icon> <span>Account</span></a>
-                <a class="flex items-center gap-2" routerLink="/cart"> <app-icon name="cart" class="w-6 h-6 text-gray-700"></app-icon> <span>Cart</span></a>
-            </div>
+              <a
+                [routerLink]="['/', category.slug]"
+                class="text-gray-700 hover:text-blue-600"
+              >
+                {{ category.name }}
+              </a>
 
-            <!-- Mobile Toggle -->
-            <button class="md:hidden" (click)="mobileMenuOpen.set(!mobileMenuOpen())">
-                {{ mobileMenuOpen() ? '✖' : '☰' }}
-            </button>
-        </div>
-
-        <!-- Desktop Navigation -->
-        @defer (on idle) {
-        <nav class="hidden md:block border-t">
-            <ul class="flex items-center gap-8 py-3">
-
-                <li>
-                    <a routerLink="/" class="text-gray-700 hover:text-blue-600">Home</a>
-                </li>
-
-                @for (category of categories(); track category.id) {
-                <li class="relative group">
-
-                    <!-- Category link -->
-                    <a [routerLink]="['/', category.slug]" class="text-gray-700 hover:text-blue-600">
-                        {{ category.name }}
-                    </a>
-
-                    <!-- Subcategory dropdown -->
-                    <div class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg py-2
-                      invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all">
-
-                        @for (sub of category.subCategories; track sub.id) {
-                        <a [routerLink]="['/', category.slug, sub.slug]"
-                            class="block px-4 py-2 text-sm hover:bg-gray-100">
-                            {{ sub.name }}
-                        </a>
-                        }
-
-                    </div>
-                </li>
+              <!-- Subcategory dropdown -->
+              <div
+                class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg py-2
+                       invisible group-hover:visible opacity-0
+                       group-hover:opacity-100 transition-all"
+              >
+                @for (sub of category.subCategories; track sub.id) {
+                  <a
+                    [routerLink]="['/', category.slug, sub.slug]"
+                    class="block px-4 py-2 text-sm hover:bg-gray-100"
+                  >
+                    {{ sub.name }}
+                  </a>
                 }
+              </div>
 
-            </ul>
-        </nav>
-        }
+            </li>
+          }
 
-        <!-- Mobile Menu -->
-        @if (mobileMenuOpen()) {
-        <div class="md:hidden border-t py-4 space-y-4">
+        </ul>
+      </nav>
+    }
 
-            <form (submit)="handleSearch($event)">
-                <input type="text" placeholder="Search products..." [value]="searchQuery()"
-                    (input)="searchQuery.set($any($event.target).value)" class="w-full px-4 py-2 border rounded-md" />
-            </form>
+  </div>
+</header>
 
-            <a routerLink="/" (click)="closeMobile()">Home</a>
+<!-- ================= MOBILE OVERLAY MENU ================= -->
 
-            @for (category of categories(); track category.id) {
-            <div>
-                <a [routerLink]="['/', category.slug]" (click)="closeMobile()" class="block font-medium">
-                    {{ category.name }}
-                </a>
+@if (mobileMenuOpen()) {
+  <div class="fixed inset-0 z-50 bg-white md:hidden overflow-y-auto">
 
-                <div class="ml-4 mt-2 space-y-2">
-                    @for (sub of category.subCategories; track sub.id) {
-                    <a [routerLink]="['/', category.slug, sub.slug]" (click)="closeMobile()"
-                        class="block text-sm text-gray-600">
-                        {{ sub.name }}
-                    </a>
-                    }
-                </div>
-            </div>
+    <div class="container mx-auto px-4 py-6 space-y-6">
+
+      <!-- Top row -->
+      <div class="flex items-center justify-between">
+        <span class="text-xl font-semibold">Menu</span>
+        <button
+          class="text-2xl"
+          (click)="mobileMenuOpen.set(false)"
+        >
+          ✖
+        </button>
+      </div>
+
+      <!-- Search -->
+      <form (submit)="handleSearch($event)">
+        <input
+          type="text"
+          placeholder="Search products..."
+          [value]="searchQuery()"
+          (input)="searchQuery.set($any($event.target).value)"
+          class="w-full px-4 py-2 border rounded-md"
+        />
+      </form>
+
+      <a
+        routerLink="/"
+        (click)="closeMobile()"
+        class="block text-lg font-medium"
+      >
+        Home
+      </a>
+
+      @for (category of categories(); track category.id) {
+        <div>
+          <a
+            [routerLink]="['/', category.slug]"
+            (click)="closeMobile()"
+            class="block text-lg font-medium"
+          >
+            {{ category.name }}
+          </a>
+
+          <div class="ml-4 mt-2 space-y-2">
+            @for (sub of category.subCategories; track sub.id) {
+              <a
+                [routerLink]="['/', category.slug, sub.slug]"
+                (click)="closeMobile()"
+                class="block text-sm text-gray-600"
+              >
+                {{ sub.name }}
+              </a>
             }
-
-            <div class="border-t pt-4">
-                <a routerLink="/cart" (click)="closeMobile()">🛒 Cart</a>
-            </div>
+          </div>
         </div>
-        }
+      }
+
+      <div class="border-t pt-4">
+        <a
+          routerLink="/cart"
+          (click)="closeMobile()"
+          class="block text-lg"
+        >
+          🛒 Cart
+        </a>
+      </div>
 
     </div>
-</header>
+  </div>
+}
