@@ -20,7 +20,7 @@
             placeholder="Search products..."
             [value]="searchQuery()"
             (input)="searchQuery.set($any($event.target).value)"
-            class="w-full px-4 py-2 border"
+            class="w-full px-4 py-2 border rounded-l-md"
           />
           <button
             type="submit"
