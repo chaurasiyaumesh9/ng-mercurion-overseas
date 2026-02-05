@@ -1,15 +1,11 @@
-<header class="w-full bg-white border-b sticky top-0 z-40">
-
+<header class="w-full bg-white sticky top-0 z-40">
   <!-- Top strip -->
   <div class="w-full bg-gray-900 text-white py-2">
-    <div class="container mx-auto px-4 text-center text-sm">
-      Free Shipping on Orders Over $100
-    </div>
+    <div class="container mx-auto px-4 text-center text-sm">Free Shipping on Orders Over $100</div>
   </div>
 
   <div class="container mx-auto px-4">
     <div class="flex items-center justify-between py-4">
-
       <!-- Logo -->
       <a routerLink="/" class="flex flex-col">
         <span class="text-2xl font-bold text-gray-900">Mercurion Overseas</span>
@@ -17,10 +13,7 @@
       </a>
 
       <!-- Desktop Search -->
-      <form
-        (submit)="handleSearch($event)"
-        class="hidden md:flex flex-1 max-w-md mx-8"
-      >
+      <form (submit)="handleSearch($event)" class="hidden md:flex flex-1 max-w-md mx-8">
         <div class="relative w-full">
           <input
             type="text"
@@ -39,52 +32,56 @@
       </form>
 
       <!-- Desktop Actions -->
+
       <div class="hidden md:flex items-center gap-6">
-        <a class="flex items-center gap-2" routerLink="/account">
-          <app-icon name="user" class="w-6 h-6 text-gray-700"></app-icon>
-          <span>Account</span>
-        </a>
+        <!-- <a class="flex items-center gap-2" routerLink="/account">
+            <div class="relative">
+                <app-icon name="user" class="w-6 h-6 text-gray-700"></app-icon>
+                <span>Account</span>
+            </div>          
+        </a> -->
+        <a href="#" class="-m-2 p-2 font-medium text-gray-900 flex items-center gap-1">Sign in</a> |
+        <a href="#" class="-m-2 p-2 font-medium text-gray-900 flex items-center gap-1"
+          >Create account</a
+        >
         <a class="flex items-center gap-2" routerLink="/cart">
-          <app-icon name="cart" class="w-6 h-6 text-gray-700"></app-icon>
-          <span>Cart</span>
+          <div class="relative">
+            <app-icon name="shopping-bag" class="w-6 h-6 text-gray-700"></app-icon>
+
+            @if (cartStore.cartCount() > 0) {
+              <span
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2 py-0.5"
+              >
+                {{ cartStore.cartCount() }}
+              </span>
+            }
+          </div>
+
+          <!-- <span>Cart</span> -->
         </a>
       </div>
 
       <!-- Mobile Toggle -->
-      <button
-        class="md:hidden text-2xl"
-        (click)="mobileMenuOpen.set(true)"
-      >
-        ☰
-      </button>
+      <button class="md:hidden text-2xl" (click)="mobileMenuOpen.set(true)">☰</button>
     </div>
 
     <!-- Desktop Navigation -->
     @defer (on idle) {
-      <nav class="hidden md:block border-t">
+      <nav class="hidden md:block border-t border-b">
         <ul class="flex items-center gap-8 py-3">
-
           <li>
-            <a routerLink="/" class="text-gray-700 hover:text-blue-600">
-              Home
-            </a>
+            <a routerLink="/" class="text-gray-700 hover:text-blue-600"> Home </a>
           </li>
 
           @for (category of categories(); track category.id) {
             <li class="relative group">
-
-              <a
-                [routerLink]="['/', category.slug]"
-                class="text-gray-700 hover:text-blue-600"
-              >
+              <a [routerLink]="['/', category.slug]" class="text-gray-700 hover:text-blue-600">
                 {{ category.name }}
               </a>
 
               <!-- Subcategory dropdown -->
               <div
-                class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg py-2
-                       invisible group-hover:visible opacity-0
-                       group-hover:opacity-100 transition-all"
+                class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg py-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all"
               >
                 @for (sub of category.subCategories; track sub.id) {
                   <a
@@ -95,14 +92,11 @@
                   </a>
                 }
               </div>
-
             </li>
           }
-
         </ul>
       </nav>
     }
-
   </div>
 </header>
 
@@ -110,18 +104,11 @@
 
 @if (mobileMenuOpen()) {
   <div class="fixed inset-0 z-50 bg-white md:hidden overflow-y-auto">
-
     <div class="container mx-auto px-4 py-6 space-y-6">
-
       <!-- Top row -->
       <div class="flex items-center justify-between">
         <span class="text-xl font-semibold">Menu</span>
-        <button
-          class="text-2xl"
-          (click)="mobileMenuOpen.set(false)"
-        >
-          ✖
-        </button>
+        <button class="text-2xl" (click)="mobileMenuOpen.set(false)">✖</button>
       </div>
 
       <!-- Search -->
@@ -135,13 +122,7 @@
         />
       </form>
 
-      <a
-        routerLink="/"
-        (click)="closeMobile()"
-        class="block text-lg font-medium"
-      >
-        Home
-      </a>
+      <a routerLink="/" (click)="closeMobile()" class="block text-lg font-medium"> Home </a>
 
       @for (category of categories(); track category.id) {
         <div>
@@ -168,15 +149,21 @@
       }
 
       <div class="border-t pt-4">
-        <a
-          routerLink="/cart"
-          (click)="closeMobile()"
-          class="block text-lg"
-        >
-          🛒 Cart
+        <a routerLink="/cart" (click)="closeMobile()" class="block text-lg">
+          <div class="relative">
+            <app-icon name="shopping-bag" class="w-6 h-6 text-gray-700"></app-icon>
+
+            @if (cartStore.cartCount() > 0) {
+              <span
+                class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2 py-0.5"
+              >
+                {{ cartStore.cartCount() }}
+              </span>
+            }
+          </div>
+          <!-- Cart -->
         </a>
       </div>
-
     </div>
   </div>
 }

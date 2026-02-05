@@ -1,8 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { Category } from '../../models/category.model';
 import { Icon } from '../../icons/icon';
+import { CartStore } from '../../../features/cart/cart.store';
 
 @Component({
     selector: 'app-header',
@@ -11,8 +12,15 @@ import { Icon } from '../../icons/icon';
     templateUrl: './header.html',
 })
 export class Header {
+    readonly cartStore = inject(CartStore);
     private router = inject(Router);
     private route = inject(ActivatedRoute);
+
+    constructor() {
+        effect(() => {
+            console.log('HEADER CART COUNT', this.cartStore.cartCount());
+        });
+    }
 
     categories = signal<Category[]>(this.route.snapshot.data['categories'] || []);
 

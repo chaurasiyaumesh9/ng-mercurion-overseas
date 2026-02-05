@@ -8,6 +8,18 @@ export const LAYOUT_ROUTES: Routes = [
         component: Shell,
         children: [
             {
+                path: 'cart',
+                loadChildren: () => import('../../features/cart/cart.routes').then(m => m.cartRoutes)
+            },
+            {
+                path: 'checkout',
+                loadChildren: () => import('../../features/checkout/checkout.routes').then(m => m.checkoutRoutes)
+            },
+            {
+                path: 'account',
+                loadChildren: () => import('../../features/account/account.routes').then(m => m.accountRoutes)
+            },
+            {
                 path: '',
                 loadChildren: () => import('../../features/home/home.routes').then(m => m.homeRoutes)
             },
@@ -19,19 +31,7 @@ export const LAYOUT_ROUTES: Routes = [
             {
                 path: '',
                 loadChildren: () => import('../../features/product-details/product-details.routes').then(m => m.productDetailsRoutes)
-            },
-            {
-                path: 'cart',
-                loadChildren: () => import('../../features/cart/cart.routes').then(m => m.cartRoutes)
-            },
-            {
-                path: 'checkout',
-                loadChildren: () => import('../../features/checkout/checkout.routes').then(m => m.checkoutRoutes)
-            },
-            {
-                path: 'account',
-                loadChildren: () => import('../../features/account/account.routes').then(m => m.accountRoutes)
-            }
+            },            
         ]
     }
 

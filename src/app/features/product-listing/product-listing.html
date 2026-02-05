@@ -1,5 +1,24 @@
 <div class="bg-white">
-  <div class="container mx-auto px-4 py-8">
+  <div class="container mx-auto px-4 py-4">
+    <!-- ================= BREADCRUMB ================= -->
+    <div class="flex flex-wrap items-center gap-2 text-sm text-gray-600 mb-2">
+      <a routerLink="/" class="hover:text-blue-600 transition">Home</a>
+      <span>/</span>
+
+      @if (store.currentCategory() && store.currentCategory()?.name) {
+        <a class="hover:text-blue-600 transition">
+          {{ store.currentCategory()?.name }}
+        </a>
+      }
+
+      @if (store.currentSubCategory() && store.currentSubCategory()?.name) {
+        <span>/</span>
+        <a class="hover:text-blue-600 transition">
+          {{ store.currentSubCategory()?.name }}
+        </a>
+      }
+    </div>
+
     <h1 class="text-2xl font-bold">
       @switch (true) {
         @case (!!search()) {
@@ -17,7 +36,7 @@
       }
     </h1>
 
-    <p class="text-gray-600">Showing {{ products().length }} products</p>
+    <p class="text-gray-600 text-sm">Showing {{ products().length }} products</p>
 
     <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
       @for (p of store.filteredProducts(); track p.id) {

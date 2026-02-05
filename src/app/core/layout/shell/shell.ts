@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
+import { CartStore } from '../../../features/cart/cart.store';
 
 @Component({
     selector: 'app-shell',
@@ -9,4 +10,10 @@ import { Footer } from '../footer/footer';
     imports: [RouterOutlet, Header, Footer],
     templateUrl: './shell.html',
 })
-export class Shell { }
+export class Shell { 
+    constructor() {
+        const cartStore = inject(CartStore);
+        cartStore.loadCart();
+    }
+
+}
