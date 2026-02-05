@@ -1,5 +1,5 @@
 import { computed, inject } from '@angular/core';
-import { CartStore } from '@cart//state/cart.store';
+import { CartStore } from '@cart/state/cart.store';
 import { signalStore, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
 import { ProductsApi } from '@product-listing/api/products.api';
 

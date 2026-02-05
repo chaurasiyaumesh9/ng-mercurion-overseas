@@ -6,6 +6,7 @@ import { ProductTile } from '@product-listing/ui/product-tile/product-tile';
 import { ProductDetailStore } from '@product-details/state/product-details.store';
 import { ProductsApi } from '@product-listing/api/products.api';
 import { CartStore } from '@cart/state/cart.store';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-product-detail',
@@ -17,15 +18,16 @@ import { CartStore } from '@cart/state/cart.store';
 export class ProductDetails {
   readonly store = inject(ProductDetailStore);
   readonly cartStore = inject(CartStore);
-  route = inject(ActivatedRoute);
+  private route = inject(ActivatedRoute);
   router = inject(Router);
 
   starArray = [0, 1, 2, 3, 4];
 
   constructor() {
+    const paramMapSignal = toSignal(this.route.paramMap);
     effect(() => {
-      const id = this.route.snapshot.paramMap.get('productId');
-      if (id) this.store.loadProduct(id);
+      const productId = paramMapSignal()?.get('productId');
+      if (productId) this.store.loadProduct(productId);
     });
   }
 
