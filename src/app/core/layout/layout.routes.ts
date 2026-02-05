@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Shell } from './shell/shell';
-import { ProductsService } from '../../features/product-listing/services/products.service';
+import { ProductsApi } from '../../features/product-listing/api/products.api';
 
 export const LAYOUT_ROUTES: Routes = [
     {
@@ -25,7 +25,7 @@ export const LAYOUT_ROUTES: Routes = [
             },
             {
                 path: '',
-                providers: [ProductsService],
+                providers: [ProductsApi],
                 loadChildren: () => import('../../features/product-listing/product-listing.routes').then(m => m.productListingRoutes)
             },
             {

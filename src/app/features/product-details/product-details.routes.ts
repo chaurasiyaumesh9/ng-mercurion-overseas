@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
-import { ProductDetails } from './product-details';
-
+import { ProductDetails } from './ui/product-details/product-details';
 
 export const productDetailsRoutes: Routes = [
     {

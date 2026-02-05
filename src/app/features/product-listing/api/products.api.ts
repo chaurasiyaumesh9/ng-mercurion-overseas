@@ -6,7 +6,7 @@ import { Product } from '@product//models/product.model';
 import { Category } from '@entities/catalog/category.model';
 
 @Injectable()
-export class ProductsService {
+export class ProductsApi {
     constructor(private http: HttpClient) {}
 
     getProducts(): Observable<Product[]> {

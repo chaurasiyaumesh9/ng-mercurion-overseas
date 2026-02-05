@@ -7,7 +7,7 @@ import {
     patchState,
 } from '@ngrx/signals';
 import { ActivatedRoute } from '@angular/router';
-import { ProductsService } from '../services/products.service';
+import { ProductsApi } from '../api/products.api';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { computed } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -148,7 +148,7 @@ export const ProductListingStore = signalStore(
         )
     })),
 
-    withMethods((store, service = inject(ProductsService)) => ({
+    withMethods((store, service = inject(ProductsApi)) => ({
         init() {
             patchState(store, { loading: true });
 

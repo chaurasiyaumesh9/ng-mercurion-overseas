@@ -1,19 +1,26 @@
 import { inject, computed } from '@angular/core';
 import { signalStore, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
-import { CartService } from '../services/cart.api';
+import { CartItem } from '../models/cart-item.model';
 import { Product } from '@product//models/product.model';
+import { CartPersistence } from '../api/cart.persistence';
+import { CartApi } from '../api/cart.api';
 
 export interface CartState {
-  cart: any[];
+  cart: CartItem[];
   crossSellProducts: Product[];
 }
 
 export const CartStore = signalStore(
   { providedIn: 'root' },
+
   withState<CartState>({
     cart: [],
     crossSellProducts: [],
   }),
+
+  // -------------------------
+  // COMPUTED
+  // -------------------------
 
   withComputed((store) => {
     const subtotal = computed(() => store.cart().reduce((sum, i) => sum + i.price * i.quantity, 0));
@@ -34,33 +41,81 @@ export const CartStore = signalStore(
       cartCount,
     };
   }),
+
+  // -------------------------
+  // METHODS
+  // -------------------------
+
   withMethods((store) => {
-    const cartService = inject(CartService);
+    const persistence = inject(CartPersistence);
+    const api = inject(CartApi);
 
     return {
+      // -------------------------
+      // LOAD
+      // -------------------------
+
       loadCart() {
         patchState(store, {
-          cart: cartService.getCart(),
+          cart: persistence.getCart(),
         });
       },
 
+      // -------------------------
+      // MUTATIONS (NOW OWNED BY STORE)
+      // -------------------------
+
+      addItem(product: Product, quantity = 1) {
+        const cart = [...store.cart()];
+
+        const existing = cart.find((i) => i.id === product.id);
+
+        if (existing) {
+          existing.quantity += quantity;
+        } else {
+          cart.push({
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            category: product.category.name,
+            quantity,
+          });
+        }
+
+        persistence.saveCart(cart);
+        patchState(store, { cart });
+      },
+
       removeItem(id: string) {
-        cartService.removeFromCart(id);
-        this.loadCart();
+        const cart = store.cart().filter((i) => i.id !== id);
+
+        persistence.saveCart(cart);
+        patchState(store, { cart });
       },
 
       updateQty(id: string, qty: number) {
-        cartService.updateQuantity(id, qty);
-        this.loadCart();
+        let cart = [...store.cart()];
+
+        const item = cart.find((i) => i.id === id);
+        if (!item) return;
+
+        if (qty <= 0) {
+          cart = cart.filter((i) => i.id !== id);
+        } else {
+          item.quantity = qty;
+        }
+
+        persistence.saveCart(cart);
+        patchState(store, { cart });
       },
 
-      addItem(product: Product, quantity: number) {
-        cartService.addToCart(product, quantity);
-        this.loadCart();
-      },
+      // -------------------------
+      // CROSS SELL (REMOTE DATA)
+      // -------------------------
 
       loadCrossSell() {
-        cartService.getCrossSellProducts().subscribe((products) => {
+        api.getCrossSellProducts().subscribe((products) => {
           const cartIds = store.cart().map((i) => i.id);
 
           patchState(store, {

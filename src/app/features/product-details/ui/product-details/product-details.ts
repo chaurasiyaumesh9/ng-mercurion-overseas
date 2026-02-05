@@ -1,18 +1,17 @@
 import { Component, inject, effect } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ProductDetailStore } from './state/product-details.store';
-import { ProductsService } from '../product-listing/services/products.service';
-import { CartStore } from '../cart/state/cart.store';
-
-import { ProductTile } from '../product-listing/ui/product-tile/product-tile';
 import { Product } from '@product//models/product.model';
+import { ProductTile } from '@product-listing/ui/product-tile/product-tile';
+import { ProductDetailStore } from '@product-details/state/product-details.store';
+import { ProductsApi } from '@product-listing/api/products.api';
+import { CartStore } from '@cart/state/cart.store';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
   imports: [CommonModule, ProductTile],
-  providers: [ProductDetailStore, ProductsService],
+  providers: [ProductDetailStore, ProductsApi],
   templateUrl: './product-details.html',
 })
 export class ProductDetails {

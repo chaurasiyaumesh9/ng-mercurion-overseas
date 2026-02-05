@@ -1,101 +1,85 @@
 import { computed, inject } from '@angular/core';
-import {
-    signalStore,
-    withState,
-    withComputed,
-    withMethods,
-    patchState,
-} from '@ngrx/signals';
+import { CartStore } from '@cart//state/cart.store';
+import { signalStore, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
+import { ProductsApi } from '@product-listing/api/products.api';
 
-import { ProductsService } from '../../product-listing/services/products.service';
-import { CartService } from '../../cart/services/cart.api';
 import { Product } from '@product//models/product.model';
 
 export interface ProductDetailState {
-    product: Product | null;
-    relatedProducts: Product[];
-    loading: boolean;
-    quantity: number;
-    selectedImage: number;
+  product: Product | null;
+  relatedProducts: Product[];
+  loading: boolean;
+  quantity: number;
+  selectedImage: number;
 }
 
 export const ProductDetailStore = signalStore(
-    withState<ProductDetailState>({
-        product: null,
-        relatedProducts: [],
-        loading: false,
-        quantity: 1,
-        selectedImage: 0,
-    }),
+  withState<ProductDetailState>({
+    product: null,
+    relatedProducts: [],
+    loading: false,
+    quantity: 1,
+    selectedImage: 0,
+  }),
 
+  withComputed((store) => ({
+    safeQuantity: computed(() => Math.max(1, store.quantity())),
+  })),
 
-    withComputed((store) => ({
-        safeQuantity: computed(() => Math.max(1, store.quantity())),
-    })),
+  withMethods((store) => {
+    const productsService = inject(ProductsApi);
+    const cartStore = inject(CartStore);
 
+    return {
+      loadProduct(id: string) {
+        patchState(store, { loading: true });
 
-    withMethods((store) => {
-        const productsService = inject(ProductsService);
-        const cartService = inject(CartService);
+        productsService.getProduct(id).subscribe((product) => {
+          patchState(store, { product, loading: false });
 
-        return {
-            loadProduct(id: string) {
-                patchState(store, { loading: true });
+          // Load related (simple strategy using full list)
+          productsService.getProducts().subscribe((all) => {
+            const related = all
+              .filter((p) => p.category.name === product.category.name && p.id !== product.id)
+              .slice(0, 4);
 
+            patchState(store, { relatedProducts: related });
+          });
+        });
+      },
 
-                productsService.getProduct(id).subscribe((product) => {
-                    patchState(store, { product, loading: false });
+      increaseQty() {
+        patchState(store, { quantity: store.quantity() + 1 });
+      },
 
-                    // Load related (simple strategy using full list)
-                    productsService.getProducts().subscribe((all) => {
-                        const related = all
-                            .filter(p => p.category.name === product.category.name && p.id !== product.id)
-                            .slice(0, 4);
+      decreaseQty() {
+        patchState(store, { quantity: Math.max(1, store.quantity() - 1) });
+      },
 
-                        patchState(store, { relatedProducts: related });
-                    });
-                });
-            },
+      setQty(v: number) {
+        patchState(store, { quantity: Math.max(1, v || 1) });
+      },
 
+      selectImage(i: number) {
+        patchState(store, { selectedImage: i });
+      },
 
-            increaseQty() {
-                patchState(store, { quantity: store.quantity() + 1 });
-            },
+      addToCart() {
+        const p = store.product();
+        if (!p) return;
+        cartStore.addItem(p, store.quantity());
+      },
 
+      buyNow(router: any) {
+        const p = store.product();
+        if (!p) return;
+        cartStore.addItem(p, store.quantity());
+        router.navigate(['/cart']);
+      },
 
-            decreaseQty() {
-                patchState(store, { quantity: Math.max(1, store.quantity() - 1) });
-            },
-
-
-            setQty(v: number) {
-                patchState(store, { quantity: Math.max(1, v || 1) });
-            },
-
-
-            selectImage(i: number) {
-                patchState(store, { selectedImage: i });
-            },
-
-
-            addToCart() {
-                const p = store.product();
-                if (!p) return;
-                cartService.addToCart(p, store.quantity());
-            },
-
-
-            buyNow(router: any) {
-                const p = store.product();
-                if (!p) return;
-                cartService.addToCart(p, store.quantity());
-                router.navigate(['/cart']);
-            },
-
-
-            addRelatedToCart(product: Product) {
-                cartService.addToCart(product, 1);
-            }
-        };
-    })
+      addRelatedToCart(product: Product) {
+        cartStore.addItem(product, 1);
+      },
+    };
+  }),
 );

@@ -18,10 +18,12 @@
     "paths": {
       "@core/*": ["app/core/*"],
       "@entities/*": ["app/entities/*"],
-      "@product/*": ["app/features/product*"],
-      "@cart/*": ["app/features/cart*"],
-      "@checkout/*": ["app/features/checkout*"],
-      "@account/*": ["app/features/account*"]
+      "@product-listing/*": ["app/features/product-listing/*"],
+      "@product-details/*": ["app/features/product-details/*"],
+      "@product/*": ["app/features/product/*"],
+      "@cart/*": ["app/features/cart/*"],
+      "@checkout/*": ["app/features/checkout/*"],
+      "@account/*": ["app/features/account/*"]
     }
   },
   "angularCompilerOptions": {

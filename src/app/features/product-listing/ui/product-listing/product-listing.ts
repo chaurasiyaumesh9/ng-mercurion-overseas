@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProductTile } from './ui/product-tile/product-tile';
-import { ProductListingStore } from './state/product-listing.store';
+import { ProductListingStore } from '@product-listing/state/product-listing.store';
+import { ProductTile } from '../product-tile/product-tile';
+
 
 @Component({
     selector: 'app-product-listing',
