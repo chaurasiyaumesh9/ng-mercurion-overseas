@@ -1,134 +1,28 @@
-@if (false) {
-<div class="container mx-auto px-4 py-8">
-    <div class="flex gap-8">
-
-        <!-- ================= FACETS SIDEBAR ================= -->
-        <aside class="hidden lg:block w-64 space-y-6">
-
-            <div class="flex justify-between">
-                <h3 class="font-bold text-lg">Filters</h3>
-                <button (click)="store.clearFilters()" class="text-blue-600 text-sm">
-                    Clear All
-                </button>
-            </div>
-
-            <!-- Price -->
-            <div>
-                <h4 class="font-medium mb-3">Price Range</h4>
-                <input type="range" min="0" max="500" [value]="store.priceRange()[1]"
-                    (input)="store.setPriceRange([0, +$any($event.target).value])" class="w-full" />
-                <div class="flex justify-between text-sm">
-                    <span>$0</span>
-                    <span>${{ store.priceRange()[1] }}</span>
-                </div>
-            </div>
-
-            <!-- Categories -->
-            <div>
-                <h4 class="font-medium mb-3">Categories</h4>
-
-                @for (cat of store.categories(); track cat.slug) {
-                <div>
-                    <label class="flex gap-2">
-                        <input type="checkbox" [checked]="store.selectedCategories().includes(cat.slug)"
-                            (change)="store.toggleCategory(cat.slug)" />
-                        {{ cat.name }}
-                    </label>
-
-                    @if (store.selectedCategories().includes(cat.slug)) {
-                    <div class="ml-5 mt-1 space-y-1">
-                        @for (sub of cat.subCategories; track sub.slug) {
-                        <label class="flex gap-2 text-sm">
-                            <input type="checkbox" [checked]="store.selectedSubCategories().includes(sub.slug)"
-                                (change)="store.toggleSubCategory(sub.slug)" />
-                            {{ sub.name }}
-                        </label>
-                        }
-                    </div>
-                    }
-                </div>
-                }
-            </div>
-        </aside>
-
-        <!-- ================= MOBILE FILTER TOGGLE ================= -->
-        <button (click)="store.openMobileFilters()"
-            class="lg:hidden fixed bottom-4 right-4 bg-blue-600 text-white p-4 rounded-full z-40">
-            Filters
-        </button>
-
-        <!-- ================= MOBILE DRAWER ================= -->
-        @if (store.mobileFiltersOpen()) {
-        <div class="fixed inset-0 bg-black/50 z-50">
-            <div class="absolute right-0 w-80 bg-white p-6 h-full overflow-y-auto">
-                <div class="flex justify-between mb-4">
-                    <h2 class="font-bold">Filters</h2>
-                    <button (click)="store.closeMobileFilters()">✕</button>
-                </div>
-                <!-- reuse same facet markup here -->
-            </div>
-        </div>
-        }
-
-        <!-- ================= RESULTS ================= -->
-        <div class="flex-1">
-
-            <!-- Heading -->
-            <div class="mb-6">
-                <h1 class="text-2xl font-bold">
-                    @switch (true) {
-                    @case (!!search()) { Search results for "{{ search() }}" }
-                    @case (!!subCategoryName()) { {{ subCategoryName() }} }
-                    @case (!!categoryName()) { {{ categoryName() }} }
-                    @default { All Products }
-                    }
-                </h1>
-
-                <p class="text-gray-600">
-                    Showing {{ products().length }} products
-                </p>
-            </div>
-
-            <!-- Grid -->
-            @if (!loading()) {
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                @for (p of store.filteredProducts(); track p.id) {
-                <app-product-tile [product]="p"></app-product-tile>
-                }
-            </div>
-            }
-
-            <!-- Pagination -->
-            @for (page of store.pages(); track page) {
-            <button (click)="store.setPage(page)" class="px-3 py-1 border rounded"
-                [class.bg-blue-600]="store.currentPage() === page" [class.text-white]="store.currentPage() === page">
-                {{ page }}
-            </button>
-            }
-        </div>
-    </div>
-</div>
-}
-
 <div class="bg-white">
-    <div class="container mx-auto px-4 py-8">
-        <h1 class="text-2xl font-bold">
-            @switch (true) {
-            @case (!!search()) { Search results for "{{ search() }}" }
-            @case (!!subCategoryName()) { {{ subCategoryName() }} }
-            @case (!!categoryName()) { {{ categoryName() }} }
-            @default { All Products }
-            }
-        </h1>
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-2xl font-bold">
+      @switch (true) {
+        @case (!!search()) {
+          Search results for "{{ search() }}"
+        }
+        @case (!!subCategoryName()) {
+          {{ subCategoryName() }}
+        }
+        @case (!!categoryName()) {
+          {{ categoryName() }}
+        }
+        @default {
+          All Products
+        }
+      }
+    </h1>
 
-        <p class="text-gray-600">
-            Showing {{ products().length }} products
-        </p>
+    <p class="text-gray-600">Showing {{ products().length }} products</p>
 
-        <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            @for (p of store.filteredProducts(); track p.id) {
-                <app-product-tile [product]="p"></app-product-tile>
-            }
-        </div>
+    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+      @for (p of store.filteredProducts(); track p.id) {
+        <app-product-tile [product]="p"></app-product-tile>
+      }
     </div>
+  </div>
 </div>

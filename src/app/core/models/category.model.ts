@@ -3,6 +3,8 @@ export interface Category {
   name: string;
   slug: string;
   url: string;
+  image?: string;
+  tagline?: string;
   subCategories: SubCategory[];
 }
 
@@ -11,5 +13,7 @@ export interface SubCategory {
   name: string;
   slug: string;
   url: string;
+  image?: string;
+  tagline?: string;
   productCount: number;
 }

@@ -4,6 +4,7 @@
     "name": "Apparel & Textiles",
     "slug": "apparel-textiles",
     "url": "/apparel-textiles",
+    "image": "https://images.unsplash.com/photo-1767839507898-9a8624bdd8b0?w=500",
     "subCategories": [
       {
         "id": "tshirts-polo",
@@ -48,6 +49,7 @@
     "name": "Handicrafts & Decor",
     "slug": "handicrafts-decor",
     "url": "/handicrafts-decor",
+    "image": "https://images.unsplash.com/photo-1759607236409-1df137ecb3b6?w=500",
     "subCategories": [
       {
         "id": "wooden",
@@ -92,6 +94,7 @@
     "name": "Home & Living",
     "slug": "home-living",
     "url": "/home-living",
+    "image": "https://images.unsplash.com/photo-1637747019989-fec01a8d70fa?w=500",
     "subCategories": [
       {
         "id": "kitchenware",
@@ -136,6 +139,7 @@
     "name": "FMCG / Food Products",
     "slug": "fmcg-food",
     "url": "/fmcg-food",
+    "image": "https://plus.unsplash.com/premium_photo-1664305040276-66cf5c0ac52b?w=500",
     "subCategories": [
       {
         "id": "spices",
@@ -180,6 +184,7 @@
     "name": "Personal Care & Wellness",
     "slug": "personal-care",
     "url": "/personal-care",
+    "image": "https://plus.unsplash.com/premium_photo-1679431044148-0cbef977e7d3?w=500",
     "subCategories": [
       {
         "id": "herbal",
@@ -224,6 +229,7 @@
     "name": "Corporate & Bulk Supplies",
     "slug": "corporate-bulk",
     "url": "/corporate-bulk",
+    "image": "https://plus.unsplash.com/premium_photo-1661387745347-b0a12422124f?w=500",
     "subCategories": [
       {
         "id": "promo",
