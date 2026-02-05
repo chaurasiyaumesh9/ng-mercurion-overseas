@@ -140,11 +140,6 @@ export const ProductListingStore = signalStore(
         }),
 
         totalPages: () => Math.ceil(store.filteredProducts().length / 12),
-
-        displayedProducts: () => {
-            const start = (store.currentPage() - 1) * 12;
-            return store.filteredProducts().slice(start, start + 12);
-        }
     })),
 
     withComputed((store) => ({

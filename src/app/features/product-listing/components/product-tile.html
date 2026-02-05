@@ -51,7 +51,7 @@
         <div class="mt-4 flex justify-between">
             <div>
                 <h3 class="text-sm text-gray-700">
-                    <a href="#">
+                    <a [routerLink]="['/', product.category.slug, product.subCategory.slug, product.id]">
                         <span aria-hidden="true" class="absolute inset-0"></span>
                         {{ product.name }}
                     </a>

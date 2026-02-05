@@ -1,0 +1,321 @@
+<div class="container mx-auto px-4 py-8">
+  <!-- ================= LOADING ================= -->
+  @if (store.loading()) {
+    <div class="flex justify-center items-center py-24 text-gray-500">Loading product...</div>
+  }
+
+  <!-- ================= PRODUCT CONTENT ================= -->
+  @if (!store.loading() && store.product(); as product) {
+    <!-- ================= BREADCRUMB ================= -->
+    <div class="flex flex-wrap items-center gap-2 text-sm text-gray-600 mb-6">
+      <a routerLink="/" class="hover:text-blue-600 transition">Home</a>
+      <span>/</span>
+
+      @if (product.category) {
+        <a class="hover:text-blue-600 transition">
+          {{ product.category.name }}
+        </a>
+        <span>/</span>
+      }
+
+      @if (product.subCategory) {
+        <a class="hover:text-blue-600 transition">
+          {{ product.subCategory.name }}
+        </a>
+        <span>/</span>
+      }
+
+      <span class="font-medium text-gray-900">
+        {{ product.name }}
+      </span>
+    </div>
+
+    <!-- ================= MAIN GRID ================= -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+      <!-- ================= LEFT — IMAGE ================= -->
+      <div>
+        <div class="aspect-square bg-gray-100 rounded-xl overflow-hidden mb-4">
+          <img [src]="product.image" [alt]="product.name" class="w-full h-full object-cover" />
+        </div>
+
+        <!-- Thumbnails -->
+        <div class="grid grid-cols-4 gap-4">
+          @for (img of galleryImages(product); track $index; let i = $index) {
+            <button
+              (click)="store.selectImage(i)"
+              class="aspect-square bg-gray-100 rounded-lg overflow-hidden transition"
+              [class.ring-2]="store.selectedImage() === i"
+              [class.ring-blue-600]="store.selectedImage() === i"
+            >
+              <img [src]="img" class="w-full h-full object-cover" />
+            </button>
+          }
+        </div>
+      </div>
+
+      <!-- ================= RIGHT — PRODUCT INFO ================= -->
+      <div>
+        <!-- Category Tag -->
+        <div class="text-sm text-gray-500 mb-2">
+          {{ product.category.name }}
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-3xl font-bold mb-4">
+          {{ product.name }}
+        </h1>
+
+        <!-- ================= RATING ================= -->
+        <div class="flex items-center gap-3 mb-4">
+          <div class="flex gap-1">
+            @for (star of starArray; track $index) {
+              <!-- Star SVG -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-5 h-5"
+                [class.text-yellow-400]="$index < floor(product.rating)"
+                [class.text-gray-300]="$index >= floor(product.rating)"
+              >
+                <path
+                  d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111 5.518.442c.499.04.701.663.321.988l-4.204 3.602 1.285 5.385a.562.562 0 01-.84.61L12 16.347l-4.725 2.29a.562.562 0 01-.84-.61l1.285-5.385-4.204-3.602a.562.562 0 01.321-.988l5.518-.442 2.125-5.111z"
+                />
+              </svg>
+            }
+          </div>
+
+          <!-- <div class="text-sm text-gray-500">
+                        {{ product.rating }} ({{ product.reviews?.length ?? 0 }} reviews)
+                    </div> -->
+        </div>
+
+        <!-- ================= PRICE ================= -->
+        <div class="flex items-center gap-4 mb-6">
+          <span class="text-4xl font-bold text-blue-600">
+            {{ product.price | currency: 'USD' }}
+          </span>
+
+          @if (product.originalPrice) {
+            <span class="text-gray-400 line-through">
+              {{ product.originalPrice | currency: 'USD' }}
+            </span>
+          }
+
+          @if (product.originalPrice) {
+            <span class="bg-red-100 text-red-600 px-3 py-1 rounded text-sm font-medium">
+              Save {{ savePercent(product) }}%
+            </span>
+          }
+        </div>
+
+        <!-- ================= STOCK ================= -->
+        @if (product.inStock) {
+          <div class="flex items-center gap-2 text-green-600 mb-6">
+            <span class="w-2 h-2 bg-green-600 rounded-full"></span>
+            In Stock
+          </div>
+        } @else {
+          <div class="flex items-center gap-2 text-red-600 mb-6">
+            <span class="w-2 h-2 bg-red-600 rounded-full"></span>
+            Out of Stock
+          </div>
+        }
+
+        <!-- ================= DESCRIPTION ================= -->
+        <div class="mb-6">
+          <h3 class="font-semibold mb-2">Description</h3>
+          <p class="text-gray-600">
+            {{ product.description }}
+          </p>
+        </div>
+
+        <!-- ================= QUANTITY ================= -->
+        <div class="mb-6">
+          <label class="font-semibold block mb-2">Quantity</label>
+
+          <div class="flex border rounded-lg w-fit overflow-hidden">
+            <button class="px-4 py-2 hover:bg-gray-100" (click)="store.decreaseQty()">-</button>
+
+            <input
+              type="number"
+              class="w-16 text-center border-x"
+              [value]="store.quantity()"
+              (input)="onQtyInput($any($event.target).value)"
+            />
+
+            <button class="px-4 py-2 hover:bg-gray-100" (click)="store.increaseQty()">+</button>
+          </div>
+        </div>
+
+        <!-- ================= ACTION BUTTONS ================= -->
+        <div class="flex flex-col sm:flex-row gap-4 mb-6">
+          <button
+            class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl flex items-center justify-center gap-2 transition"
+            (click)="store.addToCart()"
+            [disabled]="!product.inStock"
+          >
+            <!-- Cart Icon -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 106 0m-6 0a3 3 0 016 0m-6 0H6.375m6 0h3.375m-9.75 0L5.106 5.272M15 14.25l1.5-9H5.106"
+              />
+            </svg>
+
+            Add to Cart
+          </button>
+
+          <button
+            class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl transition"
+            (click)="store.buyNow(router)"
+            [disabled]="!product.inStock"
+          >
+            Buy Now
+          </button>
+        </div>
+
+        <!-- ================= WISHLIST / SHARE ================= -->
+        <div class="flex gap-8 text-gray-600">
+          <!-- Wishlist -->
+          <button class="flex items-center gap-2 hover:text-red-600 transition">
+            <svg
+              class="w-6 h-6 text-gray-800 dark:text-white"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
+              />
+            </svg>
+            Add to Wishlist
+          </button>
+
+          <!-- Share -->
+          <button class="flex items-center gap-2 hover:text-blue-600 transition">
+            <svg
+              class="w-6 h-6 text-gray-800 dark:text-white"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-width="2"
+                d="M7.926 10.898 15 7.727m-7.074 5.39L15 16.29M8 12a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm12 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm0-11a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z"
+              />
+            </svg>
+            Share
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= CUSTOMER REVIEWS ================= -->
+
+    @if (product.reviews.length > 0) {
+      <div class="mb-8">
+        <h2 class="text-2xl font-bold mb-8">Customer Reviews</h2>
+
+        <!-- ===== HAS REVIEWS ===== -->
+        @if (true) {
+          <div class="space-y-8">
+            @for (review of product.reviews; track review.id) {
+              <div class="border-b pb-6">
+                <!-- Header Row -->
+                <div class="flex flex-wrap items-center gap-4 mb-2">
+                  <!-- Stars -->
+                  <div class="flex gap-1">
+                    @for (star of starArray; track $index) {
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="w-4 h-4"
+                        [class.text-yellow-400]="$index < review.rating"
+                        [class.text-gray-300]="$index >= review.rating"
+                      >
+                        <path
+                          d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111 5.518.442c.499.04.701.663.321.988l-4.204 3.602 1.285 5.385a.562.562 0 01-.84.61L12 16.347l-4.725 2.29a.562.562 0 01-.84-.61l1.285-5.385-4.204-3.602a.562.562 0 01.321-.988l5.518-.442 2.125-5.111z"
+                        />
+                      </svg>
+                    }
+                  </div>
+
+                  <!-- Author -->
+                  <span class="font-medium text-gray-900">
+                    {{ review.author }}
+                  </span>
+
+                  <!-- Date -->
+                  <span class="text-sm text-gray-500">
+                    {{ review.date }}
+                  </span>
+                </div>
+
+                <!-- Comment -->
+                <p class="text-gray-600">
+                  {{ review.comment }}
+                </p>
+              </div>
+            }
+          </div>
+        }
+
+        <!-- ===== NO REVIEWS ===== -->
+        @else {
+          <div class="text-gray-500">No reviews yet. Be the first to review this product.</div>
+        }
+      </div>
+    }
+
+    <!-- ================= RELATED PRODUCTS ================= -->
+    @if (store.relatedProducts().length > 0) {
+      <h2 class="text-2xl font-bold mb-6">Related Products</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        @for (rp of store.relatedProducts(); track rp.id) {
+          <div class="bg-white shadow rounded-xl overflow-hidden hover:shadow-lg transition">
+            <img [src]="rp.image" class="aspect-square w-full object-cover" />
+
+            <div class="p-4">
+              <div class="font-medium mb-2 line-clamp-2">
+                {{ rp.name }}
+              </div>
+
+              <div class="text-blue-600 font-bold mb-3">
+                {{ rp.price | currency: 'USD' }}
+              </div>
+
+              <button
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition"
+                (click)="store.addRelatedToCart(rp)"
+              >
+                Add To Cart
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+</div>

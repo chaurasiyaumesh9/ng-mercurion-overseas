@@ -29,7 +29,7 @@ export class Home {
   );
 
   addToCart(product: Product) {
-    this.cart.addToCart(product);
+    this.cart.addToCart(product, 1);
   }
 
   stars(rating: number): boolean[] {
