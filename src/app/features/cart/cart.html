@@ -19,7 +19,7 @@
     <p class="mt-2 text-gray-500">Start shopping to add items to your cart.</p>
 
     <a
-      routerLink="/products"
+      routerLink="/search"
       class="mt-8 inline-block rounded-md bg-indigo-600 px-8 py-3 text-white hover:bg-indigo-700"
     >
       Browse Products
@@ -125,7 +125,7 @@
 
         <!-- SUMMARY -->
         <div class="bg-gray-50 rounded-xl p-8 h-fit">
-          <h2 class="text-xl font-semibold mb-6">Order summary</h2>
+          <h2 class="text-xl font-semibold mb-6 text-center">Order Summary</h2>
 
           <div class="space-y-4 text-sm">
             <div class="flex justify-between">
@@ -165,16 +165,8 @@
         <h2 class="text-2xl font-semibold mb-8">You may also like</h2>
 
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          @for (i of [1, 2, 3, 4]; track i) {
-            <div class="group">
-              <div class="aspect-square bg-gray-100 rounded-lg mb-3"></div>
-
-              <p class="text-sm text-gray-500">Featured Product</p>
-
-              <p class="font-medium">Sample Product Name</p>
-
-              <p class="text-indigo-600 font-semibold">$49.00</p>
-            </div>
+          @for (csp of store.crossSellProducts(); track csp.id) {
+            <app-product-tile [product]="csp"></app-product-tile>
           }
         </div>
       </div>

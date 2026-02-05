@@ -5,12 +5,14 @@ import { Product } from '../../core/models/product.model';
 
 export interface CartState {
   cart: any[];
+  crossSellProducts: Product[];
 }
 
 export const CartStore = signalStore(
   { providedIn: 'root' },
   withState<CartState>({
     cart: [],
+    crossSellProducts: [],
   }),
 
   withComputed((store) => {
@@ -24,11 +26,7 @@ export const CartStore = signalStore(
 
     const cartCount = computed(() => store.cart().reduce((t, i) => t + i.quantity, 0));
 
-    const crossSellProducts = computed(() => {
-      const cartIds = store.cart().map((i) => i.id);
-
-      return [];
-    });
+    const crossSellProducts = computed(() => store.crossSellProducts());
 
     return {
       subtotal,
@@ -62,6 +60,16 @@ export const CartStore = signalStore(
       addItem(product: Product, quantity: number) {
         cartService.addToCart(product, quantity);
         this.loadCart();
+      },
+
+      loadCrossSell() {
+        cartService.getCrossSellProducts().subscribe((products) => {
+          const cartIds = store.cart().map((i) => i.id);
+
+          patchState(store, {
+            crossSellProducts: products.filter((p) => !cartIds.includes(p.id)),
+          });
+        });
       },
     };
   }),

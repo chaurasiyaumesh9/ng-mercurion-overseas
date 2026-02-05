@@ -5,11 +5,12 @@ import { ProductDetailStore } from './product-details.store';
 import { ProductsService } from '../product-listing/services/products.service';
 import { CartStore } from '../cart/cart.store';
 import { Product } from '../../core/models/product.model';
+import { ProductTile } from '../product-listing/components/product-tile';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ProductTile],
   providers: [ProductDetailStore, ProductsService],
   templateUrl: './product-details.html',
 })

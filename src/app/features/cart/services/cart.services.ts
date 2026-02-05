@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 import { CartItem } from '../model/cart-item.model';
+import { Observable } from 'rxjs/internal/Observable';
+import { Product } from '../../../core/models/product.model';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/internal/operators/map';
 
 const STORAGE_KEY = 'app_cart';
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class CartService {
+  constructor(private http: HttpClient) {}
+
   // -------------------------
   // STORAGE HELPERS
   // -------------------------
@@ -98,5 +104,13 @@ export class CartService {
 
   getCartCount(): number {
     return this.read().reduce((sum, item) => sum + item.quantity, 0);
+  }
+
+  getCrossSellProducts(): Observable<Product[]> {
+    return this.http
+      .get<Product[]>('/assets/mock-data/products/products.data.json')
+      .pipe(
+        map((products) => products.filter((p) => p.category?.id === 'corporate-bulk').slice(0, 5)),
+      );
   }
 }

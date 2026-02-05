@@ -18,7 +18,7 @@ export class Header {
 
     constructor() {
         effect(() => {
-            console.log('HEADER CART COUNT', this.cartStore.cartCount());
+            //console.log('HEADER CART COUNT', this.cartStore.cartCount());
         });
     }
 
