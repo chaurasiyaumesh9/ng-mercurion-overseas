@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CartItem } from '../model/cart-item.model';
+import { CartItem } from '../models/cart-item.model';
 import { Observable } from 'rxjs/internal/Observable';
-import { Product } from '../../../core/models/product.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/internal/operators/map';
+import { Product } from '@product//models/product.model';
 
 const STORAGE_KEY = 'app_cart';
 

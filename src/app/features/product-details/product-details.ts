@@ -1,11 +1,12 @@
 import { Component, inject, effect } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ProductDetailStore } from './product-details.store';
+import { ProductDetailStore } from './state/product-details.store';
 import { ProductsService } from '../product-listing/services/products.service';
-import { CartStore } from '../cart/cart.store';
-import { Product } from '../../core/models/product.model';
-import { ProductTile } from '../product-listing/components/product-tile';
+import { CartStore } from '../cart/state/cart.store';
+
+import { ProductTile } from '../product-listing/ui/product-tile/product-tile';
+import { Product } from '@product//models/product.model';
 
 @Component({
   selector: 'app-product-detail',

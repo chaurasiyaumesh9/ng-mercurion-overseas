@@ -1,9 +1,9 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
-import { Category } from '../../models/category.model';
 import { Icon } from '../../icons/icon';
-import { CartStore } from '../../../features/cart/cart.store';
+import { CartStore } from '../../../features/cart/state/cart.store';
+import { Category } from '@entities/catalog/category.model';
 
 @Component({
     selector: 'app-header',

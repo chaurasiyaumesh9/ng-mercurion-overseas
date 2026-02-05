@@ -6,9 +6,10 @@ import {
     withMethods,
     patchState,
 } from '@ngrx/signals';
-import { Product } from '../../core/models/product.model';
-import { ProductsService } from '../product-listing/services/products.service';
-import { CartService } from '../cart/services/cart.services';
+
+import { ProductsService } from '../../product-listing/services/products.service';
+import { CartService } from '../../cart/services/cart.api';
+import { Product } from '@product//models/product.model';
 
 export interface ProductDetailState {
     product: Product | null;

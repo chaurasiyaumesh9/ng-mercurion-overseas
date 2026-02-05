@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { Product } from '../../../core/models/product.model';
-import { Category } from '../../../core/models/category.model';
 import { map } from 'rxjs';
+import { Product } from '@product//models/product.model';
+import { Category } from '@entities/catalog/category.model';
 
 @Injectable()
 export class ProductsService {

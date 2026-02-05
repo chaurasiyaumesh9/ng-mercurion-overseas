@@ -1,7 +1,7 @@
 import { inject, computed } from '@angular/core';
 import { signalStore, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
-import { CartService } from './services/cart.services';
-import { Product } from '../../core/models/product.model';
+import { CartService } from '../services/cart.api';
+import { Product } from '@product//models/product.model';
 
 export interface CartState {
   cart: any[];
@@ -26,14 +26,11 @@ export const CartStore = signalStore(
 
     const cartCount = computed(() => store.cart().reduce((t, i) => t + i.quantity, 0));
 
-    const crossSellProducts = computed(() => store.crossSellProducts());
-
     return {
       subtotal,
       shipping,
       tax,
       total,
-      crossSellProducts,
       cartCount,
     };
   }),

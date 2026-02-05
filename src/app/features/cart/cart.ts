@@ -1,8 +1,8 @@
 import { Component, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { CartStore } from './cart.store';
-import { ProductTile } from '../product-listing/components/product-tile';
+import { CartStore } from './state/cart.store';
+import { ProductTile } from '../product-listing/ui/product-tile/product-tile';
 
 @Component({
   selector: 'app-cart',

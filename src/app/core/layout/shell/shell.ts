@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
-import { CartStore } from '../../../features/cart/cart.store';
+import { CartStore } from '../../../features/cart/state/cart.store';
 
 @Component({
     selector: 'app-shell',

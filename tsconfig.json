@@ -3,6 +3,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "baseUrl": "./src",
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -13,7 +14,15 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "paths": {
+      "@core/*": ["app/core/*"],
+      "@entities/*": ["app/entities/*"],
+      "@product/*": ["app/features/product*"],
+      "@cart/*": ["app/features/cart*"],
+      "@checkout/*": ["app/features/checkout*"],
+      "@account/*": ["app/features/account*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

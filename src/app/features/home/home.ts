@@ -1,10 +1,10 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Category } from '../../core/models/category.model';
-import { Product } from '../../core/models/product.model';
-import { Icon } from '../../core/icons/icon';
-import { ProductTile } from '../product-listing/components/product-tile';
+import { Category } from '@entities/catalog/category.model';
+import { Product } from '@product//models/product.model';
+import { ProductTile } from '@product/-listing/ui/product-tile/product-tile';
+import { Icon } from '@core/icons/icon';
 
 
 @Component({

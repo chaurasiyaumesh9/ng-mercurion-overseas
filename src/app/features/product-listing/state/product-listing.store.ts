@@ -8,11 +8,11 @@ import {
 } from '@ngrx/signals';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../services/products.service';
-import { Product } from '../../../core/models/product.model';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { computed } from '@angular/core';
-import { Category } from '../../../core/models/category.model';
 import { Observable } from 'rxjs';
+import { Category } from '@entities/catalog/category.model';
+import { Product } from '@product//models/product.model';
 
 interface ListingRouteData {
     categories: Category[];

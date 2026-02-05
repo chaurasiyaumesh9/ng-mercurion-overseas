@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Product } from '../../../core/models/product.model';
 import { RouterLink } from '@angular/router';
+import { Product } from '@product//models/product.model';
 
 @Component({
     selector: 'app-product-tile',

@@ -1,4 +1,5 @@
-import { Breadcrumb } from "./breadcrumb.model";
+
+import { Breadcrumb } from "@core/models/breadcrumb.model";
 import { Review } from "./review.model";
 
 export interface Product {
