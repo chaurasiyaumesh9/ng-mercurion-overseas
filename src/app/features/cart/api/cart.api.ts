@@ -14,7 +14,7 @@ export class CartApi {
       .pipe(
         map(products =>
           products
-            .filter(p => p.category?.id === 'corporate-bulk')
+            .filter(p => p.category?.id === 'corporate-bulk' || p.category?.id === 'fashion')
             .slice(0, 5)
         )
       );

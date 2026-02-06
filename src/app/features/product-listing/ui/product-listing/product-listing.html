@@ -38,10 +38,86 @@
 
     <p class="text-gray-600 text-sm">Showing {{ products().length }} products</p>
 
-    <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-      @for (p of store.filteredProducts(); track p.id) {
-        <app-product-tile [product]="p"></app-product-tile>
-      }
+    <div class="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <!-- SIDEBAR -->
+      <aside class="lg:col-span-3">
+        <div class="sticky bg-white rounded-lg space-y-6">
+          <!-- Categories -->
+          <div>
+            <ul role="list" class="font-medium text-gray-900">
+              <li><a href="#" class="block px-2 py-2">Totes</a></li>
+              <li><a href="#" class="block px-2 py-2">Backpacks</a></li>
+              <li><a href="#" class="block px-2 py-2">Travel Bags</a></li>
+              <li><a href="#" class="block px-2 py-2">Hip Bags</a></li>
+              <li><a href="#" class="block px-2 py-2">Laptop Sleeves</a></li>
+            </ul>
+          </div>
+
+          <!-- Facet -->
+          <!-- ================= FACETS ================= -->
+          @for (facet of store.activeFacetConfig(); track facet.key) {
+            <div class="border-b pb-4">
+              <button class="w-full flex items-center justify-between text-sm font-medium">
+                <span>{{ facet.label }}</span>
+
+                <span class="text-gray-400">
+                  <svg
+                    class="w-5 h-5"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </span>
+              </button>
+
+              <!-- Facet Options Placeholder (Next Step) -->
+              <div class="mt-2 text-xs text-gray-400">facet options coming here</div>
+            </div>
+          }
+
+          <div class="border-b pb-4">
+            <button class="w-full flex items-center justify-between text-sm font-medium">
+              <span>Category</span>
+              <span class="text-gray-400">
+                <svg
+                  class="w-6 h-6 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M5 12h14m-7 7V5"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+        </div>
+      </aside>
+
+      <!-- PRODUCT GRID -->
+      <section class="lg:col-span-9">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-10">
+          @for (p of store.filteredProducts(); track p.id) {
+            <app-product-tile [product]="p"></app-product-tile>
+          }
+        </div>
+      </section>
     </div>
   </div>
 </div>

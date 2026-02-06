@@ -1,3 +1,5 @@
+import { FacetConfig } from "./facet.model";
+
 export interface Category {
   id: string;
   name: string;
@@ -6,6 +8,7 @@ export interface Category {
   image?: string;
   tagline?: string;
   subCategories: SubCategory[];
+  facets?: FacetConfig[];
 }
 
 export interface SubCategory {
@@ -16,4 +19,5 @@ export interface SubCategory {
   image?: string;
   tagline?: string;
   productCount: number;
+  facets?: FacetConfig[];
 }

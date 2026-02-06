@@ -1,6 +1,8 @@
 
 import { Breadcrumb } from "@core/models/breadcrumb.model";
 import { Review } from "./review.model";
+import { ProductFacetValues } from "@entities/catalog/facet.model";
+import { Category, SubCategory } from "@entities/catalog/category.model";
 
 export interface Product {
   id: string;
@@ -14,20 +16,9 @@ export interface Product {
   inStock: boolean;
   featured?: boolean;
   tags?: string[];
-  
-  // NEW: Nested category structure
-  category: {
-    id: string;
-    name: string;
-    slug: string;
-  };
-  
-  subCategory: {
-    id: string;
-    name: string;
-    slug: string;
-  };
-  
+  facets?: ProductFacetValues;
+  category: Category;
+  subCategory: SubCategory;
   url: string;
   breadcrumbs: Breadcrumb[];
   meta: {

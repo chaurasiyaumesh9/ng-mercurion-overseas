@@ -1,279 +1,1625 @@
 [
   {
-    "id": "apparel-textiles",
-    "name": "Apparel & Textiles",
-    "slug": "apparel-textiles",
-    "url": "/apparel-textiles",
-    "image": "https://images.unsplash.com/photo-1767839507898-9a8624bdd8b0?w=500",
-    "subCategories": [
+    "id": "electronics",
+    "name": "Electronics",
+    "slug": "electronics",
+    "url": "/electronics",
+    "image": "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=500",
+    "facets": [
       {
-        "id": "tshirts-polo",
-        "name": "T-shirts & Polo Shirts",
-        "slug": "t-shirts-polo-shirts",
-        "url": "/apparel-textiles/t-shirts-polo-shirts",
-        "productCount": 5
+        "key": "brand",
+        "label": "Brand",
+        "type": "multi-select"
       },
       {
-        "id": "cotton-shirts",
-        "name": "Cotton Shirts",
-        "slug": "cotton-shirts",
-        "url": "/apparel-textiles/cotton-shirts",
-        "productCount": 5
+        "key": "price",
+        "label": "Price Range",
+        "type": "range",
+        "config": {
+          "min": 0,
+          "max": 2000,
+          "step": 50,
+          "currency": "USD"
+        }
       },
       {
-        "id": "sarees-dress",
-        "name": "Sarees & Dress Materials",
-        "slug": "sarees-dress-materials",
-        "url": "/apparel-textiles/sarees-dress-materials",
-        "productCount": 5
-      },
-      {
-        "id": "scarves-stoles",
-        "name": "Scarves & Stoles",
-        "slug": "scarves-stoles",
-        "url": "/apparel-textiles/scarves-stoles",
-        "productCount": 5
-      },
-      {
-        "id": "home-textiles",
-        "name": "Home textiles (bedsheets, towels)",
-        "slug": "home-textiles",
-        "url": "/apparel-textiles/home-textiles",
-        "productCount": 5
+        "key": "inStock",
+        "label": "Availability",
+        "type": "multi-select"
       }
     ],
-    "productCount": 25
+    "subCategories": [
+      {
+        "id": "smartphones",
+        "name": "Smartphones",
+        "slug": "smartphones",
+        "url": "/electronics/smartphones",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "storageGB",
+            "label": "Storage",
+            "type": "multi-select"
+          },
+          {
+            "key": "ramGB",
+            "label": "RAM",
+            "type": "multi-select"
+          },
+          {
+            "key": "screenSizeInch",
+            "label": "Screen Size",
+            "type": "multi-select"
+          },
+          {
+            "key": "processor",
+            "label": "Processor",
+            "type": "multi-select"
+          },
+          {
+            "key": "color",
+            "label": "Color",
+            "type": "multi-select"
+          },
+          {
+            "key": "network",
+            "label": "Network",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 1500,
+              "step": 50,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "laptops_computers",
+        "name": "Laptops & Computers",
+        "slug": "laptops-computers",
+        "url": "/electronics/laptops-computers",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "processor",
+            "label": "Processor",
+            "type": "multi-select"
+          },
+          {
+            "key": "ramGB",
+            "label": "RAM",
+            "type": "multi-select"
+          },
+          {
+            "key": "storageGB",
+            "label": "Storage",
+            "type": "multi-select"
+          },
+          {
+            "key": "screenSizeInch",
+            "label": "Screen Size",
+            "type": "multi-select"
+          },
+          {
+            "key": "graphicsCard",
+            "label": "Graphics Card",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 3000,
+              "step": 100,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "headphones_audio",
+        "name": "Headphones & Audio",
+        "slug": "headphones-audio",
+        "url": "/electronics/headphones-audio",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "type",
+            "label": "Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "connectivity",
+            "label": "Connectivity",
+            "type": "multi-select"
+          },
+          {
+            "key": "noiseCancelling",
+            "label": "Noise Cancelling",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 500,
+              "step": 25,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "cameras_photography",
+        "name": "Cameras & Photography",
+        "slug": "cameras-photography",
+        "url": "/electronics/cameras-photography",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "cameraType",
+            "label": "Camera Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "sensorSize",
+            "label": "Sensor Size",
+            "type": "multi-select"
+          },
+          {
+            "key": "videoResolution",
+            "label": "Video Resolution",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 3000,
+              "step": 100,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "smartwatches_wearables",
+        "name": "Smartwatches & Wearables",
+        "slug": "smartwatches-wearables",
+        "url": "/electronics/smartwatches-wearables",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "compatibility",
+            "label": "Compatibility",
+            "type": "multi-select"
+          },
+          {
+            "key": "batteryLifeDays",
+            "label": "Battery Life",
+            "type": "multi-select"
+          },
+          {
+            "key": "waterResistance",
+            "label": "Water Resistance",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 1000,
+              "step": 50,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      }
+    ],
+    "productCount": 200
   },
   {
-    "id": "handicrafts-decor",
-    "name": "Handicrafts & Decor",
-    "slug": "handicrafts-decor",
-    "url": "/handicrafts-decor",
-    "image": "https://images.unsplash.com/photo-1759607236409-1df137ecb3b6?w=500",
-    "subCategories": [
+    "id": "fashion",
+    "name": "Fashion",
+    "slug": "fashion",
+    "url": "/fashion",
+    "image": "https://images.unsplash.com/photo-1445205170230-053b83016050?w=500",
+    "facets": [
       {
-        "id": "wooden",
-        "name": "Wooden handicrafts",
-        "slug": "wooden-handicrafts",
-        "url": "/handicrafts-decor/wooden-handicrafts",
-        "productCount": 5
+        "key": "brand",
+        "label": "Brand",
+        "type": "multi-select"
       },
       {
-        "id": "brass-metal",
-        "name": "Brass & metal decor",
-        "slug": "brass-metal-decor",
-        "url": "/handicrafts-decor/brass-metal-decor",
-        "productCount": 5
+        "key": "size",
+        "label": "Size",
+        "type": "multi-select"
       },
       {
-        "id": "wall-art",
-        "name": "Wall art",
-        "slug": "wall-art",
-        "url": "/handicrafts-decor/wall-art",
-        "productCount": 5
+        "key": "color",
+        "label": "Color",
+        "type": "multi-select"
       },
       {
-        "id": "candle-holders",
-        "name": "Candle holders",
-        "slug": "candle-holders",
-        "url": "/handicrafts-decor/candle-holders",
-        "productCount": 5
+        "key": "price",
+        "label": "Price Range",
+        "type": "range",
+        "config": {
+          "min": 0,
+          "max": 500,
+          "step": 25,
+          "currency": "USD"
+        }
       },
       {
-        "id": "hand-painted",
-        "name": "Hand-painted items",
-        "slug": "hand-painted-items",
-        "url": "/handicrafts-decor/hand-painted-items",
-        "productCount": 5
+        "key": "inStock",
+        "label": "Availability",
+        "type": "multi-select"
       }
     ],
-    "productCount": 25
+    "subCategories": [
+      {
+        "id": "mens_clothing",
+        "name": "Men's Clothing",
+        "slug": "mens-clothing",
+        "url": "/fashion/mens-clothing",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "size",
+            "label": "Size",
+            "type": "multi-select"
+          },
+          {
+            "key": "color",
+            "label": "Color",
+            "type": "multi-select"
+          },
+          {
+            "key": "material",
+            "label": "Material",
+            "type": "multi-select"
+          },
+          {
+            "key": "fit",
+            "label": "Fit",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 300,
+              "step": 25,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "womens_clothing",
+        "name": "Women's Clothing",
+        "slug": "womens-clothing",
+        "url": "/fashion/womens-clothing",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "size",
+            "label": "Size",
+            "type": "multi-select"
+          },
+          {
+            "key": "color",
+            "label": "Color",
+            "type": "multi-select"
+          },
+          {
+            "key": "material",
+            "label": "Material",
+            "type": "multi-select"
+          },
+          {
+            "key": "occasion",
+            "label": "Occasion",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 300,
+              "step": 25,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "shoes_footwear",
+        "name": "Shoes & Footwear",
+        "slug": "shoes-footwear",
+        "url": "/fashion/shoes-footwear",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "size",
+            "label": "Size",
+            "type": "multi-select"
+          },
+          {
+            "key": "color",
+            "label": "Color",
+            "type": "multi-select"
+          },
+          {
+            "key": "style",
+            "label": "Style",
+            "type": "multi-select"
+          },
+          {
+            "key": "gender",
+            "label": "Gender",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 400,
+              "step": 25,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "accessories",
+        "name": "Accessories",
+        "slug": "accessories",
+        "url": "/fashion/accessories",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "type",
+            "label": "Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "material",
+            "label": "Material",
+            "type": "multi-select"
+          },
+          {
+            "key": "color",
+            "label": "Color",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 500,
+              "step": 25,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "bags_luggage",
+        "name": "Bags & Luggage",
+        "slug": "bags-luggage",
+        "url": "/fashion/bags-luggage",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "type",
+            "label": "Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "material",
+            "label": "Material",
+            "type": "multi-select"
+          },
+          {
+            "key": "capacityL",
+            "label": "Capacity",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 600,
+              "step": 50,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      }
+    ],
+    "productCount": 200
   },
   {
-    "id": "home-living",
-    "name": "Home & Living",
-    "slug": "home-living",
-    "url": "/home-living",
-    "image": "https://images.unsplash.com/photo-1637747019989-fec01a8d70fa?w=500",
-    "subCategories": [
+    "id": "home-garden",
+    "name": "Home & Garden",
+    "slug": "home-garden",
+    "url": "/home-garden",
+    "image": "https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=500",
+    "facets": [
       {
-        "id": "kitchenware",
-        "name": "Kitchenware",
-        "slug": "kitchenware",
-        "url": "/home-living/kitchenware",
-        "productCount": 5
+        "key": "brand",
+        "label": "Brand",
+        "type": "multi-select"
       },
       {
-        "id": "storage",
-        "name": "Storage baskets",
-        "slug": "storage-baskets",
-        "url": "/home-living/storage-baskets",
-        "productCount": 5
+        "key": "material",
+        "label": "Material",
+        "type": "multi-select"
       },
       {
-        "id": "tableware",
-        "name": "Tableware",
-        "slug": "tableware",
-        "url": "/home-living/tableware",
-        "productCount": 5
+        "key": "color",
+        "label": "Color",
+        "type": "multi-select"
       },
       {
-        "id": "rugs",
-        "name": "Rugs & carpets",
-        "slug": "rugs-carpets",
-        "url": "/home-living/rugs-carpets",
-        "productCount": 5
+        "key": "price",
+        "label": "Price Range",
+        "type": "range",
+        "config": {
+          "min": 0,
+          "max": 2000,
+          "step": 100,
+          "currency": "USD"
+        }
       },
       {
-        "id": "cushions",
-        "name": "Cushion covers",
-        "slug": "cushion-covers",
-        "url": "/home-living/cushion-covers",
-        "productCount": 5
+        "key": "inStock",
+        "label": "Availability",
+        "type": "multi-select"
       }
     ],
-    "productCount": 25
+    "subCategories": [
+      {
+        "id": "furniture",
+        "name": "Furniture",
+        "slug": "furniture",
+        "url": "/home-garden/furniture",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "material",
+            "label": "Material",
+            "type": "multi-select"
+          },
+          {
+            "key": "color",
+            "label": "Color",
+            "type": "multi-select"
+          },
+          {
+            "key": "room",
+            "label": "Room",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 3000,
+              "step": 100,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "home_decor",
+        "name": "Home Decor",
+        "slug": "home-decor",
+        "url": "/home-garden/home-decor",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "type",
+            "label": "Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "style",
+            "label": "Style",
+            "type": "multi-select"
+          },
+          {
+            "key": "color",
+            "label": "Color",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 500,
+              "step": 25,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "kitchen_dining",
+        "name": "Kitchen & Dining",
+        "slug": "kitchen-dining",
+        "url": "/home-garden/kitchen-dining",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "type",
+            "label": "Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "material",
+            "label": "Material",
+            "type": "multi-select"
+          },
+          {
+            "key": "capacityQt",
+            "label": "Capacity (Quarts)",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 500,
+              "step": 25,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "bedding_bath",
+        "name": "Bedding & Bath",
+        "slug": "bedding-bath",
+        "url": "/home-garden/bedding-bath",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "size",
+            "label": "Size",
+            "type": "multi-select"
+          },
+          {
+            "key": "material",
+            "label": "Material",
+            "type": "multi-select"
+          },
+          {
+            "key": "threadCount",
+            "label": "Thread Count",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 400,
+              "step": 25,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "garden_outdoor",
+        "name": "Garden & Outdoor",
+        "slug": "garden-outdoor",
+        "url": "/home-garden/garden-outdoor",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "type",
+            "label": "Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "material",
+            "label": "Material",
+            "type": "multi-select"
+          },
+          {
+            "key": "weatherResistant",
+            "label": "Weather Resistant",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 1000,
+              "step": 50,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      }
+    ],
+    "productCount": 200
   },
   {
-    "id": "fmcg-food",
-    "name": "FMCG / Food Products",
-    "slug": "fmcg-food",
-    "url": "/fmcg-food",
-    "image": "https://plus.unsplash.com/premium_photo-1664305040276-66cf5c0ac52b?w=500",
-    "subCategories": [
+    "id": "sports-outdoors",
+    "name": "Sports & Outdoors",
+    "slug": "sports-outdoors",
+    "url": "/sports-outdoors",
+    "image": "https://images.unsplash.com/photo-1517649763962-0c623066013b?w=500",
+    "facets": [
       {
-        "id": "spices",
-        "name": "Spices",
-        "slug": "spices",
-        "url": "/fmcg-food/spices",
-        "productCount": 5
+        "key": "brand",
+        "label": "Brand",
+        "type": "multi-select"
       },
       {
-        "id": "tea-coffee",
-        "name": "Tea & coffee",
-        "slug": "tea-coffee",
-        "url": "/fmcg-food/tea-coffee",
-        "productCount": 5
+        "key": "activity",
+        "label": "Activity",
+        "type": "multi-select"
       },
       {
-        "id": "dry-fruits",
-        "name": "Dry fruits",
-        "slug": "dry-fruits",
-        "url": "/fmcg-food/dry-fruits",
-        "productCount": 5
+        "key": "price",
+        "label": "Price Range",
+        "type": "range",
+        "config": {
+          "min": 0,
+          "max": 2000,
+          "step": 100,
+          "currency": "USD"
+        }
       },
       {
-        "id": "pickles",
-        "name": "Pickles & sauces",
-        "slug": "pickles-sauces",
-        "url": "/fmcg-food/pickles-sauces",
-        "productCount": 5
-      },
-      {
-        "id": "ready-cook",
-        "name": "Ready-to-cook mixes",
-        "slug": "ready-to-cook-mixes",
-        "url": "/fmcg-food/ready-to-cook-mixes",
-        "productCount": 5
+        "key": "inStock",
+        "label": "Availability",
+        "type": "multi-select"
       }
     ],
-    "productCount": 25
+    "subCategories": [
+      {
+        "id": "fitness_equipment",
+        "name": "Fitness Equipment",
+        "slug": "fitness-equipment",
+        "url": "/sports-outdoors/fitness-equipment",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "equipmentType",
+            "label": "Equipment Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "resistance",
+            "label": "Resistance Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "targetArea",
+            "label": "Target Area",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 2000,
+              "step": 100,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "cycling",
+        "name": "Cycling",
+        "slug": "cycling",
+        "url": "/sports-outdoors/cycling",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "bikeType",
+            "label": "Bike Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "frameSizeInch",
+            "label": "Frame Size",
+            "type": "multi-select"
+          },
+          {
+            "key": "gears",
+            "label": "Gears",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 3000,
+              "step": 100,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "camping_hiking",
+        "name": "Camping & Hiking",
+        "slug": "camping-hiking",
+        "url": "/sports-outdoors/camping-hiking",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "gearType",
+            "label": "Gear Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "capacityL",
+            "label": "Capacity",
+            "type": "multi-select"
+          },
+          {
+            "key": "season",
+            "label": "Season",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 1000,
+              "step": 50,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "team_sports",
+        "name": "Team Sports",
+        "slug": "team-sports",
+        "url": "/sports-outdoors/team-sports",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "sport",
+            "label": "Sport",
+            "type": "multi-select"
+          },
+          {
+            "key": "size",
+            "label": "Size",
+            "type": "multi-select"
+          },
+          {
+            "key": "material",
+            "label": "Material",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 300,
+              "step": 25,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "water_sports",
+        "name": "Water Sports",
+        "slug": "water-sports",
+        "url": "/sports-outdoors/water-sports",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "type",
+            "label": "Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "size",
+            "label": "Size",
+            "type": "multi-select"
+          },
+          {
+            "key": "material",
+            "label": "Material",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 800,
+              "step": 50,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      }
+    ],
+    "productCount": 200
   },
   {
-    "id": "personal-care",
-    "name": "Personal Care & Wellness",
-    "slug": "personal-care",
-    "url": "/personal-care",
-    "image": "https://plus.unsplash.com/premium_photo-1679431044148-0cbef977e7d3?w=500",
-    "subCategories": [
+    "id": "books-media",
+    "name": "Books & Media",
+    "slug": "books-media",
+    "url": "/books-media",
+    "image": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=500",
+    "facets": [
       {
-        "id": "herbal",
-        "name": "Herbal cosmetics",
-        "slug": "herbal-cosmetics",
-        "url": "/personal-care/herbal-cosmetics",
-        "productCount": 5
+        "key": "publisher",
+        "label": "Publisher/Studio",
+        "type": "multi-select"
       },
       {
-        "id": "oils",
-        "name": "Essential oils",
-        "slug": "essential-oils",
-        "url": "/personal-care/essential-oils",
-        "productCount": 5
+        "key": "format",
+        "label": "Format",
+        "type": "multi-select"
       },
       {
-        "id": "soaps",
-        "name": "Soaps",
-        "slug": "soaps",
-        "url": "/personal-care/soaps",
-        "productCount": 5
+        "key": "price",
+        "label": "Price Range",
+        "type": "range",
+        "config": {
+          "min": 0,
+          "max": 100,
+          "step": 10,
+          "currency": "USD"
+        }
       },
       {
-        "id": "incense",
-        "name": "Incense sticks",
-        "slug": "incense-sticks",
-        "url": "/personal-care/incense-sticks",
-        "productCount": 5
-      },
-      {
-        "id": "organic",
-        "name": "Organic products",
-        "slug": "organic-products",
-        "url": "/personal-care/organic-products",
-        "productCount": 5
+        "key": "inStock",
+        "label": "Availability",
+        "type": "multi-select"
       }
     ],
-    "productCount": 25
+    "subCategories": [
+      {
+        "id": "books",
+        "name": "Books",
+        "slug": "books",
+        "url": "/books-media/books",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "publisher",
+            "label": "Publisher",
+            "type": "multi-select"
+          },
+          {
+            "key": "genre",
+            "label": "Genre",
+            "type": "multi-select"
+          },
+          {
+            "key": "format",
+            "label": "Format",
+            "type": "multi-select"
+          },
+          {
+            "key": "language",
+            "label": "Language",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 60,
+              "step": 5,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "movies_tv",
+        "name": "Movies & TV",
+        "slug": "movies-tv",
+        "url": "/books-media/movies-tv",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "studio",
+            "label": "Studio",
+            "type": "multi-select"
+          },
+          {
+            "key": "genre",
+            "label": "Genre",
+            "type": "multi-select"
+          },
+          {
+            "key": "format",
+            "label": "Format",
+            "type": "multi-select"
+          },
+          {
+            "key": "rating",
+            "label": "Rating",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 50,
+              "step": 5,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "music",
+        "name": "Music",
+        "slug": "music",
+        "url": "/books-media/music",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "label",
+            "label": "Label",
+            "type": "multi-select"
+          },
+          {
+            "key": "genre",
+            "label": "Genre",
+            "type": "multi-select"
+          },
+          {
+            "key": "format",
+            "label": "Format",
+            "type": "multi-select"
+          },
+          {
+            "key": "releaseYear",
+            "label": "Release Year",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 40,
+              "step": 5,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "video_games",
+        "name": "Video Games",
+        "slug": "video-games",
+        "url": "/books-media/video-games",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "platform",
+            "label": "Platform",
+            "type": "multi-select"
+          },
+          {
+            "key": "genre",
+            "label": "Genre",
+            "type": "multi-select"
+          },
+          {
+            "key": "publisher",
+            "label": "Publisher",
+            "type": "multi-select"
+          },
+          {
+            "key": "rating",
+            "label": "ESRB Rating",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 80,
+              "step": 10,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "magazines",
+        "name": "Magazines",
+        "slug": "magazines",
+        "url": "/books-media/magazines",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "publisher",
+            "label": "Publisher",
+            "type": "multi-select"
+          },
+          {
+            "key": "category",
+            "label": "Category",
+            "type": "multi-select"
+          },
+          {
+            "key": "frequency",
+            "label": "Frequency",
+            "type": "multi-select"
+          },
+          {
+            "key": "format",
+            "label": "Format",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 30,
+              "step": 5,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      }
+    ],
+    "productCount": 200
   },
   {
-    "id": "corporate-bulk",
-    "name": "Corporate & Bulk Supplies",
-    "slug": "corporate-bulk",
-    "url": "/corporate-bulk",
-    "image": "https://plus.unsplash.com/premium_photo-1661387745347-b0a12422124f?w=500",
-    "subCategories": [
+    "id": "toys-games",
+    "name": "Toys & Games",
+    "slug": "toys-games",
+    "url": "/toys-games",
+    "image": "https://images.unsplash.com/photo-1515488764276-beab7607c1e6?w=500",
+    "facets": [
       {
-        "id": "promo",
-        "name": "Promotional gifts",
-        "slug": "promotional-gifts",
-        "url": "/corporate-bulk/promotional-gifts",
-        "productCount": 5
+        "key": "brand",
+        "label": "Brand",
+        "type": "multi-select"
       },
       {
-        "id": "packaging",
-        "name": "Custom packaging",
-        "slug": "custom-packaging",
-        "url": "/corporate-bulk/custom-packaging",
-        "productCount": 5
+        "key": "ageRange",
+        "label": "Age Range",
+        "type": "multi-select"
       },
       {
-        "id": "stationery",
-        "name": "Stationery",
-        "slug": "stationery",
-        "url": "/corporate-bulk/stationery",
-        "productCount": 5
+        "key": "price",
+        "label": "Price Range",
+        "type": "range",
+        "config": {
+          "min": 0,
+          "max": 200,
+          "step": 20,
+          "currency": "USD"
+        }
       },
       {
-        "id": "uniforms",
-        "name": "Uniforms",
-        "slug": "uniforms",
-        "url": "/corporate-bulk/uniforms",
-        "productCount": 5
-      },
-      {
-        "id": "private-label",
-        "name": "Private label products",
-        "slug": "private-label-products",
-        "url": "/corporate-bulk/private-label-products",
-        "productCount": 5
-      },
-      {
-        "id": "branded",
-        "name": "Branded merchandise",
-        "slug": "branded-merchandise",
-        "url": "/corporate-bulk/branded-merchandise",
-        "productCount": 5
+        "key": "inStock",
+        "label": "Availability",
+        "type": "multi-select"
       }
     ],
-    "productCount": 30
+    "subCategories": [
+      {
+        "id": "action_figures_collectibles",
+        "name": "Action Figures & Collectibles",
+        "slug": "action-figures-collectibles",
+        "url": "/toys-games/action-figures-collectibles",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "character",
+            "label": "Character/Series",
+            "type": "multi-select"
+          },
+          {
+            "key": "scale",
+            "label": "Scale",
+            "type": "multi-select"
+          },
+          {
+            "key": "ageRange",
+            "label": "Age Range",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 300,
+              "step": 25,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "board_games_puzzles",
+        "name": "Board Games & Puzzles",
+        "slug": "board-games-puzzles",
+        "url": "/toys-games/board-games-puzzles",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "type",
+            "label": "Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "players",
+            "label": "Number of Players",
+            "type": "multi-select"
+          },
+          {
+            "key": "ageRange",
+            "label": "Age Range",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 150,
+              "step": 15,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "educational_toys",
+        "name": "Educational Toys",
+        "slug": "educational-toys",
+        "url": "/toys-games/educational-toys",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "skill",
+            "label": "Skill Development",
+            "type": "multi-select"
+          },
+          {
+            "key": "subject",
+            "label": "Subject",
+            "type": "multi-select"
+          },
+          {
+            "key": "ageRange",
+            "label": "Age Range",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 200,
+              "step": 20,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "outdoor_play",
+        "name": "Outdoor Play",
+        "slug": "outdoor-play",
+        "url": "/toys-games/outdoor-play",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "type",
+            "label": "Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "ageRange",
+            "label": "Age Range",
+            "type": "multi-select"
+          },
+          {
+            "key": "material",
+            "label": "Material",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 500,
+              "step": 50,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      },
+      {
+        "id": "arts_crafts",
+        "name": "Arts & Crafts",
+        "slug": "arts-crafts",
+        "url": "/toys-games/arts-crafts",
+        "productCount": 40,
+        "facets": [
+          {
+            "key": "brand",
+            "label": "Brand",
+            "type": "multi-select"
+          },
+          {
+            "key": "type",
+            "label": "Type",
+            "type": "multi-select"
+          },
+          {
+            "key": "medium",
+            "label": "Medium",
+            "type": "multi-select"
+          },
+          {
+            "key": "ageRange",
+            "label": "Age Range",
+            "type": "multi-select"
+          },
+          {
+            "key": "price",
+            "label": "Price Range",
+            "type": "range",
+            "config": {
+              "min": 0,
+              "max": 100,
+              "step": 10,
+              "currency": "USD"
+            }
+          },
+          {
+            "key": "inStock",
+            "label": "Availability",
+            "type": "multi-select"
+          }
+        ]
+      }
+    ],
+    "productCount": 200
   }
 ]
