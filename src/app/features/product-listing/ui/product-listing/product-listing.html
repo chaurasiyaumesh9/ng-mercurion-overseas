@@ -22,11 +22,11 @@
         @case (!!search()) {
           Search results for "{{ search() }}"
         }
-        @case (!!subCategoryName()) {
-          {{ subCategoryName() }}
+        @case (!!store.currentSubCategory()?.name) {
+          {{ store.currentSubCategory()?.name }}
         }
-        @case (!!categoryName()) {
-          {{ categoryName() }}
+        @case (!!store.currentCategory()?.name) {
+          {{ store.currentCategory()?.name }}
         }
         @default {
           All Products
@@ -34,7 +34,7 @@
       }
     </h1>
 
-    <p class="text-gray-600 text-sm">Showing {{ store.paginatedProducts().length }} products</p>
+    <p class="text-gray-600 text-sm">Showing {{ store.filteredProducts().length }} products</p>
 
     <!-- ================= TOP BAR ================= -->
     <div class="hidden md:flex items-center justify-end mb-4">
@@ -43,7 +43,7 @@
 
         <select
           class="border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          [value]="store.pageSize()"
+          [value]="store.pageSizeFromUrl()"
           (change)="store.setPageSize(+$any($event.target).value)"
         >
           <option value="12">12 Items</option>
@@ -61,6 +61,26 @@
       <!-- ================= DESKTOP SIDEBAR ================= -->
       <aside class="hidden lg:block lg:col-span-3">
         <div class="sticky top-24 bg-white rounded-lg space-y-6">
+          <!-- ================= SUBCATEGORIES ================= -->
+          @if (store.currentCategory()?.subCategories?.length && !store.search()) {
+            <div class="border-b pb-4">
+              <div class="space-y-2">
+                @for (sub of store.currentCategory()!.subCategories; track sub.id) {
+                  <a
+                    [routerLink]="['/', store.currentCategory()?.slug, sub.slug]"
+                    class="block text-sm transition-colors"
+                    [class.text-blue-600]="store.currentSubCategory()?.id === sub.id"
+                    [class.font-semibold]="store.currentSubCategory()?.id === sub.id"
+                    [class.text-gray-700]="store.currentSubCategory()?.id !== sub.id"
+                    [class.hover:text-blue-600]="store.currentSubCategory()?.id !== sub.id"
+                  >
+                    {{ sub.name }}
+                  </a>
+                }
+              </div>
+            </div>
+          }
+
           @for (facet of store.activeFacetConfig(); track facet.key) {
             <div class="border-b pb-4">
               <!-- HEADER -->
@@ -94,6 +114,8 @@
                           <label class="flex items-center gap-2 text-sm cursor-pointer">
                             <input
                               type="checkbox"
+                              [checked]="store.selectedFacetValuesFromUrl()[facet.key]?.has(value)"
+                              (change)="store.toggleFacetValue(facet.key, value)"
                               class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                             />
                             <span class="truncate">{{ value }}</span>
@@ -142,21 +164,34 @@
               <!-- Prev -->
               <button
                 class="px-3 py-1 border rounded disabled:opacity-40"
-                [disabled]="store.page() === 1"
+                [disabled]="store.pageFromUrl() === 1"
                 (click)="store.prevPage()"
               >
-                <svg class="w-6 h-6 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m15 19-7-7 7-7"/>
+                <svg
+                  class="w-6 h-6 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m15 19-7-7 7-7"
+                  />
                 </svg>
-
               </button>
 
               <!-- Pages -->
               @for (page of store.pageNumbers(); track page) {
                 <button
                   class="px-3 py-1 border rounded text-sm"
-                  [class.bg-blue-600]="store.page() === page"
-                  [class.text-white]="store.page() === page"
+                  [class.bg-blue-600]="store.pageFromUrl() === page"
+                  [class.text-white]="store.pageFromUrl() === page"
                   (click)="store.setPage(page)"
                 >
                   {{ page }}
@@ -166,13 +201,26 @@
               <!-- Next -->
               <button
                 class="px-3 py-1 border rounded disabled:opacity-40"
-                [disabled]="store.page() === store.totalPages()"
+                [disabled]="store.pageFromUrl() === store.totalPages()"
                 (click)="store.nextPage()"
               >
-                <svg class="w-6 h-6 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7"/>
+                <svg
+                  class="w-6 h-6 dark:text-white"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="m9 5 7 7-7 7"
+                  />
                 </svg>
-
               </button>
             </div>
           </div>
@@ -183,7 +231,7 @@
               <!-- Prev -->
               <button
                 class="px-3 py-1 border rounded text-sm disabled:opacity-40"
-                [disabled]="store.page() === 1"
+                [disabled]="store.pageFromUrl() === 1"
                 (click)="store.prevPage()"
               >
                 <svg
@@ -209,8 +257,8 @@
               @for (page of store.visiblePageNumbers(); track page) {
                 <button
                   class="px-3 py-1 border rounded text-sm"
-                  [class.bg-blue-600]="store.page() === page"
-                  [class.text-white]="store.page() === page"
+                  [class.bg-blue-600]="store.pageFromUrl() === page"
+                  [class.text-white]="store.pageFromUrl() === page"
                   (click)="store.setPage(page)"
                 >
                   {{ page }}
@@ -220,7 +268,7 @@
               <!-- Next -->
               <button
                 class="px-3 py-1 border rounded text-sm disabled:opacity-40"
-                [disabled]="store.page() === store.totalPages()"
+                [disabled]="store.pageFromUrl() === store.totalPages()"
                 (click)="store.nextPage()"
               >
                 <svg
@@ -281,7 +329,7 @@
 
               <select
                 class="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                [value]="store.pageSize()"
+                [value]="store.pageSizeFromUrl()"
                 (change)="store.setPageSize(+$any($event.target).value)"
               >
                 <option value="12">12</option>
@@ -291,6 +339,27 @@
               </select>
             </div>
           </div>
+
+          @if (store.currentCategory()?.subCategories?.length && !store.search()) {
+            <div class="border-b pb-4">
+              <h3 class="text-sm font-semibold text-gray-900 mb-3">Subcategories</h3>
+
+              <div class="space-y-2">
+                @for (sub of store.currentCategory()!.subCategories; track sub.id) {
+                  <a
+                    [routerLink]="['/', store.currentCategory()?.slug, sub.slug]"
+                    (click)="store.toggleMobileFilters()"
+                    class="block text-sm"
+                    [class.text-blue-600]="store.currentSubCategory()?.id === sub.id"
+                    [class.font-semibold]="store.currentSubCategory()?.id === sub.id"
+                    [class.text-gray-700]="store.currentSubCategory()?.id !== sub.id"
+                  >
+                    {{ sub.name }}
+                  </a>
+                }
+              </div>
+            </div>
+          }
 
           @for (facet of store.activeFacetConfig(); track facet.key) {
             <div class="border-b pb-4">
@@ -324,8 +393,11 @@
                           <label class="flex items-center gap-2 text-sm">
                             <input
                               type="checkbox"
+                              [checked]="store.selectedFacetValuesFromUrl()[facet.key]?.has(value)"
+                              (change)="store.toggleFacetValue(facet.key, value)"
                               class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                             />
+
                             <span class="truncate">{{ value }}</span>
                           </label>
                         }
