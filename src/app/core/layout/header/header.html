@@ -1,7 +1,7 @@
 <header class="w-full bg-white sticky top-0 z-40">
   <!-- ================= TOP STRIP ================= -->
-  <div class="w-full bg-gray-900 text-white py-2">
-    <div class="container mx-auto px-4 text-center text-sm">Free Shipping on Orders Over $100</div>
+  <div class="w-full bg-gray-900 text-white py-2 text-center text-sm">
+    Free Shipping on Orders Over $100
   </div>
 
   <!-- ================= MAIN HEADER ================= -->
@@ -9,12 +9,12 @@
     <!-- HEADER ROW -->
     <div class="flex items-center justify-between px-4 py-3">
       <!-- LOGO -->
-      <a routerLink="/" class="flex flex-col">
-        <span class="text-lg font-bold text-gray-900"> Mercurion Overseas </span>
-        <span class="text-xs text-gray-600 italic"> Connecting Markets Worldwide </span>
+      <a routerLink="/" class="flex flex-col leading-tight">
+        <span class="text-lg font-bold text-gray-900">Mercurion Overseas</span>
+        <span class="text-xs text-gray-600 italic">Connecting Markets Worldwide</span>
       </a>
 
-      <!-- ================= DESKTOP SEARCH ================= -->
+      <!-- DESKTOP SEARCH -->
       <form (submit)="handleSearch($event)" class="hidden md:flex flex-1 max-w-md mx-8">
         <div class="relative w-full">
           <input
@@ -24,7 +24,6 @@
             (input)="searchQuery.set($any($event.target).value)"
             class="w-full px-4 py-2 border rounded-l-md"
           />
-
           <button
             type="submit"
             class="absolute right-0 top-0 h-full px-4 bg-blue-600 text-white rounded-r-md flex items-center justify-center"
@@ -34,9 +33,9 @@
         </div>
       </form>
 
-      <!-- ================= DESKTOP ACTIONS ================= -->
+      <!-- DESKTOP ACTIONS -->
       <div class="hidden md:flex items-center gap-4">
-        <a class="text-gray-900 font-medium">Sign In</a>
+        <a class="text-gray-900 font-medium">Sign In</a> |
         <a class="text-gray-900 font-medium">Create Account</a>
 
         <a routerLink="/cart" class="relative">
@@ -52,12 +51,11 @@
         </a>
       </div>
 
-      <!-- ================= MOBILE ACTIONS ================= -->
+      <!-- MOBILE ACTIONS -->
       <div class="flex items-center gap-4 md:hidden">
         <!-- CART -->
         <a routerLink="/cart" class="relative">
           <app-icon name="shopping-bag" class="w-6 h-6 text-gray-800"></app-icon>
-
           @if (cartStore.cartCount() > 0) {
             <span
               class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2 py-0.5"
@@ -67,30 +65,21 @@
           }
         </a>
 
-        <!-- MENU -->
-        <button class="text-2xl" (click)="mobileMenuOpen.set(true)">
-          <svg
-            class="w-6 h-6 text-gray-500 dark:text-white"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
+        <!-- MENU BUTTON -->
+        <button (click)="mobileMenuOpen.set(true)">
+          <svg class="w-7 h-7 text-gray-700" viewBox="0 0 24 24" fill="none">
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
               stroke-width="2"
-              d="M18 6H6m12 4H6m12 4H6m12 4H6"
+              stroke-linecap="round"
+              d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
         </button>
       </div>
     </div>
 
-    <!-- ================= MOBILE FULL WIDTH SEARCH ================= -->
+    <!-- MOBILE SEARCH -->
     <div class="md:hidden px-4 pb-3">
       <form (submit)="handleSearch($event)">
         <div class="relative">
@@ -101,10 +90,9 @@
             (input)="searchQuery.set($any($event.target).value)"
             class="w-full px-4 py-3 border rounded-lg shadow-sm"
           />
-
           <button
             type="submit"
-            class="absolute right-0 top-0 h-full px-4 bg-blue-600 text-white rounded-r-md flex items-center justify-center"
+            class="absolute right-0 top-0 h-full px-4 bg-blue-600 text-white rounded-r-lg"
           >
             <app-icon name="search" class="w-5 h-5"></app-icon>
           </button>
@@ -112,13 +100,13 @@
       </form>
     </div>
 
-    <!-- ================= DESKTOP NAV ================= -->
+    <!-- DESKTOP NAV -->
     @defer (on idle) {
       <nav class="hidden md:block border-t border-b">
         <div class="container mx-auto px-4">
           <ul class="flex items-center gap-8 py-3">
             <li>
-              <a routerLink="/" class="text-gray-700 hover:text-blue-600"> Home </a>
+              <a routerLink="/" class="text-gray-700 hover:text-blue-600">Home</a>
             </li>
 
             @for (category of categories(); track category.id) {
@@ -156,52 +144,39 @@
     <div class="absolute inset-0 bg-black/40" (click)="mobileMenuOpen.set(false)"></div>
 
     <!-- DRAWER -->
-    <div
-      class="absolute inset-y-0 left-0 w-full max-w-md bg-white shadow-xl flex flex-col pb-[env(safe-area-inset-bottom)]"
-    >
-      <!-- CLOSE -->
-      <div class="flex justify-end p-4 border-b">
-        <button class="text-2xl" (click)="mobileMenuOpen.set(false)">
-          <svg
-            class="w-6 h-6 text-gray-500 dark:text-white"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M6 18 17.94 6M18 18 6.06 6"
-            />
-          </svg>
-        </button>
+    <div class="absolute inset-y-0 left-0 w-full max-w-sm bg-white shadow-xl flex flex-col">
+      <!-- HEADER -->
+      <div class="flex items-center justify-between px-4 py-4 border-b">
+        <span class="font-semibold text-lg">Menu</span>
+        <button (click)="mobileMenuOpen.set(false)">✕</button>
       </div>
 
-      <!-- NAV CONTENT -->
-      <div class="flex-1 overflow-y-auto px-4 py-6 space-y-6">
-        <a routerLink="/" (click)="closeMobile()" class="block text-lg font-medium"> Home </a>
+      <!-- NAV LIST -->
+      <div class="flex-1 overflow-y-auto">
+        <a
+          routerLink="/"
+          (click)="closeMobile()"
+          class="block px-4 py-3 text-base font-semibold border-b"
+        >
+          Home
+        </a>
 
         @for (category of categories(); track category.id) {
-          <div class="space-y-2">
+          <div class="border-b">
             <a
               [routerLink]="['/', category.slug]"
               (click)="closeMobile()"
-              class="block text-base font-semibold py-1"
+              class="block px-4 pt-3 pb-2 font-semibold text-base"
             >
               {{ category.name }}
             </a>
 
-            <div class="ml-3 space-y-1">
+            <div class="pb-3">
               @for (sub of category.subCategories; track sub.id) {
                 <a
                   [routerLink]="['/', category.slug, sub.slug]"
                   (click)="closeMobile()"
-                  class="block text-sm text-gray-600 py-1"
+                  class="block px-6 py-2 text-sm text-gray-600 hover:bg-gray-50"
                 >
                   {{ sub.name }}
                 </a>

@@ -27,5 +27,6 @@ export class ProductListing {
 
     constructor() {
         this.store.init();
+        this.store.resetFacetUIState();
     }
 }

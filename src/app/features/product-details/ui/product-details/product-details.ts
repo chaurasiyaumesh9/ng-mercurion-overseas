@@ -1,5 +1,5 @@
 import { Component, inject, effect } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Product } from '@product//models/product.model';
 import { ProductTile } from '@product-listing/ui/product-tile/product-tile';
@@ -11,7 +11,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-product-detail',
   standalone: true,
-  imports: [CommonModule, ProductTile],
+  imports: [CommonModule, ProductTile, RouterLink],
   providers: [ProductDetailStore, ProductsApi],
   templateUrl: './product-details.html',
 })

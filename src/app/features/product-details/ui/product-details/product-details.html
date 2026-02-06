@@ -12,14 +12,14 @@
       <span>/</span>
 
       @if (product.category) {
-        <a class="hover:text-blue-600 transition">
+        <a [routerLink]="['/', product.category.slug]" class="hover:text-blue-600 transition">
           {{ product.category.name }}
         </a>
         <span>/</span>
       }
 
       @if (product.subCategory) {
-        <a class="hover:text-blue-600 transition">
+        <a [routerLink]="['/', product.category.slug, product.subCategory.slug]" class="hover:text-blue-600 transition">
           {{ product.subCategory.name }}
         </a>
         <span>/</span>
