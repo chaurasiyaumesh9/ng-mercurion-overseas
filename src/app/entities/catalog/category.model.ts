@@ -18,6 +18,5 @@ export interface SubCategory {
   url: string;
   image?: string;
   tagline?: string;
-  productCount: number;
   facets?: FacetConfig[];
 }
