@@ -22,10 +22,4 @@ export class ProductsApi {
             map(products => products.find(product => product.id === id)!)
         );
     }
-
-    getCategories(): Observable<Category[]> {
-        return this.http.get<Category[]>(
-            '/assets/mock-data/categories/categories.data.json'
-        );
-    }
 }
