@@ -18,10 +18,6 @@ export const CartStore = signalStore(
     crossSellProducts: [],
   }),
 
-  // -------------------------
-  // COMPUTED
-  // -------------------------
-
   withComputed((store) => {
     const subtotal = computed(() => store.cart().reduce((sum, i) => sum + i.price * i.quantity, 0));
 
@@ -42,36 +38,24 @@ export const CartStore = signalStore(
     };
   }),
 
-  // -------------------------
-  // METHODS
-  // -------------------------
-
   withMethods((store) => {
     const persistence = inject(CartPersistence);
     const api = inject(CartApi);
 
     return {
-      // -------------------------
-      // LOAD
-      // -------------------------
-
       loadCart() {
         patchState(store, {
           cart: persistence.getCart(),
         });
       },
 
-      // -------------------------
-      // MUTATIONS (NOW OWNED BY STORE)
-      // -------------------------
-
       addItem(product: Product, quantity = 1) {
         const cart = [...store.cart()];
 
-        const existing = cart.find((i) => i.id === product.id);
+        const existingItem = cart.find((item) => item.id === product.id);
 
-        if (existing) {
-          existing.quantity += quantity;
+        if (existingItem) {
+          existingItem.quantity += quantity;
         } else {
           cart.push({
             id: product.id,
@@ -88,38 +72,34 @@ export const CartStore = signalStore(
       },
 
       removeItem(id: string) {
-        const cart = store.cart().filter((i) => i.id !== id);
+        const cart = store.cart().filter((item) => item.id !== id);
 
         persistence.saveCart(cart);
         patchState(store, { cart });
       },
 
-      updateQty(id: string, qty: number) {
+      updateQuantity(id: string, newQuantity: number) {
         let cart = [...store.cart()];
 
-        const item = cart.find((i) => i.id === id);
+        const item = cart.find((cartItem) => cartItem.id === id);
         if (!item) return;
 
-        if (qty <= 0) {
-          cart = cart.filter((i) => i.id !== id);
+        if (newQuantity <= 0) {
+          cart = cart.filter((cartItem) => cartItem.id !== id);
         } else {
-          item.quantity = qty;
+          item.quantity = newQuantity;
         }
 
         persistence.saveCart(cart);
         patchState(store, { cart });
       },
 
-      // -------------------------
-      // CROSS SELL (REMOTE DATA)
-      // -------------------------
-
       loadCrossSell() {
         api.getCrossSellProducts().subscribe((products) => {
-          const cartIds = store.cart().map((i) => i.id);
+          const cartIds = store.cart().map((item) => item.id);
 
           patchState(store, {
-            crossSellProducts: products.filter((p) => !cartIds.includes(p.id)),
+            crossSellProducts: products.filter((product) => !cartIds.includes(product.id)),
           });
         });
       },

@@ -1,54 +1,46 @@
 import { Component, inject, effect } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Product } from '@product//models/product.model';
 import { ProductTile } from '@product-listing/ui/product-tile/product-tile';
 import { ProductDetailStore } from '@product-details/state/product-details.store';
-import { ProductsApi } from '@product-listing/api/products.api';
-import { CartStore } from '@cart/state/cart.store';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-product-detail',
   standalone: true,
   imports: [CommonModule, ProductTile, RouterLink],
-  providers: [ProductDetailStore, ProductsApi],
+  providers: [ProductDetailStore],
   templateUrl: './product-details.html',
 })
 export class ProductDetails {
   readonly store = inject(ProductDetailStore);
-  readonly cartStore = inject(CartStore);
   private route = inject(ActivatedRoute);
-  router = inject(Router);
+  readonly router = inject(Router);
 
-  starArray = [0, 1, 2, 3, 4];
+  readonly starArray = [0, 1, 2, 3, 4];
 
   constructor() {
-    const paramMapSignal = toSignal(this.route.paramMap);
+    const productIdSignal = toSignal(this.route.paramMap);
     effect(() => {
-      const productId = paramMapSignal()?.get('productId');
+      const productId = productIdSignal()?.get('productId');
       if (productId) this.store.loadProduct(productId);
     });
   }
 
-  floor(v: number) {
-    return Math.floor(v);
+  floor(value: number): number {
+    return Math.floor(value);
   }
 
-  savePercent(p: any) {
-    if (!p?.originalPrice) return 0;
-    return Math.round((1 - p.price / p.originalPrice) * 100);
+  calculateSavePercent(product: any): number {
+    if (!product?.originalPrice) return 0;
+    return Math.round((1 - product.price / product.originalPrice) * 100);
   }
 
-  galleryImages(product: any) {
+  getGalleryImages(product: any): string[] {
     return [product.image, product.image, product.image, product.image];
   }
 
-  onQtyInput(v: string) {
-    this.store.setQty(parseInt(v, 10));
-  }
-
-  addToCart(product: Product) {
-    this.cartStore.addItem(product, +this.store.quantity());
+  parseQuantityInput(value: string): void {
+    this.store.setQuantity(parseInt(value, 10));
   }
 }

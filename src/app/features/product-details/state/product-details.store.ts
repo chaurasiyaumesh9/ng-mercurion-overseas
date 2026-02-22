@@ -1,8 +1,7 @@
 import { computed, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartStore } from '@cart/state/cart.store';
 import { signalStore, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
-import { ProductsApi } from '@product-listing/api/products.api';
-
 import { Product } from '@product//models/product.model';
 
 export interface ProductDetailState {
@@ -27,53 +26,44 @@ export const ProductDetailStore = signalStore(
   })),
 
   withMethods((store) => {
-    const productsService = inject(ProductsApi);
     const cartStore = inject(CartStore);
+    const router = inject(Router);
 
     return {
       loadProduct(id: string) {
         patchState(store, { loading: true });
 
-        productsService.getProduct(id).subscribe((product) => {
-          patchState(store, { product, loading: false });
-
-          // Load related (simple strategy using full list)
-          productsService.getProducts().subscribe((all) => {
-            const related = all
-              .filter((p) => p.category.name === product.category.name && p.id !== product.id)
-              .slice(0, 4);
-
-            patchState(store, { relatedProducts: related });
-          });
-        });
+        // TODO: API doesn't provide single product endpoint.
+        // Implement when endpoint becomes available.
+        patchState(store, { loading: false });
       },
 
-      increaseQty() {
+      increaseQuantity() {
         patchState(store, { quantity: store.quantity() + 1 });
       },
 
-      decreaseQty() {
+      decreaseQuantity() {
         patchState(store, { quantity: Math.max(1, store.quantity() - 1) });
       },
 
-      setQty(v: number) {
-        patchState(store, { quantity: Math.max(1, v || 1) });
+      setQuantity(newQuantity: number) {
+        patchState(store, { quantity: Math.max(1, newQuantity || 1) });
       },
 
-      selectImage(i: number) {
-        patchState(store, { selectedImage: i });
+      selectImage(imageIndex: number) {
+        patchState(store, { selectedImage: imageIndex });
       },
 
       addToCart() {
-        const p = store.product();
-        if (!p) return;
-        cartStore.addItem(p, store.quantity());
+        const product = store.product();
+        if (!product) return;
+        cartStore.addItem(product, store.quantity());
       },
 
-      buyNow(router: any) {
-        const p = store.product();
-        if (!p) return;
-        cartStore.addItem(p, store.quantity());
+      buyNow() {
+        const product = store.product();
+        if (!product) return;
+        cartStore.addItem(product, store.quantity());
         router.navigate(['/cart']);
       },
 

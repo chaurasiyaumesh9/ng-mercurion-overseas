@@ -40,12 +40,12 @@
 
         <!-- Thumbnails -->
         <div class="grid grid-cols-4 gap-4">
-          @for (img of galleryImages(product); track $index; let i = $index) {
+          @for (img of getGalleryImages(product); track $index; let imageIndex = $index) {
             <button
-              (click)="store.selectImage(i)"
+              (click)="store.selectImage(imageIndex)"
               class="aspect-square bg-gray-100 rounded-lg overflow-hidden transition"
-              [class.ring-2]="store.selectedImage() === i"
-              [class.ring-blue-600]="store.selectedImage() === i"
+              [class.ring-2]="store.selectedImage() === imageIndex"
+              [class.ring-blue-600]="store.selectedImage() === imageIndex"
             >
               <img [src]="img" class="w-full h-full object-cover" />
             </button>
@@ -104,7 +104,7 @@
 
           @if (product.originalPrice) {
             <span class="bg-red-100 text-red-600 px-3 py-1 rounded text-sm font-medium">
-              Save {{ savePercent(product) }}%
+              Save {{ calculateSavePercent(product) }}%
             </span>
           }
         </div>
@@ -135,16 +135,16 @@
           <label class="font-semibold block mb-2">Quantity</label>
 
           <div class="flex border rounded-lg w-fit overflow-hidden">
-            <button class="px-4 py-2 hover:bg-gray-100" (click)="store.decreaseQty()">-</button>
+            <button class="px-4 py-2 hover:bg-gray-100" (click)="store.decreaseQuantity()">-</button>
 
             <input
               type="number"
               class="w-16 text-center border-x"
               [value]="store.quantity()"
-              (input)="onQtyInput($any($event.target).value)"
+              (input)="parseQuantityInput($any($event.target).value)"
             />
 
-            <button class="px-4 py-2 hover:bg-gray-100" (click)="store.increaseQty()">+</button>
+            <button class="px-4 py-2 hover:bg-gray-100" (click)="store.increaseQuantity()">+</button>
           </div>
         </div>
 
@@ -152,7 +152,7 @@
         <div class="flex flex-col sm:flex-row gap-4 mb-6">
           <button
             class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl flex items-center justify-center gap-2 transition"
-            (click)="addToCart(product)"
+            (click)="store.addToCart()"
             [disabled]="!product.inStock"
           >
             <!-- Cart Icon -->
@@ -176,7 +176,7 @@
 
           <button
             class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl transition"
-            (click)="store.buyNow(router)"
+            (click)="store.buyNow()"
             [disabled]="!product.inStock"
           >
             Buy Now

@@ -1,14 +1,9 @@
-import { inject } from '@angular/core';
 import { ResolveFn } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/internal/operators/map';
 import { Product } from '@product//models/product.model';
+import { of } from 'rxjs';
 
 export const featuredProductsResolver: ResolveFn<Product[]> = () => {
-  const http = inject(HttpClient);
-  return http.get<Product[]>(
-    '../../../assets/mock-data/products/products.data.json'
-  ).pipe(
-    map(products => products.filter(p => p.featured))
-  );
+  // TODO: Implement featured products from API when available
+  // Currently API only provides category-based products
+  return of([]);
 };

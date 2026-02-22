@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CategoriesResponse } from '@entities/catalog/categories-response.model';
 import { CategoryRow } from '@entities/catalog/category-row.model';
 import { Category } from '@entities/catalog/category.model';
 import { environment } from 'environments/environment';
@@ -12,7 +13,7 @@ export class CategoryService {
   constructor(private http: HttpClient) {}
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<CategoryRow[]>(this.apiUrl).pipe(map((rows) => this.buildHierarchy(rows)));
+    return this.http.get<CategoriesResponse>(this.apiUrl).pipe(map((response) => this.buildHierarchy(response.items)));
   }
 
   private buildHierarchy(rows: CategoryRow[]): Category[] {

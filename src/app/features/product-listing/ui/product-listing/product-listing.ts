@@ -14,16 +14,4 @@ import { RouterLink } from '@angular/router';
 })
 export class ProductListing {
     readonly store = inject(ProductListingStore);
-
-    // Signals from store
-    products = this.store.filteredProducts;
-    loading = this.store.loading;
-    
-    // Search term
-    search = this.store.search;
-
-    constructor() {
-        this.store.init();
-        this.store.resetAllFilters();
-    }
 }
