@@ -7,6 +7,7 @@ import { computed, effect } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category, SubCategory } from '@entities/catalog/category.model';
 import { Product } from '@product//models/product.model';
+import { SearchFacet } from '@entities/catalog/search-products-response.model';
 
 interface ListingRouteData {
   categories: Category[];
@@ -15,12 +16,22 @@ interface ListingRouteData {
 export interface ProductsState {
   products: Product[];
   loading: boolean;
+  page: number;
+  pageSize: number;
+  total: number;
+  facets: SearchFacet[];
+  mobileFiltersOpen: boolean;
 }
 
 export const ProductListingStore = signalStore(
   withState<ProductsState>({
     products: [],
     loading: false,
+    page: 1,
+    pageSize: 12,
+    total: 0,
+    facets: [],
+    mobileFiltersOpen: false,
   }),
 
   withComputed(() => {
@@ -36,6 +47,14 @@ export const ProductListingStore = signalStore(
       categorySlug: computed(() => routeParams()?.get('categorySlug') ?? null),
       subCategorySlug: computed(() => routeParams()?.get('subCategorySlug') ?? null),
       search: computed(() => queryParams()?.get('keywords') ?? null),
+      pageFromUrl: computed(() => {
+        const page = queryParams()?.get('page');
+        return page ? parseInt(page, 10) : 1;
+      }),
+      pageSizeFromUrl: computed(() => {
+        const pageSize = queryParams()?.get('pageSize');
+        return pageSize ? parseInt(pageSize, 10) : 12;
+      }),
     };
   }),
 
@@ -67,22 +86,35 @@ export const ProductListingStore = signalStore(
 
   withComputed((store) => ({
     filteredProducts: computed(() => {
-      let list = store.products();
+      // API handles all filtering (search, category, facets) server-side
+      // Return products as-is from API response
+      return store.products();
+    }),
+    totalPages: computed(() => {
+      return Math.ceil(store.total() / store.pageSize());
+    }),
+  })),
 
-      // Filter by search query
-      const search = store.search()?.toLowerCase()?.trim();
-      if (search) {
-        list = list.filter((product) => {
-          return (
-            product.name?.toLowerCase().includes(search) ||
-            product.description?.toLowerCase().includes(search) ||
-            product.category?.name?.toLowerCase().includes(search) ||
-            product.subCategory?.name?.toLowerCase().includes(search)
-          );
-        });
+  withComputed((store) => ({
+    pageNumbers: computed(() => {
+      const total = store.totalPages();
+      const pages: number[] = [];
+      for (let i = 1; i <= total; i++) {
+        pages.push(i);
       }
+      return pages;
+    }),
+    visiblePageNumbers: computed(() => {
+      const current = store.page();
+      const total = store.totalPages();
+      const pages: number[] = [];
+      const start = Math.max(1, current - 2);
+      const end = Math.min(total, current + 2);
 
-      return list;
+      for (let i = start; i <= end; i++) {
+        pages.push(i);
+      }
+      return pages;
     }),
   })),
 
@@ -95,41 +127,165 @@ export const ProductListingStore = signalStore(
     ) => {
       // Watch for route changes and auto-fetch products
       effect(() => {
-        // Trigger effect whenever category or subcategory changes
+        // Trigger effect whenever category, subcategory, page, page size, or search changes
         store.categorySlug();
         store.subCategorySlug();
+        store.pageFromUrl();
+        store.pageSizeFromUrl();
+        store.search();
 
-        patchState(store, { loading: true });
+        patchState(store, { 
+          loading: true,
+          page: store.pageFromUrl(),
+          pageSize: store.pageSizeFromUrl(),
+        });
 
-        // If viewing a subcategory, fetch that subcategory's products
+        const searchQuery = store.search();
+        
+        // Determine which category ID to use
+        let categoryId: string | undefined;
         const subCategory = store.currentSubCategory();
         if (subCategory) {
-          service.getProductsByCategory(subCategory.id).subscribe((products) => {
-            patchState(store, {
-              products,
-              loading: false,
-            });
-          });
-          return;
+          categoryId = subCategory.id;
+        } else {
+          const category = store.currentCategory();
+          if (category) {
+            categoryId = category.id;
+          }
         }
 
-        // If viewing a category, fetch that category's products
-        const category = store.currentCategory();
-        if (category) {
-          service.getProductsByCategory(category.id).subscribe((products) => {
+        // If we have a search query, prioritize it over category filtering
+        if (searchQuery) {
+          service.searchProducts({
+            searchQuery,
+            page: store.page(),
+            pageSize: store.pageSize(),
+          }).subscribe((result) => {
             patchState(store, {
-              products,
+              products: result.products,
               loading: false,
+              page: result.page,
+              pageSize: result.pageSize,
+              total: result.total,
+              facets: result.facets || [],
             });
           });
-          return;
+        } else if (categoryId) {
+          service.searchProducts({
+            categoryId,
+            page: store.page(),
+            pageSize: store.pageSize(),
+          }).subscribe((result) => {
+            patchState(store, {
+              products: result.products,
+              loading: false,
+              page: result.page,
+              pageSize: result.pageSize,
+              total: result.total,
+              facets: result.facets || [],
+            });
+          });
+        } else {
+          // No category/subcategory or search query - no products to load
+          patchState(store, { products: [], loading: false, page: 1, total: 0 });
         }
-
-        // No category/subcategory - no products to load
-        patchState(store, { products: [], loading: false });
       });
 
-      return {};
+      return {
+        setPage(pageNumber: number) {
+          if (pageNumber > 0 && pageNumber <= store.totalPages()) {
+            // Build path segments
+            const catSlug = store.categorySlug();
+            const subSlug = store.subCategorySlug();
+            const pathSegments = (catSlug && subSlug) ? [catSlug, subSlug] : (catSlug ? [catSlug] : ['']);
+            
+            const queryParams: any = {
+              page: pageNumber,
+              pageSize: store.pageSize()
+            };
+            
+            const search = store.search();
+            if (search) {
+              queryParams.keywords = search;
+            }
+            
+            router.navigate(pathSegments, { queryParams }).then(() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+          }
+        },
+        prevPage() {
+          if (store.page() > 1) {
+            const newPage = store.page() - 1;
+            // Build path segments
+            const catSlug = store.categorySlug();
+            const subSlug = store.subCategorySlug();
+            const pathSegments = (catSlug && subSlug) ? [catSlug, subSlug] : (catSlug ? [catSlug] : ['']);
+            
+            const queryParams: any = {
+              page: newPage,
+              pageSize: store.pageSize()
+            };
+            
+            const search = store.search();
+            if (search) {
+              queryParams.keywords = search;
+            }
+            
+            router.navigate(pathSegments, { queryParams }).then(() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+          }
+        },
+        nextPage() {
+          if (store.page() < store.totalPages()) {
+            const newPage = store.page() + 1;
+            // Build path segments
+            const catSlug = store.categorySlug();
+            const subSlug = store.subCategorySlug();
+            const pathSegments = (catSlug && subSlug) ? [catSlug, subSlug] : (catSlug ? [catSlug] : ['']);
+            
+            const queryParams: any = {
+              page: newPage,
+              pageSize: store.pageSize()
+            };
+            
+            const search = store.search();
+            if (search) {
+              queryParams.keywords = search;
+            }
+            
+            router.navigate(pathSegments, { queryParams }).then(() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+          }
+        },
+        setPageSize(pageSize: number) {
+          if (pageSize > 0) {
+            // Build path segments
+            const catSlug = store.categorySlug();
+            const subSlug = store.subCategorySlug();
+            const pathSegments = (catSlug && subSlug) ? [catSlug, subSlug] : (catSlug ? [catSlug] : ['']);
+            
+            const queryParams: any = {
+              page: 1,
+              pageSize: pageSize
+            };
+            
+            const search = store.search();
+            if (search) {
+              queryParams.keywords = search;
+            }
+            
+            router.navigate(pathSegments, { queryParams }).then(() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+          }
+        },
+        toggleMobileFilters() {
+          patchState(store, { mobileFiltersOpen: !store.mobileFiltersOpen() });
+        },
+      };
     },
   ),
 );

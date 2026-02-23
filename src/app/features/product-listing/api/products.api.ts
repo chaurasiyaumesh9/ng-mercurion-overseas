@@ -1,43 +1,80 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { Product } from '@product//models/product.model';
 import { environment } from 'environments/environment';
-import { CategoryItemsResponse, CategoryItemRow } from '@product/models/category-items-response.model';
+import { SearchProductsResponse, SearchProductItem, SearchFacet } from '@entities/catalog/search-products-response.model';
+
+export interface SearchProductsOptions {
+    categoryId?: string;
+    searchQuery?: string;
+    page?: number;
+    pageSize?: number;
+    sort?: string;
+}
+
+export interface SearchProductsResult {
+    products: Product[];
+    total: number;
+    page: number;
+    pageSize: number;
+    facets: SearchFacet[];
+}
 
 @Injectable({ providedIn: 'root' })
 export class ProductsApi {
-    private apiUrl = `${environment.apiBaseUrl}/api/netsuite`;
+    private searchApiUrl = `${environment.apiBaseUrl}/api/search`;
 
     constructor(private http: HttpClient) {}
 
     /**
-     * Fetch products by category ID
+     * Search products with support for category filtering, search keywords, pagination, and sorting
      */
-    getProductsByCategory(categoryId: string): Observable<Product[]> {
-        return this.http.get<CategoryItemsResponse>(`${this.apiUrl}/categories/${categoryId}/items`).pipe(
-            map((response) => {
-                if (!response.items || !Array.isArray(response.items)) return [];
-                return response.items.map(item => this.mapToProduct(item));
-            }),
-            catchError(() => {
-                console.error(`Failed to fetch products for category ${categoryId}`);
-                return of([]);
+    searchProducts(options: SearchProductsOptions): Observable<SearchProductsResult> {
+        let params = new HttpParams();
+
+        if (options.categoryId) {
+            params = params.set('categoryId', options.categoryId);
+        }
+        if (options.searchQuery) {
+            params = params.set('q', options.searchQuery);
+        }
+        if (options.page !== undefined && options.page !== null) {
+            params = params.set('page', options.page.toString());
+        }
+        if (options.pageSize !== undefined && options.pageSize !== null) {
+            params = params.set('pageSize', options.pageSize.toString());
+        }
+        if (options.sort) {
+            params = params.set('sort', options.sort);
+        }
+
+        return this.http.get<SearchProductsResponse>(`${this.searchApiUrl}/products`, { params }).pipe(
+            map((response) => ({
+                products: (response.items || []).map(item => this.mapSearchProductToProduct(item)),
+                total: response.total,
+                page: response.page,
+                pageSize: response.pageSize,
+                facets: response.facets || [],
+            })),
+            catchError((error) => {
+                console.error('Failed to search products:', error);
+                return of({ products: [], total: 0, page: 1, pageSize: 20, facets: [] });
             })
         );
     }
 
-    private mapToProduct(item: CategoryItemRow): Product {
+    private mapSearchProductToProduct(item: SearchProductItem): Product {
         return {
             id: item.id,
             name: item.name,
-            price: parseFloat(item.price),
+            price: item.price,
             image: item.imageUrl,
             description: item.description,
-            rating: 0, // API doesn't provide ratings
-            reviews: [], // API doesn't provide reviews
-            inStock: parseInt(item.quantityAvailable, 10) > 0,
+            rating: 0,
+            reviews: [],
+            inStock: item.quantityAvailable > 0,
             category: {
                 id: '',
                 name: '',
@@ -62,3 +99,6 @@ export class ProductsApi {
         };
     }
 }
+
+
+
