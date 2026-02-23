@@ -13,6 +13,18 @@ interface ListingRouteData {
   categories: Category[];
 }
 
+const facetLabels: { [key: string]: string } = {
+  categoryIds: 'Categories',
+  brand: 'Brand',
+  color: 'Color',
+  networkType: 'Network Type',
+  storageCapacity: 'Storage Capacity (GB)',
+  memoryRam: 'Memory (RAM)',
+  screenSize: 'Screen Size (inches)',
+  customerRating: 'Customer Rating',
+  featured: 'Featured'
+};
+
 export interface ProductsState {
   products: Product[];
   loading: boolean;
@@ -93,6 +105,15 @@ export const ProductListingStore = signalStore(
     totalPages: computed(() => {
       return Math.ceil(store.total() / store.pageSize());
     }),
+    visibleFacets: computed(() => {
+      // Filter out facets with no values and add friendly labels
+      return store.facets()
+        .filter(facet => facet.values && facet.values.length > 0)
+        .map(facet => ({
+          ...facet,
+          label: facetLabels[facet.field] || facet.field
+        }));
+    }),
   })),
 
   withComputed((store) => ({
@@ -116,6 +137,11 @@ export const ProductListingStore = signalStore(
       }
       return pages;
     }),
+  })),
+
+  // Export facet labels for use in templates
+  withComputed(() => ({
+    facetLabels: computed(() => facetLabels),
   })),
 
   withMethods(

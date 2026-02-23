@@ -85,10 +85,10 @@
             </div>
           }
 
-          @for (facet of store.facets(); track facet.field) {
+          @for (facet of store.visibleFacets(); track facet.field) {
             @if (facet.field !== 'categoryIds') {
               <div class="border-b pb-4">
-                <h3 class="text-sm font-semibold text-gray-900 mb-3">{{ facet.field }}</h3>
+                <h3 class="text-sm font-semibold text-gray-900 mb-3">{{ facet.label }}</h3>
                 <div class="space-y-2">
                   @for (facetValue of facet.values; track facetValue.value) {
                     <div class="flex items-center justify-between">
@@ -326,10 +326,10 @@
             </div>
           }
 
-          @for (facet of store.facets(); track facet.field) {
+          @for (facet of store.visibleFacets(); track facet.field) {
             @if (facet.field !== 'categoryIds') {
               <div class="border-b pb-4">
-                <h3 class="text-sm font-semibold text-gray-900 mb-3">{{ facet.field }}</h3>
+                <h3 class="text-sm font-semibold text-gray-900 mb-3">{{ facet.label }}</h3>
                 <div class="space-y-2">
                   @for (facetValue of facet.values; track facetValue.value) {
                     <label class="flex items-center gap-2 text-sm cursor-pointer">
