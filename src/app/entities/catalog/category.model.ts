@@ -5,6 +5,7 @@ export interface Category {
   url: string;
   image?: string;
   tagline?: string;
+  featured: boolean;
   subCategories: SubCategory[];
 }
 

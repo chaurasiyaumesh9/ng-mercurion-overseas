@@ -1,7 +1,8 @@
-import { CategoryRow } from "./category-row.model";
-
-export interface CategoriesResponse {
-  success: boolean;
-  count: number;
-  items: CategoryRow[];
+export interface CategoryRow {
+  id: string;
+  name: string;
+  primaryParent: string | null;
+  urlFragment: string;
+  imageUrl?: string;
+  featured: boolean;
 }

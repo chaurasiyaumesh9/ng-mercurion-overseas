@@ -1,9 +1,12 @@
 import { ResolveFn } from '@angular/router';
+import { inject } from '@angular/core';
 import { Product } from '@product//models/product.model';
-import { of } from 'rxjs';
+import { map } from 'rxjs';
+import { ProductsApi, SearchProductsResult } from '@product-listing/api/products.api';
 
 export const featuredProductsResolver: ResolveFn<Product[]> = () => {
-  // TODO: Implement featured products from API when available
-  // Currently API only provides category-based products
-  return of([]);
+  const productsApi = inject(ProductsApi);
+  return productsApi.searchProducts({ featured: true, pageSize: 100 }).pipe(
+    map((result: SearchProductsResult) => result.products)
+  );
 };

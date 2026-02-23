@@ -13,6 +13,7 @@ export interface SearchProductsOptions {
     pageSize?: number;
     sort?: string;
     facets?: Map<string, Set<string>>;
+    featured?: boolean;
 }
 
 export interface SearchProductsResult {
@@ -50,6 +51,9 @@ export class ProductsApi {
         if (options.sort) {
             params = params.set('sort', options.sort);
         }
+        if (options.featured !== undefined && options.featured !== null) {
+            params = params.set('featured', options.featured.toString());
+        }
         // Add facet filters to request
         if (options.facets && options.facets.size > 0) {
             options.facets.forEach((values, key) => {
@@ -84,6 +88,7 @@ export class ProductsApi {
             image: item.imageUrl,
             inStock: item.quantityAvailable > 0,
             quantityAvailable: item.quantityAvailable,
+            featured: item.featured,
         };
     }
 }

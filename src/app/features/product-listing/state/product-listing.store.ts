@@ -73,6 +73,30 @@ export const ProductListingStore = signalStore(
         const pageSize = queryParams()?.get('pageSize');
         return pageSize ? parseInt(pageSize, 10) : 12;
       }),
+      facetsFromUrl: computed(() => {
+        const facetsMap = new Map<string, Set<string>>();
+        if (!queryParams()) return facetsMap;
+        
+        const params = queryParams();
+        // Get all query param keys
+        params?.keys.forEach(key => {
+          // Skip known non-facet params
+          if (!['keywords', 'page', 'pageSize'].includes(key)) {
+            const values = params?.getAll(key) || [];
+            if (values.length > 0) {
+              // Split comma-separated values
+              const valueSet = new Set<string>();
+              values.forEach(val => {
+                val.split(',').forEach(v => v && valueSet.add(v));
+              });
+              if (valueSet.size > 0) {
+                facetsMap.set(key, valueSet);
+              }
+            }
+          }
+        });
+        return facetsMap;
+      }),
     };
   }),
 
@@ -165,7 +189,7 @@ export const ProductListingStore = signalStore(
         store.pageFromUrl();
         store.pageSizeFromUrl();
         store.search();
-        store.selectedFacets();
+        const facetsFromUrl = store.facetsFromUrl();
 
         // Detect when category or subcategory changes and reset filters
         const categoryChanged = catSlug !== store.previousCategorySlug();
@@ -177,6 +201,9 @@ export const ProductListingStore = signalStore(
             previousCategorySlug: catSlug,
             previousSubCategorySlug: subSlug,
           });
+        } else {
+          // Sync facets from URL to state
+          patchState(store, { selectedFacets: new Map(facetsFromUrl) });
         }
 
         patchState(store, { 
@@ -256,6 +283,13 @@ export const ProductListingStore = signalStore(
               queryParams.keywords = search;
             }
             
+            // Add facet query params
+            store.selectedFacets().forEach((values, key) => {
+              if (values.size > 0) {
+                queryParams[key] = Array.from(values).join(',');
+              }
+            });
+            
             router.navigate(pathSegments, { queryParams }).then(() => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             });
@@ -278,6 +312,13 @@ export const ProductListingStore = signalStore(
             if (search) {
               queryParams.keywords = search;
             }
+            
+            // Add facet query params
+            store.selectedFacets().forEach((values, key) => {
+              if (values.size > 0) {
+                queryParams[key] = Array.from(values).join(',');
+              }
+            });
             
             router.navigate(pathSegments, { queryParams }).then(() => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -302,6 +343,13 @@ export const ProductListingStore = signalStore(
               queryParams.keywords = search;
             }
             
+            // Add facet query params
+            store.selectedFacets().forEach((values, key) => {
+              if (values.size > 0) {
+                queryParams[key] = Array.from(values).join(',');
+              }
+            });
+            
             router.navigate(pathSegments, { queryParams }).then(() => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             });
@@ -323,6 +371,13 @@ export const ProductListingStore = signalStore(
             if (search) {
               queryParams.keywords = search;
             }
+            
+            // Add facet query params
+            store.selectedFacets().forEach((values, key) => {
+              if (values.size > 0) {
+                queryParams[key] = Array.from(values).join(',');
+              }
+            });
             
             router.navigate(pathSegments, { queryParams }).then(() => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -348,13 +403,54 @@ export const ProductListingStore = signalStore(
             selectedFacets.set(facetField, facetSet);
           }
           
-          patchState(store, { selectedFacets });
+          // Build path segments
+          const catSlug = store.categorySlug();
+          const subSlug = store.subCategorySlug();
+          const pathSegments = (catSlug && subSlug) ? [catSlug, subSlug] : (catSlug ? [catSlug] : ['']);
+          
+          const queryParams: any = {
+            page: 1,
+            pageSize: store.pageSize()
+          };
+          
+          const search = store.search();
+          if (search) {
+            queryParams.keywords = search;
+          }
+          
+          // Add facet query params
+          selectedFacets.forEach((values, key) => {
+            if (values.size > 0) {
+              queryParams[key] = Array.from(values).join(',');
+            }
+          });
+          
+          router.navigate(pathSegments, { queryParams }).then(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
         },
         isFacetValueSelected(facetField: string, facetValue: string): boolean {
           return store.selectedFacets().get(facetField)?.has(facetValue) ?? false;
         },
         clearFilters() {
-          patchState(store, { selectedFacets: new Map() });
+          // Build path segments
+          const catSlug = store.categorySlug();
+          const subSlug = store.subCategorySlug();
+          const pathSegments = (catSlug && subSlug) ? [catSlug, subSlug] : (catSlug ? [catSlug] : ['']);
+          
+          const queryParams: any = {
+            page: 1,
+            pageSize: store.pageSize()
+          };
+          
+          const search = store.search();
+          if (search) {
+            queryParams.keywords = search;
+          }
+          
+          router.navigate(pathSegments, { queryParams }).then(() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          });
         },
       };
     },

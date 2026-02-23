@@ -1,28 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CategoriesResponse } from '@entities/catalog/categories-response.model';
-import { CategoryRow } from '@entities/catalog/category-row.model';
+import { CategoryRow } from '@entities/catalog/categories-response.model';
 import { Category } from '@entities/catalog/category.model';
 import { environment } from 'environments/environment';
 import { map, Observable } from 'rxjs';
 
 @Injectable()
 export class CategoryService {
-  private apiUrl = `${environment.apiBaseUrl}/api/netsuite/categories`;
+  private apiUrl = `${environment.apiBaseUrl}/api/search/categories`;
 
   constructor(private http: HttpClient) {}
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<CategoriesResponse>(this.apiUrl).pipe(map((response) => this.buildHierarchy(response.items)));
+    return this.http.get<CategoryRow[]>(this.apiUrl).pipe(map((response) => this.buildHierarchy(response)));
   }
 
   private buildHierarchy(rows: CategoryRow[]): Category[] {
     const map = new Map<string, Category>();
 
-    // First pass: create category objects
     rows.forEach((row) => {
       map.set(row.id, {
         id: row.id,
+        featured: row.featured,
         name: row.name,
         slug: row.urlFragment,
         url: `/${row.urlFragment}`,
@@ -33,7 +32,6 @@ export class CategoryService {
 
     const roots: Category[] = [];
 
-    // Second pass: attach children
     rows.forEach((row) => {
       const current = map.get(row.id)!;
 

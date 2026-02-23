@@ -11,4 +11,5 @@ export interface Product {
   image: string;
   inStock: boolean;
   quantityAvailable: number;
+  featured?: boolean;
 }

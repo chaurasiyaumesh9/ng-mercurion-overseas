@@ -16,6 +16,7 @@ export interface SearchProductItem {
   quantityAvailable: number;
   imageUrl: string;
   lastModifiedDate: string;
+  featured?: boolean;
 }
 
 export interface SearchFacet {
