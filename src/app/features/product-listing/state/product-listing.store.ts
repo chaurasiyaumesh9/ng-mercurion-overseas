@@ -33,6 +33,9 @@ export interface ProductsState {
   total: number;
   facets: SearchFacet[];
   mobileFiltersOpen: boolean;
+  selectedFacets: Map<string, Set<string>>;
+  previousCategorySlug: string | null;
+  previousSubCategorySlug: string | null;
 }
 
 export const ProductListingStore = signalStore(
@@ -44,6 +47,9 @@ export const ProductListingStore = signalStore(
     total: 0,
     facets: [],
     mobileFiltersOpen: false,
+    selectedFacets: new Map(),
+    previousCategorySlug: null,
+    previousSubCategorySlug: null,
   }),
 
   withComputed(() => {
@@ -153,12 +159,25 @@ export const ProductListingStore = signalStore(
     ) => {
       // Watch for route changes and auto-fetch products
       effect(() => {
-        // Trigger effect whenever category, subcategory, page, page size, or search changes
-        store.categorySlug();
-        store.subCategorySlug();
+        // Trigger effect whenever category, subcategory, page, page size, search, or selected facets change
+        const catSlug = store.categorySlug();
+        const subSlug = store.subCategorySlug();
         store.pageFromUrl();
         store.pageSizeFromUrl();
         store.search();
+        store.selectedFacets();
+
+        // Detect when category or subcategory changes and reset filters
+        const categoryChanged = catSlug !== store.previousCategorySlug();
+        const subcategoryChanged = subSlug !== store.previousSubCategorySlug();
+        
+        if (categoryChanged || subcategoryChanged) {
+          patchState(store, {
+            selectedFacets: new Map(),
+            previousCategorySlug: catSlug,
+            previousSubCategorySlug: subSlug,
+          });
+        }
 
         patchState(store, { 
           loading: true,
@@ -186,6 +205,7 @@ export const ProductListingStore = signalStore(
             searchQuery,
             page: store.page(),
             pageSize: store.pageSize(),
+            facets: store.selectedFacets(),
           }).subscribe((result) => {
             patchState(store, {
               products: result.products,
@@ -201,6 +221,7 @@ export const ProductListingStore = signalStore(
             categoryId,
             page: store.page(),
             pageSize: store.pageSize(),
+            facets: store.selectedFacets(),
           }).subscribe((result) => {
             patchState(store, {
               products: result.products,
@@ -310,6 +331,30 @@ export const ProductListingStore = signalStore(
         },
         toggleMobileFilters() {
           patchState(store, { mobileFiltersOpen: !store.mobileFiltersOpen() });
+        },
+        toggleFacetValue(facetField: string, facetValue: string) {
+          const selectedFacets = new Map(store.selectedFacets());
+          let facetSet = selectedFacets.get(facetField) || new Set();
+          
+          if (facetSet.has(facetValue)) {
+            facetSet.delete(facetValue);
+          } else {
+            facetSet.add(facetValue);
+          }
+          
+          if (facetSet.size === 0) {
+            selectedFacets.delete(facetField);
+          } else {
+            selectedFacets.set(facetField, facetSet);
+          }
+          
+          patchState(store, { selectedFacets });
+        },
+        isFacetValueSelected(facetField: string, facetValue: string): boolean {
+          return store.selectedFacets().get(facetField)?.has(facetValue) ?? false;
+        },
+        clearFilters() {
+          patchState(store, { selectedFacets: new Map() });
         },
       };
     },

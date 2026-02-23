@@ -12,6 +12,7 @@ export interface SearchProductsOptions {
     page?: number;
     pageSize?: number;
     sort?: string;
+    facets?: Map<string, Set<string>>;
 }
 
 export interface SearchProductsResult {
@@ -29,7 +30,7 @@ export class ProductsApi {
     constructor(private http: HttpClient) {}
 
     /**
-     * Search products with support for category filtering, search keywords, pagination, and sorting
+     * Search products with support for category filtering, search keywords, pagination, sorting, and facet filtering
      */
     searchProducts(options: SearchProductsOptions): Observable<SearchProductsResult> {
         let params = new HttpParams();
@@ -48,6 +49,14 @@ export class ProductsApi {
         }
         if (options.sort) {
             params = params.set('sort', options.sort);
+        }
+        // Add facet filters to request
+        if (options.facets && options.facets.size > 0) {
+            options.facets.forEach((values, key) => {
+                if (values.size > 0) {
+                    params = params.set(key, Array.from(values).join(','));
+                }
+            });
         }
 
         return this.http.get<SearchProductsResponse>(`${this.searchApiUrl}/products`, { params }).pipe(
