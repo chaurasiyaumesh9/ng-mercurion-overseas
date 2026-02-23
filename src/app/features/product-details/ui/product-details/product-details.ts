@@ -10,7 +10,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
   standalone: true,
   imports: [CommonModule, ProductTile, RouterLink],
   providers: [ProductDetailStore],
-  templateUrl: './product-details.html',
+  template: ``
+  //templateUrl: './product-details.html',
 })
 export class ProductDetails {
   readonly store = inject(ProductDetailStore);

@@ -5,7 +5,7 @@ import { ProductsApi } from '../api/products.api';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { computed, effect } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Category, SubCategory } from '@entities/catalog/category.model';
+import { Category } from '@entities/catalog/category.model';
 import { Product } from '@product//models/product.model';
 import { SearchFacet } from '@entities/catalog/search-products-response.model';
 

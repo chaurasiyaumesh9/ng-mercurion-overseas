@@ -62,7 +62,7 @@ export const CartStore = signalStore(
             name: product.name,
             price: product.price,
             image: product.image,
-            category: product.category.name,
+            category: product.sku || product.name,
             quantity,
           });
         }

@@ -1,29 +1,14 @@
-
-import { Breadcrumb } from "@core/models/breadcrumb.model";
-import { Review } from "./review.model";
-import { ProductFacetValues } from "@entities/catalog/facet.model";
-import { Category, SubCategory } from "@entities/catalog/category.model";
-
+/**
+ * Product domain model
+ * Simplified version aligned with search API response
+ */
 export interface Product {
   id: string;
+  sku: string;
   name: string;
   price: number;
-  originalPrice?: number;
-  image: string;
   description: string;
-  rating: number;
-  reviews: Review[];
+  image: string;
   inStock: boolean;
-  featured?: boolean;
-  tags?: string[];
-  facets?: ProductFacetValues;
-  category: Category;
-  subCategory: SubCategory;
-  url: string;
-  breadcrumbs: Breadcrumb[];
-  meta: {
-    title: string;
-    description: string;
-    keywords: string[];
-  };
+  quantityAvailable: number;
 }

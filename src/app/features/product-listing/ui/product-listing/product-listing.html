@@ -17,7 +17,6 @@
         }
       </div>
     }
-
     <!-- ================= TITLE ================= -->
     <h1 class="text-2xl font-bold mb-4">
       @if (store.search()) {
@@ -31,7 +30,15 @@
       }
     </h1>
 
-    <p class="text-gray-600 text-sm">Showing {{ store.filteredProducts().length }} products</p>
+    <p class="text-gray-600 text-sm">
+      @if (store.loading()) {
+        <span class="text-gray-400">Loading products...</span>
+      } @else if (store.total() === 0) {
+        <span>No products found</span>
+      } @else {
+        <span>Showing {{ store.filteredProducts().length }} of {{ store.total() }} products</span>
+      }
+    </p>
 
     <!-- ================= TOP BAR ================= -->
     <div class="hidden md:flex items-center justify-end mb-4">

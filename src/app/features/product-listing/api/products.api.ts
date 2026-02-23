@@ -68,34 +68,13 @@ export class ProductsApi {
     private mapSearchProductToProduct(item: SearchProductItem): Product {
         return {
             id: item.id,
+            sku: item.sku,
             name: item.name,
             price: item.price,
-            image: item.imageUrl,
             description: item.description,
-            rating: 0,
-            reviews: [],
+            image: item.imageUrl,
             inStock: item.quantityAvailable > 0,
-            category: {
-                id: '',
-                name: '',
-                slug: '',
-                url: '',
-                image: '',
-                subCategories: []
-            },
-            subCategory: {
-                id: '',
-                name: '',
-                slug: '',
-                url: ''
-            },
-            url: `/product/${item.id}`,
-            breadcrumbs: [],
-            meta: {
-                title: item.name,
-                description: item.description,
-                keywords: [item.name]
-            }
+            quantityAvailable: item.quantityAvailable,
         };
     }
 }
