@@ -22,7 +22,7 @@ const facetLabels: { [key: string]: string } = {
   memoryRam: 'Memory (RAM)',
   screenSize: 'Screen Size (inches)',
   customerRating: 'Customer Rating',
-  featured: 'Featured'
+  featured: 'Featured',
 };
 
 export interface ProductsState {
@@ -33,9 +33,6 @@ export interface ProductsState {
   total: number;
   facets: SearchFacet[];
   mobileFiltersOpen: boolean;
-  selectedFacets: Map<string, Set<string>>;
-  previousCategorySlug: string | null;
-  previousSubCategorySlug: string | null;
 }
 
 export const ProductListingStore = signalStore(
@@ -47,9 +44,6 @@ export const ProductListingStore = signalStore(
     total: 0,
     facets: [],
     mobileFiltersOpen: false,
-    selectedFacets: new Map(),
-    previousCategorySlug: null,
-    previousSubCategorySlug: null,
   }),
 
   withComputed(() => {
@@ -76,18 +70,18 @@ export const ProductListingStore = signalStore(
       facetsFromUrl: computed(() => {
         const facetsMap = new Map<string, Set<string>>();
         if (!queryParams()) return facetsMap;
-        
+
         const params = queryParams();
         // Get all query param keys
-        params?.keys.forEach(key => {
+        params?.keys.forEach((key) => {
           // Skip known non-facet params
           if (!['keywords', 'page', 'pageSize'].includes(key)) {
             const values = params?.getAll(key) || [];
             if (values.length > 0) {
               // Split comma-separated values
               const valueSet = new Set<string>();
-              values.forEach(val => {
-                val.split(',').forEach(v => v && valueSet.add(v));
+              values.forEach((val) => {
+                val.split(',').forEach((v) => v && valueSet.add(v));
               });
               if (valueSet.size > 0) {
                 facetsMap.set(key, valueSet);
@@ -137,11 +131,12 @@ export const ProductListingStore = signalStore(
     }),
     visibleFacets: computed(() => {
       // Filter out facets with no values and add friendly labels
-      return store.facets()
-        .filter(facet => facet.values && facet.values.length > 0)
-        .map(facet => ({
+      return store
+        .facets()
+        .filter((facet) => facet.values && facet.values.length > 0)
+        .map((facet) => ({
           ...facet,
-          label: facetLabels[facet.field] || facet.field
+          label: facetLabels[facet.field] || facet.field,
         }));
     }),
   })),
@@ -183,37 +178,20 @@ export const ProductListingStore = signalStore(
     ) => {
       // Watch for route changes and auto-fetch products
       effect(() => {
-        // Trigger effect whenever category, subcategory, page, page size, search, or selected facets change
+        // Trigger effect whenever category, subcategory, page, page size, search change
         const catSlug = store.categorySlug();
         const subSlug = store.subCategorySlug();
-        store.pageFromUrl();
-        store.pageSizeFromUrl();
-        store.search();
-        const facetsFromUrl = store.facetsFromUrl();
+        const pageFromUrl = store.pageFromUrl();
+        const pageSizeFromUrl = store.pageSizeFromUrl();
+        const search = store.search();
+        const selectedFacets = store.facetsFromUrl();
 
-        // Detect when category or subcategory changes and reset filters
-        const categoryChanged = catSlug !== store.previousCategorySlug();
-        const subcategoryChanged = subSlug !== store.previousSubCategorySlug();
-        
-        if (categoryChanged || subcategoryChanged) {
-          patchState(store, {
-            selectedFacets: new Map(),
-            previousCategorySlug: catSlug,
-            previousSubCategorySlug: subSlug,
-          });
-        } else {
-          // Sync facets from URL to state
-          patchState(store, { selectedFacets: new Map(facetsFromUrl) });
-        }
-
-        patchState(store, { 
+        patchState(store, {
           loading: true,
-          page: store.pageFromUrl(),
-          pageSize: store.pageSizeFromUrl(),
+          page: pageFromUrl,
+          pageSize: pageSizeFromUrl,
         });
 
-        const searchQuery = store.search();
-        
         // Determine which category ID to use
         let categoryId: string | undefined;
         const subCategory = store.currentSubCategory();
@@ -226,30 +204,15 @@ export const ProductListingStore = signalStore(
           }
         }
 
-        // If we have a search query, prioritize it over category filtering
-        if (searchQuery) {
-          service.searchProducts({
-            searchQuery,
-            page: store.page(),
-            pageSize: store.pageSize(),
-            facets: store.selectedFacets(),
-          }).subscribe((result) => {
-            patchState(store, {
-              products: result.products,
-              loading: false,
-              page: result.page,
-              pageSize: result.pageSize,
-              total: result.total,
-              facets: result.facets || [],
-            });
-          });
-        } else if (categoryId) {
-          service.searchProducts({
+        service
+          .searchProducts({
+            searchQuery: search ?? undefined,
             categoryId,
-            page: store.page(),
-            pageSize: store.pageSize(),
-            facets: store.selectedFacets(),
-          }).subscribe((result) => {
+            page: pageFromUrl,
+            pageSize: pageSizeFromUrl,
+            facets: selectedFacets, // from URL
+          })
+          .subscribe((result) => {
             patchState(store, {
               products: result.products,
               loading: false,
@@ -259,10 +222,6 @@ export const ProductListingStore = signalStore(
               facets: result.facets || [],
             });
           });
-        } else {
-          // No category/subcategory or search query - no products to load
-          patchState(store, { products: [], loading: false, page: 1, total: 0 });
-        }
       });
 
       return {
@@ -271,25 +230,27 @@ export const ProductListingStore = signalStore(
             // Build path segments
             const catSlug = store.categorySlug();
             const subSlug = store.subCategorySlug();
-            const pathSegments = (catSlug && subSlug) ? [catSlug, subSlug] : (catSlug ? [catSlug] : ['']);
-            
+            const pathSegments =
+              catSlug && subSlug ? [catSlug, subSlug] : catSlug ? [catSlug] : [''];
+
             const queryParams: any = {
               page: pageNumber,
-              pageSize: store.pageSize()
+              pageSize: store.pageSize(),
             };
-            
+
             const search = store.search();
             if (search) {
               queryParams.keywords = search;
             }
-            
+
+            const selectedFacets = store.facetsFromUrl();
             // Add facet query params
-            store.selectedFacets().forEach((values, key) => {
+            selectedFacets.forEach((values, key) => {
               if (values.size > 0) {
                 queryParams[key] = Array.from(values).join(',');
               }
             });
-            
+
             router.navigate(pathSegments, { queryParams }).then(() => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             });
@@ -301,25 +262,27 @@ export const ProductListingStore = signalStore(
             // Build path segments
             const catSlug = store.categorySlug();
             const subSlug = store.subCategorySlug();
-            const pathSegments = (catSlug && subSlug) ? [catSlug, subSlug] : (catSlug ? [catSlug] : ['']);
-            
+            const pathSegments =
+              catSlug && subSlug ? [catSlug, subSlug] : catSlug ? [catSlug] : [''];
+
             const queryParams: any = {
               page: newPage,
-              pageSize: store.pageSize()
+              pageSize: store.pageSize(),
             };
-            
+
             const search = store.search();
             if (search) {
               queryParams.keywords = search;
             }
-            
+
+            const selectedFacets = store.facetsFromUrl();
             // Add facet query params
-            store.selectedFacets().forEach((values, key) => {
+            selectedFacets.forEach((values, key) => {
               if (values.size > 0) {
                 queryParams[key] = Array.from(values).join(',');
               }
             });
-            
+
             router.navigate(pathSegments, { queryParams }).then(() => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             });
@@ -331,25 +294,27 @@ export const ProductListingStore = signalStore(
             // Build path segments
             const catSlug = store.categorySlug();
             const subSlug = store.subCategorySlug();
-            const pathSegments = (catSlug && subSlug) ? [catSlug, subSlug] : (catSlug ? [catSlug] : ['']);
-            
+            const pathSegments =
+              catSlug && subSlug ? [catSlug, subSlug] : catSlug ? [catSlug] : [''];
+
             const queryParams: any = {
               page: newPage,
-              pageSize: store.pageSize()
+              pageSize: store.pageSize(),
             };
-            
+
             const search = store.search();
             if (search) {
               queryParams.keywords = search;
             }
-            
+
+            const selectedFacets = store.facetsFromUrl();
             // Add facet query params
-            store.selectedFacets().forEach((values, key) => {
+            selectedFacets.forEach((values, key) => {
               if (values.size > 0) {
                 queryParams[key] = Array.from(values).join(',');
               }
             });
-            
+
             router.navigate(pathSegments, { queryParams }).then(() => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             });
@@ -360,25 +325,27 @@ export const ProductListingStore = signalStore(
             // Build path segments
             const catSlug = store.categorySlug();
             const subSlug = store.subCategorySlug();
-            const pathSegments = (catSlug && subSlug) ? [catSlug, subSlug] : (catSlug ? [catSlug] : ['']);
-            
+            const pathSegments =
+              catSlug && subSlug ? [catSlug, subSlug] : catSlug ? [catSlug] : [''];
+
             const queryParams: any = {
               page: 1,
-              pageSize: pageSize
+              pageSize: pageSize,
             };
-            
+
             const search = store.search();
             if (search) {
               queryParams.keywords = search;
             }
-            
+
+            const selectedFacets = store.facetsFromUrl();
             // Add facet query params
-            store.selectedFacets().forEach((values, key) => {
+            selectedFacets.forEach((values, key) => {
               if (values.size > 0) {
                 queryParams[key] = Array.from(values).join(',');
               }
             });
-            
+
             router.navigate(pathSegments, { queryParams }).then(() => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             });
@@ -387,69 +354,42 @@ export const ProductListingStore = signalStore(
         toggleMobileFilters() {
           patchState(store, { mobileFiltersOpen: !store.mobileFiltersOpen() });
         },
-        toggleFacetValue(facetField: string, facetValue: string) {
-          const selectedFacets = new Map(store.selectedFacets());
-          let facetSet = selectedFacets.get(facetField) || new Set();
-          
-          if (facetSet.has(facetValue)) {
-            facetSet.delete(facetValue);
+        toggleFacetValue(field: string, value: string) {
+          const currentParams = new URLSearchParams(window.location.search);
+
+          const existing = currentParams.get(field);
+          let values = new Set<string>();
+
+          if (existing) {
+            existing.split(',').forEach((v) => values.add(v));
+          }
+
+          if (values.has(value)) {
+            values.delete(value);
           } else {
-            facetSet.add(facetValue);
+            values.add(value);
           }
-          
-          if (facetSet.size === 0) {
-            selectedFacets.delete(facetField);
+
+          if (values.size === 0) {
+            currentParams.delete(field);
           } else {
-            selectedFacets.set(facetField, facetSet);
+            currentParams.set(field, Array.from(values).join(','));
           }
-          
-          // Build path segments
-          const catSlug = store.categorySlug();
-          const subSlug = store.subCategorySlug();
-          const pathSegments = (catSlug && subSlug) ? [catSlug, subSlug] : (catSlug ? [catSlug] : ['']);
-          
-          const queryParams: any = {
-            page: 1,
-            pageSize: store.pageSize()
-          };
-          
-          const search = store.search();
-          if (search) {
-            queryParams.keywords = search;
-          }
-          
-          // Add facet query params
-          selectedFacets.forEach((values, key) => {
-            if (values.size > 0) {
-              queryParams[key] = Array.from(values).join(',');
-            }
-          });
-          
-          router.navigate(pathSegments, { queryParams }).then(() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+          currentParams.set('page', '1');
+
+          router.navigate([], {
+            relativeTo: route,
+            queryParams: Object.fromEntries(currentParams.entries()),
           });
         },
-        isFacetValueSelected(facetField: string, facetValue: string): boolean {
-          return store.selectedFacets().get(facetField)?.has(facetValue) ?? false;
+        isFacetValueSelected(field: string, value: string): boolean {
+          return store.facetsFromUrl().get(field)?.has(value) ?? false;
         },
         clearFilters() {
-          // Build path segments
-          const catSlug = store.categorySlug();
-          const subSlug = store.subCategorySlug();
-          const pathSegments = (catSlug && subSlug) ? [catSlug, subSlug] : (catSlug ? [catSlug] : ['']);
-          
-          const queryParams: any = {
-            page: 1,
-            pageSize: store.pageSize()
-          };
-          
-          const search = store.search();
-          if (search) {
-            queryParams.keywords = search;
-          }
-          
-          router.navigate(pathSegments, { queryParams }).then(() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+          router.navigate([], {
+            relativeTo: route,
+            queryParams: {},
           });
         },
       };

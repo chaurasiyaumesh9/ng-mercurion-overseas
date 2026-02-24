@@ -6,7 +6,7 @@ import { ProductsApi, SearchProductsResult } from '@product-listing/api/products
 
 export const featuredProductsResolver: ResolveFn<Product[]> = () => {
   const productsApi = inject(ProductsApi);
-  return productsApi.searchProducts({ featured: true, pageSize: 100 }).pipe(
+  return productsApi.searchProducts({ featured: true }).pipe(
     map((result: SearchProductsResult) => result.products)
   );
 };

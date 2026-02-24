@@ -37,7 +37,7 @@ export class ProductsApi {
         let params = new HttpParams();
 
         if (options.categoryId) {
-            params = params.set('categoryId', options.categoryId);
+            params = params.set('categoryIds', options.categoryId);
         }
         if (options.searchQuery) {
             params = params.set('q', options.searchQuery);

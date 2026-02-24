@@ -85,6 +85,15 @@
             </div>
           }
 
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-lg font-semibold">Filters</h2>
+            @if (store.facetsFromUrl().size > 0) {
+              <button class="text-sm text-blue-600 hover:underline" (click)="store.clearFilters()">
+                Clear
+              </button>
+            }
+          </div>
+
           @for (facet of store.visibleFacets(); track facet.field) {
             @if (facet.field !== 'categoryIds') {
               <div class="border-b pb-4">
@@ -227,7 +236,7 @@
                 </svg>
               </button>
 
-               @for (page of store.visiblePageNumbers(); track page) {
+              @for (page of store.visiblePageNumbers(); track page) {
                 <button
                   class="px-3 py-1 border rounded text-sm"
                   [class.bg-blue-600]="store.page() === page"
@@ -286,7 +295,19 @@
       >
         <div class="flex items-center justify-between p-4 border-b">
           <span class="font-semibold text-lg">Filters</span>
-          <button (click)="store.toggleMobileFilters()">✕</button>
+
+          <div class="flex items-center gap-4">
+            @if (store.facetsFromUrl().size > 0) {
+              <button
+                class="text-sm text-blue-600"
+                (click)="store.clearFilters(); store.toggleMobileFilters()"
+              >
+                Clear
+              </button>
+            }
+
+            <button (click)="store.toggleMobileFilters()">✕</button>
+          </div>
         </div>
 
         <div class="overflow-y-auto p-4 space-y-6">
