@@ -3,7 +3,7 @@ export interface Category {
   name: string;
   slug: string;
   url: string;
-  image?: string;
+  thumbnail?: string;
   tagline?: string;
   featured: boolean;
   subCategories: SubCategory[];
@@ -14,6 +14,6 @@ export interface SubCategory {
   name: string;
   slug: string;
   url: string;
-  image?: string;
+  thumbnail?: string;
   tagline?: string;
 }

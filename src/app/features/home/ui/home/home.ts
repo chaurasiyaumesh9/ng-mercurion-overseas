@@ -35,7 +35,7 @@ export class Home {
   getCategoryImageSource(category: Category): string {
     return this.failedCategoryImages().has(category.id) 
       ? PLACEHOLDER_IMAGE_URL 
-      : (category.image || PLACEHOLDER_IMAGE_URL);
+      : (category.thumbnail || PLACEHOLDER_IMAGE_URL);
   }
 
   isCategoryImageFailed(categoryId: string): boolean {

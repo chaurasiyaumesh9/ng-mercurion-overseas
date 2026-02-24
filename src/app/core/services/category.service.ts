@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { resolveMediaUrl } from '@core/resolvers/media.resolver';
 import { CategoryRow } from '@entities/catalog/categories-response.model';
 import { Category } from '@entities/catalog/category.model';
 import { environment } from 'environments/environment';
@@ -25,7 +26,7 @@ export class CategoryService {
         name: row.name,
         slug: row.urlFragment,
         url: `/${row.urlFragment}`,
-        image: row.imageUrl,
+        thumbnail: resolveMediaUrl(row.thumbnail),
         subCategories: []
       });
     });

@@ -5,6 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Product } from '@product//models/product.model';
 import { environment } from 'environments/environment';
 import { SearchProductsResponse, SearchProductItem, SearchFacet } from '@entities/catalog/search-products-response.model';
+import { resolveMediaUrl } from '@core/resolvers/media.resolver';
 
 export interface SearchProductsOptions {
     categoryId?: string;
@@ -85,7 +86,7 @@ export class ProductsApi {
             name: item.name,
             price: item.price,
             description: item.description,
-            image: item.imageUrl,
+            image: resolveMediaUrl(item.imageUrl),
             inStock: item.quantityAvailable > 0,
             quantityAvailable: item.quantityAvailable,
             featured: item.featured,

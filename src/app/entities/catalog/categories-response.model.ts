@@ -3,6 +3,6 @@ export interface CategoryRow {
   name: string;
   primaryParent: string | null;
   urlFragment: string;
-  imageUrl?: string;
+  thumbnail?: string;
   featured: boolean;
 }
