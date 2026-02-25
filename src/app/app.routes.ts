@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { categoriesResolver } from './core/resolvers/categories.resolver';
-import { CategoryService } from '@core/services/category.service';
+import { categoriesResolver } from './shopping/resolvers/categories.resolver';
+import { CategoryService } from '@shopping/services/categories.api';
 
 export const routes: Routes = [
 	{
 		path: '',
-		loadChildren: () => import('./core/layout/layout.routes').then(m => m.LAYOUT_ROUTES),
+		loadChildren: () => import('./layout/layout.routes').then(m => m.LAYOUT_ROUTES),
         providers: [CategoryService],
         resolve: {
             categories: categoriesResolver

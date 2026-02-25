@@ -17,13 +17,11 @@
     "module": "preserve",
     "paths": {
       "@core/*": ["app/core/*"],
-      "@entities/*": ["app/entities/*"],
-      "@product-listing/*": ["app/features/product-listing/*"],
-      "@product-details/*": ["app/features/product-details/*"],
-      "@product/*": ["app/features/product/*"],
-      "@cart/*": ["app/features/cart/*"],
-      "@checkout/*": ["app/features/checkout/*"],
-      "@account/*": ["app/features/account/*"]
+      "@layout/*": ["app/layout/*"],
+      "@shopping/*": ["app/shopping/*"],
+      "@checkout/*": ["app/checkout/*"],
+      "@account/*": ["app/account/*"],
+      "@environment/*": ["app/environment/*"],
     }
   },
   "angularCompilerOptions": {
