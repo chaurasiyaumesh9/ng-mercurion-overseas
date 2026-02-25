@@ -1,399 +1,189 @@
 import { inject } from '@angular/core';
 import { signalStore, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductsApi } from '@shopping/services/products.api';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { computed, effect } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Category } from '@shopping/models/category.model';
-import { Product } from '@shopping/models/product.model';
-import { SearchFacet } from '@shopping/models/dtos/search-facet.dto';
+import { computed } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { selectCategories } from '@appState/categories/categories.selectors';
 
-
-interface ListingRouteData {
-  categories: Category[];
-}
-
-const facetLabels: { [key: string]: string } = {
-  categoryIds: 'Categories',
-  brand: 'Brand',
-  color: 'Color',
-  networkType: 'Network Type',
-  storageCapacity: 'Storage Capacity (GB)',
-  memoryRam: 'Memory (RAM)',
-  screenSize: 'Screen Size (inches)',
-  customerRating: 'Customer Rating',
-  featured: 'Featured',
-};
-
-export interface ProductsState {
-  products: Product[];
-  loading: boolean;
-  page: number;
-  pageSize: number;
-  total: number;
-  facets: SearchFacet[];
+interface UiState {
   mobileFiltersOpen: boolean;
 }
 
 export const ProductListingStore = signalStore(
-  withState<ProductsState>({
-    products: [],
-    loading: false,
-    page: 1,
-    pageSize: 12,
-    total: 0,
-    facets: [],
+  withState<UiState>({
     mobileFiltersOpen: false,
   }),
 
   withComputed(() => {
+    const store = inject(Store);
     const route = inject(ActivatedRoute);
-    const routeParams = toSignal(route.paramMap, { initialValue: null });
-    const queryParams = toSignal(route.queryParamMap, { initialValue: null });
-    const categories = toSignal(route.data as Observable<ListingRouteData>, {
-      initialValue: { categories: [] },
-    });
 
-    return {
-      categories: computed(() => categories().categories),
-      categorySlug: computed(() => routeParams()?.get('categorySlug') ?? null),
-      subCategorySlug: computed(() => routeParams()?.get('subCategorySlug') ?? null),
-      search: computed(() => queryParams()?.get('keywords') ?? null),
-      pageFromUrl: computed(() => {
-        const page = queryParams()?.get('page');
-        return page ? parseInt(page, 10) : 1;
-      }),
-      pageSizeFromUrl: computed(() => {
-        const pageSize = queryParams()?.get('pageSize');
-        return pageSize ? parseInt(pageSize, 10) : 12;
-      }),
-      facetsFromUrl: computed(() => {
-        const facetsMap = new Map<string, Set<string>>();
-        if (!queryParams()) return facetsMap;
+    const categories = store.selectSignal(selectCategories);
 
-        const params = queryParams();
-        // Get all query param keys
-        params?.keys.forEach((key) => {
-          // Skip known non-facet params
-          if (!['keywords', 'page', 'pageSize'].includes(key)) {
-            const values = params?.getAll(key) || [];
-            if (values.length > 0) {
-              // Split comma-separated values
-              const valueSet = new Set<string>();
-              values.forEach((val) => {
-                val.split(',').forEach((v) => v && valueSet.add(v));
-              });
-              if (valueSet.size > 0) {
-                facetsMap.set(key, valueSet);
-              }
-            }
-          }
-        });
-        return facetsMap;
-      }),
-    };
-  }),
+    const params = toSignal(route.paramMap, { initialValue: null });
+    const query = toSignal(route.queryParamMap, { initialValue: null });
 
-  withComputed((store) => {
+    const categorySlug = computed(() => params()?.get('categorySlug') ?? null);
+
+    const subCategorySlug = computed(() => params()?.get('subCategorySlug') ?? null);
+
     const currentCategory = computed(() => {
-      const slug = store.categorySlug();
-      if (!slug) return null;
-
-      return store.categories().find((c) => c.slug === slug) ?? null;
+      const slug = categorySlug();
+      return categories().find((c) => c.slug === slug) ?? null;
     });
 
     const currentSubCategory = computed(() => {
-      const catSlug = store.categorySlug();
-      const subSlug = store.subCategorySlug();
-
-      if (!catSlug || !subSlug) return null;
-
-      const category = store.categories().find((c) => c.slug === catSlug);
-      if (!category) return null;
-
-      return category.subCategories?.find((s) => s.slug === subSlug) ?? null;
+      const cat = currentCategory();
+      const subSlug = subCategorySlug();
+      return cat?.subCategories?.find((s) => s.slug === subSlug) ?? null;
     });
 
     return {
+      categorySlug,
+      subCategorySlug,
       currentCategory,
       currentSubCategory,
+
+      search: computed(() => query()?.get('keywords') ?? null),
+
+      pageFromUrl: computed(() => {
+        const p = query()?.get('page');
+        return p ? parseInt(p, 10) : 1;
+      }),
+
+      pageSizeFromUrl: computed(() => {
+        const s = query()?.get('pageSize');
+        return s ? parseInt(s, 10) : 12;
+      }),
+
+      
+
+      facetsFromUrl: computed(() => {
+        const map = new Map<string, Set<string>>();
+        if (!query()) return map;
+
+        query()?.keys.forEach((key) => {
+          if (!['keywords', 'page', 'pageSize'].includes(key)) {
+            const values = query()?.getAll(key) || [];
+            const set = new Set<string>();
+
+            values.forEach((v) => v.split(',').forEach((x) => x && set.add(x)));
+
+            if (set.size) {
+              map.set(key, set);
+            }
+          }
+        });
+
+        return map;
+      }),
     };
   }),
 
-  withComputed((store) => ({
-    filteredProducts: computed(() => {
-      // API handles all filtering (search, category, facets) server-side
-      // Return products as-is from API response
-      return store.products();
-    }),
-    totalPages: computed(() => {
-      return Math.ceil(store.total() / store.pageSize());
-    }),
-    visibleFacets: computed(() => {
-      // Filter out facets with no values and add friendly labels
-      return store
-        .facets()
-        .filter((facet) => facet.values && facet.values.length > 0)
-        .map((facet) => ({
-          ...facet,
-          label: facetLabels[facet.field] || facet.field,
-        }));
-    }),
-  })),
+  // --------------------------------
+  // UI HELPERS
+  // --------------------------------
+  withMethods((store, router = inject(Router), route = inject(ActivatedRoute)) => {
+    function buildQueryParams(overrides: Partial<Record<string, any>> = {}) {
+      const queryParams: any = {
+        page: store.pageFromUrl(),
+        pageSize: store.pageSizeFromUrl(),
+      };
 
-  withComputed((store) => ({
-    pageNumbers: computed(() => {
-      const total = store.totalPages();
-      const pages: number[] = [];
-      for (let i = 1; i <= total; i++) {
-        pages.push(i);
-      }
-      return pages;
-    }),
-    visiblePageNumbers: computed(() => {
-      const current = store.page();
-      const total = store.totalPages();
-      const pages: number[] = [];
-      const start = Math.max(1, current - 2);
-      const end = Math.min(total, current + 2);
+      const search = store.search();
+      if (search) queryParams.keywords = search;
 
-      for (let i = start; i <= end; i++) {
-        pages.push(i);
-      }
-      return pages;
-    }),
-  })),
-
-  // Export facet labels for use in templates
-  withComputed(() => ({
-    facetLabels: computed(() => facetLabels),
-  })),
-
-  withMethods(
-    (
-      store,
-      service = inject(ProductsApi),
-      router = inject(Router),
-      route = inject(ActivatedRoute),
-    ) => {
-      // Watch for route changes and auto-fetch products
-      effect(() => {
-        // Trigger effect whenever category, subcategory, page, page size, search change
-        const catSlug = store.categorySlug();
-        const subSlug = store.subCategorySlug();
-        const pageFromUrl = store.pageFromUrl();
-        const pageSizeFromUrl = store.pageSizeFromUrl();
-        const search = store.search();
-        const selectedFacets = store.facetsFromUrl();
-
-        patchState(store, {
-          loading: true,
-          page: pageFromUrl,
-          pageSize: pageSizeFromUrl,
-        });
-
-        // Determine which category ID to use
-        let categoryId: string | undefined;
-        const subCategory = store.currentSubCategory();
-        if (subCategory) {
-          categoryId = subCategory.id;
-        } else {
-          const category = store.currentCategory();
-          if (category) {
-            categoryId = category.id;
-          }
+      const facets = store.facetsFromUrl();
+      facets.forEach((values, key) => {
+        if (values.size > 0) {
+          queryParams[key] = Array.from(values).join(',');
         }
-
-        service
-          .searchProducts({
-            searchQuery: search ?? undefined,
-            categoryId,
-            page: pageFromUrl,
-            pageSize: pageSizeFromUrl,
-            facets: selectedFacets, // from URL
-          })
-          .subscribe((result) => {
-            patchState(store, {
-              products: result.products,
-              loading: false,
-              page: result.page,
-              pageSize: result.pageSize,
-              total: result.total,
-              facets: result.facets || [],
-            });
-          });
       });
 
-      return {
-        setPage(pageNumber: number) {
-          if (pageNumber > 0 && pageNumber <= store.totalPages()) {
-            // Build path segments
-            const catSlug = store.categorySlug();
-            const subSlug = store.subCategorySlug();
-            const pathSegments =
-              catSlug && subSlug ? [catSlug, subSlug] : catSlug ? [catSlug] : [''];
+      return { ...queryParams, ...overrides };
+    }
 
-            const queryParams: any = {
-              page: pageNumber,
-              pageSize: store.pageSize(),
-            };
+    function buildPathSegments() {
+      const cat = store.categorySlug();
+      const sub = store.subCategorySlug();
 
-            const search = store.search();
-            if (search) {
-              queryParams.keywords = search;
-            }
+      if (cat && sub) return [cat, sub];
+      if (cat) return [cat];
+      return [''];
+    }
 
-            const selectedFacets = store.facetsFromUrl();
-            // Add facet query params
-            selectedFacets.forEach((values, key) => {
-              if (values.size > 0) {
-                queryParams[key] = Array.from(values).join(',');
-              }
-            });
+    return {
+      toggleMobileFilters() {
+        patchState(store, {
+          mobileFiltersOpen: !store.mobileFiltersOpen(),
+        });
+      },
 
-            router.navigate(pathSegments, { queryParams }).then(() => {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-          }
-        },
-        prevPage() {
-          if (store.page() > 1) {
-            const newPage = store.page() - 1;
-            // Build path segments
-            const catSlug = store.categorySlug();
-            const subSlug = store.subCategorySlug();
-            const pathSegments =
-              catSlug && subSlug ? [catSlug, subSlug] : catSlug ? [catSlug] : [''];
+      setPage(page: number) {
+        router
+          .navigate(buildPathSegments(), { queryParams: buildQueryParams({ page }) })
+          .then(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      },
 
-            const queryParams: any = {
-              page: newPage,
-              pageSize: store.pageSize(),
-            };
+      setPageSize(size: number) {
+        router
+          .navigate(buildPathSegments(), {
+            queryParams: buildQueryParams({ page: 1, pageSize: size }),
+          })
+          .then(() => window.scrollTo({ top: 0, behavior: 'smooth' }));
+      },
 
-            const search = store.search();
-            if (search) {
-              queryParams.keywords = search;
-            }
+      toggleFacetValue(field: string, value: string) {
+        const current = store.facetsFromUrl();
+        const set = current.get(field) ?? new Set<string>();
 
-            const selectedFacets = store.facetsFromUrl();
-            // Add facet query params
-            selectedFacets.forEach((values, key) => {
-              if (values.size > 0) {
-                queryParams[key] = Array.from(values).join(',');
-              }
-            });
+        if (set.has(value)) set.delete(value);
+        else set.add(value);
 
-            router.navigate(pathSegments, { queryParams }).then(() => {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-          }
-        },
+        const queryParams = buildQueryParams({ page: 1 });
+
+        if (set.size === 0) {
+          delete queryParams[field];
+        } else {
+          queryParams[field] = Array.from(set).join(',');
+        }
+
+        router.navigate([], {
+          relativeTo: route,
+          queryParams,
+        });
+      },
+
+      isFacetValueSelected(field: string, value: string): boolean {
+        const params = new URLSearchParams(window.location.search);
+        const existing = params.get(field);
+
+        if (!existing) return false;
+
+        return existing.split(',').includes(value);
+      },
+
+      clearFilters() {
+        router.navigate([], {
+          relativeTo: route,
+          queryParams: {},
+        });
+      },
+    };
+  }),
+
+  withMethods((store) => {
+    return {
         nextPage() {
-          if (store.page() < store.totalPages()) {
-            const newPage = store.page() + 1;
-            // Build path segments
-            const catSlug = store.categorySlug();
-            const subSlug = store.subCategorySlug();
-            const pathSegments =
-              catSlug && subSlug ? [catSlug, subSlug] : catSlug ? [catSlug] : [''];
-
-            const queryParams: any = {
-              page: newPage,
-              pageSize: store.pageSize(),
-            };
-
-            const search = store.search();
-            if (search) {
-              queryParams.keywords = search;
-            }
-
-            const selectedFacets = store.facetsFromUrl();
-            // Add facet query params
-            selectedFacets.forEach((values, key) => {
-              if (values.size > 0) {
-                queryParams[key] = Array.from(values).join(',');
-              }
-            });
-
-            router.navigate(pathSegments, { queryParams }).then(() => {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-          }
+            const page = store.pageFromUrl();
+            store.setPage(page + 1);
         },
-        setPageSize(pageSize: number) {
-          if (pageSize > 0) {
-            // Build path segments
-            const catSlug = store.categorySlug();
-            const subSlug = store.subCategorySlug();
-            const pathSegments =
-              catSlug && subSlug ? [catSlug, subSlug] : catSlug ? [catSlug] : [''];
 
-            const queryParams: any = {
-              page: 1,
-              pageSize: pageSize,
-            };
-
-            const search = store.search();
-            if (search) {
-              queryParams.keywords = search;
-            }
-
-            const selectedFacets = store.facetsFromUrl();
-            // Add facet query params
-            selectedFacets.forEach((values, key) => {
-              if (values.size > 0) {
-                queryParams[key] = Array.from(values).join(',');
-              }
-            });
-
-            router.navigate(pathSegments, { queryParams }).then(() => {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-          }
-        },
-        toggleMobileFilters() {
-          patchState(store, { mobileFiltersOpen: !store.mobileFiltersOpen() });
-        },
-        toggleFacetValue(field: string, value: string) {
-          const currentParams = new URLSearchParams(window.location.search);
-
-          const existing = currentParams.get(field);
-          let values = new Set<string>();
-
-          if (existing) {
-            existing.split(',').forEach((v) => values.add(v));
-          }
-
-          if (values.has(value)) {
-            values.delete(value);
-          } else {
-            values.add(value);
-          }
-
-          if (values.size === 0) {
-            currentParams.delete(field);
-          } else {
-            currentParams.set(field, Array.from(values).join(','));
-          }
-
-          currentParams.set('page', '1');
-
-          router.navigate([], {
-            relativeTo: route,
-            queryParams: Object.fromEntries(currentParams.entries()),
-          });
-        },
-        isFacetValueSelected(field: string, value: string): boolean {
-          return store.facetsFromUrl().get(field)?.has(value) ?? false;
-        },
-        clearFilters() {
-          router.navigate([], {
-            relativeTo: route,
-            queryParams: {},
-          });
-        },
-      };
-    },
-  ),
+        prevPage() {
+            const page = store.pageFromUrl();
+            store.setPage(page - 1);
+        }
+    }
+  }),
 );

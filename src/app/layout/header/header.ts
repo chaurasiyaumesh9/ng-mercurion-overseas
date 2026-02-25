@@ -1,8 +1,9 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink, ActivatedRoute } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CartStore } from '@shopping/stores/cart.store';
-import { Category } from '@shopping/models/category.model';
+import { Store } from '@ngrx/store';
+import { selectCategories } from '@appState/categories/categories.selectors';
 
 @Component({
     selector: 'app-header',
@@ -11,20 +12,13 @@ import { Category } from '@shopping/models/category.model';
     templateUrl: './header.html',
 })
 export class Header {
-    readonly cartStore = inject(CartStore);
-    private router = inject(Router);
-    private route = inject(ActivatedRoute);
-
-    constructor() {
-        effect(() => {
-            //console.log('HEADER CART COUNT', this.cartStore.cartCount());
-        });
-    }
-
-    categories = signal<Category[]>(this.route.snapshot.data['categories'] || []);
+    readonly cartStore = inject(CartStore);    
+    private router = inject(Router);   
+    private store = inject(Store);
+    readonly categories$ = this.store.select(selectCategories);    
 
     mobileMenuOpen = signal(false);
-    searchQuery = signal('');
+    searchQuery = signal('');    
 
     handleSearch(event: Event) {
         event.preventDefault();

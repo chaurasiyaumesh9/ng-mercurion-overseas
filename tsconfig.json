@@ -22,6 +22,7 @@
       "@checkout/*": ["app/checkout/*"],
       "@account/*": ["app/account/*"],
       "@environment/*": ["app/environment/*"],
+      "@appState/*": ["app/state/*"],
     }
   },
   "angularCompilerOptions": {

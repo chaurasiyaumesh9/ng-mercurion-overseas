@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from '../header/header';
 import { Footer } from '../footer/footer';
 import { CartStore } from '@shopping/stores/cart.store';
-
+import { Store } from '@ngrx/store';
+import { loadCategories } from '@appState/categories/categories.actions';
 
 @Component({
     selector: 'app-shell',
@@ -11,10 +12,17 @@ import { CartStore } from '@shopping/stores/cart.store';
     imports: [RouterOutlet, Header, Footer],
     templateUrl: './shell.html',
 })
-export class Shell { 
-    constructor() {
+export class Shell implements OnInit { 
+
+    private store = inject(Store);
+    
+    constructor() {        
         const cartStore = inject(CartStore);
         cartStore.loadCart();
+    }
+    
+    ngOnInit() {
+        this.store.dispatch(loadCategories());
     }
 
 }

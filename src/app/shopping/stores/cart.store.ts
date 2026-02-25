@@ -12,7 +12,6 @@ export interface CartState {
 
 export const CartStore = signalStore(
   { providedIn: 'root' },
-
   withState<CartState>({
     cart: [],
     crossSellProducts: [],

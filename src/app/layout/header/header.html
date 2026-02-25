@@ -118,7 +118,7 @@
               <a routerLink="/" class="text-gray-700 hover:text-blue-600">Home</a>
             </li>
 
-            @for (category of categories(); track category.id) {
+            @for (category of categories$ | async; track category.id) {
               <li class="relative group">
                 <a [routerLink]="['/', category.slug]" class="text-gray-700 hover:text-blue-600">
                   {{ category.name }}
@@ -170,7 +170,7 @@
           Home
         </a>
 
-        @for (category of categories(); track category.id) {
+        @for (category of categories$ | async; track category.id) {
           <div class="border-b">
             <a
               [routerLink]="['/', category.slug]"
