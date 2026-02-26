@@ -11,37 +11,70 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { toSignal } from '@angular/core/rxjs-interop';
-
-import * as PRODUCT_ACTION from '@shopping/state/product-listing/product-listing.actions';
-import * as PRODUCT_SELECTORS from '@shopping/state/product-listing/product-listing.selectors';
+import { setAllEntities, withEntities } from '@ngrx/signals/entities';
 import { selectCategories } from '@appState/categories/categories.selectors';
+import { Product } from '@shopping/models/product.model';
+import { ProductsApi } from '@shopping/services/products.api';
+import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
+import { SearchFacet } from '@shopping/models/dtos/search-facet.dto';
 
 interface UiState {
   mobileFiltersOpen: boolean;
 }
+
+const facetLabels: Record<string, string> = {
+  categoryIds: 'Categories',
+  brand: 'Brand',
+  color: 'Color',
+  networkType: 'Network Type',
+  storageCapacity: 'Storage Capacity (GB)',
+  memoryRam: 'Memory (RAM)',
+  screenSize: 'Screen Size (inches)',
+  customerRating: 'Customer Rating',
+  featured: 'Featured',
+};
 
 export const ProductListingStore = signalStore(
   withState<UiState>({
     mobileFiltersOpen: false,
   }),
 
+  withState({
+    loading: false,
+    total: 0,
+    facets: [] as SearchFacet[],
+  }),
+
+  withEntities<Product>(),
+
   withProps(() => {
     const ngrxStore = inject(Store);
     const router = inject(Router);
     const route = inject(ActivatedRoute);
+    const api = inject(ProductsApi);
 
-    return { ngrxStore, router, route };
+    return { ngrxStore, router, route, api };
   }),
 
   withComputed((store) => {
+    const search = computed(() => query()?.get('keywords') ?? null);
+    const pageFromUrl = computed(() => Number(query()?.get('page') ?? 1));
+    const pageSizeFromUrl = computed(() => Number(query()?.get('pageSize') ?? 12));
+    const totalPages = computed(() => Math.ceil(store.total() / pageSizeFromUrl()));
+
     const categories = store.ngrxStore.selectSignal(selectCategories);
-    const products = store.ngrxStore.selectSignal(PRODUCT_SELECTORS.selectProducts);
-    const loading = store.ngrxStore.selectSignal(PRODUCT_SELECTORS.selectLoading);
-    const total = store.ngrxStore.selectSignal(PRODUCT_SELECTORS.selectTotal);
-    const totalPages = store.ngrxStore.selectSignal(PRODUCT_SELECTORS.selectTotalPages);
-    const page = store.ngrxStore.selectSignal(PRODUCT_SELECTORS.selectPage);
-    const visibleFacets = store.ngrxStore.selectSignal(PRODUCT_SELECTORS.selectVisibleFacets);
-    const pageSize = store.ngrxStore.selectSignal(PRODUCT_SELECTORS.selectPageSize);
+    const products = store.entities;
+    const loading = store.loading;
+    const total = store.total;
+    const visibleFacets = computed(() =>
+      store
+        .facets()
+        .filter((f) => f.values?.length > 0)
+        .map((f) => ({
+          ...f,
+          label: facetLabels[f.field] ?? f.field,
+        })),
+    );
 
     const params = toSignal(store.route.paramMap, { initialValue: null });
     const query = toSignal(store.route.queryParamMap, { initialValue: null });
@@ -57,30 +90,28 @@ export const ProductListingStore = signalStore(
       () => currentCategory()?.subCategories?.find((s) => s.slug === subCategorySlug()) ?? null,
     );
 
-    const search = computed(() => query()?.get('keywords') ?? null);
-
-    const pageFromUrl = computed(() => Number(query()?.get('page') ?? 1));
-
-    const pageSizeFromUrl = computed(() => Number(query()?.get('pageSize') ?? 12));
+    const EMPTY_FACETS = new Map<string, Set<string>>();
 
     const facetsFromUrl = computed(() => {
+      const q = query();
+      if (!q) return EMPTY_FACETS;
+
       const map = new Map<string, Set<string>>();
-      if (!query()) return map;
-      query()?.keys.forEach((key) => {
+
+      q.keys.forEach((key) => {
         if (!['keywords', 'page', 'pageSize'].includes(key)) {
-          const values = query()?.getAll(key) || [];
+          const values = q.getAll(key) || [];
           const set = new Set<string>();
           values.forEach((v) => v.split(',').forEach((x) => x && set.add(x)));
-          if (set.size) {
-            map.set(key, set);
-          }
+          if (set.size) map.set(key, set);
         }
       });
+
       return map;
     });
 
     const visiblePageNumbers = computed(() => {
-      const current = page();
+      const current = pageFromUrl();
       const total = totalPages();
 
       const start = Math.max(1, current - 2);
@@ -107,8 +138,6 @@ export const ProductListingStore = signalStore(
       facetsFromUrl,
       visiblePageNumbers,
       visibleFacets,
-      pageSize,
-      page,
     };
   }),
 
@@ -134,18 +163,6 @@ export const ProductListingStore = signalStore(
       return { ...queryParams, ...overrides };
     }
 
-    function dispatchLoad() {
-      store.ngrxStore.dispatch(
-        PRODUCT_ACTION.loadProducts({
-          search: store.search() || '',
-          categoryId: store.currentSubCategory()?.id ?? store.currentCategory()?.id,
-          page: store.pageFromUrl(),
-          pageSize: store.pageSizeFromUrl(),
-          facets: store.facetsFromUrl(),
-        }),
-      );
-    }
-
     function setPage(page: number) {
       store.router.navigate([], {
         relativeTo: store.route,
@@ -168,15 +185,11 @@ export const ProductListingStore = signalStore(
     }
 
     function isFacetValueSelected(field: string, value: string): boolean {
-      const params = new URLSearchParams(window.location.search);
-      const existing = params.get(field);
-      if (!existing) return false;
-      return existing.split(',').includes(value);
+      const map = store.facetsFromUrl();
+      return map.get(field)?.has(value) ?? false;
     }
 
     return {
-      loadProducts: dispatchLoad,
-
       toggleMobileFilters() {
         patchState(store, {
           mobileFiltersOpen: !store.mobileFiltersOpen(),
@@ -211,8 +224,36 @@ export const ProductListingStore = signalStore(
 
   withHooks({
     onInit(store) {
-      effect(() => {
-        store.loadProducts();
+      effect((onCleanup) => {
+        let cancelled = false;
+        onCleanup(() => (cancelled = true));
+
+        (async () => {
+          patchState(store, { loading: true });
+
+          const response = await firstValueFrom(
+            store.api.searchProducts({
+              categoryId: store.currentSubCategory()?.id ?? store.currentCategory()?.id,
+              searchQuery: store.search() || '',
+              page: store.pageFromUrl(),
+              pageSize: store.pageSizeFromUrl(),
+              sort: '', // if needed
+              facets: store.facetsFromUrl(),
+            }),
+          );
+
+          if (cancelled) return;
+
+          // Update entity collection
+          patchState(store, setAllEntities(response.products));
+
+          // Update metadata
+          patchState(store, {
+            total: response.total,
+            facets: response.facets,
+            loading: false,
+          });
+        })();
       });
     },
   }),

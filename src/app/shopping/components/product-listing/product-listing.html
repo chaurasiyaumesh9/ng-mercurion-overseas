@@ -47,7 +47,7 @@
 
         <select
           class="border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          [value]="store.pageSize()"
+          [value]="store.pageSizeFromUrl()"
           (change)="store.setPageSize(+$any($event.target).value)"
         >
           <option value="12">12 Items</option>
@@ -150,7 +150,7 @@
             <div class="flex items-center gap-2 flex-wrap">
               <button
                 class="px-3 py-1 border rounded disabled:opacity-40"
-                [disabled]="store.page() === 1"
+                [disabled]="store.pageFromUrl() === 1"
                 (click)="store.prevPage()"
               >
                 <svg
@@ -172,21 +172,21 @@
                 </svg>
               </button>
 
-              @for (_page of store.visiblePageNumbers(); track _page) {
+              @for (page of store.visiblePageNumbers(); track page) {
                 <button
                   class="px-3 py-1 border rounded text-sm"
-                  [class.bg-blue-600]="store.page() === _page"
-                  [class.text-white]="store.page() === _page"
-                  (click)="store.setPage(_page)"
+                  [class.bg-blue-600]="store.pageFromUrl() === page"
+                  [class.text-white]="store.pageFromUrl() === page"
+                  (click)="store.setPage(page)"
                 >
-                  {{ _page }}
+                  {{ page }}
                 </button>
               }
 
               <!-- Next -->
               <button
                 class="px-3 py-1 border rounded disabled:opacity-40"
-                [disabled]="store.page() === store.totalPages()"
+                [disabled]="store.pageFromUrl() === store.totalPages()"
                 (click)="store.nextPage()"
               >
                 <svg
@@ -214,7 +214,7 @@
             <div class="flex items-center gap-2 flex-wrap justify-center max-w-[320px]">
               <button
                 class="px-3 py-1 border rounded text-sm disabled:opacity-40"
-                [disabled]="store.page() === 1"
+                [disabled]="store.pageFromUrl() === 1"
                 (click)="store.prevPage()"
               >
                 <svg
@@ -236,21 +236,21 @@
                 </svg>
               </button>
 
-              @for (_page of store.visiblePageNumbers(); track _page) {
+              @for (page of store.visiblePageNumbers(); track page) {
                 <button
                   class="px-3 py-1 border rounded text-sm"
-                  [class.bg-blue-600]="store.page() === _page"
-                  [class.text-white]="store.page() === _page"
-                  (click)="store.setPage(_page)"
+                  [class.bg-blue-600]="store.pageFromUrl() === page"
+                  [class.text-white]="store.pageFromUrl() === page"
+                  (click)="store.setPage(page)"
                 >
-                  {{ _page }}
+                  {{ page }}
                 </button>
               }
 
               <!-- Next -->
               <button
                 class="px-3 py-1 border rounded text-sm disabled:opacity-40"
-                [disabled]="store.page() === store.totalPages()"
+                [disabled]="store.pageFromUrl() === store.totalPages()"
                 (click)="store.nextPage()"
               >
                 <svg
@@ -317,7 +317,7 @@
 
               <select
                 class="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                [value]="store.pageSize()"
+                [value]="store.pageSizeFromUrl()"
                 (change)="store.setPageSize(+$any($event.target).value)"
               >
                 <option value="12">12</option>
