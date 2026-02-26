@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { ProductsApi } from '@shopping/services/products.api';
 import { ProductListing } from './components/product-listing/product-listing';
 
 export const shoppingRoutes: Routes = [
@@ -12,7 +11,7 @@ export const shoppingRoutes: Routes = [
       },
       {
         path: '',
-        loadComponent: () => import('./components/home/home').then((m) => m.Home),
+        loadComponent: () => import('./components/home/home').then((m) => m.Home)
       },
       {
         path: '',

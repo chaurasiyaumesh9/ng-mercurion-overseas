@@ -2,8 +2,7 @@ import { Component, Input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Product } from '@shopping/models/product.model';
-
-const PLACEHOLDER_IMAGE_URL = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400"><rect fill="%23E5E7EB" width="400" height="400"/><g transform="translate(100, 100)"><rect x="0" y="0" width="200" height="200" fill="%23D1D5DB"/><circle cx="50" cy="50" r="30" fill="%239CA3AF"/><path d="M0 200 L60 120 L120 150 L200 80 L200 200 Z" fill="%239CA3AF"/></g></svg>';
+import { PLACEHOLDER_IMAGE_URL } from '@core/constants/image.constants';
 
 @Component({
     selector: 'app-product-tile',

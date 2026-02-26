@@ -45,16 +45,32 @@
       <div class="flex items-center gap-2 text-sm">
         <span class="text-gray-600">Show</span>
 
-        <select
-          class="border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          [value]="store.pageSizeFromUrl()"
-          (change)="store.setPageSize(+$any($event.target).value)"
-        >
-          <option value="12">12 Items</option>
-          <option value="24">24 Items</option>
-          <option value="48">48 Items</option>
-          <option value="96">96 Items</option>
-        </select>
+        <div class="relative">
+          <select
+            class="appearance-none bg-white border border-gray-300 text-sm font-medium text-gray-700 px-4 py-2 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 transition"
+            [value]="store.pageSizeFromUrl()"
+            (change)="store.setPageSize(+$any($event.target).value)"
+          >
+            <option value="12">12 Items</option>
+            <option value="24">24 Items</option>
+            <option value="48">48 Items</option>
+            <option value="96">96 Items</option>
+          </select>
+          <!-- Custom arrow -->
+          <div
+            class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+        </div>
 
         <!-- <span class="text-gray-600">Per Page</span> -->
       </div>
@@ -145,16 +161,16 @@
 
         <!-- Pagination Controls -->
         <!-- ================= PAGINATION ================= -->
-         @if (store.totalPages() > 1) {
-            <div class="mt-10">
+        @if (store.totalPages() > 1) {
+          <div class="mt-10">
             <div class="hidden md:flex justify-end">
-                <div class="flex items-center gap-2 flex-wrap">
+              <div class="flex items-center gap-2 flex-wrap">
                 <button
-                    class="px-3 py-1 border rounded disabled:opacity-40"
-                    [disabled]="store.pageFromUrl() === 1"
-                    (click)="store.prevPage()"
+                  class="px-3 py-1 border rounded disabled:opacity-40"
+                  [disabled]="store.pageFromUrl() === 1"
+                  (click)="store.prevPage()"
                 >
-                    <svg
+                  <svg
                     class="w-6 h-6 dark:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
@@ -162,35 +178,35 @@
                     height="24"
                     fill="none"
                     viewBox="0 0 24 24"
-                    >
+                  >
                     <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="m15 19-7-7 7-7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m15 19-7-7 7-7"
                     />
-                    </svg>
+                  </svg>
                 </button>
 
                 @for (page of store.visiblePageNumbers(); track page) {
-                    <button
+                  <button
                     class="px-3 py-1 border rounded text-sm"
                     [class.bg-blue-600]="store.pageFromUrl() === page"
                     [class.text-white]="store.pageFromUrl() === page"
                     (click)="store.setPage(page)"
-                    >
+                  >
                     {{ page }}
-                    </button>
+                  </button>
                 }
 
                 <!-- Next -->
                 <button
-                    class="px-3 py-1 border rounded disabled:opacity-40"
-                    [disabled]="store.pageFromUrl() === store.totalPages()"
-                    (click)="store.nextPage()"
+                  class="px-3 py-1 border rounded disabled:opacity-40"
+                  [disabled]="store.pageFromUrl() === store.totalPages()"
+                  (click)="store.nextPage()"
                 >
-                    <svg
+                  <svg
                     class="w-6 h-6 dark:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
@@ -198,27 +214,27 @@
                     height="24"
                     fill="none"
                     viewBox="0 0 24 24"
-                    >
+                  >
                     <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="m9 5 7 7-7 7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m9 5 7 7-7 7"
                     />
-                    </svg>
+                  </svg>
                 </button>
-                </div>
+              </div>
             </div>
 
             <div class="flex md:hidden justify-center">
-                <div class="flex items-center gap-2 flex-wrap justify-center max-w-[320px]">
+              <div class="flex items-center gap-2 flex-wrap justify-center max-w-[320px]">
                 <button
-                    class="px-3 py-1 border rounded text-sm disabled:opacity-40"
-                    [disabled]="store.pageFromUrl() === 1"
-                    (click)="store.prevPage()"
+                  class="px-3 py-1 border rounded text-sm disabled:opacity-40"
+                  [disabled]="store.pageFromUrl() === 1"
+                  (click)="store.prevPage()"
                 >
-                    <svg
+                  <svg
                     class="w-6 h-6 dark:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
@@ -226,35 +242,35 @@
                     height="24"
                     fill="none"
                     viewBox="0 0 24 24"
-                    >
+                  >
                     <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="m15 19-7-7 7-7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m15 19-7-7 7-7"
                     />
-                    </svg>
+                  </svg>
                 </button>
 
                 @for (page of store.visiblePageNumbers(); track page) {
-                    <button
+                  <button
                     class="px-3 py-1 border rounded text-sm"
                     [class.bg-blue-600]="store.pageFromUrl() === page"
                     [class.text-white]="store.pageFromUrl() === page"
                     (click)="store.setPage(page)"
-                    >
+                  >
                     {{ page }}
-                    </button>
+                  </button>
                 }
 
                 <!-- Next -->
                 <button
-                    class="px-3 py-1 border rounded text-sm disabled:opacity-40"
-                    [disabled]="store.pageFromUrl() === store.totalPages()"
-                    (click)="store.nextPage()"
+                  class="px-3 py-1 border rounded text-sm disabled:opacity-40"
+                  [disabled]="store.pageFromUrl() === store.totalPages()"
+                  (click)="store.nextPage()"
                 >
-                    <svg
+                  <svg
                     class="w-6 h-6 dark:text-white"
                     aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
@@ -262,19 +278,19 @@
                     height="24"
                     fill="none"
                     viewBox="0 0 24 24"
-                    >
+                  >
                     <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="m9 5 7 7-7 7"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m9 5 7 7-7 7"
                     />
-                    </svg>
+                  </svg>
                 </button>
-                </div>
+              </div>
             </div>
-            </div>
+          </div>
         }
       </section>
     </div>
@@ -315,18 +331,34 @@
         <div class="overflow-y-auto p-4 space-y-6">
           <div class="md:hidden border-b pb-4">
             <div class="flex items-center justify-between">
-              <span class="text-sm font-semibold text-gray-700">Items Per Page</span>
+              <label class="text-sm text-gray-600 font-medium"> Items Per Page </label>
 
-              <select
-                class="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                [value]="store.pageSizeFromUrl()"
-                (change)="store.setPageSize(+$any($event.target).value)"
-              >
-                <option value="12">12</option>
-                <option value="24">24</option>
-                <option value="48">48</option>
-                <option value="96">96</option>
-              </select>
+              <div class="relative">
+                <select
+                  class="appearance-none bg-white border border-gray-300 text-sm font-medium text-gray-700 px-4 py-2 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 transition"
+                  [value]="store.pageSizeFromUrl()"
+                  (change)="store.setPageSize(+$any($event.target).value)"
+                >
+                  <option value="12">12 Items</option>
+                  <option value="24">24 Items</option>
+                  <option value="48">48 Items</option>
+                  <option value="96">96 Items</option>
+                </select>
+                <!-- Custom arrow -->
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"
+                >
+                  <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </div>
             </div>
           </div>
 

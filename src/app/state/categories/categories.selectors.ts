@@ -7,5 +7,5 @@ export const selectCategoriesState =
 export const selectCategories =
   createSelector(selectCategoriesState, s => s.categories);
 
-export const selectCategoriesLoaded =
-  createSelector(selectCategoriesState, s => s.loaded);
+export const selectCategoriesFeatured =
+  createSelector(selectCategoriesState, s => s.categories.filter(c => c.featured));
