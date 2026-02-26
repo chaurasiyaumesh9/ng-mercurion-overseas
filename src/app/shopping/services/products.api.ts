@@ -89,7 +89,7 @@ export class ProductsApi {
             image: resolveMediaUrl(item.imageUrl),
             inStock: item.quantityAvailable > 0,
             quantityAvailable: item.quantityAvailable,
-            featured: item.featured,
+            featured: !!item.featured,
         };
     }
 }

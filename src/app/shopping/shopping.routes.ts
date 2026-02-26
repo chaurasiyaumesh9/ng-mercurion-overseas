@@ -31,8 +31,7 @@ export const shoppingRoutes: Routes = [
       },
       {
         path: '',
-        loadComponent: () =>
-          import('./components/product-details/product-details').then((m) => m.ProductDetails),
+        loadComponent: () => import('./components/product-details/product-details').then((m) => m.ProductDetails),
       },
     ],
   },
