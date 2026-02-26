@@ -1,8 +1,20 @@
-import { computed, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { signalStore, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
+import { computed, effect, inject } from '@angular/core';
+import {
+  signalStore,
+  withState,
+  withComputed,
+  withMethods,
+  withHooks,
+  withProps,
+  patchState,
+} from '@ngrx/signals';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { Product } from '@shopping/models/product.model';
 import { CartStore } from '@shopping/stores/cart.store';
+import { ProductsApi } from '@shopping/services/products.api';
+import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 export interface ProductDetailState {
   product: Product | null;
@@ -13,6 +25,9 @@ export interface ProductDetailState {
 }
 
 export const ProductDetailStore = signalStore(
+  // ----------------------------------
+  // STATE
+  // ----------------------------------
   withState<ProductDetailState>({
     product: null,
     relatedProducts: [],
@@ -21,21 +36,79 @@ export const ProductDetailStore = signalStore(
     selectedImage: 0,
   }),
 
-  withComputed((store) => ({
-    safeQuantity: computed(() => Math.max(1, store.quantity())),
-  })),
-
-  withMethods((store) => {
-    const cartStore = inject(CartStore);
+  // ----------------------------------
+  // PROPS (Dependency Injection)
+  // ----------------------------------
+  withProps(() => {
+    const route = inject(ActivatedRoute);
     const router = inject(Router);
+    const productsApi = inject(ProductsApi);
+    const cartStore = inject(CartStore);
+
+    return { route, router, productsApi, cartStore };
+  }),
+
+  // ----------------------------------
+  // COMPUTED
+  // ----------------------------------
+  withComputed((store) => {
+    const paramMap = toSignal(store.route.paramMap, { initialValue: null });
+
+    const sku = computed(() => paramMap()?.get('sku'));
+
+    const safeQuantity = computed(() => Math.max(1, store.quantity()));
+
+    const savePercent = computed(() => {
+      const p = store.product();
+      if (!p?.price) return 0;
+      return Math.round((1 - p.price / p.price) * 100);
+    });
+
+    const galleryImages = computed(() => {
+      const p = store.product();
+      if (!p?.image) return [];
+      return [p.image, p.image, p.image, p.image];
+    });
+
+    return { sku, safeQuantity, savePercent, galleryImages };
+  }),
+
+  // ----------------------------------
+  // METHODS
+  // ----------------------------------
+  withMethods((store) => {
+    async function loadProduct() {
+      const sku = store.sku();
+      if (!sku) return;
+
+      patchState(store, { loading: true });
+
+      try {
+        const result = await firstValueFrom(store.productsApi.searchProducts({ sku }));
+
+        const product = result?.products?.[0] ?? null;
+
+        patchState(store, {
+          product,
+          relatedProducts: [], // can enhance later
+          loading: false,
+          quantity: 1,
+          selectedImage: 0,
+        });
+      } catch (err) {
+        console.error('Failed to load product', err);
+        patchState(store, { loading: false });
+      }
+    }
 
     return {
-      loadProduct(id: string) {
-        patchState(store, { loading: true });
+      loadProduct,
 
-        // TODO: API doesn't provide single product endpoint.
-        // Implement when endpoint becomes available.
-        patchState(store, { loading: false });
+      parseQuantityInput(value: string) {
+        const parsed = parseInt(value, 10);
+        patchState(store, {
+          quantity: Math.max(1, parsed || 1),
+        });
       },
 
       increaseQuantity() {
@@ -43,33 +116,49 @@ export const ProductDetailStore = signalStore(
       },
 
       decreaseQuantity() {
-        patchState(store, { quantity: Math.max(1, store.quantity() - 1) });
+        patchState(store, {
+          quantity: Math.max(1, store.quantity() - 1),
+        });
       },
 
       setQuantity(newQuantity: number) {
-        patchState(store, { quantity: Math.max(1, newQuantity || 1) });
+        patchState(store, {
+          quantity: Math.max(1, newQuantity || 1),
+        });
       },
 
-      selectImage(imageIndex: number) {
-        patchState(store, { selectedImage: imageIndex });
+      selectImage(index: number) {
+        patchState(store, { selectedImage: index });
       },
 
       addToCart() {
         const product = store.product();
         if (!product) return;
-        cartStore.addItem(product, store.quantity());
+        store.cartStore.addItem(product, store.quantity());
       },
 
       buyNow() {
         const product = store.product();
         if (!product) return;
-        cartStore.addItem(product, store.quantity());
-        router.navigate(['/cart']);
+
+        store.cartStore.addItem(product, store.quantity());
+        store.router.navigate(['/cart']);
       },
 
       addRelatedToCart(product: Product) {
-        cartStore.addItem(product, 1);
+        store.cartStore.addItem(product, 1);
       },
     };
+  }),
+
+  // ----------------------------------
+  // HOOKS
+  // ----------------------------------
+  withHooks({
+    onInit(store) {
+      effect(() => {
+        store.loadProduct();
+      });
+    },
   }),
 );

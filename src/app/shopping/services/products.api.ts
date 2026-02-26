@@ -18,6 +18,7 @@ export interface SearchProductsOptions {
     sort?: string;
     facets?: Map<string, Set<string>>;
     featured?: boolean;
+    sku?: string;
 }
 
 export interface SearchProductsResult {
@@ -52,8 +53,11 @@ export class ProductsApi {
         if (options.sort) {
             params = params.set('sort', options.sort);
         }
-        if (options.featured !== undefined && options.featured !== null) {
-            params = params.set('featured', options.featured.toString());
+        if (options.featured) {
+            params = params.set('featured', true);
+        }
+        if (options.sku) {
+            params = params.set('sku', options.sku);
         }
         // Add facet filters to request
         if (options.facets && options.facets.size > 0) {

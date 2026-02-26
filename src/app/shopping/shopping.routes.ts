@@ -13,6 +13,10 @@ export const shoppingRoutes: Routes = [
         loadComponent: () => import('./components/home/home').then((m) => m.Home),
       },
       {
+        path: 'product/:sku',
+        loadComponent: () => import('./components/product-details/product-details').then((m) => m.ProductDetails),
+      },
+      {
         path: '',
         children: [
           {
@@ -29,10 +33,7 @@ export const shoppingRoutes: Routes = [
           },
         ],
       },
-      {
-        path: '',
-        loadComponent: () => import('./components/product-details/product-details').then((m) => m.ProductDetails),
-      },
+      
     ],
   },
 ];

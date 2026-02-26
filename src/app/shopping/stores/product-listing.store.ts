@@ -132,8 +132,6 @@ export const ProductListingStore = signalStore(
 
     return {
       products,
-      loading,
-      total,
       totalPages,
       search,
       pageFromUrl,
