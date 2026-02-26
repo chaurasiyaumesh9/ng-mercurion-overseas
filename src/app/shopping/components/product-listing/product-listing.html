@@ -2,41 +2,41 @@
   <!-- ================= PAGE CONTAINER ================= -->
   <div class="w-full md:container md:mx-auto md:px-4 px-4 py-4">
     <!-- ================= BREADCRUMB ================= -->
-    @if (!plpSignalstore.search()) {
+    @if (!store.search()) {
       <div class="flex flex-wrap items-center gap-2 text-sm text-gray-600 mb-2">
         <a routerLink="/" class="hover:text-blue-600">Home</a>
         <span>/</span>
 
-        @if (plpSignalstore.currentCategory()?.name) {
-          <span>{{ plpSignalstore.currentCategory()?.name }}</span>
+        @if (store.currentCategory()?.name) {
+          <span>{{ store.currentCategory()?.name }}</span>
         }
 
-        @if (plpSignalstore.currentSubCategory()?.name) {
+        @if (store.currentSubCategory()?.name) {
           <span>/</span>
-          <span>{{ plpSignalstore.currentSubCategory()?.name }}</span>
+          <span>{{ store.currentSubCategory()?.name }}</span>
         }
       </div>
     }
     <!-- ================= TITLE ================= -->
     <h1 class="text-2xl font-bold mb-4">
-      @if (plpSignalstore.search()) {
-        Search results for "{{ plpSignalstore.search() }}"
-      } @else if (plpSignalstore.currentSubCategory()?.name) {
-        {{ plpSignalstore.currentSubCategory()?.name }}
-      } @else if (plpSignalstore.currentCategory()?.name) {
-        {{ plpSignalstore.currentCategory()?.name }}
+      @if (store.search()) {
+        Search results for "{{ store.search() }}"
+      } @else if (store.currentSubCategory()?.name) {
+        {{ store.currentSubCategory()?.name }}
+      } @else if (store.currentCategory()?.name) {
+        {{ store.currentCategory()?.name }}
       } @else {
         All Products
       }
     </h1>
 
     <p class="text-gray-600 text-sm">
-      @if (loading()) {
+      @if (store.loading()) {
         <span class="text-gray-400">Loading products...</span>
-      } @else if (total() === 0) {
+      } @else if (store.total() === 0) {
         <span>No products found</span>
       } @else {
-        <span> Showing {{ products().length || 0 }} of {{ total() }} products </span>
+        <span> Showing {{ store.products().length || 0 }} of {{ store.total() }} products </span>
       }
     </p>
 
@@ -47,8 +47,8 @@
 
         <select
           class="border border-gray-300 rounded-md px-2 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          [value]="pageSize()"
-          (change)="plpSignalstore.setPageSize(+$any($event.target).value)"
+          [value]="store.pageSize()"
+          (change)="store.setPageSize(+$any($event.target).value)"
         >
           <option value="12">12 Items</option>
           <option value="24">24 Items</option>
@@ -65,18 +65,18 @@
       <!-- ================= DESKTOP SIDEBAR ================= -->
       <aside class="hidden lg:block lg:col-span-3">
         <div class="sticky top-24 bg-white rounded-lg space-y-6">
-          @if (plpSignalstore.currentCategory()?.subCategories?.length) {
+          @if (store.currentCategory()?.subCategories?.length) {
             <div class="border-b pb-4">
               <h3 class="text-sm font-semibold text-gray-900 mb-3">Categories</h3>
               <div class="space-y-2">
-                @for (sub of plpSignalstore.currentCategory()!.subCategories; track sub.id) {
+                @for (sub of store.currentCategory()!.subCategories; track sub.id) {
                   <a
-                    [routerLink]="['/', plpSignalstore.currentCategory()?.slug, sub.slug]"
+                    [routerLink]="['/', store.currentCategory()?.slug, sub.slug]"
                     class="block text-sm transition-colors"
-                    [class.text-blue-600]="plpSignalstore.currentSubCategory()?.id === sub.id"
-                    [class.font-semibold]="plpSignalstore.currentSubCategory()?.id === sub.id"
-                    [class.text-gray-700]="plpSignalstore.currentSubCategory()?.id !== sub.id"
-                    [class.hover:text-blue-600]="plpSignalstore.currentSubCategory()?.id !== sub.id"
+                    [class.text-blue-600]="store.currentSubCategory()?.id === sub.id"
+                    [class.font-semibold]="store.currentSubCategory()?.id === sub.id"
+                    [class.text-gray-700]="store.currentSubCategory()?.id !== sub.id"
+                    [class.hover:text-blue-600]="store.currentSubCategory()?.id !== sub.id"
                   >
                     {{ sub.name }}
                   </a>
@@ -87,17 +87,14 @@
 
           <div class="flex items-center justify-between mb-3">
             <h2 class="text-lg font-semibold">Filters</h2>
-            @if (plpSignalstore.facetsFromUrl().size > 0) {
-              <button
-                class="text-sm text-blue-600 hover:underline"
-                (click)="plpSignalstore.clearFilters()"
-              >
+            @if (store.facetsFromUrl().size > 0) {
+              <button class="text-sm text-blue-600 hover:underline" (click)="store.clearFilters()">
                 Clear
               </button>
             }
           </div>
 
-          @for (facet of visibleFacets(); track facet.field) {
+          @for (facet of store.visibleFacets(); track facet.field) {
             @if (facet.field !== 'categoryIds') {
               <div class="border-b pb-4">
                 <h3 class="text-sm font-semibold text-gray-900 mb-3">{{ facet.label }}</h3>
@@ -108,10 +105,8 @@
                         <input
                           type="checkbox"
                           class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                          [checked]="
-                            plpSignalstore.isFacetValueSelected(facet.field, facetValue.value)
-                          "
-                          (change)="plpSignalstore.toggleFacetValue(facet.field, facetValue.value)"
+                          [checked]="store.isFacetValueSelected(facet.field, facetValue.value)"
+                          (change)="store.toggleFacetValue(facet.field, facetValue.value)"
                         />
                         <span class="text-gray-700">{{ facetValue.value }}</span>
                       </label>
@@ -127,7 +122,7 @@
 
       <!-- ================= PRODUCT GRID ================= -->
       <section class="lg:col-span-9">
-        @if (loading()) {
+        @if (store.loading()) {
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <!-- Skeleton Loaders -->
             @for (i of [0, 1, 2, 3, 4, 5, 6, 7]; track i) {
@@ -142,7 +137,7 @@
           </div>
         } @else {
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            @for (p of products(); track p.id) {
+            @for (p of store.products(); track p.id) {
               <app-product-tile [product]="p"></app-product-tile>
             }
           </div>
@@ -155,8 +150,8 @@
             <div class="flex items-center gap-2 flex-wrap">
               <button
                 class="px-3 py-1 border rounded disabled:opacity-40"
-                [disabled]="page() === 1"
-                (click)="plpSignalstore.prevPage()"
+                [disabled]="store.page() === 1"
+                (click)="store.prevPage()"
               >
                 <svg
                   class="w-6 h-6 dark:text-white"
@@ -177,12 +172,12 @@
                 </svg>
               </button>
 
-              @for (_page of visiblePageNumbers(); track _page) {
+              @for (_page of store.visiblePageNumbers(); track _page) {
                 <button
                   class="px-3 py-1 border rounded text-sm"
-                  [class.bg-blue-600]="page() === _page"
-                  [class.text-white]="page() === _page"
-                  (click)="plpSignalstore.setPage(_page)"
+                  [class.bg-blue-600]="store.page() === _page"
+                  [class.text-white]="store.page() === _page"
+                  (click)="store.setPage(_page)"
                 >
                   {{ _page }}
                 </button>
@@ -191,8 +186,8 @@
               <!-- Next -->
               <button
                 class="px-3 py-1 border rounded disabled:opacity-40"
-                [disabled]="page() === totalPages()"
-                (click)="plpSignalstore.nextPage()"
+                [disabled]="store.page() === store.totalPages()"
+                (click)="store.nextPage()"
               >
                 <svg
                   class="w-6 h-6 dark:text-white"
@@ -219,8 +214,8 @@
             <div class="flex items-center gap-2 flex-wrap justify-center max-w-[320px]">
               <button
                 class="px-3 py-1 border rounded text-sm disabled:opacity-40"
-                [disabled]="page() === 1"
-                (click)="plpSignalstore.prevPage()"
+                [disabled]="store.page() === 1"
+                (click)="store.prevPage()"
               >
                 <svg
                   class="w-6 h-6 dark:text-white"
@@ -241,12 +236,12 @@
                 </svg>
               </button>
 
-              @for (_page of visiblePageNumbers(); track _page) {
+              @for (_page of store.visiblePageNumbers(); track _page) {
                 <button
                   class="px-3 py-1 border rounded text-sm"
-                  [class.bg-blue-600]="page() === _page"
-                  [class.text-white]="page() === _page"
-                  (click)="plpSignalstore.setPage(_page)"
+                  [class.bg-blue-600]="store.page() === _page"
+                  [class.text-white]="store.page() === _page"
+                  (click)="store.setPage(_page)"
                 >
                   {{ _page }}
                 </button>
@@ -255,8 +250,8 @@
               <!-- Next -->
               <button
                 class="px-3 py-1 border rounded text-sm disabled:opacity-40"
-                [disabled]="page() === totalPages()"
-                (click)="plpSignalstore.nextPage()"
+                [disabled]="store.page() === store.totalPages()"
+                (click)="store.nextPage()"
               >
                 <svg
                   class="w-6 h-6 dark:text-white"
@@ -286,17 +281,14 @@
   <!-- ================= MOBILE FLOAT FILTER BUTTON ================= -->
   <button
     class="lg:hidden fixed bottom-6 right-6 z-40 bg-blue-600 text-white px-5 py-3 rounded-full shadow-lg"
-    (click)="plpSignalstore.toggleMobileFilters()"
+    (click)="store.toggleMobileFilters()"
   >
     Filters
   </button>
 
-  @if (plpSignalstore.mobileFiltersOpen()) {
+  @if (store.mobileFiltersOpen()) {
     <div class="fixed inset-0 z-50 lg:hidden">
-      <div
-        class="absolute inset-0 bg-black/40"
-        (click)="plpSignalstore.toggleMobileFilters()"
-      ></div>
+      <div class="absolute inset-0 bg-black/40" (click)="store.toggleMobileFilters()"></div>
 
       <div
         class="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl shadow-xl max-h-[85vh] flex flex-col"
@@ -305,16 +297,16 @@
           <span class="font-semibold text-lg">Filters</span>
 
           <div class="flex items-center gap-4">
-            @if (plpSignalstore.facetsFromUrl().size > 0) {
+            @if (store.facetsFromUrl().size > 0) {
               <button
                 class="text-sm text-blue-600"
-                (click)="plpSignalstore.clearFilters(); plpSignalstore.toggleMobileFilters()"
+                (click)="store.clearFilters(); store.toggleMobileFilters()"
               >
                 Clear
               </button>
             }
 
-            <button (click)="plpSignalstore.toggleMobileFilters()">✕</button>
+            <button (click)="store.toggleMobileFilters()">✕</button>
           </div>
         </div>
 
@@ -325,8 +317,8 @@
 
               <select
                 class="border border-gray-300 rounded-md px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                [value]="pageSize()"
-                (change)="plpSignalstore.setPageSize(+$any($event.target).value)"
+                [value]="store.pageSize()"
+                (change)="store.setPageSize(+$any($event.target).value)"
               >
                 <option value="12">12</option>
                 <option value="24">24</option>
@@ -336,21 +328,19 @@
             </div>
           </div>
 
-          @if (
-            plpSignalstore.currentCategory()?.subCategories?.length && !plpSignalstore.search()
-          ) {
+          @if (store.currentCategory()?.subCategories?.length && !store.search()) {
             <div class="border-b pb-4">
               <h3 class="text-sm font-semibold text-gray-900 mb-3">Subcategories</h3>
 
               <div class="space-y-2">
-                @for (sub of plpSignalstore.currentCategory()!.subCategories; track sub.id) {
+                @for (sub of store.currentCategory()!.subCategories; track sub.id) {
                   <a
-                    [routerLink]="['/', plpSignalstore.currentCategory()?.slug, sub.slug]"
-                    (click)="plpSignalstore.toggleMobileFilters()"
+                    [routerLink]="['/', store.currentCategory()?.slug, sub.slug]"
+                    (click)="store.toggleMobileFilters()"
                     class="block text-sm"
-                    [class.text-blue-600]="plpSignalstore.currentSubCategory()?.id === sub.id"
-                    [class.font-semibold]="plpSignalstore.currentSubCategory()?.id === sub.id"
-                    [class.text-gray-700]="plpSignalstore.currentSubCategory()?.id !== sub.id"
+                    [class.text-blue-600]="store.currentSubCategory()?.id === sub.id"
+                    [class.font-semibold]="store.currentSubCategory()?.id === sub.id"
+                    [class.text-gray-700]="store.currentSubCategory()?.id !== sub.id"
                   >
                     {{ sub.name }}
                   </a>
@@ -359,7 +349,7 @@
             </div>
           }
 
-          @for (facet of visibleFacets(); track facet.field) {
+          @for (facet of store.visibleFacets(); track facet.field) {
             @if (facet.field !== 'categoryIds') {
               <div class="border-b pb-4">
                 <h3 class="text-sm font-semibold text-gray-900 mb-3">{{ facet.label }}</h3>
@@ -369,10 +359,8 @@
                       <input
                         type="checkbox"
                         class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                        [checked]="
-                          plpSignalstore.isFacetValueSelected(facet.field, facetValue.value)
-                        "
-                        (change)="plpSignalstore.toggleFacetValue(facet.field, facetValue.value)"
+                        [checked]="store.isFacetValueSelected(facet.field, facetValue.value)"
+                        (change)="store.toggleFacetValue(facet.field, facetValue.value)"
                       />
                       <span class="truncate text-gray-700">{{ facetValue.value }}</span>
                       <span class="text-xs text-gray-500">({{ facetValue.count }})</span>
