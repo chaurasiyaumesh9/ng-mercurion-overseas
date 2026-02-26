@@ -69,11 +69,16 @@ export const ProductListingStore = signalStore(
     const visibleFacets = computed(() =>
       store
         .facets()
-        .filter((f) => f.values?.length > 0)
-        .map((f) => ({
-          ...f,
-          label: facetLabels[f.field] ?? f.field,
-        })),
+        .map((f) => {
+          const filteredValues = f.values?.filter((v) => v.value !== '0');
+
+          return {
+            ...f,
+            values: filteredValues ?? [],
+            label: facetLabels[f.field] ?? f.field,
+          };
+        })
+        .filter((f) => f.values.length > 0),
     );
 
     const params = toSignal(store.route.paramMap, { initialValue: null });
@@ -217,7 +222,18 @@ export const ProductListingStore = signalStore(
       },
 
       clearFilters() {
-        store.router.navigate([], { relativeTo: store.route, queryParams: {} });
+        const search = store.search();
+
+        const queryParams: any = {};
+
+        if (search) {
+          queryParams.keywords = search;
+        }
+
+        store.router.navigate([], {
+          relativeTo: store.route,
+          queryParams,
+        });
       },
     };
   }),
@@ -225,9 +241,11 @@ export const ProductListingStore = signalStore(
   withHooks({
     onInit(store) {
       effect((onCleanup) => {
+        if (!store.currentCategory() && !store.search()) {
+          return;
+        }
         let cancelled = false;
         onCleanup(() => (cancelled = true));
-
         (async () => {
           patchState(store, { loading: true });
 
@@ -237,17 +255,13 @@ export const ProductListingStore = signalStore(
               searchQuery: store.search() || '',
               page: store.pageFromUrl(),
               pageSize: store.pageSizeFromUrl(),
-              sort: '', // if needed
+              sort: '',
               facets: store.facetsFromUrl(),
             }),
           );
 
           if (cancelled) return;
-
-          // Update entity collection
           patchState(store, setAllEntities(response.products));
-
-          // Update metadata
           patchState(store, {
             total: response.total,
             facets: response.facets,

@@ -145,135 +145,137 @@
 
         <!-- Pagination Controls -->
         <!-- ================= PAGINATION ================= -->
-        <div class="mt-10">
-          <div class="hidden md:flex justify-end">
-            <div class="flex items-center gap-2 flex-wrap">
-              <button
-                class="px-3 py-1 border rounded disabled:opacity-40"
-                [disabled]="store.pageFromUrl() === 1"
-                (click)="store.prevPage()"
-              >
-                <svg
-                  class="w-6 h-6 dark:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m15 19-7-7 7-7"
-                  />
-                </svg>
-              </button>
-
-              @for (page of store.visiblePageNumbers(); track page) {
+         @if (store.totalPages() > 1) {
+            <div class="mt-10">
+            <div class="hidden md:flex justify-end">
+                <div class="flex items-center gap-2 flex-wrap">
                 <button
-                  class="px-3 py-1 border rounded text-sm"
-                  [class.bg-blue-600]="store.pageFromUrl() === page"
-                  [class.text-white]="store.pageFromUrl() === page"
-                  (click)="store.setPage(page)"
+                    class="px-3 py-1 border rounded disabled:opacity-40"
+                    [disabled]="store.pageFromUrl() === 1"
+                    (click)="store.prevPage()"
                 >
-                  {{ page }}
+                    <svg
+                    class="w-6 h-6 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    >
+                    <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m15 19-7-7 7-7"
+                    />
+                    </svg>
                 </button>
-              }
 
-              <!-- Next -->
-              <button
-                class="px-3 py-1 border rounded disabled:opacity-40"
-                [disabled]="store.pageFromUrl() === store.totalPages()"
-                (click)="store.nextPage()"
-              >
-                <svg
-                  class="w-6 h-6 dark:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m9 5 7 7-7 7"
-                  />
-                </svg>
-              </button>
-            </div>
-          </div>
+                @for (page of store.visiblePageNumbers(); track page) {
+                    <button
+                    class="px-3 py-1 border rounded text-sm"
+                    [class.bg-blue-600]="store.pageFromUrl() === page"
+                    [class.text-white]="store.pageFromUrl() === page"
+                    (click)="store.setPage(page)"
+                    >
+                    {{ page }}
+                    </button>
+                }
 
-          <div class="flex md:hidden justify-center">
-            <div class="flex items-center gap-2 flex-wrap justify-center max-w-[320px]">
-              <button
-                class="px-3 py-1 border rounded text-sm disabled:opacity-40"
-                [disabled]="store.pageFromUrl() === 1"
-                (click)="store.prevPage()"
-              >
-                <svg
-                  class="w-6 h-6 dark:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m15 19-7-7 7-7"
-                  />
-                </svg>
-              </button>
-
-              @for (page of store.visiblePageNumbers(); track page) {
+                <!-- Next -->
                 <button
-                  class="px-3 py-1 border rounded text-sm"
-                  [class.bg-blue-600]="store.pageFromUrl() === page"
-                  [class.text-white]="store.pageFromUrl() === page"
-                  (click)="store.setPage(page)"
+                    class="px-3 py-1 border rounded disabled:opacity-40"
+                    [disabled]="store.pageFromUrl() === store.totalPages()"
+                    (click)="store.nextPage()"
                 >
-                  {{ page }}
+                    <svg
+                    class="w-6 h-6 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    >
+                    <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m9 5 7 7-7 7"
+                    />
+                    </svg>
                 </button>
-              }
-
-              <!-- Next -->
-              <button
-                class="px-3 py-1 border rounded text-sm disabled:opacity-40"
-                [disabled]="store.pageFromUrl() === store.totalPages()"
-                (click)="store.nextPage()"
-              >
-                <svg
-                  class="w-6 h-6 dark:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="m9 5 7 7-7 7"
-                  />
-                </svg>
-              </button>
+                </div>
             </div>
-          </div>
-        </div>
+
+            <div class="flex md:hidden justify-center">
+                <div class="flex items-center gap-2 flex-wrap justify-center max-w-[320px]">
+                <button
+                    class="px-3 py-1 border rounded text-sm disabled:opacity-40"
+                    [disabled]="store.pageFromUrl() === 1"
+                    (click)="store.prevPage()"
+                >
+                    <svg
+                    class="w-6 h-6 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    >
+                    <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m15 19-7-7 7-7"
+                    />
+                    </svg>
+                </button>
+
+                @for (page of store.visiblePageNumbers(); track page) {
+                    <button
+                    class="px-3 py-1 border rounded text-sm"
+                    [class.bg-blue-600]="store.pageFromUrl() === page"
+                    [class.text-white]="store.pageFromUrl() === page"
+                    (click)="store.setPage(page)"
+                    >
+                    {{ page }}
+                    </button>
+                }
+
+                <!-- Next -->
+                <button
+                    class="px-3 py-1 border rounded text-sm disabled:opacity-40"
+                    [disabled]="store.pageFromUrl() === store.totalPages()"
+                    (click)="store.nextPage()"
+                >
+                    <svg
+                    class="w-6 h-6 dark:text-white"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    >
+                    <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m9 5 7 7-7 7"
+                    />
+                    </svg>
+                </button>
+                </div>
+            </div>
+            </div>
+        }
       </section>
     </div>
   </div>
