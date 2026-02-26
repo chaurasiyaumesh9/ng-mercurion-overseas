@@ -34,9 +34,6 @@ export class ProductsApi {
 
     constructor(private http: HttpClient) {}
 
-    /**
-     * Search products with support for category filtering, search keywords, pagination, sorting, and facet filtering
-     */
     searchProducts(options: SearchProductsOptions): Observable<SearchProductsResult> {
         let params = new HttpParams();
 
