@@ -1,5 +1,5 @@
-import { inject, effect } from '@angular/core';
-import { selectCategoriesFeatured } from '@appState/categories/categories.selectors';
+import { computed, inject, effect } from '@angular/core';
+import { selectCategoriesFeatured, selectCategoriesLoaded } from '@appState/categories/categories.selectors';
 import { PLACEHOLDER_IMAGE_URL } from '@core/constants/image.constants';
 import {
   signalStore,
@@ -17,7 +17,6 @@ import { ProductsApi } from '@shopping/services/products.api';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 
 interface HomeState {
-  featuredCategories: Category[];
   featuredProducts: Product[];
   loading: boolean;
   failedCategoryImages: Set<string>;
@@ -25,15 +24,24 @@ interface HomeState {
 
 export const HomeStore = signalStore(
   withState<HomeState>(() => ({
-    featuredCategories: [],
     featuredProducts: [],
     loading: false,
     failedCategoryImages: new Set<string>(),
   })),
 
-  withProps(() => ({
-    ngrxStore: inject(Store),
-    api: inject(ProductsApi),
+  withProps(() => {
+    const ngrxStore = inject(Store);
+    return {
+      ngrxStore,
+      api: inject(ProductsApi),
+      featuredCategoriesSignal: ngrxStore.selectSignal(selectCategoriesFeatured),
+      categoriesLoadedSignal: ngrxStore.selectSignal(selectCategoriesLoaded),
+    };
+  }),
+
+  withComputed((store) => ({
+    featuredCategories: computed(() => store.featuredCategoriesSignal()),
+    categoriesLoaded: computed(() => store.categoriesLoadedSignal()),
   })),
 
   withHooks({
@@ -46,14 +54,11 @@ export const HomeStore = signalStore(
           patchState(store, { loading: true });
 
           const featuredProducts = await firstValueFrom(store.api.searchProducts({ featured: true }));
-          
-          const featuredCategories = store.ngrxStore.selectSignal(selectCategoriesFeatured);
 
           if (cancelled) return;
 
           patchState(store, {
             featuredProducts: featuredProducts.products,
-            featuredCategories: featuredCategories(),
             loading: false,
           });
         })();
