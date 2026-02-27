@@ -11,6 +11,5 @@ import { ProductDetailStore } from '@shopping/stores/product-details.store';
   templateUrl: './product-details.html',
 })
 export class ProductDetails {
-  readonly store = inject(ProductDetailStore); 
-  
+  readonly store = inject(ProductDetailStore);   
 }

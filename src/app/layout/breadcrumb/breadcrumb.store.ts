@@ -6,8 +6,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { selectCategories } from '@appState/categories/categories.selectors';
 import { Breadcrumb } from './breadcrumb.model';
 import { ProductsApi } from '@shopping/services/products.api';
-
-const SKU_SEGMENT_REGEX = /^(?=.*\d)[a-zA-Z0-9-]+$/;
+import { SKU_SEGMENT_REGEX } from '@core/constants/route.constants';
 
 export const BreadcrumbStore = signalStore(
   withProps(() => {
@@ -99,3 +98,4 @@ export const BreadcrumbStore = signalStore(
     return { breadcrumbs };
   }),
 );
+

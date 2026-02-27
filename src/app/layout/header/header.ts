@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { CartStore } from '@shopping/stores/cart.store';
 import { Store } from '@ngrx/store';
-import { selectCategories } from '@appState/categories/categories.selectors';
+import { selectCategories, selectCategoriesLoaded } from '@appState/categories/categories.selectors';
 
 @Component({
     selector: 'app-header',
@@ -15,7 +15,8 @@ export class Header {
     readonly cartStore = inject(CartStore);    
     private router = inject(Router);   
     private store = inject(Store);
-    readonly categories$ = this.store.select(selectCategories);    
+    readonly categories$ = this.store.select(selectCategories);
+    readonly categoriesLoaded$ = this.store.select(selectCategoriesLoaded);
 
     mobileMenuOpen = signal(false);
     searchQuery = signal('');    

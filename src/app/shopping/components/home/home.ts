@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { ProductTile } from '../product-tile/product-tile';
 import { HomeStore } from '@shopping/stores/home.store';
 
-
 @Component({
   standalone: true,
   selector: 'app-home-page',

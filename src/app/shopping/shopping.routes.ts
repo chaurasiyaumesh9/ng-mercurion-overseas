@@ -1,6 +1,5 @@
 import { Routes, UrlMatchResult, UrlSegment } from '@angular/router';
-
-const SKU_SEGMENT_REGEX = /^(?=.*\d)[a-zA-Z0-9-]+$/;
+import { SKU_SEGMENT_REGEX } from '@core/constants/route.constants';
 
 function skuMatcher(segments: UrlSegment[]): UrlMatchResult | null {
   if (segments.length !== 1) return null;
@@ -63,3 +62,4 @@ export const shoppingRoutes: Routes = [
       import('./components/product-listing/product-listing').then((m) => m.ProductListing),
   },
 ];
+
