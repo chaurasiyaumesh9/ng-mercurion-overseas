@@ -1,4 +1,4 @@
-<div class="container mx-auto px-4 py-8">
+<div class="container mx-auto px-4 py-2">
   <!-- ================= LOADING ================= -->
   @if (store.loading()) {
     <div class="flex justify-center items-center py-24 text-gray-500">Loading product...</div>
@@ -131,7 +131,7 @@
         <div class="mb-6">
           <label class="font-semibold block mb-2">Quantity</label>
 
-          <div class="flex border rounded-lg w-fit overflow-hidden">
+          <div class="flex border w-fit overflow-hidden">
             <button class="px-4 py-2 hover:bg-gray-100" (click)="store.decreaseQuantity()">-</button>
 
             <input
@@ -148,7 +148,7 @@
         <!-- ================= ACTION BUTTONS ================= -->
         <div class="flex flex-col sm:flex-row gap-4 mb-6">
           <button
-            class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-xl flex items-center justify-center gap-2 transition"
+            class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-3 flex items-center justify-center gap-2 transition"
             (click)="store.addToCart()"
             [disabled]="!product.inStock"
           >
@@ -172,7 +172,7 @@
           </button>
 
           <button
-            class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 rounded-xl transition"
+            class="flex-1 bg-green-600 hover:bg-green-700 text-white py-3 transition"
             (click)="store.buyNow()"
             [disabled]="!product.inStock"
           >

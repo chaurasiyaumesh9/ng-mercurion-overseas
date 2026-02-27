@@ -5,11 +5,12 @@ import { Footer } from '../footer/footer';
 import { CartStore } from '@shopping/stores/cart.store';
 import { Store } from '@ngrx/store';
 import { loadCategories } from '@appState/categories/categories.actions';
+import { Breadcrumb } from '@layout/breadcrumb/breadcrumb';
 
 @Component({
     selector: 'app-shell',
     standalone: true,
-    imports: [RouterOutlet, Header, Footer],
+    imports: [RouterOutlet, Header, Footer, Breadcrumb],
     templateUrl: './shell.html',
 })
 export class Shell implements OnInit { 

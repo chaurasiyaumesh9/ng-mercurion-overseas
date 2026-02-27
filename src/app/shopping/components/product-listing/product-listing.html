@@ -1,22 +1,6 @@
 <div class="bg-white">
   <!-- ================= PAGE CONTAINER ================= -->
-  <div class="w-full md:container md:mx-auto md:px-4 px-4 py-4">
-    <!-- ================= BREADCRUMB ================= -->
-    @if (!store.search()) {
-      <div class="flex flex-wrap items-center gap-2 text-sm text-gray-600 mb-2">
-        <a routerLink="/" class="hover:text-blue-600">Home</a>
-        <span>/</span>
-
-        @if (store.currentCategory()?.name) {
-          <span>{{ store.currentCategory()?.name }}</span>
-        }
-
-        @if (store.currentSubCategory()?.name) {
-          <span>/</span>
-          <span>{{ store.currentSubCategory()?.name }}</span>
-        }
-      </div>
-    }
+  <div class="w-full md:container md:mx-auto md:px-4 px-4">    
     <!-- ================= TITLE ================= -->
     <h1 class="text-2xl font-bold mb-4">
       @if (store.search()) {
