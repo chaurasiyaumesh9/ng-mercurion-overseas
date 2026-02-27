@@ -1,4 +1,18 @@
-import { Routes } from '@angular/router';
+import { Routes, UrlMatchResult, UrlSegment } from '@angular/router';
+
+const SKU_SEGMENT_REGEX = /^(?=.*\d)[a-zA-Z0-9-]+$/;
+
+function skuMatcher(segments: UrlSegment[]): UrlMatchResult | null {
+  if (segments.length !== 1) return null;
+
+  const segment = segments[0];
+  if (!SKU_SEGMENT_REGEX.test(segment.path)) return null;
+
+  return {
+    consumed: [segment],
+    posParams: { sku: segment },
+  };
+}
 
 export const shoppingRoutes: Routes = [
   // HOME
@@ -9,7 +23,7 @@ export const shoppingRoutes: Routes = [
 
   // PRODUCT
   {
-    path: 'product/:sku',
+    matcher: skuMatcher,
     loadComponent: () =>
       import('./components/product-details/product-details').then((m) => m.ProductDetails),
   },
