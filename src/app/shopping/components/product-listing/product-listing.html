@@ -41,40 +41,43 @@
     </p>
 
     <!-- ================= TOP BAR ================= -->
-    <div class="hidden md:flex items-center justify-end mb-4">
-      <div class="flex items-center gap-2 text-sm">
-        <span class="text-gray-600">Show</span>
 
-        <div class="relative">
-          <select
-            class="appearance-none bg-white border border-gray-300 text-sm font-medium text-gray-700 px-4 py-2 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 transition"
-            [value]="store.pageSizeFromUrl()"
-            (change)="store.setPageSize(+$any($event.target).value)"
-          >
-            <option value="12">12 Items</option>
-            <option value="24">24 Items</option>
-            <option value="48">48 Items</option>
-            <option value="96">96 Items</option>
-          </select>
-          <!-- Custom arrow -->
-          <div
-            class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"
-          >
-            <svg
-              class="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              viewBox="0 0 24 24"
+    @if (store.totalPages() > 1) {
+        <div class="hidden md:flex items-center justify-end mb-4">
+        <div class="flex items-center gap-2 text-sm">
+            <span class="text-gray-600">Show</span>
+
+            <div class="relative">
+            <select
+                class="appearance-none bg-white border border-gray-300 text-sm font-medium text-gray-700 px-4 py-2 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 transition"
+                [value]="store.pageSizeFromUrl()"
+                (change)="store.setPageSize(+$any($event.target).value)"
             >
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-        </div>
+                <option value="12">12 Items</option>
+                <option value="24">24 Items</option>
+                <option value="48">48 Items</option>
+                <option value="96">96 Items</option>
+            </select>
+            <!-- Custom arrow -->
+            <div
+                class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"
+            >
+                <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+            </div>
+            </div>
 
-        <!-- <span class="text-gray-600">Per Page</span> -->
-      </div>
-    </div>
+            <!-- <span class="text-gray-600">Per Page</span> -->
+        </div>
+        </div>
+    }
 
     <!-- ================= GRID LAYOUT ================= -->
     <div class="mt-6 grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -103,7 +106,7 @@
 
           <div class="flex items-center justify-between mb-3">
             <h2 class="text-lg font-semibold">Filters</h2>
-            @if (store.facetsFromUrl().size > 0) {
+            @if (store.facetsFromPath().size > 0) {
               <button class="text-sm text-blue-600 hover:underline" (click)="store.clearFilters()">
                 Clear
               </button>
@@ -315,7 +318,7 @@
           <span class="font-semibold text-lg">Filters</span>
 
           <div class="flex items-center gap-4">
-            @if (store.facetsFromUrl().size > 0) {
+            @if (store.facetsFromPath().size > 0) {
               <button
                 class="text-sm text-blue-600"
                 (click)="store.clearFilters(); store.toggleMobileFilters()"
@@ -329,38 +332,40 @@
         </div>
 
         <div class="overflow-y-auto p-4 space-y-6">
-          <div class="md:hidden border-b pb-4">
-            <div class="flex items-center justify-between">
-              <label class="text-sm text-gray-600 font-medium"> Items Per Page </label>
+            @if (store.totalPages() > 1) {
+                <div class="md:hidden border-b pb-4">
+                    <div class="flex items-center justify-between">
+                    <label class="text-sm text-gray-600 font-medium"> Items Per Page </label>
 
-              <div class="relative">
-                <select
-                  class="appearance-none bg-white border border-gray-300 text-sm font-medium text-gray-700 px-4 py-2 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 transition"
-                  [value]="store.pageSizeFromUrl()"
-                  (change)="store.setPageSize(+$any($event.target).value)"
-                >
-                  <option value="12">12 Items</option>
-                  <option value="24">24 Items</option>
-                  <option value="48">48 Items</option>
-                  <option value="96">96 Items</option>
-                </select>
-                <!-- Custom arrow -->
-                <div
-                  class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"
-                >
-                  <svg
-                    class="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    viewBox="0 0 24 24"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
+                    <div class="relative">
+                        <select
+                        class="appearance-none bg-white border border-gray-300 text-sm font-medium text-gray-700 px-4 py-2 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 transition"
+                        [value]="store.pageSizeFromUrl()"
+                        (change)="store.setPageSize(+$any($event.target).value)"
+                        >
+                        <option value="12">12 Items</option>
+                        <option value="24">24 Items</option>
+                        <option value="48">48 Items</option>
+                        <option value="96">96 Items</option>
+                        </select>
+                        <!-- Custom arrow -->
+                        <div
+                        class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"
+                        >
+                        <svg
+                            class="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
+                        </div>
+                    </div>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
+            }
 
           @if (store.currentCategory()?.subCategories?.length && !store.search()) {
             <div class="border-b pb-4">

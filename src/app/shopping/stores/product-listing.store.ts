@@ -64,8 +64,6 @@ export const ProductListingStore = signalStore(
 
     const categories = store.ngrxStore.selectSignal(selectCategories);
     const products = store.entities;
-    const loading = store.loading;
-    const total = store.total;
     const visibleFacets = computed(() =>
       store
         .facets()
@@ -95,26 +93,6 @@ export const ProductListingStore = signalStore(
       () => currentCategory()?.subCategories?.find((s) => s.slug === subCategorySlug()) ?? null,
     );
 
-    const EMPTY_FACETS = new Map<string, Set<string>>();
-
-    const facetsFromUrl = computed(() => {
-      const q = query();
-      if (!q) return EMPTY_FACETS;
-
-      const map = new Map<string, Set<string>>();
-
-      q.keys.forEach((key) => {
-        if (!['keywords', 'page', 'pageSize'].includes(key)) {
-          const values = q.getAll(key) || [];
-          const set = new Set<string>();
-          values.forEach((v) => v.split(',').forEach((x) => x && set.add(x)));
-          if (set.size) map.set(key, set);
-        }
-      });
-
-      return map;
-    });
-
     const visiblePageNumbers = computed(() => {
       const current = pageFromUrl();
       const total = totalPages();
@@ -130,6 +108,38 @@ export const ProductListingStore = signalStore(
       return pages;
     });
 
+    const urlSegments = toSignal(store.route.url, { initialValue: [] });
+
+    const facetsFromPath = computed(() => {
+      const segments = urlSegments().map((s) => s.path);
+      const map = new Map<string, Set<string>>();
+
+      if (!segments.length) return map;
+
+      // first segment = category
+      let startIndex = 1;
+
+      const knownFacetKeys = Object.keys(facetLabels);
+
+      if (segments.length > 1 && !knownFacetKeys.includes(segments[1])) {
+        startIndex = 2; // subcategory present
+      }
+
+      const facetSegments = segments.slice(startIndex);
+
+      for (let i = 0; i < facetSegments.length; i += 2) {
+        const key = facetSegments[i];
+        const value = facetSegments[i + 1];
+        if (!key || !value) continue;
+
+        const set = map.get(key) ?? new Set<string>();
+        set.add(value);
+        map.set(key, set);
+      }
+
+      return map;
+    });
+
     return {
       products,
       totalPages,
@@ -138,7 +148,7 @@ export const ProductListingStore = signalStore(
       pageSizeFromUrl,
       currentCategory,
       currentSubCategory,
-      facetsFromUrl,
+      facetsFromPath,
       visiblePageNumbers,
       visibleFacets,
     };
@@ -156,13 +166,6 @@ export const ProductListingStore = signalStore(
         queryParams.keywords = search;
       }
 
-      const facets = store.facetsFromUrl();
-      facets.forEach((values, key) => {
-        if (values.size > 0) {
-          queryParams[key] = Array.from(values).join(',');
-        }
-      });
-
       return { ...queryParams, ...overrides };
     }
 
@@ -174,21 +177,51 @@ export const ProductListingStore = signalStore(
     }
 
     function toggleFacetValue(field: string, value: string) {
-      const current = store.facetsFromUrl();
-      const set = current.get(field) ?? new Set<string>();
-      if (set.has(value)) set.delete(value);
-      else set.add(value);
-      const queryParams = buildQueryParams({ page: 1 });
-      if (set.size === 0) {
-        delete queryParams[field];
-      } else {
-        queryParams[field] = Array.from(set).join(',');
+      const segments = store.route.snapshot.url.map((s) => s.path);
+
+      const knownFacetKeys = Object.keys(facetLabels);
+
+      // Determine base segments (category + optional subcategory)
+      const baseSegments: string[] = [];
+
+      if (segments.length > 0) {
+        baseSegments.push(segments[0]); // category
       }
-      store.router.navigate([], { relativeTo: store.route, queryParams });
+
+      if (segments.length > 1 && !knownFacetKeys.includes(segments[1])) {
+        baseSegments.push(segments[1]); // subcategory
+      }
+
+      const currentFacets = new Map(store.facetsFromPath());
+      const set = currentFacets.get(field) ?? new Set<string>();
+
+      if (set.has(value)) {
+        set.delete(value);
+      } else {
+        set.add(value);
+      }
+
+      if (set.size === 0) {
+        currentFacets.delete(field);
+      } else {
+        currentFacets.set(field, set);
+      }
+
+      // rebuild facet path
+      const facetSegments: string[] = [];
+      currentFacets.forEach((values, key) => {
+        values.forEach((v) => {
+          facetSegments.push(key, v);
+        });
+      });
+
+      store.router.navigate([...baseSegments, ...facetSegments], {
+        queryParams: buildQueryParams({ page: 1 }),
+      });
     }
 
     function isFacetValueSelected(field: string, value: string): boolean {
-      const map = store.facetsFromUrl();
+      const map = store.facetsFromPath();
       return map.get(field)?.has(value) ?? false;
     }
 
@@ -220,17 +253,23 @@ export const ProductListingStore = signalStore(
       },
 
       clearFilters() {
-        const search = store.search();
+        const segments = store.route.snapshot.url.map((s) => s.path);
+        const knownFacetKeys = Object.keys(facetLabels);
 
-        const queryParams: any = {};
+        const baseSegments: string[] = [];
 
-        if (search) {
-          queryParams.keywords = search;
+        if (segments.length > 0) {
+          baseSegments.push(segments[0]); // category
         }
 
-        store.router.navigate([], {
-          relativeTo: store.route,
-          queryParams,
+        if (segments.length > 1 && !knownFacetKeys.includes(segments[1])) {
+          baseSegments.push(segments[1]); // subcategory
+        }
+
+        store.router.navigate(baseSegments, {
+          queryParams: {
+            keywords: store.search() || null,
+          },
         });
       },
     };
@@ -254,7 +293,7 @@ export const ProductListingStore = signalStore(
               page: store.pageFromUrl(),
               pageSize: store.pageSizeFromUrl(),
               sort: '',
-              facets: store.facetsFromUrl(),
+              facets: store.facetsFromPath(),
             }),
           );
 

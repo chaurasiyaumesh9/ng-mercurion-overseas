@@ -67,12 +67,6 @@ export const HomeStore = signalStore(
     },
   })),
 
-  withComputed((store) => ({
-    featuredCategories: store.featuredCategories,
-    featuredProducts: store.featuredProducts,
-    loading: store.loading,
-  })),
-
   withMethods((store) => ({
     onCategoryImageError(categoryId: string) {
       const failed = new Set(store.failedCategoryImages());
