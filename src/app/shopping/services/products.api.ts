@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Product } from '@shopping/models/product.model';
@@ -32,6 +32,8 @@ export interface SearchProductsResult {
 @Injectable({ providedIn: 'root' })
 export class ProductsApi {
     private searchApiUrl = `${environment.apiBaseUrl}/api/search`;
+    private readonly productNameBySkuState = signal<Record<string, string>>({});
+    readonly productNameBySku = this.productNameBySkuState.asReadonly();
 
     constructor(private http: HttpClient) {}
 
@@ -69,18 +71,43 @@ export class ProductsApi {
         }
 
         return this.http.get<SearchProductsResponse>(`${this.searchApiUrl}/products`, { params }).pipe(
-            map((response) => ({
-                products: (response.items || []).map(item => this.mapSearchProductToProduct(item)),
-                total: response.total,
-                page: response.page,
-                pageSize: response.pageSize,
-                facets: response.facets || [],
-            })),
+            map((response) => {
+                const products = (response.items || []).map(item => this.mapSearchProductToProduct(item));
+                this.cacheProductNames(products);
+
+                return {
+                    products,
+                    total: response.total,
+                    page: response.page,
+                    pageSize: response.pageSize,
+                    facets: response.facets || [],
+                };
+            }),
             catchError((error) => {
                 console.error('Failed to search products:', error);
                 return of({ products: [], total: 0, page: 1, pageSize: 20, facets: [] });
             })
         );
+    }
+
+    private cacheProductNames(products: Product[]): void {
+        if (!products.length) return;
+
+        const current = this.productNameBySkuState();
+        const next = { ...current };
+        let changed = false;
+
+        for (const product of products) {
+            if (!product?.sku || !product?.name) continue;
+            if (next[product.sku] === product.name) continue;
+
+            next[product.sku] = product.name;
+            changed = true;
+        }
+
+        if (changed) {
+            this.productNameBySkuState.set(next);
+        }
     }
 
     private mapSearchProductToProduct(item: SearchProductItem): Product {
@@ -91,6 +118,7 @@ export class ProductsApi {
             price: item.price,
             description: item.description,
             image: resolveMediaUrl(item.imageUrl),
+            categoryIds: item.categoryIds ?? [],
             inStock: item.quantityAvailable > 0,
             quantityAvailable: item.quantityAvailable,
             featured: !!item.featured,

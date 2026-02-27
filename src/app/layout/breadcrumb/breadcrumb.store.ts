@@ -5,26 +5,28 @@ import { Store } from '@ngrx/store';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { selectCategories } from '@appState/categories/categories.selectors';
 import { Breadcrumb } from './breadcrumb.model';
-import { ProductDetailStore } from '@shopping/stores/product-details.store';
+import { ProductsApi } from '@shopping/services/products.api';
+
+const SKU_SEGMENT_REGEX = /^(?=.*\d)[a-zA-Z0-9-]+$/;
 
 export const BreadcrumbStore = signalStore(
   withProps(() => {
     const router = inject(Router);
     const ngrxStore = inject(Store);
-    const productStore = inject(ProductDetailStore, { optional: true });
+    const productsApi = inject(ProductsApi);
+    const routerEvents = toSignal(router.events, { initialValue: null });
 
     return {
       router,
+      productsApi,
+      routerEvents,
       categories: ngrxStore.selectSignal(selectCategories),
-      productStore,
     };
   }),
 
   withComputed((store) => {
-    const routerEvents = toSignal(store.router.events, { initialValue: null });
-
     const breadcrumbs = computed<Breadcrumb[]>(() => {
-      routerEvents(); // force recompute on navigation
+      store.routerEvents(); // force recompute on navigation
 
       const url = store.router.url;
 
@@ -43,16 +45,13 @@ export const BreadcrumbStore = signalStore(
       // --------------------------------------------------
       // PRODUCT DETAILS PAGE
       // --------------------------------------------------
-      if (segments[0] === 'product') {
-        const product = store.productStore?.product();
-
-        if (product) {
-          crumbs.push({
-            label: product.name,
-            url: null,
-          });
-        }
-
+      if (segments.length === 1 && SKU_SEGMENT_REGEX.test(segments[0])) {
+        const sku = segments[0];
+        const productName = store.productsApi.productNameBySku()[sku];
+        crumbs.push({
+          label: productName ?? sku,
+          url: null,
+        });
         return crumbs;
       }
 
@@ -97,7 +96,6 @@ export const BreadcrumbStore = signalStore(
 
       return crumbs;
     });
-
     return { breadcrumbs };
   }),
 );

@@ -9,6 +9,8 @@ import {
   patchState,
 } from '@ngrx/signals';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { selectCategories } from '@appState/categories/categories.selectors';
 
 import { Product } from '@shopping/models/product.model';
 import { CartStore } from '@shopping/stores/cart.store';
@@ -31,7 +33,7 @@ export const ProductDetailStore = signalStore(
   withState<ProductDetailState>({
     product: null,
     relatedProducts: [],
-    loading: false,
+    loading: true,
     quantity: 1,
     selectedImage: 0,
   }),
@@ -42,10 +44,11 @@ export const ProductDetailStore = signalStore(
   withProps(() => {
     const route = inject(ActivatedRoute);
     const router = inject(Router);
+    const ngrxStore = inject(Store);
     const productsApi = inject(ProductsApi);
     const cartStore = inject(CartStore);
 
-    return { route, router, productsApi, cartStore };
+    return { route, router, ngrxStore, productsApi, cartStore };
   }),
 
   // ----------------------------------
@@ -53,6 +56,7 @@ export const ProductDetailStore = signalStore(
   // ----------------------------------
   withComputed((store) => {
     const paramMap = toSignal(store.route.paramMap, { initialValue: null });
+    const categories = store.ngrxStore.selectSignal(selectCategories);
 
     const sku = computed(() => paramMap()?.get('sku'));
 
@@ -70,7 +74,33 @@ export const ProductDetailStore = signalStore(
       return [p.image, p.image, p.image, p.image];
     });
 
-    return { sku, safeQuantity, savePercent, galleryImages };
+    const currentSubCategory = computed(() => {
+      const p = store.product();
+      if (!p?.categoryIds?.length) return null;
+
+      const ids = new Set(p.categoryIds);
+      for (const category of categories()) {
+        const sub = category.subCategories?.find((s) => ids.has(s.id));
+        if (sub) return sub;
+      }
+
+      return null;
+    });
+
+    const currentCategory = computed(() => {
+      const p = store.product();
+      if (!p?.categoryIds?.length) return null;
+
+      const ids = new Set(p.categoryIds);
+      const sub = currentSubCategory();
+      if (sub) {
+        return categories().find((c) => c.subCategories?.some((s) => s.id === sub.id)) ?? null;
+      }
+
+      return categories().find((c) => ids.has(c.id)) ?? null;
+    });
+
+    return { sku, safeQuantity, savePercent, galleryImages, currentCategory, currentSubCategory };
   }),
 
   // ----------------------------------
@@ -79,7 +109,10 @@ export const ProductDetailStore = signalStore(
   withMethods((store) => {
     async function loadProduct() {
       const sku = store.sku();
-      if (!sku) return;
+      if (!sku) {
+        patchState(store, { loading: false });
+        return;
+      }
 
       patchState(store, { loading: true });
 

@@ -43,30 +43,6 @@
 
   <!-- ================= PRODUCT CONTENT ================= -->
   @if (!store.loading() && store.product(); as product) {
-    <!-- ================= BREADCRUMB ================= -->
-    <!-- <div class="flex flex-wrap items-center gap-2 text-sm text-gray-600 mb-6">
-      <a routerLink="/" class="hover:text-blue-600 transition">Home</a>
-      <span>/</span>
-
-      @if (product.category) {
-        <a [routerLink]="['/', product.category.slug]" class="hover:text-blue-600 transition">
-          {{ product.category.name }}
-        </a>
-        <span>/</span>
-      }
-
-      @if (product.subCategory) {
-        <a [routerLink]="['/', product.category.slug, product.subCategory.slug]" class="hover:text-blue-600 transition">
-          {{ product.subCategory.name }}
-        </a>
-        <span>/</span>
-      }
-
-      <span class="font-medium text-gray-900">
-        {{ product.name }}
-      </span>
-    </div> -->
-
     <!-- ================= MAIN GRID ================= -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
       <!-- ================= LEFT — IMAGE ================= -->
