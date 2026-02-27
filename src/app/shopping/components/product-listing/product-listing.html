@@ -1,6 +1,6 @@
 <div class="bg-white">
   <!-- ================= PAGE CONTAINER ================= -->
-  <div class="w-full md:container md:mx-auto md:px-4 px-4">    
+  <div class="w-full md:container md:mx-auto md:px-4 px-4">
     <!-- ================= TITLE ================= -->
     <h1 class="text-2xl font-bold mb-4">
       @if (store.search()) {
@@ -27,40 +27,40 @@
     <!-- ================= TOP BAR ================= -->
 
     @if (store.totalPages() > 1) {
-        <div class="hidden md:flex items-center justify-end mb-4">
+      <div class="hidden md:flex items-center justify-end mb-4">
         <div class="flex items-center gap-2 text-sm">
-            <span class="text-gray-600">Show</span>
+          <span class="text-gray-600">Show</span>
 
-            <div class="relative">
+          <div class="relative">
             <select
-                class="appearance-none bg-white border border-gray-300 text-sm font-medium text-gray-700 px-4 py-2 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 transition"
-                [value]="store.pageSizeFromUrl()"
-                (change)="store.setPageSize(+$any($event.target).value)"
+              class="appearance-none bg-white border border-gray-300 text-sm font-medium text-gray-700 px-4 py-2 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 transition"
+              [value]="store.pageSizeFromUrl()"
+              (change)="store.setPageSize(+$any($event.target).value)"
             >
-                <option value="12">12 Items</option>
-                <option value="24">24 Items</option>
-                <option value="48">48 Items</option>
-                <option value="96">96 Items</option>
+              <option value="12">12 Items</option>
+              <option value="24">24 Items</option>
+              <option value="48">48 Items</option>
+              <option value="96">96 Items</option>
             </select>
             <!-- Custom arrow -->
             <div
-                class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"
+              class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"
             >
-                <svg
+              <svg
                 class="w-4 h-4"
                 fill="none"
                 stroke="currentColor"
                 stroke-width="2"
                 viewBox="0 0 24 24"
-                >
+              >
                 <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
+              </svg>
             </div>
-            </div>
+          </div>
 
-            <!-- <span class="text-gray-600">Per Page</span> -->
+          <!-- <span class="text-gray-600">Per Page</span> -->
         </div>
-        </div>
+      </div>
     }
 
     <!-- ================= GRID LAYOUT ================= -->
@@ -68,56 +68,90 @@
       <!-- ================= DESKTOP SIDEBAR ================= -->
       <aside class="hidden lg:block lg:col-span-3">
         <div class="sticky top-24 bg-white rounded-lg space-y-6">
-          @if (store.currentCategory()?.subCategories?.length) {
-            <div class="border-b pb-4">
-              <h3 class="text-sm font-semibold text-gray-900 mb-3">Categories</h3>
+          @if (store.loading()) {
+            <div class="border-b pb-4 animate-pulse">
+              <div class="h-4 bg-gray-200 rounded w-1/3 mb-3"></div>
               <div class="space-y-2">
-                @for (sub of store.currentCategory()!.subCategories; track sub.id) {
-                  <a
-                    [routerLink]="['/', store.currentCategory()?.slug, sub.slug]"
-                    class="block text-sm transition-colors"
-                    [class.text-blue-600]="store.currentSubCategory()?.id === sub.id"
-                    [class.font-semibold]="store.currentSubCategory()?.id === sub.id"
-                    [class.text-gray-700]="store.currentSubCategory()?.id !== sub.id"
-                    [class.hover:text-blue-600]="store.currentSubCategory()?.id !== sub.id"
-                  >
-                    {{ sub.name }}
-                  </a>
+                @for (i of [0, 1, 2, 3, 4]; track i) {
+                  <div class="h-3 bg-gray-200 rounded w-2/3"></div>
                 }
               </div>
             </div>
-          }
 
-          <div class="flex items-center justify-between mb-3">
-            <h2 class="text-lg font-semibold">Filters</h2>
-            @if (store.facetsFromPath().size > 0) {
-              <button class="text-sm text-blue-600 hover:underline" (click)="store.clearFilters()">
-                Clear
-              </button>
-            }
-          </div>
+            <div class="flex items-center justify-between mb-3">
+              <h2 class="text-lg font-semibold">Filters</h2>
+            </div>
 
-          @for (facet of store.visibleFacets(); track facet.field) {
-            @if (facet.field !== 'categoryIds') {
+            @for (i of [0, 1, 2]; track i) {
               <div class="border-b pb-4">
-                <h3 class="text-sm font-semibold text-gray-900 mb-3">{{ facet.label }}</h3>
-                <div class="space-y-2 max-h-[240px] overflow-y-auto pr-2">
-                  @for (facetValue of facet.values; track facetValue.value) {
-                    <div class="flex items-center justify-between">
-                      <label class="flex items-center gap-2 text-sm cursor-pointer">
-                        <input
-                          type="checkbox"
-                          class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                          [checked]="store.isFacetValueSelected(facet.field, facetValue.value)"
-                          (change)="store.toggleFacetValue(facet.field, facetValue.value)"
-                        />
-                        <span class="text-gray-700">{{ facetValue.value }}</span>
-                      </label>
-                      <span class="text-xs text-gray-500">{{ facetValue.count }}</span>
-                    </div>
+                <div class="animate-pulse">
+                  <div class="h-4 bg-gray-200 rounded w-1/2 mb-3"></div>
+                  <div class="space-y-2">
+                    @for (j of [0, 1, 2, 3]; track j) {
+                      <div class="flex items-center justify-between">
+                        <div class="h-3 bg-gray-200 rounded w-3/4"></div>
+                        <div class="h-3 bg-gray-200 rounded w-8"></div>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          } @else {
+            @if (store.currentCategory()?.subCategories?.length) {
+              <div class="border-b pb-4">
+                <h3 class="text-sm font-semibold text-gray-900 mb-3">Categories</h3>
+                <div class="space-y-2">
+                  @for (sub of store.currentCategory()!.subCategories; track sub.id) {
+                    <a
+                      [routerLink]="['/', store.currentCategory()?.slug, sub.slug]"
+                      class="block text-sm transition-colors"
+                      [class.text-blue-600]="store.currentSubCategory()?.id === sub.id"
+                      [class.font-semibold]="store.currentSubCategory()?.id === sub.id"
+                      [class.text-gray-700]="store.currentSubCategory()?.id !== sub.id"
+                      [class.hover:text-blue-600]="store.currentSubCategory()?.id !== sub.id"
+                    >
+                      {{ sub.name }}
+                    </a>
                   }
                 </div>
               </div>
+            }
+
+            <div class="flex items-center justify-between mb-3">
+              <h2 class="text-lg font-semibold">Filters</h2>
+              @if (store.facetsFromPath().size > 0) {
+                <button
+                  class="text-sm text-blue-600 hover:underline"
+                  (click)="store.clearFilters()"
+                >
+                  Clear
+                </button>
+              }
+            </div>
+
+            @for (facet of store.visibleFacets(); track facet.field) {
+              @if (facet.field !== 'categoryIds') {
+                <div class="border-b pb-4">
+                  <h3 class="text-sm font-semibold text-gray-900 mb-3">{{ facet.label }}</h3>
+                  <div class="space-y-2 max-h-[240px] overflow-y-auto pr-2">
+                    @for (facetValue of facet.values; track facetValue.value) {
+                      <div class="flex items-center justify-between">
+                        <label class="flex items-center gap-2 text-sm cursor-pointer">
+                          <input
+                            type="checkbox"
+                            class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                            [checked]="store.isFacetValueSelected(facet.field, facetValue.value)"
+                            (change)="store.toggleFacetValue(facet.field, facetValue.value)"
+                          />
+                          <span class="text-gray-700">{{ facetValue.value }}</span>
+                        </label>
+                        <span class="text-xs text-gray-500">{{ facetValue.count }}</span>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
             }
           }
         </div>
@@ -316,81 +350,108 @@
         </div>
 
         <div class="overflow-y-auto p-4 space-y-6">
-            @if (store.totalPages() > 1) {
-                <div class="md:hidden border-b pb-4">
-                    <div class="flex items-center justify-between">
-                    <label class="text-sm text-gray-600 font-medium"> Items Per Page </label>
+          @if (store.totalPages() > 1) {
+            <div class="md:hidden border-b pb-4">
+              <div class="flex items-center justify-between">
+                <label class="text-sm text-gray-600 font-medium"> Items Per Page </label>
 
-                    <div class="relative">
-                        <select
-                        class="appearance-none bg-white border border-gray-300 text-sm font-medium text-gray-700 px-4 py-2 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 transition"
-                        [value]="store.pageSizeFromUrl()"
-                        (change)="store.setPageSize(+$any($event.target).value)"
-                        >
-                        <option value="12">12 Items</option>
-                        <option value="24">24 Items</option>
-                        <option value="48">48 Items</option>
-                        <option value="96">96 Items</option>
-                        </select>
-                        <!-- Custom arrow -->
-                        <div
-                        class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"
-                        >
-                        <svg
-                            class="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            viewBox="0 0 24 24"
-                        >
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-                        </svg>
-                        </div>
-                    </div>
-                    </div>
-                </div>
-            }
-
-          @if (store.currentCategory()?.subCategories?.length && !store.search()) {
-            <div class="border-b pb-4">
-              <h3 class="text-sm font-semibold text-gray-900 mb-3">Subcategories</h3>
-
-              <div class="space-y-2">
-                @for (sub of store.currentCategory()!.subCategories; track sub.id) {
-                  <a
-                    [routerLink]="['/', store.currentCategory()?.slug, sub.slug]"
-                    (click)="store.toggleMobileFilters()"
-                    class="block text-sm"
-                    [class.text-blue-600]="store.currentSubCategory()?.id === sub.id"
-                    [class.font-semibold]="store.currentSubCategory()?.id === sub.id"
-                    [class.text-gray-700]="store.currentSubCategory()?.id !== sub.id"
+                <div class="relative">
+                  <select
+                    class="appearance-none bg-white border border-gray-300 text-sm font-medium text-gray-700 px-4 py-2 pr-10 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 hover:border-gray-400 transition"
+                    [value]="store.pageSizeFromUrl()"
+                    (change)="store.setPageSize(+$any($event.target).value)"
                   >
-                    {{ sub.name }}
-                  </a>
-                }
+                    <option value="12">12 Items</option>
+                    <option value="24">24 Items</option>
+                    <option value="48">48 Items</option>
+                    <option value="96">96 Items</option>
+                  </select>
+                  <!-- Custom arrow -->
+                  <div
+                    class="pointer-events-none absolute inset-y-0 right-3 flex items-center text-gray-400"
+                  >
+                    <svg
+                      class="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
               </div>
             </div>
           }
 
-          @for (facet of store.visibleFacets(); track facet.field) {
-            @if (facet.field !== 'categoryIds') {
+          @if (store.loading()) {
+            <div class="border-b pb-4 animate-pulse">
+              <div class="h-4 bg-gray-200 rounded w-1/3 mb-3"></div>
+              <div class="space-y-2">
+                @for (i of [0, 1, 2, 3, 4]; track i) {
+                  <div class="h-3 bg-gray-200 rounded w-2/3"></div>
+                }
+              </div>
+            </div>
+
+            @for (i of [0, 1, 2]; track i) {
               <div class="border-b pb-4">
-                <h3 class="text-sm font-semibold text-gray-900 mb-3">{{ facet.label }}</h3>
-                <div class="space-y-2 max-h-[240px] overflow-y-auto">
-                  @for (facetValue of facet.values; track facetValue.value) {
-                    <label class="flex items-center gap-2 text-sm cursor-pointer">
-                      <input
-                        type="checkbox"
-                        class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                        [checked]="store.isFacetValueSelected(facet.field, facetValue.value)"
-                        (change)="store.toggleFacetValue(facet.field, facetValue.value)"
-                      />
-                      <span class="truncate text-gray-700">{{ facetValue.value }}</span>
-                      <span class="text-xs text-gray-500">({{ facetValue.count }})</span>
-                    </label>
+                <div class="animate-pulse">
+                  <div class="h-4 bg-gray-200 rounded w-1/2 mb-3"></div>
+                  <div class="space-y-2">
+                    @for (j of [0, 1, 2, 3]; track j) {
+                      <div class="flex items-center justify-between">
+                        <div class="h-3 bg-gray-200 rounded w-3/4"></div>
+                        <div class="h-3 bg-gray-200 rounded w-10"></div>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+            }
+          } @else {
+            @if (store.currentCategory()?.subCategories?.length && !store.search()) {
+              <div class="border-b pb-4">
+                <h3 class="text-sm font-semibold text-gray-900 mb-3">Subcategories</h3>
+
+                <div class="space-y-2">
+                  @for (sub of store.currentCategory()!.subCategories; track sub.id) {
+                    <a
+                      [routerLink]="['/', store.currentCategory()?.slug, sub.slug]"
+                      (click)="store.toggleMobileFilters()"
+                      class="block text-sm"
+                      [class.text-blue-600]="store.currentSubCategory()?.id === sub.id"
+                      [class.font-semibold]="store.currentSubCategory()?.id === sub.id"
+                      [class.text-gray-700]="store.currentSubCategory()?.id !== sub.id"
+                    >
+                      {{ sub.name }}
+                    </a>
                   }
                 </div>
               </div>
+            }
+
+            @for (facet of store.visibleFacets(); track facet.field) {
+              @if (facet.field !== 'categoryIds') {
+                <div class="border-b pb-4">
+                  <h3 class="text-sm font-semibold text-gray-900 mb-3">{{ facet.label }}</h3>
+                  <div class="space-y-2 max-h-[240px] overflow-y-auto">
+                    @for (facetValue of facet.values; track facetValue.value) {
+                      <label class="flex items-center gap-2 text-sm cursor-pointer">
+                        <input
+                          type="checkbox"
+                          class="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                          [checked]="store.isFacetValueSelected(facet.field, facetValue.value)"
+                          (change)="store.toggleFacetValue(facet.field, facetValue.value)"
+                        />
+                        <span class="truncate text-gray-700">{{ facetValue.value }}</span>
+                        <span class="text-xs text-gray-500">({{ facetValue.count }})</span>
+                      </label>
+                    }
+                  </div>
+                </div>
+              }
             }
           }
         </div>
