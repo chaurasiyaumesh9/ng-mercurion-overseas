@@ -9,4 +9,9 @@ export interface SearchProductItem {
   imageUrl: string;
   lastModifiedDate: string;
   featured?: boolean;
+  brand?: string;
+  color?: string;
+  gender?: string;
+  material?: string;
+  style?: string;
 }

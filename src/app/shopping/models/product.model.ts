@@ -9,4 +9,9 @@ export interface Product {
   inStock: boolean;
   quantityAvailable: number;
   featured: boolean;
+  brand: string;
+    color: string;
+    gender: string;
+    material: string;
+    style: string;  
 }

@@ -2,8 +2,8 @@
   <div class="lux-container">
     <div class="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
       <div>
-        <p class="lux-overline">Collection</p>
-        <h1 class="lux-title text-6xl">
+        <p class="lux-overline text-xs tracking-widest uppercase text-muted-foreground">Collection</p>
+        <h1 class="lux-title text-3xl lg:text-4xl text-foreground">
           @if (store.search()) {
             Search
           } @else if (store.currentSubCategory()?.name) {
@@ -74,7 +74,7 @@
           }
 
           @for (facet of store.visibleFacets(); track facet.field) {
-            @if (facet.field !== 'categoryIds') {
+            @if (facet.field !== 'categoryIds' && facet.field !== 'featured') {
               <div class="border-b border-gray-300 pb-6">
                 <h3 class="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-700">
                   {{ facet.label }}
@@ -128,11 +128,11 @@
           <div class="mt-10 flex justify-center">
             <div class="flex items-center gap-2">
               <button
-                class="h-9 w-9 border border-gray-300 bg-white text-sm disabled:opacity-40"
+                class="h-9 w-9 border border-gray-300 bg-white text-sm disabled:opacity-40 flex items-center justify-center"
                 [disabled]="store.pageFromUrl() === 1"
                 (click)="store.prevPage()"
               >
-                <
+                <lucide-icon [size]="20" [img]="ChevronLeftIcon"></lucide-icon>
               </button>
               @for (page of store.visiblePageNumbers(); track page) {
                 <button
@@ -147,11 +147,11 @@
                 </button>
               }
               <button
-                class="h-9 w-9 border border-gray-300 bg-white text-sm disabled:opacity-40"
+                class="h-9 w-9 border border-gray-300 bg-white text-sm disabled:opacity-40 flex items-center justify-center"
                 [disabled]="store.pageFromUrl() === store.totalPages()"
                 (click)="store.nextPage()"
               >
-                >
+                <lucide-icon [size]="20" [img]="ChevronRightIcon"></lucide-icon>
               </button>
             </div>
           </div>

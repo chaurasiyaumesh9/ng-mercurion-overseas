@@ -122,6 +122,11 @@ export class ProductsApi {
             inStock: item.quantityAvailable > 0,
             quantityAvailable: item.quantityAvailable,
             featured: !!item.featured,
+            brand: item.brand ?? '',
+            color: item.color ?? '',
+            gender: item.gender ?? '',
+            material: item.material ?? '',
+            style: item.style ?? '',
         };
     }
 }

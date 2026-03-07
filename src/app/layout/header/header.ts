@@ -4,11 +4,12 @@ import { Router, RouterLink } from '@angular/router';
 import { CartStore } from '@shopping/stores/cart.store';
 import { Store } from '@ngrx/store';
 import { selectCategories, selectCategoriesLoaded } from '@appState/categories/categories.selectors';
+import { LucideAngularModule, SearchIcon, UserIcon, ShoppingBag, MenuIcon } from 'lucide-angular';
 
 @Component({
     selector: 'app-header',
     standalone: true,
-    imports: [CommonModule, RouterLink],
+    imports: [LucideAngularModule, CommonModule, RouterLink],
     templateUrl: './header.html',
 })
 export class Header {
@@ -17,6 +18,10 @@ export class Header {
     private store = inject(Store);
     readonly categories$ = this.store.select(selectCategories);
     readonly categoriesLoaded$ = this.store.select(selectCategoriesLoaded);
+    readonly SearchIcon = SearchIcon;
+    readonly UserIcon = UserIcon;
+    readonly ShoppingBag = ShoppingBag;
+    readonly MenuIcon = MenuIcon;
 
     mobileMenuOpen = signal(false);
     searchOpen = signal(false);

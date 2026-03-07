@@ -18,7 +18,7 @@
 @if (store.cartCount() > 0) {
   <div class="pb-16 pt-8">
     <div class="lux-container">
-      <h1 class="lux-title mb-8 text-6xl">Shopping Bag</h1>
+      <h1 class="lux-title mb-8 text-3xl lg:text-4xl text-foreground">Shopping Bag</h1>
 
       <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_360px]">
         <div class="space-y-6">
@@ -90,14 +90,16 @@
         </aside>
       </div>
 
-      <section class="mt-14 border-t border-gray-300 pt-8">
-        <h2 class="lux-title mb-6 text-5xl">You May Also Like</h2>
-        <div class="grid grid-cols-2 gap-5 md:grid-cols-4">
-          @for (csp of store.crossSellProducts(); track csp.id) {
-            <app-product-tile [product]="csp"></app-product-tile>
-          }
-        </div>
-      </section>
+      @if (store.crossSellProducts().length > 0) {
+        <section class="mt-14 border-t border-gray-300 pt-8">
+            <h2 class="lux-title mb-6 text-3xl lg:text-4xl text-foreground">You May Also Like</h2>
+            <div class="grid grid-cols-2 gap-5 md:grid-cols-4">
+            @for (csp of store.crossSellProducts(); track csp.id) {
+                <app-product-tile [product]="csp"></app-product-tile>
+            }
+            </div>
+        </section>
+        }
     </div>
   </div>
 }

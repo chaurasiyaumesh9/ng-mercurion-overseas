@@ -27,7 +27,7 @@
       <div class="mb-6 flex items-end justify-between md:mb-8">
         <div>
           <p class="lux-overline">Curated</p>
-          <h2 class="lux-title text-[60px] leading-[0.88] md:text-5xl md:leading-tight">Featured Collections</h2>
+          <h2 class="lux-title text-3xl lg:text-4xl text-foreground">Featured Collections</h2>
         </div>
         <!-- <a routerLink="/search" class="lux-link">View All</a> -->
       </div>
@@ -47,7 +47,7 @@
                 <p class="lux-title text-2xl">{{ category.name }}</p>
                 <p class="text-xs text-gray-600">{{ category.subCategories.length }} products</p>
               </div>
-              <span class="text-sm text-gray-500">+</span>
+              <!-- <span class="text-sm text-gray-500">+</span> -->
             </div>
           </a>
         }
@@ -60,7 +60,7 @@
       <div class="mb-6 flex items-end justify-between md:mb-8">
         <div>
           <p class="lux-overline">Trending</p>
-          <h2 class="lux-title text-5xl md:text-5xl">Most Wanted</h2>
+          <h2 class="lux-title text-3xl lg:text-4xl text-foreground">Most Wanted</h2>
         </div>
       </div>
       @if (store.loading()) {

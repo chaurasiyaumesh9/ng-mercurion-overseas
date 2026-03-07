@@ -33,6 +33,7 @@
     "@ngrx/signals": "^21.0.1",
     "@ngrx/store": "^21.0.1",
     "@ngrx/store-devtools": "^21.0.1",
+    "lucide-angular": "^0.577.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },

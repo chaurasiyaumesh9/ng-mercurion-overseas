@@ -14,41 +14,17 @@
         }
       </nav>
 
-      <a routerLink="/" class="justify-self-center text-3xl tracking-[0.24em] lux-title">Mercurion</a>
+      <a routerLink="/" class="justify-self-center text-2xl tracking-[0.2em] text-foreground lux-title">MERCURION</a>
 
       <div class="hidden items-center justify-end gap-4 md:flex">
         <button class="text-gray-800 hover:text-black" aria-label="Search" (click)="openSearch()">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-            <path
-              d="m21 21-4.2-4.2M16 10a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+          <lucide-icon [size]="20" [img]="SearchIcon"></lucide-icon>
         </button>
         <a routerLink="/account/profile" class="text-gray-800 hover:text-black" aria-label="Account">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M18 19a6 6 0 0 0-12 0m6-6a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+          <lucide-icon [size]="20" [img]="UserIcon"></lucide-icon>
         </a>
         <a routerLink="/cart" class="relative text-gray-800 hover:text-black" aria-label="Cart">
-          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M6.5 8H17.5L18.5 20H5.5L6.5 8Zm3-1.5V6a2.5 2.5 0 1 1 5 0v.5"
-              stroke="currentColor"
-              stroke-width="1.75"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+          <lucide-icon [size]="20" [img]="ShoppingBag"></lucide-icon>
           @if (cartStore.cartCount() > 0) {
             <span class="absolute -right-2 -top-2 rounded-full bg-black px-1.5 text-[10px] text-white">
               {{ cartStore.cartCount() }}
@@ -61,51 +37,20 @@
     <div class="md:hidden">
       <div class="grid h-16 grid-cols-[auto_1fr_auto] items-center gap-3">
         <button (click)="mobileMenuOpen.set(true)" aria-label="Open menu" class="text-gray-800">
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none">
-            <path
-              d="M4 7h16M4 12h16M4 17h16"
-              stroke="currentColor"
-              stroke-width="1.6"
-              stroke-linecap="round"
-            />
-          </svg>
+          <lucide-icon [size]="20" [img]="MenuIcon"></lucide-icon>
         </button>
 
         <a routerLink="/" class="justify-self-center text-[24px] leading-none tracking-[0.24em] lux-title">Mercurion</a>
 
         <div class="flex items-center gap-2.5">
           <button class="text-gray-800 hover:text-black" aria-label="Search" (click)="openSearch()">
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-              <path
-                d="m21 21-4.2-4.2M16 10a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+            <lucide-icon [size]="20" [img]="SearchIcon"></lucide-icon>
           </button>
           <a routerLink="/account/profile" class="text-gray-800 hover:text-black" aria-label="Account">
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M18 19a6 6 0 0 0-12 0m6-6a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+            <lucide-icon [size]="20" [img]="UserIcon"></lucide-icon>
           </a>
           <a routerLink="/cart" class="relative text-gray-800 hover:text-black" aria-label="Cart">
-            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M6.5 8H17.5L18.5 20H5.5L6.5 8Zm3-1.5V6a2.5 2.5 0 1 1 5 0v.5"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+            <lucide-icon [size]="20" [img]="ShoppingBag"></lucide-icon>
             @if (cartStore.cartCount() > 0) {
               <span class="absolute -right-2 -top-2 rounded-full bg-black px-1.5 text-[10px] text-white">
                 {{ cartStore.cartCount() }}
