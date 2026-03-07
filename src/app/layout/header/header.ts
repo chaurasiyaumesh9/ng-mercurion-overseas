@@ -19,6 +19,7 @@ export class Header {
     readonly categoriesLoaded$ = this.store.select(selectCategoriesLoaded);
 
     mobileMenuOpen = signal(false);
+    searchOpen = signal(false);
     searchQuery = signal('');    
 
     handleSearch(event: Event) {
@@ -36,5 +37,13 @@ export class Header {
 
     closeMobile() {
         this.mobileMenuOpen.set(false);
+    }
+
+    openSearch() {
+        this.searchOpen.set(true);
+    }
+
+    closeSearch() {
+        this.searchOpen.set(false);
     }
 }
