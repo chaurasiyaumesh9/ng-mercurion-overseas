@@ -1,0 +1,61 @@
+<footer class="mt-20 bg-black text-gray-200">
+  <div class="border-b border-white/15">
+    <div class="lux-container flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between">
+      <div>
+        <h2 class="lux-title text-4xl text-white">Stay in the Loop</h2>
+        <p class="mt-2 text-sm text-gray-400">
+          Subscribe for exclusive access to new collections and events.
+        </p>
+      </div>
+      <form class="flex w-full max-w-md gap-0">
+        <input type="email" placeholder="Enter your email" class="h-11 flex-1 border border-white/25 bg-black px-4 text-xs text-white placeholder:text-gray-500 focus:border-white focus:outline-none" />
+        <button type="submit" class="h-11 border border-white bg-white px-6 text-[11px] uppercase tracking-[0.2em] text-black transition hover:bg-gray-200">
+          Subscribe
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="lux-container grid grid-cols-2 gap-8 py-12 text-sm md:grid-cols-4">
+    <div class="space-y-3">
+      <h3 class="text-[11px] uppercase tracking-[0.2em] text-gray-500">Shop</h3>
+      <a routerLink="/search" class="block text-gray-300 hover:text-white">New Arrivals</a>
+      <a [routerLink]="['/apparel-textiles']" class="block text-gray-300 hover:text-white">Women</a>
+      <a [routerLink]="['/personal-care']" class="block text-gray-300 hover:text-white">Men</a>
+      <a [routerLink]="['/handicrafts-decor']" class="block text-gray-300 hover:text-white">Accessories</a>
+    </div>
+    <div class="space-y-3">
+      <h3 class="text-[11px] uppercase tracking-[0.2em] text-gray-500">Help</h3>
+      <a routerLink="/account/profile" class="block text-gray-300 hover:text-white">Contact Us</a>
+      <a routerLink="/cart" class="block text-gray-300 hover:text-white">Shipping & Returns</a>
+      <a routerLink="/search" class="block text-gray-300 hover:text-white">Size Guide</a>
+      <a routerLink="/account/orders" class="block text-gray-300 hover:text-white">Track Order</a>
+    </div>
+    <div class="space-y-3">
+      <h3 class="text-[11px] uppercase tracking-[0.2em] text-gray-500">About</h3>
+      <a href="#" class="block text-gray-300 hover:text-white">Our Story</a>
+      <a href="#" class="block text-gray-300 hover:text-white">Sustainability</a>
+      <a href="#" class="block text-gray-300 hover:text-white">Careers</a>
+      <a href="#" class="block text-gray-300 hover:text-white">Stores</a>
+    </div>
+    <div class="space-y-3">
+      <h3 class="text-[11px] uppercase tracking-[0.2em] text-gray-500">Legal</h3>
+      <a href="#" class="block text-gray-300 hover:text-white">Privacy Policy</a>
+      <a href="#" class="block text-gray-300 hover:text-white">Terms of Service</a>
+      <a href="#" class="block text-gray-300 hover:text-white">Cookie Policy</a>
+      <a href="#" class="block text-gray-300 hover:text-white">Accessibility</a>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="lux-container flex flex-col gap-4 py-5 text-xs text-gray-500 md:flex-row md:items-center md:justify-between">
+      <p class="text-xl tracking-[0.2em] text-white lux-title">Mercurion</p>
+      <p>&copy; 2026 Mercurion. All rights reserved.</p>
+      <div class="flex items-center gap-4 text-gray-400">
+        <a href="#" class="hover:text-white">IG</a>
+        <a href="#" class="hover:text-white">FB</a>
+        <a href="#" class="hover:text-white">X</a>
+      </div>
+    </div>
+  </div>
+</footer>

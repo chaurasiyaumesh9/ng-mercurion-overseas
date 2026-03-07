@@ -1,3 +1,153 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: oklch(0.985 0 0);
+    --foreground: oklch(0.13 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.13 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.13 0 0);
+    --primary: oklch(0.13 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.96 0 0);
+    --secondary-foreground: oklch(0.13 0 0);
+    --muted: oklch(0.955 0 0);
+    --muted-foreground: oklch(0.45 0 0);
+    --accent: oklch(0.94 0 0);
+    --accent-foreground: oklch(0.13 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --destructive-foreground: oklch(0.577 0.245 27.325);
+    --border: oklch(0.88 0 0);
+    --input: oklch(0.88 0 0);
+    --ring: oklch(0.13 0 0);
+    --chart-1: oklch(0.13 0 0);
+    --chart-2: oklch(0.35 0 0);
+    --chart-3: oklch(0.55 0 0);
+    --chart-4: oklch(0.72 0 0);
+    --chart-5: oklch(0.88 0 0);
+    --radius: 0rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.13 0 0);
+    --sidebar-primary: oklch(0.13 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.94 0 0);
+    --sidebar-accent-foreground: oklch(0.13 0 0);
+    --sidebar-border: oklch(0.88 0 0);
+    --sidebar-ring: oklch(0.13 0 0);
+
+    --lux-bg: var(--background);
+    --lux-panel: var(--card);
+    --lux-text: var(--foreground);
+    --lux-muted: var(--muted-foreground);
+    --lux-border: var(--border);
+    --lux-black: var(--primary);
+  }
+
+  .dark {
+    --background: oklch(0.13 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.17 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.17 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.985 0 0);
+    --primary-foreground: oklch(0.13 0 0);
+    --secondary: oklch(0.22 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.22 0 0);
+    --muted-foreground: oklch(0.65 0 0);
+    --accent: oklch(0.22 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.396 0.141 25.723);
+    --destructive-foreground: oklch(0.637 0.237 25.331);
+    --border: oklch(0.28 0 0);
+    --input: oklch(0.28 0 0);
+    --ring: oklch(0.985 0 0);
+    --chart-1: oklch(0.985 0 0);
+    --chart-2: oklch(0.72 0 0);
+    --chart-3: oklch(0.55 0 0);
+    --chart-4: oklch(0.35 0 0);
+    --chart-5: oklch(0.22 0 0);
+    --sidebar: oklch(0.13 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.985 0 0);
+    --sidebar-primary-foreground: oklch(0.13 0 0);
+    --sidebar-accent: oklch(0.22 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(0.28 0 0);
+    --sidebar-ring: oklch(0.985 0 0);
+  }
+
+  html,
+  body {
+    @apply m-0 p-0 antialiased;
+    font-family: Inter, "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+    background-color: var(--background);
+    color: var(--lux-text);
+  }
+
+  * {
+    border-color: var(--lux-border);
+    outline-color: color-mix(in oklch, var(--ring) 50%, transparent);
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .lux-container {
+    @apply mx-auto w-full max-w-[1360px] px-4 md:px-8;
+  }
+
+  .lux-overline {
+    @apply text-[10px] uppercase tracking-[0.28em];
+    color: var(--muted-foreground);
+  }
+
+  .lux-title {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    @apply font-medium;
+    color: var(--foreground);
+  }
+
+  .lux-link {
+    @apply text-xs uppercase tracking-[0.18em];
+    color: var(--muted-foreground);
+  }
+
+  .lux-link:hover {
+    color: var(--foreground);
+  }
+
+  .lux-input {
+    @apply h-10 border px-3 text-xs tracking-wide outline-none;
+    border-color: var(--input);
+    background-color: var(--card);
+    color: var(--foreground);
+  }
+
+  .lux-input:focus {
+    border-color: var(--ring);
+  }
+
+  .lux-btn {
+    @apply inline-flex items-center justify-center border px-5 py-3 text-[11px] uppercase tracking-[0.18em] transition;
+    border-color: var(--primary);
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  .lux-btn-light {
+    @apply inline-flex items-center justify-center border px-5 py-3 text-[11px] uppercase tracking-[0.18em] transition;
+    border-color: var(--input);
+    background-color: var(--card);
+    color: var(--card-foreground);
+  }
+}

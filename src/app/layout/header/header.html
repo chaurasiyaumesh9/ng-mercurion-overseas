@@ -1,0 +1,121 @@
+<header class="sticky top-0 z-40 border-b border-gray-300 bg-[#f2f2f2]/95 backdrop-blur">
+  <div class="lux-container">
+    <div class="hidden h-16 grid-cols-[1fr_auto_1fr] items-center gap-4 md:grid">
+      <nav class="hidden items-center gap-6 md:flex">
+        <a routerLink="/search" class="text-[11px] uppercase tracking-[0.18em] text-[color:var(--foreground)]/85 hover:text-[color:var(--foreground)]">New Arrivals</a>
+        @let categoriesLoaded = categoriesLoaded$ | async;
+        @let categories = categories$ | async;
+        @if (categoriesLoaded && categories) {
+          @for (category of categories.slice(0, 3); track category.id) {
+            <a [routerLink]="['/', category.slug]" class="text-[11px] uppercase tracking-[0.18em] text-[color:var(--foreground)]/85 hover:text-[color:var(--foreground)]">
+              {{ category.name }}
+            </a>
+          }
+        }
+      </nav>
+
+      <a routerLink="/" class="justify-self-center text-2xl tracking-[0.2em] text-foreground lux-title">MERCURION</a>
+
+      <div class="hidden items-center justify-end gap-4 md:flex">
+        <button class="text-gray-800 hover:text-black" aria-label="Search" (click)="openSearch()">
+          <lucide-icon [size]="20" [img]="SearchIcon"></lucide-icon>
+        </button>
+        <a routerLink="/account/profile" class="text-gray-800 hover:text-black" aria-label="Account">
+          <lucide-icon [size]="20" [img]="UserIcon"></lucide-icon>
+        </a>
+        <a routerLink="/cart" class="relative text-gray-800 hover:text-black" aria-label="Cart">
+          <lucide-icon [size]="20" [img]="ShoppingBag"></lucide-icon>
+          @if (cartStore.cartCount() > 0) {
+            <span class="absolute -right-2 -top-2 rounded-full bg-black px-1.5 text-[10px] text-white">
+              {{ cartStore.cartCount() }}
+            </span>
+          }
+        </a>
+      </div>
+    </div>
+
+    <div class="md:hidden">
+      <div class="grid h-16 grid-cols-[auto_1fr_auto] items-center gap-3">
+        <button (click)="mobileMenuOpen.set(true)" aria-label="Open menu" class="text-gray-800">
+          <lucide-icon [size]="20" [img]="MenuIcon"></lucide-icon>
+        </button>
+
+        <a routerLink="/" class="justify-self-center text-[24px] leading-none tracking-[0.24em] lux-title">Mercurion</a>
+
+        <div class="flex items-center gap-2.5">
+          <button class="text-gray-800 hover:text-black" aria-label="Search" (click)="openSearch()">
+            <lucide-icon [size]="20" [img]="SearchIcon"></lucide-icon>
+          </button>
+          <a routerLink="/account/profile" class="text-gray-800 hover:text-black" aria-label="Account">
+            <lucide-icon [size]="20" [img]="UserIcon"></lucide-icon>
+          </a>
+          <a routerLink="/cart" class="relative text-gray-800 hover:text-black" aria-label="Cart">
+            <lucide-icon [size]="20" [img]="ShoppingBag"></lucide-icon>
+            @if (cartStore.cartCount() > 0) {
+              <span class="absolute -right-2 -top-2 rounded-full bg-black px-1.5 text-[10px] text-white">
+                {{ cartStore.cartCount() }}
+              </span>
+            }
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+@if (mobileMenuOpen()) {
+  <div class="fixed inset-0 z-50 bg-black/30 md:hidden" (click)="mobileMenuOpen.set(false)">
+    <aside class="h-full w-[85%] max-w-sm border-r border-gray-300 bg-[#f7f7f7] p-6" (click)="$event.stopPropagation()">
+      <div class="mb-8 flex items-center justify-between">
+        <span class="text-xl tracking-[0.2em] lux-title">Mercurion</span>
+        <button (click)="mobileMenuOpen.set(false)" class="text-sm uppercase tracking-[0.2em] text-gray-600">
+          Close
+        </button>
+      </div>
+
+      <form (submit)="handleSearch($event)" class="mb-8">
+        <input
+          type="text"
+          placeholder="Search"
+          [value]="searchQuery()"
+          (input)="searchQuery.set($any($event.target).value)"
+          class="lux-input w-full"
+        />
+      </form>
+
+      <nav class="space-y-4">
+        <a routerLink="/search" (click)="closeMobile()" class="block lux-link">New Arrivals</a>
+        @let categoriesLoaded = categoriesLoaded$ | async;
+        @let categories = categories$ | async;
+        @if (categoriesLoaded && categories) {
+          @for (category of categories; track category.id) {
+            <a [routerLink]="['/', category.slug]" (click)="closeMobile()" class="block lux-link">
+              {{ category.name }}
+            </a>
+          }
+        }
+      </nav>
+    </aside>
+  </div>
+}
+
+@if (searchOpen()) {
+  <div class="fixed inset-0 z-[60] bg-black/30" (click)="closeSearch()">
+    <div class="mx-auto mt-20 w-[92%] max-w-2xl border border-[color:var(--lux-border)] bg-[color:var(--card)] p-5 shadow-xl" (click)="$event.stopPropagation()">
+      <div class="mb-3 flex items-center justify-between">
+        <h2 class="text-xs uppercase tracking-[0.2em] text-gray-600">Search</h2>
+        <button class="text-xs uppercase tracking-[0.2em] text-gray-500 hover:text-black" (click)="closeSearch()">Close</button>
+      </div>
+      <form (submit)="handleSearch($event); closeSearch();" class="flex gap-2">
+        <input
+          type="text"
+          placeholder="Search products..."
+          [value]="searchQuery()"
+          (input)="searchQuery.set($any($event.target).value)"
+          class="lux-input w-full"
+        />
+        <button type="submit" class="lux-btn px-4">Go</button>
+      </form>
+    </div>
+  </div>
+}

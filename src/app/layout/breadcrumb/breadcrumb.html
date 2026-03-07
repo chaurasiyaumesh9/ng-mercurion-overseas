@@ -1,0 +1,20 @@
+@if (store.breadcrumbs().length > 0) {
+  <nav class="breadcrumb mt-3 flex flex-wrap items-center gap-2 border-gray-300 text-[11px] text-gray-500">
+    @for (crumb of store.breadcrumbs(); track $index; let last = $last) {
+      @if (crumb.url && !last) {
+        <a [routerLink]="crumb.url" class="breadcrumb-link py-1 hover:text-black">
+          {{ crumb.label }}
+        </a>
+      } @else {
+        <span class="breadcrumb-current py-1 text-gray-700">
+          {{ crumb.label }}
+        </span>
+      }
+
+      @if (!last) {
+        <span class="breadcrumb-separator"> / </span>
+      }
+    }
+  </nav>
+}
+

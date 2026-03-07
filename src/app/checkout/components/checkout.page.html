@@ -1,0 +1,157 @@
+@if (cartStore.cartCount() === 0) {
+  <div class="lux-container py-20 text-center">
+    <h1 class="lux-title text-5xl">Your bag is empty</h1>
+    <a routerLink="/search" class="mt-6 inline-block text-sm text-gray-600 underline">Continue shopping</a>
+  </div>
+}
+
+@if (cartStore.cartCount() > 0) {
+  <div class="border-b border-[color:var(--lux-border)]">
+    <div class="lux-container flex items-center justify-between py-5">
+      <h1 class="lux-title text-3xl tracking-[0.2em]">Mercurion</h1>
+      <div class="flex items-center gap-2 text-xs text-gray-600">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-4Z" stroke="currentColor" stroke-width="1.6" />
+        </svg>
+        <span>Secure Checkout</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-b border-[color:var(--lux-border)]">
+    <div class="lux-container py-4 text-xs">
+      <div class="flex items-center gap-2 text-gray-500">
+        <button type="button" (click)="step.set('info')" [class.text-black]="step() === 'info'">Information</button>
+        <span>/</span>
+        <button type="button" (click)="step.set('shipping')" [class.text-black]="step() === 'shipping'">Shipping</button>
+        <span>/</span>
+        <button type="button" (click)="step.set('payment')" [class.text-black]="step() === 'payment'">Payment</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="lux-container py-10">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_360px]">
+      <form class="space-y-8" [formGroup]="form" (ngSubmit)="nextStep()">
+        @if (step() === 'info') {
+          <section>
+            <h2 class="mb-5 text-lg text-[color:var(--foreground)]">Contact Information</h2>
+            <div class="space-y-4">
+              <div>
+                <label class="text-xs uppercase tracking-[0.16em]">Email</label>
+                <input class="lux-input mt-2 w-full" type="email" formControlName="email" />
+                @if (error('email', 'Email')) { <p class="mt-1 text-xs text-red-600">{{ error('email', 'Email') }}</p> }
+              </div>
+            </div>
+
+            <h2 class="mb-5 mt-8 text-lg text-[color:var(--foreground)]">Shipping Address</h2>
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div>
+                <label class="text-xs uppercase tracking-[0.16em]">First Name</label>
+                <input class="lux-input mt-2 w-full" formControlName="firstName" />
+                @if (error('firstName', 'First name')) { <p class="mt-1 text-xs text-red-600">{{ error('firstName', 'First name') }}</p> }
+              </div>
+              <div>
+                <label class="text-xs uppercase tracking-[0.16em]">Last Name</label>
+                <input class="lux-input mt-2 w-full" formControlName="lastName" />
+                @if (error('lastName', 'Last name')) { <p class="mt-1 text-xs text-red-600">{{ error('lastName', 'Last name') }}</p> }
+              </div>
+              <div class="md:col-span-2">
+                <label class="text-xs uppercase tracking-[0.16em]">Address</label>
+                <input class="lux-input mt-2 w-full" formControlName="address" />
+                @if (error('address', 'Address')) { <p class="mt-1 text-xs text-red-600">{{ error('address', 'Address') }}</p> }
+              </div>
+              <div>
+                <label class="text-xs uppercase tracking-[0.16em]">City</label>
+                <input class="lux-input mt-2 w-full" formControlName="city" />
+                @if (error('city', 'City')) { <p class="mt-1 text-xs text-red-600">{{ error('city', 'City') }}</p> }
+              </div>
+              <div>
+                <label class="text-xs uppercase tracking-[0.16em]">State</label>
+                <input class="lux-input mt-2 w-full" formControlName="state" />
+                @if (error('state', 'State')) { <p class="mt-1 text-xs text-red-600">{{ error('state', 'State') }}</p> }
+              </div>
+              <div>
+                <label class="text-xs uppercase tracking-[0.16em]">ZIP</label>
+                <input class="lux-input mt-2 w-full" formControlName="zip" />
+                @if (error('zip', 'ZIP')) { <p class="mt-1 text-xs text-red-600">{{ error('zip', 'ZIP') }}</p> }
+              </div>
+              <div>
+                <label class="text-xs uppercase tracking-[0.16em]">Phone</label>
+                <input class="lux-input mt-2 w-full" formControlName="phone" />
+                @if (error('phone', 'Phone')) { <p class="mt-1 text-xs text-red-600">{{ error('phone', 'Phone') }}</p> }
+              </div>
+            </div>
+          </section>
+        }
+
+        @if (step() === 'shipping') {
+          <section>
+            <h2 class="mb-5 text-lg text-[color:var(--foreground)]">Shipping Method</h2>
+            <label class="flex items-center justify-between border border-[color:var(--lux-border)] bg-white p-4 text-sm">
+              <span>Standard Shipping</span>
+              <span>{{ shipping() === 0 ? 'Complimentary' : (shipping() | currency: 'USD') }}</span>
+              <input type="radio" formControlName="shippingMethod" value="standard" class="ml-3" />
+            </label>
+          </section>
+        }
+
+        @if (step() === 'payment') {
+          <section>
+            <h2 class="mb-5 text-lg text-[color:var(--foreground)]">Payment</h2>
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div class="md:col-span-2">
+                <label class="text-xs uppercase tracking-[0.16em]">Cardholder Name</label>
+                <input class="lux-input mt-2 w-full" formControlName="cardName" />
+                @if (error('cardName', 'Cardholder name')) { <p class="mt-1 text-xs text-red-600">{{ error('cardName', 'Cardholder name') }}</p> }
+              </div>
+              <div class="md:col-span-2">
+                <label class="text-xs uppercase tracking-[0.16em]">Card Number</label>
+                <input class="lux-input mt-2 w-full" formControlName="cardNumber" maxlength="16" />
+                @if (error('cardNumber', 'Card number')) { <p class="mt-1 text-xs text-red-600">{{ error('cardNumber', 'Card number') }}</p> }
+              </div>
+              <div>
+                <label class="text-xs uppercase tracking-[0.16em]">Expiry (MM/YY)</label>
+                <input class="lux-input mt-2 w-full" formControlName="expiry" maxlength="5" />
+                @if (error('expiry', 'Expiry')) { <p class="mt-1 text-xs text-red-600">{{ error('expiry', 'Expiry') }}</p> }
+              </div>
+              <div>
+                <label class="text-xs uppercase tracking-[0.16em]">CVC</label>
+                <input class="lux-input mt-2 w-full" formControlName="cvc" maxlength="4" />
+                @if (error('cvc', 'CVC')) { <p class="mt-1 text-xs text-red-600">{{ error('cvc', 'CVC') }}</p> }
+              </div>
+            </div>
+          </section>
+        }
+
+        <button type="submit" class="lux-btn w-full lg:w-auto">
+          @if (step() === 'payment') { Place Order } @else { Continue }
+        </button>
+      </form>
+
+      <aside class="h-fit border border-[color:var(--lux-border)] bg-[color:var(--card)] p-6">
+        <h2 class="mb-5 text-[11px] font-semibold uppercase tracking-[0.2em] text-gray-700">Order Summary</h2>
+        <div class="space-y-3 text-sm text-gray-700">
+          <div class="flex items-center justify-between">
+            <span>Subtotal</span>
+            <span>{{ cartStore.subtotal() | currency: 'USD' }}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span>Shipping</span>
+            <span>{{ shipping() === 0 ? 'Complimentary' : (shipping() | currency: 'USD') }}</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span>Tax</span>
+            <span>{{ tax() | currency: 'USD' }}</span>
+          </div>
+          <div class="mt-2 border-t border-[color:var(--lux-border)] pt-3 text-base font-semibold text-black">
+            <div class="flex items-center justify-between">
+              <span>Total</span>
+              <span>{{ total() | currency: 'USD' }}</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+}

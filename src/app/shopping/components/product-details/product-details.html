@@ -1,0 +1,191 @@
+<div class="pb-16 pt-6">
+  <div class="lux-container">
+    @if (store.loading()) {
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
+        <div class="aspect-[4/5] animate-pulse bg-gray-200"></div>
+        <div class="space-y-4">
+          <div class="h-3 w-20 animate-pulse bg-gray-200"></div>
+          <div class="h-12 w-3/4 animate-pulse bg-gray-200"></div>
+          <div class="h-8 w-1/4 animate-pulse bg-gray-200"></div>
+          <div class="h-24 w-full animate-pulse bg-gray-200"></div>
+          <div class="h-10 w-full animate-pulse bg-gray-200"></div>
+        </div>
+      </div>
+    }
+
+    @if (!store.loading() && store.product(); as product) {
+      <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <div class="relative aspect-[4/5] overflow-hidden bg-gray-200">
+            <img [src]="product.image" [alt]="product.name" class="h-full w-full object-cover" />
+          </div>
+
+          <div class="mt-3 flex gap-3">
+            @for (img of store.galleryImages().slice(0, 3); track $index; let imageIndex = $index) {
+              <button
+                (click)="store.selectImage(imageIndex)"
+                class="aspect-square w-16 overflow-hidden border"
+                [class.border-black]="store.selectedImage() === imageIndex"
+                [class.border-gray-300]="store.selectedImage() !== imageIndex"
+              >
+                <img [src]="img" [alt]="product.name + ' thumbnail'" class="h-full w-full object-cover" />
+              </button>
+            }
+          </div>
+        </div>
+
+        <div class="max-w-xl">
+          <p class="lux-overline">{{ product.brand }}</p>
+          <h1 class="lux-title mt-2 text-2xl lg:text-3xl text-foreground mb-3 text-balance">{{ product.name }}</h1>
+          <div class="mt-3 flex items-center gap-2 text-xs text-gray-700">
+            <span class="flex items-center gap-0.5">
+              @for (star of [1, 2, 3, 4, 5]; track star) {
+                <svg class="h-3.5 w-3.5 fill-current" viewBox="0 0 20 20">
+                  <path d="m10 2.2 2.2 4.6 5.1.7-3.7 3.6.9 5.1-4.5-2.4-4.5 2.4.9-5.1-3.7-3.6 5.1-.7L10 2.2Z" />
+                </svg>
+              }
+            </span>
+            <span>4.8</span>
+            <span>(124 reviews)</span>
+          </div>
+          <p class="mt-4 text-3xl font-semibold text-black">{{ product.price | currency: 'USD' }}</p>
+
+          <p class="mt-6 max-w-lg text-sm leading-7 text-gray-600">
+            {{ product.description }}
+          </p>
+
+          <div class="mt-7">
+            <p class="text-[11px] uppercase tracking-[0.16em] text-gray-600">Color</p>
+            <div class="mt-2 flex gap-2">
+              <button class="h-7 border border-black bg-black px-3 text-[10px] uppercase tracking-[0.14em] text-white">Black</button>
+              <button class="h-7 border border-gray-300 bg-white px-3 text-[10px] uppercase tracking-[0.14em]">Charcoal</button>
+              <button class="h-7 border border-gray-300 bg-white px-3 text-[10px] uppercase tracking-[0.14em]">Navy</button>
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <div class="flex items-center justify-between">
+              <p class="text-[11px] uppercase tracking-[0.16em] text-gray-600">Size</p>
+              <a href="#" class="text-[10px] uppercase tracking-[0.16em] text-gray-500 underline">Size Guide</a>
+            </div>
+            <div class="mt-2 flex flex-wrap gap-2">
+              @for (size of ['XS', 'S', 'M', 'L', 'XL']; track size) {
+                <button class="h-8 min-w-10 border border-gray-300 bg-white px-3 text-[10px] uppercase tracking-[0.14em] hover:border-black">
+                  {{ size }}
+                </button>
+              }
+            </div>
+          </div>
+
+          <div class="mt-6">
+            <p class="mb-2 text-[11px] uppercase tracking-[0.16em] text-gray-600">Quantity</p>
+            <div class="flex w-fit items-center border border-gray-300 bg-white">
+              <button class="h-9 w-9 text-lg text-gray-600 hover:text-black" (click)="store.decreaseQuantity()">-</button>
+              <input
+                type="number"
+                class="h-9 w-12 border-x border-gray-300 text-center text-sm outline-none"
+                [value]="store.quantity()"
+                (input)="store.parseQuantityInput($any($event.target).value)"
+              />
+              <button class="h-9 w-9 text-lg text-gray-600 hover:text-black" (click)="store.increaseQuantity()">+</button>
+            </div>
+          </div>
+
+          <div class="mt-6 flex gap-2">
+            <button
+              class="lux-btn h-11 flex-1"
+              (click)="store.addToCart()"
+              [disabled]="!product.inStock"
+            >
+              Add to Bag
+            </button>
+            <button class="flex h-11 w-11 items-center justify-center border border-gray-300 bg-white hover:border-black" aria-label="Add to wishlist">
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+            <button class="flex h-11 w-11 items-center justify-center border border-gray-300 bg-white hover:border-black" aria-label="Share product">
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M8 12a3 3 0 1 0-3 3 3 3 0 0 0 3-3Zm14-7a3 3 0 1 0-3 3 3 3 0 0 0 3-3Zm0 14a3 3 0 1 0-3 3 3 3 0 0 0 3-3ZM7.6 10.7l8-4.4m-8 7 8 4.4"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="mt-6 space-y-2 border-t border-gray-300 pt-5 text-xs text-gray-600">
+            <p class="flex items-center gap-3"><lucide-icon [size]="20" [img]="TruckIcon"></lucide-icon> Complimentary shipping on orders over $300</p>
+            <p class="flex items-center gap-3"><lucide-icon [size]="20" [img]="RotateCcwIcon"></lucide-icon> Free returns within 30 days</p>
+            <p class="flex items-center gap-3"><lucide-icon [size]="20" [img]="ShieldCheckIcon"></lucide-icon> Authenticity guaranteed</p>
+          </div>
+
+          <div class="mt-8 space-y-4 border-t border-gray-300 pt-5">
+            <details class="group border-b border-gray-200 pb-4" open>
+              <summary class="cursor-pointer list-none text-[11px] uppercase tracking-[0.18em] text-gray-700">
+                Product Details
+              </summary>
+              <p class="mt-3 text-sm leading-6 text-gray-600">{{ product.description }}</p>
+            </details>
+            <details class="group border-b border-gray-200 pb-4">
+              <summary class="cursor-pointer list-none text-[11px] uppercase tracking-[0.18em] text-gray-700">
+                Shipping & Returns
+              </summary>
+              <p class="mt-3 text-sm leading-6 text-gray-600">
+                Standard delivery in 3-6 business days. Returns accepted in original condition.
+              </p>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <section class="mt-16 border-t border-gray-300 pt-10">
+        <div class="mb-8 flex items-center justify-between">
+          <div>
+            <h2 class="lux-title text-2xl lg:text-3xl text-foreground">Reviews</h2>
+            <p class="mt-1 text-sm text-gray-600">4.8 out of 5 (124 reviews)</p>
+          </div>
+          <button class="lux-btn-light">Write a Review</button>
+        </div>
+        <div class="space-y-6">
+          @for (review of [1, 2, 3]; track review) {
+            <article class="border-b border-gray-300 pb-6">
+              <p class="flex items-center gap-0.5 text-sm text-black">
+                @for (star of [1, 2, 3, 4, 5]; track star) {
+                  <svg class="h-3.5 w-3.5 fill-current" viewBox="0 0 20 20">
+                    <path d="m10 2.2 2.2 4.6 5.1.7-3.7 3.6.9 5.1-4.5-2.4-4.5 2.4.9-5.1-3.7-3.6 5.1-.7L10 2.2Z" />
+                  </svg>
+                }
+              </p>
+              <h3 class="mt-2 text-sm font-semibold">Exceptional quality</h3>
+              <p class="mt-1 text-sm text-gray-600">
+                Beautiful construction and premium fabric. The fit is refined and timeless.
+              </p>
+              <p class="mt-2 text-xs text-gray-500">Verified Buyer</p>
+            </article>
+          }
+        </div>
+      </section>
+
+      @if (store.relatedProducts().length > 0) {
+        <section class="mt-14 border-t border-gray-300 pt-10">
+          <h2 class="lux-title mb-6 text-5xl">You May Also Like</h2>
+          <div class="grid grid-cols-2 gap-5 md:grid-cols-4">
+            @for (rp of store.relatedProducts(); track rp.id) {
+              <app-product-tile [product]="rp"></app-product-tile>
+            }
+          </div>
+        </section>
+      }
+    }
+  </div>
+</div>

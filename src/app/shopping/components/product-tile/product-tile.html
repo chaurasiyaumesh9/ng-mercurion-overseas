@@ -1,0 +1,36 @@
+@if (product) {
+  @defer (on viewport) {
+    <a [routerLink]="['/', product.sku]" class="group block">
+      <div class="relative aspect-[3/4] overflow-hidden bg-gray-200">
+        @if (product.featured) {
+          <span class="absolute left-2 top-2 z-10 bg-black px-2 py-1 text-[9px] uppercase tracking-[0.18em] text-white">
+            New
+          </span>
+        }
+        <img
+          [src]="product.image"
+          [alt]="product.name"
+          appImageFallback
+          class="h-full w-full object-cover transition duration-500 group-hover:scale-[1.02]"
+        />
+      </div>
+
+      <div class="mt-3">
+        <h3 class="text-sm text-gray-900">{{ product.name }}</h3>
+        <div class="mt-1 flex items-center gap-2 text-[11px] text-gray-600">
+          <span class="flex items-center gap-0.5">
+            @for (star of [1, 2, 3, 4, 5]; track star) {
+              <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20">
+                <path d="m10 2.2 2.2 4.6 5.1.7-3.7 3.6.9 5.1-4.5-2.4-4.5 2.4.9-5.1-3.7-3.6 5.1-.7L10 2.2Z" />
+              </svg>
+            }
+          </span>
+          <span>(124)</span>
+        </div>
+        <p class="mt-1 text-sm font-semibold text-black">${{ product.price | number: '1.2-2' }}</p>
+      </div>
+    </a>
+  } @placeholder {
+    <div class="aspect-[3/4] w-full animate-pulse bg-gray-200"></div>
+  }
+}
