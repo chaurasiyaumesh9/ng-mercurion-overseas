@@ -1,107 +1,61 @@
-<footer class="w-full bg-gray-900 text-gray-300">
-    <div class="container mx-auto px-4 py-12">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-
-            <!-- Company Info -->
-            <div>
-                <h3 class="text-white text-lg font-bold mb-4">Mercurion Overseas</h3>
-                <p class="text-sm mb-4">
-                    Connecting markets worldwide with quality products and exceptional service.
-                </p>
-                <div class="space-y-2 text-sm">
-                    <div class="flex items-center gap-2">
-                        📍 <span>123 Export Avenue, Trade City</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        📞 <span>+1 (555) 123-4567</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        ✉️ <span>info@mercurionoverseas.com</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Quick Links -->
-            <div>
-                <h3 class="text-white text-lg font-bold mb-4">Quick Links</h3>
-                <ul class="space-y-2 text-sm">
-                    <li><a routerLink="/search" class="hover:text-white">All Products</a></li>
-                    <li>
-                        <a [routerLink]="['/apparel-textiles']"
-                            class="hover:text-white">
-                            Apparel & Textiles
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/handicrafts-decor']"
-                            class="hover:text-white">
-                            Handicrafts & Decor
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/home-living']"
-                            class="hover:text-white">
-                            Home & Living
-                        </a>
-                    </li>
-                    <li>
-                        <a [routerLink]="['/personal-care']"
-                            class="hover:text-white">
-                            Personal Care & Wellness
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- Customer Service -->
-            <div>
-                <h3 class="text-white text-lg font-bold mb-4">Customer Service</h3>
-                <ul class="space-y-2 text-sm">
-                    <li><a routerLink="/account" class="hover:text-white">My Account</a></li>
-                    <li><a routerLink="/account/orders" class="hover:text-white">Order History</a></li>
-                    <li><a routerLink="/cart" class="hover:text-white">Shopping Cart</a></li>
-                    <li><a href="#" class="hover:text-white">Shipping Information</a></li>
-                    <li><a href="#" class="hover:text-white">Returns & Exchanges</a></li>
-                    <li><a href="#" class="hover:text-white">FAQ</a></li>
-                </ul>
-            </div>
-
-            <!-- Newsletter -->
-            <div>
-                <h3 class="text-white text-lg font-bold mb-4">Newsletter</h3>
-                <p class="text-sm mb-4">
-                    Subscribe to get special offers and updates.
-                </p>
-                <form class="space-y-2">
-                    <input type="email" placeholder="Enter your email"
-                        class="w-full px-4 py-2 rounded bg-gray-800 border border-gray-700 focus:outline-none focus:border-blue-500 text-sm" />
-                    <button type="submit"
-                        class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition text-sm">
-                        Subscribe
-                    </button>
-                </form>
-
-                <div class="flex gap-4 mt-6">
-                    <a href="#" class="hover:text-white">📘</a>
-                    <a href="#" class="hover:text-white">🐦</a>
-                    <a href="#" class="hover:text-white">📸</a>
-                    <a href="#" class="hover:text-white">💼</a>
-                </div>
-            </div>
-        </div>
+<footer class="mt-20 bg-black text-gray-200">
+  <div class="border-b border-white/15">
+    <div class="lux-container flex flex-col gap-6 py-10 md:flex-row md:items-center md:justify-between">
+      <div>
+        <h2 class="lux-title text-4xl text-white">Stay in the Loop</h2>
+        <p class="mt-2 text-sm text-gray-400">
+          Subscribe for exclusive access to new collections and events.
+        </p>
+      </div>
+      <form class="flex w-full max-w-md gap-0">
+        <input type="email" placeholder="Enter your email" class="h-11 flex-1 border border-white/25 bg-black px-4 text-xs text-white placeholder:text-gray-500 focus:border-white focus:outline-none" />
+        <button type="submit" class="h-11 border border-white bg-white px-6 text-[11px] uppercase tracking-[0.2em] text-black transition hover:bg-gray-200">
+          Subscribe
+        </button>
+      </form>
     </div>
+  </div>
 
-    <!-- Bottom Bar -->
-    <div class="border-t border-gray-800">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-                <p>&copy; 2026 Mercurion Overseas. All rights reserved.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="hover:text-white">Privacy Policy</a>
-                    <a href="#" class="hover:text-white">Terms of Service</a>
-                    <a href="#" class="hover:text-white">Cookie Policy</a>
-                </div>
-            </div>
-        </div>
+  <div class="lux-container grid grid-cols-2 gap-8 py-12 text-sm md:grid-cols-4">
+    <div class="space-y-3">
+      <h3 class="text-[11px] uppercase tracking-[0.2em] text-gray-500">Shop</h3>
+      <a routerLink="/search" class="block text-gray-300 hover:text-white">New Arrivals</a>
+      <a [routerLink]="['/apparel-textiles']" class="block text-gray-300 hover:text-white">Women</a>
+      <a [routerLink]="['/personal-care']" class="block text-gray-300 hover:text-white">Men</a>
+      <a [routerLink]="['/handicrafts-decor']" class="block text-gray-300 hover:text-white">Accessories</a>
     </div>
+    <div class="space-y-3">
+      <h3 class="text-[11px] uppercase tracking-[0.2em] text-gray-500">Help</h3>
+      <a routerLink="/account/profile" class="block text-gray-300 hover:text-white">Contact Us</a>
+      <a routerLink="/cart" class="block text-gray-300 hover:text-white">Shipping & Returns</a>
+      <a routerLink="/search" class="block text-gray-300 hover:text-white">Size Guide</a>
+      <a routerLink="/account/orders" class="block text-gray-300 hover:text-white">Track Order</a>
+    </div>
+    <div class="space-y-3">
+      <h3 class="text-[11px] uppercase tracking-[0.2em] text-gray-500">About</h3>
+      <a href="#" class="block text-gray-300 hover:text-white">Our Story</a>
+      <a href="#" class="block text-gray-300 hover:text-white">Sustainability</a>
+      <a href="#" class="block text-gray-300 hover:text-white">Careers</a>
+      <a href="#" class="block text-gray-300 hover:text-white">Stores</a>
+    </div>
+    <div class="space-y-3">
+      <h3 class="text-[11px] uppercase tracking-[0.2em] text-gray-500">Legal</h3>
+      <a href="#" class="block text-gray-300 hover:text-white">Privacy Policy</a>
+      <a href="#" class="block text-gray-300 hover:text-white">Terms of Service</a>
+      <a href="#" class="block text-gray-300 hover:text-white">Cookie Policy</a>
+      <a href="#" class="block text-gray-300 hover:text-white">Accessibility</a>
+    </div>
+  </div>
+
+  <div class="border-t border-white/10">
+    <div class="lux-container flex flex-col gap-4 py-5 text-xs text-gray-500 md:flex-row md:items-center md:justify-between">
+      <p class="text-xl tracking-[0.2em] text-white lux-title">Mercurion</p>
+      <p>&copy; 2026 Mercurion. All rights reserved.</p>
+      <div class="flex items-center gap-4 text-gray-400">
+        <a href="#" class="hover:text-white">IG</a>
+        <a href="#" class="hover:text-white">FB</a>
+        <a href="#" class="hover:text-white">X</a>
+      </div>
+    </div>
+  </div>
 </footer>

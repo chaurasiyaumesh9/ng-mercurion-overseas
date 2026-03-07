@@ -1,3 +1,61 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --lux-bg: #f2f2f2;
+    --lux-panel: #ffffff;
+    --lux-text: #111111;
+    --lux-muted: #6a6a6a;
+    --lux-border: #d9d9d9;
+    --lux-black: #050505;
+  }
+
+  html,
+  body {
+    @apply m-0 p-0 antialiased;
+    font-family: "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+    /*background-color: var(--lux-bg); */
+    color: var(--lux-text);
+  }
+
+  * {
+    border-color: var(--lux-border);
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .lux-container {
+    @apply mx-auto w-full max-w-[1360px] px-4 md:px-8;
+  }
+
+  .lux-overline {
+    @apply text-[10px] uppercase tracking-[0.28em] text-gray-500;
+  }
+
+  .lux-title {
+    font-family: Georgia, "Times New Roman", serif;
+    @apply font-medium text-gray-950;
+  }
+
+  .lux-link {
+    @apply text-xs uppercase tracking-[0.18em] text-gray-700 hover:text-black;
+  }
+
+  .lux-input {
+    @apply h-10 border border-gray-300 bg-white px-3 text-xs tracking-wide outline-none focus:border-gray-500;
+  }
+
+  .lux-btn {
+    @apply inline-flex items-center justify-center border border-black bg-black px-5 py-3 text-[11px] uppercase tracking-[0.18em] text-white transition hover:bg-gray-900;
+  }
+
+  .lux-btn-light {
+    @apply inline-flex items-center justify-center border border-gray-300 bg-white px-5 py-3 text-[11px] uppercase tracking-[0.18em] text-gray-900 transition hover:bg-gray-100;
+  }
+}

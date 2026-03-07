@@ -1,226 +1,155 @@
-<header class="w-full bg-white sticky top-0 z-40">
-  <!-- ================= TOP STRIP ================= -->
-  <div class="w-full bg-gray-900 text-white py-2 text-center text-sm">
-    Free Shipping on Orders Over $100
-  </div>
-
-  <!-- ================= MAIN HEADER ================= -->
-  <div class="w-full md:container md:mx-auto md:px-4">
-    <!-- HEADER ROW -->
-    <div class="flex items-center justify-between py-3">
-      <!-- LOGO -->
-      <a routerLink="/" class="flex flex-col leading-tight">
-        <span class="text-lg font-bold text-gray-900">Mercurion Overseas</span>
-        <span class="text-xs text-gray-600 italic">Connecting Markets Worldwide</span>
-      </a>
-
-      <!-- DESKTOP SEARCH -->
-      <form (submit)="handleSearch($event)" class="hidden md:flex flex-1 max-w-md mx-8">
-        <div class="relative w-full">
-          <input
-            type="text"
-            placeholder="Search products..."
-            [value]="searchQuery()"
-            (input)="searchQuery.set($any($event.target).value)"
-            class="w-full px-4 py-2 border rounded-l-md"
-          />
-          <button
-            type="submit"
-            class="absolute right-0 top-0 h-full px-4 bg-blue-600 text-white rounded-r-md flex items-center justify-center"
-          >
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
-            </svg>
-          </button>
-        </div>
-      </form>
-
-      <!-- DESKTOP ACTIONS -->
-      <div class="hidden md:flex items-center gap-4">
-        <a class="text-gray-900 font-medium">Sign In</a> |
-        <a class="text-gray-900 font-medium">Create Account</a>
-
-        <a routerLink="/cart" class="relative">
-          
-          <svg class="w-6 h-6 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z"/>
-            </svg>
-
-          @if (cartStore.cartCount() > 0) {
-            <span
-              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2 py-0.5"
-            >
-              {{ cartStore.cartCount() }}
-            </span>
+<header class="sticky top-0 z-40 border-b border-gray-300 bg-[#f2f2f2]/95 backdrop-blur">
+  <div class="lux-container">
+    <div class="hidden h-16 grid-cols-[1fr_auto_1fr] items-center gap-4 md:grid">
+      <nav class="hidden items-center gap-6 md:flex">
+        <a routerLink="/search" class="lux-link">New Arrivals</a>
+        @let categoriesLoaded = categoriesLoaded$ | async;
+        @let categories = categories$ | async;
+        @if (categoriesLoaded && categories) {
+          @for (category of categories.slice(0, 3); track category.id) {
+            <a [routerLink]="['/', category.slug]" class="lux-link">
+              {{ category.name }}
+            </a>
           }
-        </a>
-      </div>
+        }
+      </nav>
 
-      <!-- MOBILE ACTIONS -->
-      <div class="flex items-center gap-4 md:hidden">
-        <!-- CART -->
-        <a routerLink="/cart" class="relative">
-          <svg class="w-6 h-6 text-gray-700" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z"/>
-        </svg>
-          @if (cartStore.cartCount() > 0) {
-            <span
-              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-2 py-0.5"
-            >
-              {{ cartStore.cartCount() }}
-            </span>
-          }
-        </a>
+      <a routerLink="/" class="justify-self-center text-3xl tracking-[0.24em] lux-title">Mercurion</a>
 
-        <!-- MENU BUTTON -->
-        <button (click)="mobileMenuOpen.set(true)">
-          <svg class="w-7 h-7 text-gray-700" viewBox="0 0 24 24" fill="none">
+      <div class="hidden items-center justify-end gap-4 md:flex">
+        <button class="text-gray-800 hover:text-black" aria-label="Search">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
             <path
+              d="m21 21-4.2-4.2M16 10a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z"
               stroke="currentColor"
-              stroke-width="2"
+              stroke-width="1.75"
               stroke-linecap="round"
-              d="M4 6h16M4 12h16M4 18h16"
+              stroke-linejoin="round"
             />
           </svg>
         </button>
+        <a routerLink="/account/profile" class="text-gray-800 hover:text-black" aria-label="Account">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M18 19a6 6 0 0 0-12 0m6-6a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </a>
+        <a routerLink="/cart" class="relative text-gray-800 hover:text-black" aria-label="Cart">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M6.5 8H17.5L18.5 20H5.5L6.5 8Zm3-1.5V6a2.5 2.5 0 1 1 5 0v.5"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          @if (cartStore.cartCount() > 0) {
+            <span class="absolute -right-2 -top-2 rounded-full bg-black px-1.5 text-[10px] text-white">
+              {{ cartStore.cartCount() }}
+            </span>
+          }
+        </a>
       </div>
     </div>
 
-    <!-- MOBILE SEARCH -->
-    <div class="md:hidden px-4 pb-3">
-      <form (submit)="handleSearch($event)">
-        <div class="relative">
-          <input
-            type="text"
-            placeholder="Search products..."
-            [value]="searchQuery()"
-            (input)="searchQuery.set($any($event.target).value)"
-            class="w-full px-4 py-3 border rounded-lg shadow-sm"
-          />
-          <button
-            type="submit"
-            class="absolute right-0 top-0 h-full px-4 bg-blue-600 text-white rounded-r-lg"
-          >
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="m21 21-3.5-3.5M17 10a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
+    <div class="md:hidden">
+      <div class="grid h-16 grid-cols-[auto_1fr_auto] items-center gap-3">
+        <button (click)="mobileMenuOpen.set(true)" aria-label="Open menu" class="text-gray-800">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M4 7h16M4 12h16M4 17h16"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+
+        <a routerLink="/" class="justify-self-center text-[24px] leading-none tracking-[0.24em] lux-title">Mercurion</a>
+
+        <div class="flex items-center gap-2.5">
+          <button class="text-gray-800 hover:text-black" aria-label="Search">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path
+                d="m21 21-4.2-4.2M16 10a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
             </svg>
           </button>
-        </div>
-      </form>
-    </div>
-
-    <!-- DESKTOP NAV -->
-    @defer (on idle) {
-      <nav class="hidden md:block border-t border-b">
-        <div class="container mx-auto px-4">
-          <ul class="flex items-center gap-8 py-3">
-            @let categoriesLoaded = categoriesLoaded$ | async;
-            @let categories = categories$ | async;
-
-            @if (!categoriesLoaded) {
-              @for (placeholder of [1, 2, 3, 4, 5]; track placeholder) {
-                <li class="animate-pulse">
-                  <span class="block h-4 w-24 rounded bg-gray-200"></span>
-                </li>
-              }
-            } @else {
-              <li>
-                <a routerLink="/" class="text-gray-700 hover:text-blue-600">Home</a>
-              </li>
-
-              @for (category of categories; track category.id) {
-                <li class="relative group">
-                  <a [routerLink]="['/', category.slug]" class="text-gray-700 hover:text-blue-600">
-                    {{ category.name }}
-                  </a>
-
-                  <div
-                    class="absolute left-0 mt-2 w-64 bg-white rounded-md shadow-lg py-2 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all"
-                  >
-                    @for (sub of category.subCategories; track sub.id) {
-                      <a
-                        [routerLink]="['/', category.slug, sub.slug]"
-                        class="block px-4 py-2 text-sm hover:bg-gray-100"
-                      >
-                        {{ sub.name }}
-                      </a>
-                    }
-                  </div>
-                </li>
-              }
+          <a routerLink="/account/profile" class="text-gray-800 hover:text-black" aria-label="Account">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M18 19a6 6 0 0 0-12 0m6-6a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </a>
+          <a routerLink="/cart" class="relative text-gray-800 hover:text-black" aria-label="Cart">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M6.5 8H17.5L18.5 20H5.5L6.5 8Zm3-1.5V6a2.5 2.5 0 1 1 5 0v.5"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            @if (cartStore.cartCount() > 0) {
+              <span class="absolute -right-2 -top-2 rounded-full bg-black px-1.5 text-[10px] text-white">
+                {{ cartStore.cartCount() }}
+              </span>
             }
-          </ul>
+          </a>
         </div>
-      </nav>
-    }
+      </div>
+    </div>
   </div>
 </header>
 
-<!-- ================= MOBILE NAV DRAWER ================= -->
-
 @if (mobileMenuOpen()) {
-  <div class="fixed inset-0 z-50 md:hidden">
-    <!-- BACKDROP -->
-    <div class="absolute inset-0 bg-black/40" (click)="mobileMenuOpen.set(false)"></div>
-
-    <!-- DRAWER -->
-    <div class="absolute inset-y-0 left-0 w-full max-w-sm bg-white shadow-xl flex flex-col">
-      <!-- HEADER -->
-      <div class="flex items-center justify-between px-4 py-4 border-b">
-        <span class="font-semibold text-lg">Menu</span>
-        <button (click)="mobileMenuOpen.set(false)">✕</button>
+  <div class="fixed inset-0 z-50 bg-black/30 md:hidden" (click)="mobileMenuOpen.set(false)">
+    <aside class="h-full w-[85%] max-w-sm border-r border-gray-300 bg-[#f7f7f7] p-6" (click)="$event.stopPropagation()">
+      <div class="mb-8 flex items-center justify-between">
+        <span class="text-xl tracking-[0.2em] lux-title">Mercurion</span>
+        <button (click)="mobileMenuOpen.set(false)" class="text-sm uppercase tracking-[0.2em] text-gray-600">
+          Close
+        </button>
       </div>
 
-      <!-- NAV LIST -->
-      <div class="flex-1 overflow-y-auto">
+      <form (submit)="handleSearch($event)" class="mb-8">
+        <input
+          type="text"
+          placeholder="Search"
+          [value]="searchQuery()"
+          (input)="searchQuery.set($any($event.target).value)"
+          class="lux-input w-full"
+        />
+      </form>
+
+      <nav class="space-y-4">
+        <a routerLink="/search" (click)="closeMobile()" class="block lux-link">New Arrivals</a>
         @let categoriesLoaded = categoriesLoaded$ | async;
         @let categories = categories$ | async;
-
-        @if (!categoriesLoaded) {
-          @for (placeholder of [1, 2, 3, 4, 5]; track placeholder) {
-            <div class="border-b px-4 py-3 animate-pulse">
-              <div class="h-4 w-36 rounded bg-gray-200"></div>
-              <div class="mt-3 space-y-2 px-2">
-                <div class="h-3 w-28 rounded bg-gray-100"></div>
-                <div class="h-3 w-24 rounded bg-gray-100"></div>
-              </div>
-            </div>
-          }
-        } @else {
-          <a
-            routerLink="/"
-            (click)="closeMobile()"
-            class="block px-4 py-3 text-base font-semibold border-b"
-          >
-            Home
-          </a>
-
+        @if (categoriesLoaded && categories) {
           @for (category of categories; track category.id) {
-            <div class="border-b">
-              <a
-                [routerLink]="['/', category.slug]"
-                (click)="closeMobile()"
-                class="block px-4 pt-3 pb-2 font-semibold text-base"
-              >
-                {{ category.name }}
-              </a>
-
-              <div class="pb-3">
-                @for (sub of category.subCategories; track sub.id) {
-                  <a
-                    [routerLink]="['/', category.slug, sub.slug]"
-                    (click)="closeMobile()"
-                    class="block px-6 py-2 text-sm text-gray-600 hover:bg-gray-50"
-                  >
-                    {{ sub.name }}
-                  </a>
-                }
-              </div>
-            </div>
+            <a [routerLink]="['/', category.slug]" (click)="closeMobile()" class="block lux-link">
+              {{ category.name }}
+            </a>
           }
         }
-      </div>
-    </div>
+      </nav>
+    </aside>
   </div>
 }
-
