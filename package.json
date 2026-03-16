@@ -2,6 +2,7 @@
   "name": "mercurion-overseas",
   "version": "0.0.0",
   "scripts": {
+    "build:ssp": "ng build && node scripts/generate-ssp.js",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
