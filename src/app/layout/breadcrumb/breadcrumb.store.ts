@@ -62,6 +62,15 @@ export const BreadcrumbStore = signalStore(
       if (segments.length === 1 && PRODUCT_URL_COMPONENT_SEGMENT_REGEX.test(segments[0])) {
         const urlcomponent = segments[0];
         const productName = store.productsApi.productNameByUrlComponent()[urlcomponent];
+        const productPath = store.productsApi.productBreadcrumbByUrlComponent()[urlcomponent] ?? [];
+
+        for (const pathNode of productPath) {
+          crumbs.push({
+            label: pathNode.label,
+            url: pathNode.url,
+          });
+        }
+
         crumbs.push({
           label: productName ?? urlcomponent,
           url: null,

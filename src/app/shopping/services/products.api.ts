@@ -27,11 +27,18 @@ export interface SearchProductsResult {
     facets: SearchFacet[];
 }
 
+export interface ProductBreadcrumbNode {
+    label: string;
+    url: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ProductsApi {
     private readonly itemsApiUrl = '/api/items';
     private readonly productNameByUrlComponentState = signal<Record<string, string>>({});
+    private readonly productBreadcrumbByUrlComponentState = signal<Record<string, ProductBreadcrumbNode[]>>({});
     readonly productNameByUrlComponent = this.productNameByUrlComponentState.asReadonly();
+    readonly productBreadcrumbByUrlComponent = this.productBreadcrumbByUrlComponentState.asReadonly();
 
     constructor(private http: HttpClient) {}
 
@@ -75,9 +82,10 @@ export class ProductsApi {
 
         return this.http.get<SearchProductsResponse>(this.itemsApiUrl, { params }).pipe(
             map((response) => {
-                const products = (response.items || []).map((item) => this.mapSearchProductToProduct(item));
+                const items = response.items || [];
+                const products = items.map((item) => this.mapSearchProductToProduct(item));
                 const mappedProducts = options.featured ? products.filter((p) => p.featured) : products;
-                this.cacheProductNames(products);
+                this.cacheProductMetadata(items, products);
 
                 return {
                     products: mappedProducts,
@@ -94,23 +102,39 @@ export class ProductsApi {
         );
     }
 
-    private cacheProductNames(products: Product[]): void {
-        if (!products.length) return;
+    private cacheProductMetadata(items: SearchProductItem[], products: Product[]): void {
+        if (!products.length || products.length !== items.length) return;
 
-        const current = this.productNameByUrlComponentState();
-        const next = { ...current };
-        let changed = false;
+        const currentNames = this.productNameByUrlComponentState();
+        const nextNames = { ...currentNames };
+        const currentBreadcrumbs = this.productBreadcrumbByUrlComponentState();
+        const nextBreadcrumbs = { ...currentBreadcrumbs };
+        let namesChanged = false;
+        let breadcrumbsChanged = false;
 
-        for (const product of products) {
-            if (!product?.urlcomponent || !product?.name) continue;
-            if (next[product.urlcomponent] === product.name) continue;
+        for (let i = 0; i < products.length; i++) {
+            const product = products[i];
+            const item = items[i];
+            if (!product?.urlcomponent) continue;
 
-            next[product.urlcomponent] = product.name;
-            changed = true;
+            if (product.name && nextNames[product.urlcomponent] !== product.name) {
+                nextNames[product.urlcomponent] = product.name;
+                namesChanged = true;
+            }
+
+            const path = this.buildProductCategoryPath(item);
+            const previous = nextBreadcrumbs[product.urlcomponent] ?? [];
+            if (JSON.stringify(previous) !== JSON.stringify(path)) {
+                nextBreadcrumbs[product.urlcomponent] = path;
+                breadcrumbsChanged = true;
+            }
         }
 
-        if (changed) {
-            this.productNameByUrlComponentState.set(next);
+        if (namesChanged) {
+            this.productNameByUrlComponentState.set(nextNames);
+        }
+        if (breadcrumbsChanged) {
+            this.productBreadcrumbByUrlComponentState.set(nextBreadcrumbs);
         }
     }
 
@@ -161,7 +185,7 @@ export class ProductsApi {
                 if (!item) return null;
 
                 const product = this.mapSearchProductToProduct(item);
-                this.cacheProductNames([product]);
+                this.cacheProductMetadata([item], [product]);
                 return product;
             }),
             catchError((error) => {
@@ -171,7 +195,32 @@ export class ProductsApi {
         );
     }
 
+    private buildProductCategoryPath(item: SearchProductItem): ProductBreadcrumbNode[] {
+        const categories = item.commercecategory?.categories ?? [];
+        const nodes = categories
+            .map((category) => ({
+                label: category.name ?? '',
+                url: category.urls?.[0] ?? '',
+            }))
+            .filter((node) => node.label && node.url);
+
+        nodes.sort((a, b) => this.urlDepth(a.url) - this.urlDepth(b.url));
+
+        const deduped: ProductBreadcrumbNode[] = [];
+        const seen = new Set<string>();
+        for (const node of nodes) {
+            if (seen.has(node.url)) continue;
+            seen.add(node.url);
+            deduped.push(node);
+        }
+
+        return deduped;
+    }
+
+    private urlDepth(url: string): number {
+        return (url ?? '').split('/').filter(Boolean).length;
+    }
+
    
 }
-
 

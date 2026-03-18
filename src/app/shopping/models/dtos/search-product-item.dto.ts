@@ -21,6 +21,7 @@ export interface SearchProductItem {
 
 export interface SearchCommerceCategory {
   id?: string | number;
+  name?: string;
   urls?: string[];
 }
 
