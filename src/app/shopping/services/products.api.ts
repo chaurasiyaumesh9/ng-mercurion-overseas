@@ -129,6 +129,29 @@ export class ProductsApi {
             style: item.style ?? '',
         };
     }
+
+    getProducts(): Observable<any> {
+        // let params = new HttpParams();
+        //     params = params.set('c', 'TSTDRV2206481');
+        //     params = params.set('country', 'US');
+        //     params = params.set('country', 'US');
+        //     params = params.set('currency', 'USD');
+        //     params = params.set('fieldset', 'search');
+        //     params = params.set('include', 'facets');
+        //     params = params.set('language', 'en');
+        //     params = params.set('limit', '24');
+        //     params = params.set('n', '6');
+        //     params = params.set('offset', '0');
+        //     params = params.set('pricelevel', '5');
+        //     params = params.set('sort', 'relevance:desc');
+        //     params = params.set('use_pcv', 'F');
+        //     params = params.set('commercecategoryurl', '/sports');
+
+        //const apiUrl = `${this.searchApiUrl}/external/items`;
+        const apiUrl = '/services/Categories.Service.ss?c=TSTDRV2206481&country=US&currency=USD&language=en&menuLevel=3';
+        //const apiUrl = '/api/items?c=TSTDRV2206481&commercecategoryurl=%2Fsports&country=US&currency=USD&fieldset=search&include=facets&language=en&limit=24&n=6&offset=0&pricelevel=5&sort=commercecategory%3Adesc&use_pcv=F';
+        return this.http.get<any>(apiUrl);
+    }
 }
 
 

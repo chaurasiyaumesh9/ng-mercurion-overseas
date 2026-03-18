@@ -17,6 +17,7 @@ import { Product } from '@shopping/models/product.model';
 import { ProductsApi } from '@shopping/services/products.api';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 import { SearchFacet } from '@shopping/models/dtos/search-facet.dto';
+import { Category } from '@shopping/models/category.model';
 
 interface UiState {
   mobileFiltersOpen: boolean;
@@ -33,6 +34,20 @@ const facetLabels: Record<string, string> = {
   customerRating: 'Customer Rating',
   featured: 'Featured',
 };
+
+function getSlugFromFullUrl(fullurl: string | undefined): string {
+  const path = (fullurl ?? '').split('?')[0] ?? '';
+  const trimmed = path.replace(/^\/+|\/+$/g, '');
+  if (!trimmed) return '';
+
+  const segments = trimmed.split('/').filter(Boolean);
+  return segments[segments.length - 1] ?? '';
+}
+
+function findCategoryBySlug(categories: Category[], slug: string | null): Category | null {
+  if (!slug) return null;
+  return categories.find((category) => getSlugFromFullUrl(category.fullurl) === slug) ?? null;
+}
 
 export const ProductListingStore = signalStore(
   withState<UiState>({
@@ -85,12 +100,10 @@ export const ProductListingStore = signalStore(
     const categorySlug = computed(() => params()?.get('categorySlug') ?? null);
     const subCategorySlug = computed(() => params()?.get('subCategorySlug') ?? null);
 
-    const currentCategory = computed(
-      () => categories().find((c) => c.slug === categorySlug()) ?? null,
-    );
+    const currentCategory = computed(() => findCategoryBySlug(categories(), categorySlug()));
 
     const currentSubCategory = computed(
-      () => currentCategory()?.subCategories?.find((s) => s.slug === subCategorySlug()) ?? null,
+      () => findCategoryBySlug(currentCategory()?.categories ?? [], subCategorySlug()),
     );
 
     const visiblePageNumbers = computed(() => {
@@ -288,7 +301,7 @@ export const ProductListingStore = signalStore(
 
           const response = await firstValueFrom(
             store.api.searchProducts({
-              categoryId: store.currentSubCategory()?.id ?? store.currentCategory()?.id,
+              categoryId: store.currentSubCategory()?.internalid ?? store.currentCategory()?.internalid,
               searchQuery: store.search() || '',
               page: store.pageFromUrl(),
               pageSize: store.pageSizeFromUrl(),
@@ -309,3 +322,5 @@ export const ProductListingStore = signalStore(
     },
   }),
 );
+
+

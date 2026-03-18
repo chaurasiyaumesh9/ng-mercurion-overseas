@@ -19,14 +19,12 @@ import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 interface HomeState {
   featuredProducts: Product[];
   loading: boolean;
-  failedCategoryImages: Set<string>;
 }
 
 export const HomeStore = signalStore(
   withState<HomeState>(() => ({
     featuredProducts: [],
     loading: false,
-    failedCategoryImages: new Set<string>(),
   })),
 
   withProps(() => {
@@ -70,23 +68,10 @@ export const HomeStore = signalStore(
     stars(rating: number): boolean[] {
       return Array.from({ length: 5 }, (_, i) => i < Math.floor(rating));
     },
-  })),
-
-  withMethods((store) => ({
-    onCategoryImageError(categoryId: string) {
-      const failed = new Set(store.failedCategoryImages());
-      failed.add(categoryId);
-      patchState(store, { failedCategoryImages: failed });
-    },
-
-    getCategoryImageSource(category: Category): string {
-      return store.failedCategoryImages().has(category.id)
-        ? PLACEHOLDER_IMAGE_URL
-        : category.thumbnail || PLACEHOLDER_IMAGE_URL;
-    },
-
-    isCategoryImageFailed(categoryId: string): boolean {
-      return store.failedCategoryImages().has(categoryId);
+    getCategoryImageSource(_category: Category): string {
+      return PLACEHOLDER_IMAGE_URL;
     },
   })),
 );
+
+

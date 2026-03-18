@@ -14,4 +14,4 @@ export const selectCategoriesLoaded =
   createSelector(selectCategoriesState, s => s.loaded);
 
 export const selectCategoriesFeatured =
-  createSelector(selectCategoriesState, s => s.categories.filter(c => c.featured));
+  createSelector(selectCategoriesState, s => s.categories.filter(c => (c.categories?.length ?? 0) > 0));

@@ -6,3 +6,4 @@ export interface CategoriesState {
   loaded: boolean;
   error: string | null;
 }
+

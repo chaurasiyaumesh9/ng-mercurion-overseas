@@ -12,3 +12,4 @@ export const loadCategoriesFailure = createAction(
   '[App] Load Categories Failure',
   props<{ error: string }>(),
 );
+

@@ -17,6 +17,21 @@ import { CartStore } from '@shopping/stores/cart.store';
 import { ProductsApi } from '@shopping/services/products.api';
 import { firstValueFrom } from 'rxjs/internal/firstValueFrom';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { Category } from '@shopping/models/category.model';
+
+function containsCategoryId(category: Category, ids: Set<string>): boolean {
+  if (ids.has(category.internalid)) return true;
+  return (category.categories ?? []).some((child) => containsCategoryId(child, ids));
+}
+
+function findFirstMatchingDescendant(category: Category, ids: Set<string>): Category | null {
+  for (const child of category.categories ?? []) {
+    if (ids.has(child.internalid)) return child;
+    const nested = findFirstMatchingDescendant(child, ids);
+    if (nested) return nested;
+  }
+  return null;
+}
 
 export interface ProductDetailState {
   product: Product | null;
@@ -80,7 +95,7 @@ export const ProductDetailStore = signalStore(
 
       const ids = new Set(p.categoryIds);
       for (const category of categories()) {
-        const sub = category.subCategories?.find((s) => ids.has(s.id));
+        const sub = findFirstMatchingDescendant(category, ids);
         if (sub) return sub;
       }
 
@@ -94,10 +109,10 @@ export const ProductDetailStore = signalStore(
       const ids = new Set(p.categoryIds);
       const sub = currentSubCategory();
       if (sub) {
-        return categories().find((c) => c.subCategories?.some((s) => s.id === sub.id)) ?? null;
+        return categories().find((c) => containsCategoryId(c, new Set([sub.internalid]))) ?? null;
       }
 
-      return categories().find((c) => ids.has(c.id)) ?? null;
+      return categories().find((c) => ids.has(c.internalid)) ?? null;
     });
 
     return { sku, safeQuantity, savePercent, galleryImages, currentCategory, currentSubCategory };
@@ -195,3 +210,5 @@ export const ProductDetailStore = signalStore(
     },
   }),
 );
+
+

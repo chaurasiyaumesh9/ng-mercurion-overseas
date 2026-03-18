@@ -1,9 +1,9 @@
 export interface Category {
-  id: string;
+  categories: Category[];
+  fullurl: string;
+  internalid: string;
+  level: string;
   name: string;
-  slug: string;
-  url: string;
-  thumbnail: string;
-  featured: boolean;
-  subCategories: Category[];
+  parentIdPath: string;
+  sequencenumber?: string;
 }

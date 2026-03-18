@@ -1,8 +1,10 @@
 export interface CategoryDto {
-  id: string;
-  name: string;
-  primaryParent: string | null;
-  urlFragment: string;
-  thumbnail: string;
-  featured: boolean;
+  categories?: CategoryDto[];
+  fullurl?: string;
+  internalid?: string | number;
+  level?: string | number;
+  name?: string;
+  parentIdPath?: string;
+  sequencenumber?: string | number;
+  _debug_requestTime?: number;
 }

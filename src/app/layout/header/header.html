@@ -6,8 +6,8 @@
         @let categoriesLoaded = categoriesLoaded$ | async;
         @let categories = categories$ | async;
         @if (categoriesLoaded && categories) {
-          @for (category of categories.slice(0, 3); track category.id) {
-            <a [routerLink]="['/', category.slug]" class="text-[11px] uppercase tracking-[0.18em] text-[color:var(--foreground)]/85 hover:text-[color:var(--foreground)]">
+          @for (category of categories; track category.internalid) {
+            <a [routerLink]="category.fullurl" class="text-[11px] uppercase tracking-[0.18em] text-[color:var(--foreground)]/85 hover:text-[color:var(--foreground)]">
               {{ category.name }}
             </a>
           }
@@ -88,8 +88,8 @@
         @let categoriesLoaded = categoriesLoaded$ | async;
         @let categories = categories$ | async;
         @if (categoriesLoaded && categories) {
-          @for (category of categories; track category.id) {
-            <a [routerLink]="['/', category.slug]" (click)="closeMobile()" class="block lux-link">
+          @for (category of categories; track category.internalid) {
+            <a [routerLink]="category.fullurl" (click)="closeMobile()" class="block lux-link">
               {{ category.name }}
             </a>
           }

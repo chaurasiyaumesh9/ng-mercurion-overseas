@@ -1,33 +1,36 @@
-import { resolveMediaUrl } from '@core/resolvers/media.resolver';
 import { Category } from '@shopping/models/category.model';
 import { CategoryDto } from '@shopping/models/dtos/category.dto';
 
-export function buildCategoryHierarchy(dtos: CategoryDto[]): Category[] {
-  const map = new Map<string, Category>();
-
-  dtos.forEach((dto) => {
-    map.set(dto.id, {
-      id: dto.id,
-      featured: dto.featured,
-      name: dto.name,
-      slug: dto.urlFragment,
-      url: `/${dto.urlFragment}`,
-      thumbnail: resolveMediaUrl(dto.thumbnail),
-      subCategories: [],
-    });
-  });
-
-  const roots: Category[] = [];
-
-  dtos.forEach((dto) => {
-    const current = map.get(dto.id)!;
-
-    if (dto.primaryParent && map.has(dto.primaryParent)) {
-      map.get(dto.primaryParent)!.subCategories.push(current);
-    } else {
-      roots.push(current);
-    }
-  });
-
-  return roots;
+export function mapCategoryDtosToCategories(items: CategoryDto[] | undefined): Category[] {
+  return sortBySequence(items).map(mapCategoryDtoToCategory);
 }
+
+function mapCategoryDtoToCategory(item: CategoryDto): Category {
+  return {
+    categories: mapCategoryDtosToCategories(item.categories),
+    fullurl: normalizeUrl(item.fullurl),
+    internalid: `${item.internalid ?? ''}`,
+    level: `${item.level ?? ''}`,
+    name: item.name ?? '',
+    parentIdPath: item.parentIdPath ?? '',
+    sequencenumber: item.sequencenumber !== undefined ? `${item.sequencenumber}` : undefined,
+  };
+}
+
+function sortBySequence(items: CategoryDto[] | undefined): CategoryDto[] {
+  return [...(items ?? [])].sort(
+    (a, b) => toSequenceNumber(a.sequencenumber) - toSequenceNumber(b.sequencenumber),
+  );
+}
+
+function toSequenceNumber(value: string | number | undefined): number {
+  if (value === undefined || value === null || value === '') return Number.MAX_SAFE_INTEGER;
+  const parsed = Number(value);
+  return Number.isFinite(parsed) ? parsed : Number.MAX_SAFE_INTEGER;
+}
+
+function normalizeUrl(value: string | undefined): string {
+  if (!value) return '';
+  return value.startsWith('/') ? value : `/${value}`;
+}
+

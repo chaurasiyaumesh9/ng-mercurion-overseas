@@ -7,6 +7,21 @@ import { selectCategories } from '@appState/categories/categories.selectors';
 import { Breadcrumb } from './breadcrumb.model';
 import { ProductsApi } from '@shopping/services/products.api';
 import { SKU_SEGMENT_REGEX } from '@core/constants/route.constants';
+import { Category } from '@shopping/models/category.model';
+
+function getSlugFromFullUrl(fullurl: string | undefined): string {
+  const path = (fullurl ?? '').split('?')[0] ?? '';
+  const trimmed = path.replace(/^\/+|\/+$/g, '');
+  if (!trimmed) return '';
+
+  const segments = trimmed.split('/').filter(Boolean);
+  return segments[segments.length - 1] ?? '';
+}
+
+function findCategoryBySlug(categories: Category[], slug: string | undefined): Category | null {
+  if (!slug) return null;
+  return categories.find((category) => getSlugFromFullUrl(category.fullurl) === slug) ?? null;
+}
 
 export const BreadcrumbStore = signalStore(
   withProps(() => {
@@ -73,22 +88,22 @@ export const BreadcrumbStore = signalStore(
       // CATEGORY + SUBCATEGORY
       // --------------------------------------------------
       const categories = store.categories();
-      const category = categories.find((c) => c.slug === segments[0]);
+      const category = findCategoryBySlug(categories, segments[0]);
 
       if (!category) return [];
 
       crumbs.push({
         label: category.name,
-        url: `/${category.slug}`,
+        url: category.fullurl,
       });
 
       if (segments.length > 1) {
-        const sub = category.subCategories?.find((s) => s.slug === segments[1]);
+        const sub = findCategoryBySlug(category.categories ?? [], segments[1]);
 
         if (sub) {
           crumbs.push({
             label: sub.name,
-            url: `/${category.slug}/${sub.slug}`,
+            url: sub.fullurl,
           });
         }
       }
@@ -98,4 +113,6 @@ export const BreadcrumbStore = signalStore(
     return { breadcrumbs };
   }),
 );
+
+
 

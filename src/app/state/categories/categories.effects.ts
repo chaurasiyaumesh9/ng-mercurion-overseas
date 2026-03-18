@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CategoriesApi } from '@shopping/services/categories.api';
 import * as CategoriesActions from './categories.actions';
 import { catchError, map, switchMap, of } from 'rxjs';
-import { buildCategoryHierarchy } from '@shopping/mappers/category.mapper';
+import { mapCategoryDtosToCategories } from '@shopping/mappers/category.mapper';
 
 @Injectable()
 export class CategoriesEffects {
@@ -17,7 +17,7 @@ export class CategoriesEffects {
         this.categoriesApi.getCategories().pipe(
           map((dtos) =>
             CategoriesActions.loadCategoriesSuccess({
-              categories: buildCategoryHierarchy(dtos),
+              categories: mapCategoryDtosToCategories(dtos),
             }),
           ),
           catchError(() =>

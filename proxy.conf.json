@@ -1,0 +1,13 @@
+{
+  "/api": {
+    "target": "https://sca.primarysports.com/",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/services": {
+    "target": "https://sca.primarysports.com/sca-dev-2019-2/",
+    "secure": true,
+    "changeOrigin": true
+  }
+}
