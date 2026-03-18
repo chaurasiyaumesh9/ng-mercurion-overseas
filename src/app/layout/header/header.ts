@@ -4,7 +4,8 @@ import { Router, RouterLink } from '@angular/router';
 import { CartStore } from '@shopping/stores/cart.store';
 import { Store } from '@ngrx/store';
 import { selectCategories, selectCategoriesLoaded } from '@appState/categories/categories.selectors';
-import { LucideAngularModule, SearchIcon, UserIcon, ShoppingBag, MenuIcon } from 'lucide-angular';
+import { LucideAngularModule, SearchIcon, UserIcon, ShoppingBag, MenuIcon, ChevronDown } from 'lucide-angular';
+import { Category } from '@shopping/models/category.model';
 
 @Component({
     selector: 'app-header',
@@ -22,10 +23,12 @@ export class Header {
     readonly UserIcon = UserIcon;
     readonly ShoppingBag = ShoppingBag;
     readonly MenuIcon = MenuIcon;
+    readonly ChevronDown = ChevronDown;
 
     mobileMenuOpen = signal(false);
     searchOpen = signal(false);
-    searchQuery = signal('');    
+    searchQuery = signal('');
+    activeMenu = signal<string | null>(null);
 
     handleSearch(event: Event) {
         event.preventDefault();
@@ -50,5 +53,20 @@ export class Header {
 
     closeSearch() {
         this.searchOpen.set(false);
+    }
+
+    setActiveMenu(categoryId: string, hasMegaMenu: boolean) {
+        this.activeMenu.set(hasMegaMenu ? categoryId : null);
+    }
+
+    clearActiveMenu() {
+        this.activeMenu.set(null);
+    }
+
+    getActiveCategory(categories: Category[] | null | undefined): Category | null {
+        const activeId = this.activeMenu();
+        if (!activeId || !categories?.length) return null;
+
+        return categories.find((category) => category.internalid === activeId) ?? null;
     }
 }

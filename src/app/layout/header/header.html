@@ -1,37 +1,82 @@
 <header class="sticky top-0 z-40 border-b border-gray-300 bg-[#f2f2f2]/95 backdrop-blur">
   <div class="lux-container">
-    <div class="hidden h-16 grid-cols-[1fr_auto_1fr] items-center gap-4 md:grid">
-      <nav class="hidden items-center gap-6 md:flex">
-        <a routerLink="/search" class="text-[11px] uppercase tracking-[0.18em] text-[color:var(--foreground)]/85 hover:text-[color:var(--foreground)]">New Arrivals</a>
-        @let categoriesLoaded = categoriesLoaded$ | async;
-        @let categories = categories$ | async;
-        @if (categoriesLoaded && categories) {
-          @for (category of categories; track category.internalid) {
-            <a [routerLink]="category.fullurl" class="text-[11px] uppercase tracking-[0.18em] text-[color:var(--foreground)]/85 hover:text-[color:var(--foreground)]">
-              {{ category.name }}
-            </a>
-          }
-        }
-      </nav>
+    <div class="relative hidden md:block" (mouseleave)="clearActiveMenu()">
+      <div class="h-16 items-center md:grid md:grid-cols-[auto_1fr_auto] md:gap-6">
+        <a routerLink="/" class="text-2xl tracking-[0.2em] text-foreground lux-title">MERCURION</a>
 
-      <a routerLink="/" class="justify-self-center text-2xl tracking-[0.2em] text-foreground lux-title">MERCURION</a>
-
-      <div class="hidden items-center justify-end gap-4 md:flex">
-        <button class="text-gray-800 hover:text-black" aria-label="Search" (click)="openSearch()">
-          <lucide-icon [size]="20" [img]="SearchIcon"></lucide-icon>
-        </button>
-        <a routerLink="/account/profile" class="text-gray-800 hover:text-black" aria-label="Account">
-          <lucide-icon [size]="20" [img]="UserIcon"></lucide-icon>
-        </a>
-        <a routerLink="/cart" class="relative text-gray-800 hover:text-black" aria-label="Cart">
-          <lucide-icon [size]="20" [img]="ShoppingBag"></lucide-icon>
-          @if (cartStore.cartCount() > 0) {
-            <span class="absolute -right-2 -top-2 rounded-full bg-black px-1.5 text-[10px] text-white">
-              {{ cartStore.cartCount() }}
-            </span>
+        <nav class="mx-auto hidden items-center gap-8 md:flex">
+          <a routerLink="/search" class="text-[11px] uppercase tracking-[0.18em] text-[color:var(--foreground)]/85 hover:text-[color:var(--foreground)]">
+            New Arrivals
+          </a>
+          @let categoriesLoaded = categoriesLoaded$ | async;
+          @let categories = categories$ | async;
+          @if (categoriesLoaded && categories) {
+            @for (category of categories; track category.internalid) {
+              <a
+                [routerLink]="category.fullurl"
+                class="flex items-center gap-1 text-[11px] uppercase tracking-[0.18em] text-[color:var(--foreground)]/85 hover:text-[color:var(--foreground)]"
+                (mouseenter)="setActiveMenu(category.internalid, category.categories.length > 0)"
+              >
+                {{ category.name }}
+                @if (category.categories.length > 0) {
+                  <lucide-icon [size]="12" [img]="ChevronDown"></lucide-icon>
+                }
+              </a>
+            }
           }
-        </a>
+        </nav>
+
+        <div class="hidden items-center justify-end gap-4 md:flex">
+          <button class="text-gray-800 hover:text-black" aria-label="Search" (click)="openSearch()">
+            <lucide-icon [size]="20" [img]="SearchIcon"></lucide-icon>
+          </button>
+          <a routerLink="/account/profile" class="text-gray-800 hover:text-black" aria-label="Account">
+            <lucide-icon [size]="20" [img]="UserIcon"></lucide-icon>
+          </a>
+          <a routerLink="/cart" class="relative text-gray-800 hover:text-black" aria-label="Cart">
+            <lucide-icon [size]="20" [img]="ShoppingBag"></lucide-icon>
+            @if (cartStore.cartCount() > 0) {
+              <span class="absolute -right-2 -top-2 rounded-full bg-black px-1.5 text-[10px] text-white">
+                {{ cartStore.cartCount() }}
+              </span>
+            }
+          </a>
+        </div>
       </div>
+
+      @let categoriesLoadedMega = categoriesLoaded$ | async;
+      @let categoriesMega = categories$ | async;
+      @if (categoriesLoadedMega && categoriesMega) {
+        @let activeCategory = getActiveCategory(categoriesMega);
+        @if (activeCategory) {
+          <div class="absolute left-0 right-0 top-full z-50 border-t border-gray-200 bg-[#efefef]">
+            <div class="lux-container py-10">
+              <div class="grid grid-cols-3 gap-12 xl:grid-cols-4">
+                @for (subCategory of activeCategory.categories; track subCategory.internalid) {
+                  <div>
+                    <a [routerLink]="subCategory.fullurl" class="mb-4 block text-[11px] uppercase tracking-[0.18em] text-gray-700 hover:text-black">
+                      {{ subCategory.name }}
+                    </a>
+                    <div class="space-y-3">
+                      @if (subCategory.categories.length) {
+                        @for (nestedCategory of subCategory.categories; track nestedCategory.internalid) {
+                          <a [routerLink]="nestedCategory.fullurl" class="block text-[15px] text-black hover:text-gray-700">
+                            {{ nestedCategory.name }}
+                          </a>
+                        }
+                      } @else {
+                        <a [routerLink]="subCategory.fullurl" class="block text-[15px] text-black hover:text-gray-700">
+                          Explore {{ subCategory.name }}
+                        </a>
+                      }
+                    </div>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+        }
+      }
     </div>
 
     <div class="md:hidden">
