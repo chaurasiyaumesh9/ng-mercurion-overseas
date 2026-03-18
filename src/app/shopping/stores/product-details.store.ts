@@ -73,7 +73,7 @@ export const ProductDetailStore = signalStore(
     const paramMap = toSignal(store.route.paramMap, { initialValue: null });
     const categories = store.ngrxStore.selectSignal(selectCategories);
 
-    const sku = computed(() => paramMap()?.get('sku'));
+    const urlcomponent = computed(() => paramMap()?.get('urlcomponent'));
 
     const safeQuantity = computed(() => Math.max(1, store.quantity()));
 
@@ -115,7 +115,7 @@ export const ProductDetailStore = signalStore(
       return categories().find((c) => ids.has(c.internalid)) ?? null;
     });
 
-    return { sku, safeQuantity, savePercent, galleryImages, currentCategory, currentSubCategory };
+    return { urlcomponent, safeQuantity, savePercent, galleryImages, currentCategory, currentSubCategory };
   }),
 
   // ----------------------------------
@@ -123,8 +123,8 @@ export const ProductDetailStore = signalStore(
   // ----------------------------------
   withMethods((store) => {
     async function loadProduct() {
-      const sku = store.sku();
-      if (!sku) {
+      const urlcomponent = store.urlcomponent();
+      if (!urlcomponent) {
         patchState(store, { loading: false });
         return;
       }
@@ -132,9 +132,7 @@ export const ProductDetailStore = signalStore(
       patchState(store, { loading: true });
 
       try {
-        const result = await firstValueFrom(store.productsApi.searchProducts({ sku }));
-
-        const product = result?.products?.[0] ?? null;
+        const product = await firstValueFrom(store.productsApi.getProductDetailsByUrlComponent(urlcomponent));
 
         patchState(store, {
           product,

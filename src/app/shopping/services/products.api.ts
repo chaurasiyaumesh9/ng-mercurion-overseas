@@ -16,7 +16,6 @@ export interface SearchProductsOptions {
     sort?: string;
     facets?: Map<string, Set<string>>;
     featured?: boolean;
-    sku?: string;
     custitem_deal_products?: boolean;
 }
 
@@ -31,8 +30,8 @@ export interface SearchProductsResult {
 @Injectable({ providedIn: 'root' })
 export class ProductsApi {
     private readonly itemsApiUrl = '/api/items';
-    private readonly productNameBySkuState = signal<Record<string, string>>({});
-    readonly productNameBySku = this.productNameBySkuState.asReadonly();
+    private readonly productNameByUrlComponentState = signal<Record<string, string>>({});
+    readonly productNameByUrlComponent = this.productNameByUrlComponentState.asReadonly();
 
     constructor(private http: HttpClient) {}
 
@@ -64,8 +63,6 @@ export class ProductsApi {
         }
         if (options.searchQuery) {
             params = params.set('q', options.searchQuery);
-        } else if (options.sku) {
-            params = params.set('q', options.sku);
         }
 
         if (options.facets && options.facets.size > 0) {
@@ -100,20 +97,20 @@ export class ProductsApi {
     private cacheProductNames(products: Product[]): void {
         if (!products.length) return;
 
-        const current = this.productNameBySkuState();
+        const current = this.productNameByUrlComponentState();
         const next = { ...current };
         let changed = false;
 
         for (const product of products) {
-            if (!product?.sku || !product?.name) continue;
-            if (next[product.sku] === product.name) continue;
+            if (!product?.urlcomponent || !product?.name) continue;
+            if (next[product.urlcomponent] === product.name) continue;
 
-            next[product.sku] = product.name;
+            next[product.urlcomponent] = product.name;
             changed = true;
         }
 
         if (changed) {
-            this.productNameBySkuState.set(next);
+            this.productNameByUrlComponentState.set(next);
         }
     }
 
@@ -128,6 +125,7 @@ export class ProductsApi {
         return {
             id: `${item.internalid ?? ''}`,
             sku: item.itemid ?? '',
+            urlcomponent: item.urlcomponent ?? item.itemid ?? '',
             name: item.displayname || item.itemid || '',
             price: item.onlinecustomerprice ?? 0,
             description: item.storedetaileddescription ?? '',
@@ -144,8 +142,36 @@ export class ProductsApi {
         };
     }
 
+    getProductDetailsByUrlComponent(urlcomponent: string): Observable<Product | null> {
+        let params = new HttpParams();
+        params = params.set('c', 'TSTDRV2206481');
+        params = params.set('country', 'US');
+        params = params.set('currency', 'USD');
+        params = params.set('fieldset', 'details');
+        //params = params.set('include', 'facets');
+        params = params.set('language', 'en');
+        params = params.set('n', '6');
+        params = params.set('pricelevel', '5');
+        params = params.set('url', urlcomponent);
+        params = params.set('use_pcv', 'F');
+
+        return this.http.get<SearchProductsResponse>(this.itemsApiUrl, { params }).pipe(
+            map((response) => {
+                const item = response.items?.[0];
+                if (!item) return null;
+
+                const product = this.mapSearchProductToProduct(item);
+                this.cacheProductNames([product]);
+                return product;
+            }),
+            catchError((error) => {
+                console.error('Failed to load product details:', error);
+                return of(null);
+            }),
+        );
+    }
+
    
 }
-
 
 

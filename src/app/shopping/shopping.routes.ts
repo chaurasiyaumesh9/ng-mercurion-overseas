@@ -1,15 +1,15 @@
 import { Routes, UrlMatchResult, UrlSegment } from '@angular/router';
-import { SKU_SEGMENT_REGEX } from '@core/constants/route.constants';
+import { PRODUCT_URL_COMPONENT_SEGMENT_REGEX } from '@core/constants/route.constants';
 
-function skuMatcher(segments: UrlSegment[]): UrlMatchResult | null {
+function productUrlComponentMatcher(segments: UrlSegment[]): UrlMatchResult | null {
   if (segments.length !== 1) return null;
 
   const segment = segments[0];
-  if (!SKU_SEGMENT_REGEX.test(segment.path)) return null;
+  if (!PRODUCT_URL_COMPONENT_SEGMENT_REGEX.test(segment.path)) return null;
 
   return {
     consumed: [segment],
-    posParams: { sku: segment },
+    posParams: { urlcomponent: segment },
   };
 }
 
@@ -22,7 +22,7 @@ export const shoppingRoutes: Routes = [
 
   // PRODUCT
   {
-    matcher: skuMatcher,
+    matcher: productUrlComponentMatcher,
     loadComponent: () =>
       import('./components/product-details/product-details').then((m) => m.ProductDetails),
   },

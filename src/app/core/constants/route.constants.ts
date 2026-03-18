@@ -1,1 +1,1 @@
-export const SKU_SEGMENT_REGEX = /^(?=.*\d)[a-zA-Z0-9-]+$/;
+export const PRODUCT_URL_COMPONENT_SEGMENT_REGEX = /^(?=.*-)[a-zA-Z0-9-]+$/;

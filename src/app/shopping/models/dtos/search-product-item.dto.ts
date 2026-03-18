@@ -1,6 +1,7 @@
 export interface SearchProductItem {
   internalid?: string | number;
   itemid?: string;
+  urlcomponent?: string;
   displayname?: string;
   storedetaileddescription?: string;
   onlinecustomerprice?: number;

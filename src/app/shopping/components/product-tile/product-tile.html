@@ -1,6 +1,6 @@
 @if (product) {
   @defer (on viewport) {
-    <a [routerLink]="['/', product.sku]" class="group block">
+    <a [routerLink]="['/', product.urlcomponent]" class="group block">
       <div class="relative aspect-[3/4] overflow-hidden bg-gray-200">
         @if (product.featured) {
           <span class="absolute left-2 top-2 z-10 bg-black px-2 py-1 text-[9px] uppercase tracking-[0.18em] text-white">

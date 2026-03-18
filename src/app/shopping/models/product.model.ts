@@ -1,6 +1,7 @@
 export interface Product {
   id: string;
   sku: string;
+  urlcomponent: string;
   name: string;
   price: number;
   description: string;

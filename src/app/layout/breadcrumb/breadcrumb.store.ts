@@ -6,7 +6,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { selectCategories } from '@appState/categories/categories.selectors';
 import { Breadcrumb } from './breadcrumb.model';
 import { ProductsApi } from '@shopping/services/products.api';
-import { SKU_SEGMENT_REGEX } from '@core/constants/route.constants';
+import { PRODUCT_URL_COMPONENT_SEGMENT_REGEX } from '@core/constants/route.constants';
 import { Category } from '@shopping/models/category.model';
 
 function getSlugFromFullUrl(fullurl: string | undefined): string {
@@ -59,11 +59,11 @@ export const BreadcrumbStore = signalStore(
       // --------------------------------------------------
       // PRODUCT DETAILS PAGE
       // --------------------------------------------------
-      if (segments.length === 1 && SKU_SEGMENT_REGEX.test(segments[0])) {
-        const sku = segments[0];
-        const productName = store.productsApi.productNameBySku()[sku];
+      if (segments.length === 1 && PRODUCT_URL_COMPONENT_SEGMENT_REGEX.test(segments[0])) {
+        const urlcomponent = segments[0];
+        const productName = store.productsApi.productNameByUrlComponent()[urlcomponent];
         crumbs.push({
-          label: productName ?? sku,
+          label: productName ?? urlcomponent,
           url: null,
         });
         return crumbs;
