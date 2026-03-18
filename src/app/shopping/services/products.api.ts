@@ -2,16 +2,14 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { Product } from '@shopping/models/product.model';
-import { environment } from 'environments/environment';
 import { resolveMediaUrl } from '@core/resolvers/media.resolver';
 import { SearchFacet } from '@shopping/models/dtos/search-facet.dto';
+import { Observable, of } from 'rxjs';
 import { SearchProductsResponse } from '@shopping/models/dtos/search-products-response.dto';
 import { SearchProductItem } from '@shopping/models/dtos/search-product-item.dto';
-import { Observable } from 'rxjs/internal/Observable';
-import { of } from 'rxjs/internal/observable/of';
 
 export interface SearchProductsOptions {
-    categoryId?: string;
+    commerceCategoryUrl?: string;
     searchQuery?: string;
     page?: number;
     pageSize?: number;
@@ -19,6 +17,7 @@ export interface SearchProductsOptions {
     facets?: Map<string, Set<string>>;
     featured?: boolean;
     sku?: string;
+    custitem_deal_products?: boolean;
 }
 
 export interface SearchProductsResult {
@@ -31,37 +30,44 @@ export interface SearchProductsResult {
 
 @Injectable({ providedIn: 'root' })
 export class ProductsApi {
-    private searchApiUrl = `${environment.apiBaseUrl}/api/search`;
+    private readonly itemsApiUrl = '/api/items';
     private readonly productNameBySkuState = signal<Record<string, string>>({});
     readonly productNameBySku = this.productNameBySkuState.asReadonly();
 
     constructor(private http: HttpClient) {}
 
     searchProducts(options: SearchProductsOptions): Observable<SearchProductsResult> {
-        let params = new HttpParams();
+        const page = options.page ?? 1;
+        const pageSize = options.pageSize ?? 24;
+        const offset = Math.max(0, (page - 1) * pageSize);
 
-        if (options.categoryId) {
-            params = params.set('categoryIds', options.categoryId);
+        let params = new HttpParams();
+        params = params.set('c', 'TSTDRV2206481');
+        params = params.set('country', 'US');
+        params = params.set('currency', 'USD');
+        params = params.set('fieldset', 'search');
+        params = params.set('include', 'facets');
+        params = params.set('language', 'en');
+        params = params.set('limit', pageSize.toString());
+        params = params.set('n', '6');
+        params = params.set('offset', offset.toString());
+        params = params.set('pricelevel', '5');
+        params = params.set('sort', options.sort || 'commercecategory:desc');
+        params = params.set('use_pcv', 'F');
+
+        if(options.custitem_deal_products) {
+            params = params.set('custitem_deal_products', true);
+        }
+
+        if (options.commerceCategoryUrl) {
+            params = params.set('commercecategoryurl', options.commerceCategoryUrl);
         }
         if (options.searchQuery) {
             params = params.set('q', options.searchQuery);
+        } else if (options.sku) {
+            params = params.set('q', options.sku);
         }
-        if (options.page !== undefined && options.page !== null) {
-            params = params.set('page', options.page.toString());
-        }
-        if (options.pageSize !== undefined && options.pageSize !== null) {
-            params = params.set('pageSize', options.pageSize.toString());
-        }
-        if (options.sort) {
-            params = params.set('sort', options.sort);
-        }
-        if (options.featured) {
-            params = params.set('featured', true);
-        }
-        if (options.sku) {
-            params = params.set('sku', options.sku);
-        }
-        // Add facet filters to request
+
         if (options.facets && options.facets.size > 0) {
             options.facets.forEach((values, key) => {
                 if (values.size > 0) {
@@ -70,22 +76,23 @@ export class ProductsApi {
             });
         }
 
-        return this.http.get<SearchProductsResponse>(`${this.searchApiUrl}/products`, { params }).pipe(
+        return this.http.get<SearchProductsResponse>(this.itemsApiUrl, { params }).pipe(
             map((response) => {
-                const products = (response.items || []).map(item => this.mapSearchProductToProduct(item));
+                const products = (response.items || []).map((item) => this.mapSearchProductToProduct(item));
+                const mappedProducts = options.featured ? products.filter((p) => p.featured) : products;
                 this.cacheProductNames(products);
 
                 return {
-                    products,
-                    total: response.total,
-                    page: response.page,
-                    pageSize: response.pageSize,
-                    facets: response.facets || [],
+                    products: mappedProducts,
+                    total: response.total ?? mappedProducts.length,
+                    page,
+                    pageSize,
+                    facets: response.facets ?? [],
                 };
             }),
             catchError((error) => {
                 console.error('Failed to search products:', error);
-                return of({ products: [], total: 0, page: 1, pageSize: 20, facets: [] });
+                return of({ products: [], total: 0, page, pageSize, facets: [] });
             })
         );
     }
@@ -111,17 +118,24 @@ export class ProductsApi {
     }
 
     private mapSearchProductToProduct(item: SearchProductItem): Product {
+        const imageUrl = item.itemimages_detail?.urls?.[0]?.url
+            || item.itemimages_detail?.['01_Original']?.url
+            || '';
+        const categoryIds = Array.from(
+            new Set((item.commercecategory?.categories ?? []).map((c) => `${c.id ?? ''}`).filter(Boolean))
+        );
+
         return {
-            id: item.id,
-            sku: item.sku,
-            name: item.name,
-            price: item.price,
-            description: item.description,
-            image: resolveMediaUrl(item.imageUrl),
-            categoryIds: item.categoryIds ?? [],
-            inStock: item.quantityAvailable > 0,
-            quantityAvailable: item.quantityAvailable,
-            featured: !!item.featured,
+            id: `${item.internalid ?? ''}`,
+            sku: item.itemid ?? '',
+            name: item.displayname || item.itemid || '',
+            price: item.onlinecustomerprice ?? 0,
+            description: item.storedetaileddescription ?? '',
+            image: resolveMediaUrl(imageUrl),
+            categoryIds,
+            inStock: item.isinstock ?? (item.quantityavailable ?? 0) > 0,
+            quantityAvailable: item.quantityavailable ?? 0,
+            featured: !!item.custitem_ns_ib_show_badges,
             brand: item.brand ?? '',
             color: item.color ?? '',
             gender: item.gender ?? '',
@@ -130,28 +144,7 @@ export class ProductsApi {
         };
     }
 
-    getProducts(): Observable<any> {
-        // let params = new HttpParams();
-        //     params = params.set('c', 'TSTDRV2206481');
-        //     params = params.set('country', 'US');
-        //     params = params.set('country', 'US');
-        //     params = params.set('currency', 'USD');
-        //     params = params.set('fieldset', 'search');
-        //     params = params.set('include', 'facets');
-        //     params = params.set('language', 'en');
-        //     params = params.set('limit', '24');
-        //     params = params.set('n', '6');
-        //     params = params.set('offset', '0');
-        //     params = params.set('pricelevel', '5');
-        //     params = params.set('sort', 'relevance:desc');
-        //     params = params.set('use_pcv', 'F');
-        //     params = params.set('commercecategoryurl', '/sports');
-
-        //const apiUrl = `${this.searchApiUrl}/external/items`;
-        const apiUrl = '/services/Categories.Service.ss?c=TSTDRV2206481&country=US&currency=USD&language=en&menuLevel=3';
-        //const apiUrl = '/api/items?c=TSTDRV2206481&commercecategoryurl=%2Fsports&country=US&currency=USD&fieldset=search&include=facets&language=en&limit=24&n=6&offset=0&pricelevel=5&sort=commercecategory%3Adesc&use_pcv=F';
-        return this.http.get<any>(apiUrl);
-    }
+   
 }
 
 

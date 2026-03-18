@@ -23,17 +23,42 @@ interface UiState {
   mobileFiltersOpen: boolean;
 }
 
+interface UiFacetValue {
+  value: string;
+  count: number;
+}
+
+interface UiFacet {
+  field: string;
+  label: string;
+  values: UiFacetValue[];
+}
+
 const facetLabels: Record<string, string> = {
   categoryIds: 'Categories',
   brand: 'Brand',
   color: 'Color',
-  size: "Size",
+  size: 'Size',
   material: 'Material',
   style: 'Style',
-  gender: 'Gender',  
-  customerRating: 'Customer Rating',
+  gender: 'Gender',
+  custitem_ns_pr_rating: 'Customer Rating',
   featured: 'Featured',
+  custitem9: 'Gender',
+  custitem4: 'Color',
+  custitem6: 'Size'
 };
+
+const hiddenFacetFields = new Set([
+  'custitem_deal_products',
+  'category',
+  'categoryIds',
+  'featured',
+  'commercecategoryname',
+  'custitem_ns_sc_ext_gw_isitem',
+  'custitemtop_selling',
+  'pricelevel5',
+]);
 
 function getSlugFromFullUrl(fullurl: string | undefined): string {
   const path = (fullurl ?? '').split('?')[0] ?? '';
@@ -79,19 +104,25 @@ export const ProductListingStore = signalStore(
 
     const categories = store.ngrxStore.selectSignal(selectCategories);
     const products = store.entities;
-    const visibleFacets = computed(() =>
+    const visibleFacets = computed<UiFacet[]>(() =>
       store
         .facets()
         .map((f) => {
-          const filteredValues = f.values?.filter((v) => v.value !== '0');
+          const field = f.url || f.id || '';
+          const filteredValues = (f.values ?? [])
+            .map((v) => ({
+              value: `${v.url ?? v.label ?? ''}`,
+              count: Number(v.count ?? 0),
+            }))
+            .filter((v) => v.value && v.value !== '0');
 
           return {
-            ...f,
+            field,
             values: filteredValues ?? [],
-            label: facetLabels[f.field] ?? f.field,
+            label: facetLabels[field] ?? field,
           };
         })
-        .filter((f) => f.values.length > 0),
+        .filter((f) => !!f.field && !hiddenFacetFields.has(f.field) && f.values.length > 0),
     );
 
     const params = toSignal(store.route.paramMap, { initialValue: null });
@@ -102,8 +133,8 @@ export const ProductListingStore = signalStore(
 
     const currentCategory = computed(() => findCategoryBySlug(categories(), categorySlug()));
 
-    const currentSubCategory = computed(
-      () => findCategoryBySlug(currentCategory()?.categories ?? [], subCategorySlug()),
+    const currentSubCategory = computed(() =>
+      findCategoryBySlug(currentCategory()?.categories ?? [], subCategorySlug()),
     );
 
     const visiblePageNumbers = computed(() => {
@@ -301,8 +332,9 @@ export const ProductListingStore = signalStore(
 
           const response = await firstValueFrom(
             store.api.searchProducts({
-              categoryId: store.currentSubCategory()?.internalid ?? store.currentCategory()?.internalid,
-              searchQuery: store.search() || '',
+              commerceCategoryUrl:
+                store.currentSubCategory()?.fullurl ?? store.currentCategory()?.fullurl,
+              searchQuery: store.search() || undefined,
               page: store.pageFromUrl(),
               pageSize: store.pageSizeFromUrl(),
               sort: '',
@@ -322,5 +354,3 @@ export const ProductListingStore = signalStore(
     },
   }),
 );
-
-

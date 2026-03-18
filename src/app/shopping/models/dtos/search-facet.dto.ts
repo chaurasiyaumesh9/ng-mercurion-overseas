@@ -1,9 +1,11 @@
 export interface SearchFacet {
-  field: string;
-  values: FacetValue[];
+  id?: string;
+  url?: string;
+  values?: SearchFacetValue[];
 }
 
-export interface FacetValue {
-  value: string;
-  count: number;
+export interface SearchFacetValue {
+  url?: string;
+  label?: string;
+  count?: number;
 }

@@ -51,7 +51,7 @@ export const HomeStore = signalStore(
         (async () => {
           patchState(store, { loading: true });
 
-          const featuredProducts = await firstValueFrom(store.api.searchProducts({ featured: true }));
+          const featuredProducts = await firstValueFrom(store.api.searchProducts({ 'custitem_deal_products' : true }));
 
           if (cancelled) return;
 

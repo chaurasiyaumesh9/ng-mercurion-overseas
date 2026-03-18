@@ -74,8 +74,7 @@
           }
 
           @for (facet of store.visibleFacets(); track facet.field) {
-            @if (facet.field !== 'categoryIds' && facet.field !== 'featured') {
-              <div class="border-b border-gray-300 pb-6">
+            <div class="border-b border-gray-300 pb-6">
                 <h3 class="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-700">
                   {{ facet.label }}
                 </h3>
@@ -95,8 +94,7 @@
                     </label>
                   }
                 </div>
-              </div>
-            }
+            </div>
           }
         </div>
       </aside>
@@ -191,7 +189,6 @@
         }
 
         @for (facet of store.visibleFacets(); track facet.field) {
-          @if (facet.field !== 'categoryIds') {
             <div class="mb-6 border-b border-gray-300 pb-5">
               <h3 class="mb-3 text-xs uppercase tracking-[0.16em] text-gray-700">{{ facet.label }}</h3>
               @for (facetValue of facet.values.slice(0, 10); track facetValue.value) {
@@ -209,7 +206,6 @@
                 </label>
               }
             </div>
-          }
         }
       </div>
     </div>
