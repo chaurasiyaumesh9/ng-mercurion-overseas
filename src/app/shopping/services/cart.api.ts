@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { createEmptyCart } from '@shopping/models/cart.empty.model';
+import { LiveOrderLine } from '@shopping/models/liveorder.line.model';
 import { LiveOrderModel } from '@shopping/models/liveorder.model';
 import { PayloadLiveOrderLine } from '@shopping/models/payloads/payload.liveorder.line.model';
 import { Product } from '@shopping/models/product.model';
@@ -45,19 +46,24 @@ export class CartApi {
     return this.syncCart([] as PayloadLiveOrderLine[]);
   }
 
-  addItem(payload: PayloadLiveOrderLine[]): Observable<void> {
+  addItem(
+    payload: PayloadLiveOrderLine[],
+  ): Observable<LiveOrderModel | LiveOrderLine | LiveOrderLine[] | null> {
     const url = this.buildLiveOrderLineUrl();
-    return this.http.post<unknown>(url, payload).pipe(map(() => void 0));
+    return this.http.post<LiveOrderModel | LiveOrderLine | LiveOrderLine[] | null>(url, payload);
   }
 
-  removeItem(lineId: string): Observable<void> {
+  removeItem(lineId: string): Observable<LiveOrderModel | LiveOrderLine | LiveOrderLine[] | null> {
     const url = this.buildLiveOrderLineUrl(lineId);
-    return this.http.delete<unknown>(url).pipe(map(() => void 0));
+    return this.http.delete<LiveOrderModel | LiveOrderLine | LiveOrderLine[] | null>(url);
   }
 
-  updateQuantity(lineId: string, payload: PayloadLiveOrderLine): Observable<void> {
+  updateQuantity(
+    lineId: string,
+    payload: PayloadLiveOrderLine,
+  ): Observable<LiveOrderModel | LiveOrderLine | LiveOrderLine[] | null> {
     const url = this.buildLiveOrderLineUrl(lineId);
-    return this.http.put<unknown>(url, payload).pipe(map(() => void 0));
+    return this.http.put<LiveOrderModel | LiveOrderLine | LiveOrderLine[] | null>(url, payload);
   }
 
   getCrossSellProducts(): Observable<Product[]> {
