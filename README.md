@@ -57,3 +57,51 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## NetSuite File Cabinet Deploy
+
+Deploy Angular build output from `dist/mercurion-overseas/browser` through the SCA deploy Restlet:
+
+```bash
+npm run build
+npm run deploy:netsuite
+```
+
+Recommended setup:
+
+```bash
+Populate values in `.env.netsuite`, then run deploy.
+```
+
+Required environment variables:
+
+```bash
+NS_ACCOUNT_ID=<your_account_id>
+NS_CLIENT_ID=<your_client_id>
+NS_CERTIFICATE_ID=<your_certificate_id>
+NS_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----"
+NS_TARGET_FOLDER_ID=<target_folder_id>
+NS_DEPLOY_SCRIPT_ID=customscript_sca_deployer
+NS_DEPLOY_DEPLOY_ID=customdeploy_sca_deployer
+```
+
+Optional variables:
+
+```bash
+NS_BUILD_DIR=dist/mercurion-overseas/browser
+NS_DEPLOY_BATCH_BYTES=4194304
+NS_DEPLOY_BATCH_FILES=100
+NS_SET_IS_ONLINE=true
+```
+
+Optional custom env file:
+
+```bash
+node scripts/deploy-netsuite.js --envFile=.env.netsuite
+```
+
+You can also pass values via CLI flags:
+
+```bash
+node scripts/deploy-netsuite.js --account=... --clientId=... --certificateId=... --privateKey="..." --folderId=... --scriptId=... --deployId=...
+```
