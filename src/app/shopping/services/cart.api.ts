@@ -25,10 +25,12 @@ export class CartApi {
     return `${baseUrl}/services/LiveOrder.Line.Service.ss?c=TSTDRV2206481${encodedLineId}&n=6`;
   }
 
-  private syncCart(lines: PayloadLiveOrderLine[]): Observable<void> {
+  private syncCart(
+    lines: PayloadLiveOrderLine[],
+  ): Observable<LiveOrderModel | LiveOrderLine | LiveOrderLine[] | null> {
     const url = this.buildLiveOrderUrl();
     const payload = { lines };
-    return this.http.put<unknown>(url, payload).pipe(map(() => void 0));
+    return this.http.put<LiveOrderModel | LiveOrderLine | LiveOrderLine[] | null>(url, payload);
   }
 
   getCart(): Observable<LiveOrderModel> {
@@ -42,7 +44,7 @@ export class CartApi {
     );
   }
 
-  clearCart(): Observable<void> {
+  clearCart(): Observable<LiveOrderModel | LiveOrderLine | LiveOrderLine[] | null> {
     return this.syncCart([] as PayloadLiveOrderLine[]);
   }
 

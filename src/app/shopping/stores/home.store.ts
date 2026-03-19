@@ -22,6 +22,7 @@ interface HomeState {
 }
 
 export const HomeStore = signalStore(
+  { providedIn: 'root' },
   withState<HomeState>(() => ({
     featuredProducts: [],
     loading: false,

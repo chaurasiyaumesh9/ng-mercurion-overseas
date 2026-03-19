@@ -52,6 +52,8 @@ export const CartStore = signalStore(
   withMethods((store) => {
     const api = inject(CartApi);
     let loadCartInFlight: Promise<void> | null = null;
+    let lastHydratedAt = 0;
+    const cartFreshnessMs = 30_000;
     const normalizeInternalId = (value: string): number | string => {
       const numeric = Number(value);
       return Number.isInteger(numeric) ? numeric : value;
@@ -98,6 +100,7 @@ export const CartStore = signalStore(
     const hydrateCart = async () => {
       const cart = await firstValueFrom(api.getCart());
       patchState(store, { cart: cart ?? createEmptyCart() });
+      lastHydratedAt = Date.now();
     };
     const isLiveOrderModel = (value: unknown): value is LiveOrderModel =>
       Boolean(value) && typeof value === 'object' && Array.isArray((value as LiveOrderModel).lines);
@@ -126,14 +129,17 @@ export const CartStore = signalStore(
     const applyLineMutationResponse = (response: unknown, removeLineId?: string) => {
       if (isLiveOrderModel(response)) {
         patchState(store, { cart: response });
+        lastHydratedAt = Date.now();
         return true;
       }
       if (Array.isArray(response) && response.every((line) => isLiveOrderLine(line))) {
         patchLinesLocally(response);
+        lastHydratedAt = Date.now();
         return true;
       }
       if (isLiveOrderLine(response)) {
         patchLineLocally(response);
+        lastHydratedAt = Date.now();
         return true;
       }
       if (removeLineId) {
@@ -144,13 +150,18 @@ export const CartStore = signalStore(
             lines: currentCart.lines.filter((line) => line.internalid !== removeLineId),
           },
         });
+        lastHydratedAt = Date.now();
         return true;
       }
       return false;
     };
 
     return {
-      async loadCart() {
+      async loadCart(forceRefresh = false) {
+        const isFresh = lastHydratedAt > 0 && Date.now() - lastHydratedAt < cartFreshnessMs;
+        if (!forceRefresh && isFresh) {
+          return;
+        }
         if (loadCartInFlight) {
           await loadCartInFlight;
           return;
@@ -259,8 +270,10 @@ export const CartStore = signalStore(
         patchState(store, { cart: createEmptyCart() });
 
         try {
-          await firstValueFrom(api.clearCart());
-          await hydrateCart();
+          const response = await firstValueFrom(api.clearCart());
+          if (!applyLineMutationResponse(response)) {
+            await hydrateCart();
+          }
         } catch (error) {
           console.error('Failed to clear cart in LiveOrder.Service.ss', error);
           patchState(store, { cart: previousCart });

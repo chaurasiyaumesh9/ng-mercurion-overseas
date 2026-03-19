@@ -42,6 +42,23 @@ export class ProductsApi {
 
     constructor(private http: HttpClient) {}
 
+    private sameBreadcrumbPath(
+        left: ProductBreadcrumbNode[] | undefined,
+        right: ProductBreadcrumbNode[] | undefined
+    ): boolean {
+        if (!left && !right) return true;
+        if (!left || !right) return false;
+        if (left.length !== right.length) return false;
+
+        for (let i = 0; i < left.length; i++) {
+            if (left[i].label !== right[i].label || left[i].url !== right[i].url) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     searchProducts(options: SearchProductsOptions): Observable<SearchProductsResult> {
         const page = options.page ?? 1;
         const pageSize = options.pageSize ?? 24;
@@ -124,7 +141,7 @@ export class ProductsApi {
 
             const path = this.buildProductCategoryPath(item);
             const previous = nextBreadcrumbs[product.urlcomponent] ?? [];
-            if (JSON.stringify(previous) !== JSON.stringify(path)) {
+            if (!this.sameBreadcrumbPath(previous, path)) {
                 nextBreadcrumbs[product.urlcomponent] = path;
                 breadcrumbsChanged = true;
             }
@@ -223,4 +240,3 @@ export class ProductsApi {
 
    
 }
-

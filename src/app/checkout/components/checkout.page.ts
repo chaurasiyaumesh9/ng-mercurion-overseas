@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -39,9 +39,7 @@ export class CheckoutPage {
   readonly total = computed(() => this.cartStore.subtotal() + this.shipping() + this.tax());
 
   constructor() {
-    effect(() => {
-      this.cartStore.loadCart();
-    });
+    this.cartStore.loadCart();
   }
 
   async nextStep() {

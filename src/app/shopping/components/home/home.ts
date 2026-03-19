@@ -8,7 +8,6 @@ import { HomeStore } from '@shopping/stores/home.store';
   standalone: true,
   selector: 'app-home-page',
   imports: [CommonModule, RouterModule, ProductTile],
-  providers: [HomeStore],
   templateUrl: './home.html',
 })
 export class Home {
