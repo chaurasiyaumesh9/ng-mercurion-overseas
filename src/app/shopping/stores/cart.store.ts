@@ -9,6 +9,7 @@ import { firstValueFrom } from 'rxjs';
 
 export interface CartState {
   cart: LiveOrderModel;
+  loadingCart: boolean;
   crossSellProducts: Product[];
 }
 
@@ -16,6 +17,7 @@ export const CartStore = signalStore(
   { providedIn: 'root' },
   withState<CartState>({
     cart: createEmptyCart(),
+    loadingCart: false,
     crossSellProducts: [],
   }),
 
@@ -89,6 +91,7 @@ export const CartStore = signalStore(
           return;
         }
 
+        patchState(store, { loadingCart: true });
         loadCartInFlight = (async () => {
           await hydrateCart();
         })();
@@ -97,6 +100,7 @@ export const CartStore = signalStore(
           await loadCartInFlight;
         } finally {
           loadCartInFlight = null;
+          patchState(store, { loadingCart: false });
         }
       },
 

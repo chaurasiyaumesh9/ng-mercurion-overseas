@@ -1,4 +1,11 @@
-@if (store.cartCount() === 0) {
+@if (store.loadingCart()) {
+  <div class="lux-container py-24 text-center">
+    <div class="mx-auto h-10 w-10 animate-spin rounded-full border-2 border-gray-300 border-t-black"></div>
+    <p class="mt-4 text-sm text-gray-600">Loading your cart...</p>
+  </div>
+}
+
+@if (!store.loadingCart() && store.cartCount() === 0) {
   <div class="lux-container py-24 text-center">
     <svg class="mx-auto h-16 w-16 text-gray-400" viewBox="0 0 24 24" fill="none">
       <path
@@ -15,7 +22,7 @@
   </div>
 }
 
-@if (store.cartCount() > 0) {
+@if (!store.loadingCart() && store.cartCount() > 0) {
   <div class="pb-16 pt-8">
     <div class="lux-container">
       <h1 class="lux-title mb-8 text-3xl lg:text-4xl text-foreground">Shopping Bag</h1>
@@ -88,7 +95,7 @@
             </div>
           </div>
 
-          <a routerLink="/checkout" class="lux-btn mt-6 w-full">
+          <a href="/sca-dev-2019-2/checkout.ssp?is=login&login=T&origin=checkout&origin_hash=undefined#login-register" class="lux-btn mt-6 w-full">
             Checkout
           </a>
         </aside>
