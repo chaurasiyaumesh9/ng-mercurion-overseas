@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
+const { generateHomeSsp } = require('./generate-ssp');
 
 const DEFAULT_BUILD_DIR = path.resolve('dist/mercurion-overseas/browser');
 const DEFAULT_ENV_FILE = path.resolve('.env.netsuite');
@@ -10,6 +11,9 @@ const DEFAULT_BATCH_BYTES = 4 * 1024 * 1024;
 const DEFAULT_BATCH_FILES = 100;
 const DEFAULT_SCRIPT_ID = 'customscript_sca_deployer';
 const DEFAULT_DEPLOY_ID = 'customdeploy_sca_deployer';
+const DEFAULT_CLEAN_TARGET = false;
+const DEFAULT_FILE_RECORD_TYPES = ['mediaitem', 'mediaItem', 'file'];
+const DEFAULT_FOLDER_RECORD_TYPES = ['folder', 'mediaitemfolder', 'mediaItemFolder'];
 
 const BINARY_MIME_TYPES = new Set([
   'application/x-autocad',
@@ -54,6 +58,15 @@ function parsePositiveInt(value, fallback) {
   const parsed = Number(value);
   if (!Number.isInteger(parsed) || parsed <= 0) return fallback;
   return parsed;
+}
+
+function parseCsv(value, fallback) {
+  if (!value) return fallback;
+  const parsed = String(value)
+    .split(',')
+    .map((v) => v.trim())
+    .filter(Boolean);
+  return parsed.length ? parsed : fallback;
 }
 
 function parseBoolean(value, fallback) {
@@ -339,6 +352,227 @@ async function postDeployBatch({ restletUrl, token, targetFolderId, files, batch
   return parsed;
 }
 
+async function suiteQlSingle({ account, token, query }) {
+  const rows = await suiteQlAll({ account, token, query, limit: 1 });
+  return rows[0] || null;
+}
+
+async function suiteQlAll({ account, token, query, limit = 1000 }) {
+  const rows = [];
+  let offset = 0;
+
+  while (true) {
+    const paged = `https://${account}.suitetalk.api.netsuite.com/services/rest/query/v1/suiteql?limit=${limit}&offset=${offset}`;
+    const response = await fetch(paged, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        Prefer: 'transient',
+      },
+      body: JSON.stringify({ q: query }),
+    });
+
+    const text = await response.text();
+    if (!response.ok) {
+      throw new Error(`SuiteQL failed (${response.status}): ${text}`);
+    }
+
+    let parsed;
+    try {
+      parsed = text ? JSON.parse(text) : {};
+    } catch {
+      throw new Error(`SuiteQL parse error: ${text}`);
+    }
+
+    const items = Array.isArray(parsed?.items) ? parsed.items : [];
+    const hasMore =
+      parsed?.hasMore === true ||
+      (Number.isInteger(parsed?.totalResults) && offset + items.length < parsed.totalResults);
+    rows.push(...items);
+    if (!hasMore || items.length === 0 || items.length < limit) break;
+    offset += limit;
+  }
+
+  return rows;
+}
+
+function isInvalidSearchTypeError(error) {
+  const message = String(error?.message || '');
+  return message.includes('Invalid search type');
+}
+
+async function suiteQlAllFirstSuccessful({ account, token, queries, limit = 1000 }) {
+  let lastError = null;
+  for (const query of queries) {
+    try {
+      return await suiteQlAll({ account, token, query, limit });
+    } catch (error) {
+      if (isInvalidSearchTypeError(error)) {
+        lastError = error;
+        continue;
+      }
+      throw error;
+    }
+  }
+
+  throw lastError || new Error(`All SuiteQL queries failed. Tried ${queries.length} candidate query forms.`);
+}
+
+async function suiteQlSingleFirstSuccessful({ account, token, queries }) {
+  const rows = await suiteQlAllFirstSuccessful({ account, token, queries, limit: 1 });
+  return rows[0] || null;
+}
+
+async function deleteRecordByCandidates({ account, token, recordId, candidateTypes }) {
+  let lastError = null;
+
+  for (const type of candidateTypes) {
+    const endpoint = `https://${account}.suitetalk.api.netsuite.com/services/rest/record/v1/${type}/${recordId}`;
+    const response = await fetch(endpoint, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        Prefer: 'transient',
+      },
+    });
+
+    if (response.ok || response.status === 204) {
+      return;
+    }
+
+    const text = await response.text();
+    const missingRecordType = text.includes("Record type '") && text.includes('does not exist');
+    if (missingRecordType) {
+      lastError = new Error(text);
+      continue;
+    }
+
+    throw new Error(`Delete ${type}/${recordId} failed (${response.status}): ${text}`);
+  }
+
+  throw new Error(
+    `No supported record type found to delete id ${recordId}. Tried: ${candidateTypes.join(', ')}. ${lastError?.message || ''}`,
+  );
+}
+
+async function cleanTargetFolder({
+  account,
+  token,
+  targetFolderId,
+  fileRecordTypes,
+  folderRecordTypes,
+}) {
+  const rootId = Number(targetFolderId);
+  if (!Number.isInteger(rootId) || rootId <= 0) {
+    throw new Error(`Invalid NS_TARGET_FOLDER_ID: ${targetFolderId}`);
+  }
+
+  const folders = [{ id: rootId, level: 0 }];
+  const queue = [{ id: rootId, level: 0 }];
+  while (queue.length > 0) {
+    const current = queue.shift();
+    const childFolders = await suiteQlAllFirstSuccessful({
+      account,
+      token,
+      queries: [
+        `SELECT id FROM mediaitemfolder WHERE parent = ${current.id}`,
+        `SELECT id FROM folder WHERE parent = ${current.id}`,
+      ],
+    });
+
+    for (const row of childFolders) {
+      const id = Number(row.id);
+      if (!Number.isInteger(id) || id <= 0) continue;
+      const node = { id, level: current.level + 1 };
+      folders.push(node);
+      queue.push(node);
+    }
+  }
+
+  let deletedFiles = 0;
+  for (const folder of folders) {
+    const files = await suiteQlAllFirstSuccessful({
+      account,
+      token,
+      queries: [
+        `SELECT id FROM file WHERE folder = ${folder.id}`,
+        `SELECT id FROM mediaitem WHERE folder = ${folder.id}`,
+      ],
+    });
+
+    for (const file of files) {
+      await deleteRecordByCandidates({
+        account,
+        token,
+        recordId: file.id,
+        candidateTypes: fileRecordTypes,
+      });
+      deletedFiles += 1;
+    }
+  }
+
+  const childFoldersDeepFirst = folders
+    .filter((f) => f.id !== rootId)
+    .sort((a, b) => b.level - a.level);
+  let deletedFolders = 0;
+  for (const folder of childFoldersDeepFirst) {
+    await deleteRecordByCandidates({
+      account,
+      token,
+      recordId: folder.id,
+      candidateTypes: folderRecordTypes,
+    });
+    deletedFolders += 1;
+  }
+
+  console.log(`Cleaned target folder ${targetFolderId}: deleted ${deletedFiles} files, ${deletedFolders} subfolders.`);
+}
+
+async function deployHomeSspByFileId({
+  account,
+  token,
+  restletUrl,
+  homeSspFileId,
+  homeSspContent,
+  setIsOnline,
+}) {
+  const numericId = Number(homeSspFileId);
+  if (!Number.isInteger(numericId) || numericId <= 0) {
+    throw new Error(`Invalid NS_HOME_SSP_FILE_ID: ${homeSspFileId}`);
+  }
+
+  const row = await suiteQlSingleFirstSuccessful({
+    account,
+    token,
+    queries: [
+      `SELECT id, name, folder FROM file WHERE id = ${numericId}`,
+      `SELECT id, name, folder FROM mediaitem WHERE id = ${numericId}`,
+    ],
+  });
+
+  if (!row?.name || !row?.folder) {
+    throw new Error(`Could not find file metadata for home.ssp id ${numericId}.`);
+  }
+
+  await postDeployBatch({
+    restletUrl,
+    token,
+    targetFolderId: row.folder,
+    files: [
+      {
+        path: String(row.name),
+        type: 'text/html',
+        contents: homeSspContent,
+        setIsOnline,
+      },
+    ],
+    batchNo: 1,
+    totalBatches: 1,
+  });
+}
+
 async function main() {
   const envFile = path.resolve(getArg('envFile') || process.env.NS_ENV_FILE || DEFAULT_ENV_FILE);
   loadEnvFile(envFile);
@@ -351,6 +585,20 @@ async function main() {
     getArg('folderId') || process.env.NS_TARGET_FOLDER_ID || process.env.NS_FILECABINET_FOLDER_ID;
   const scriptId = getArg('scriptId') || process.env.NS_DEPLOY_SCRIPT_ID || DEFAULT_SCRIPT_ID;
   const deployId = getArg('deployId') || process.env.NS_DEPLOY_DEPLOY_ID || DEFAULT_DEPLOY_ID;
+  const homeSspFileId = getArg('homeSspFileId') || process.env.NS_HOME_SSP_FILE_ID || '';
+  const sspBasePath = getArg('sspBasePath') || process.env.NS_SSP_BASE_PATH || '/angular/browser/';
+  const cleanTarget = parseBoolean(
+    getArg('cleanTarget') || process.env.NS_CLEAN_TARGET_FOLDER,
+    DEFAULT_CLEAN_TARGET,
+  );
+  const fileRecordTypes = parseCsv(
+    getArg('fileRecordTypes') || process.env.NS_FILE_RECORD_TYPES,
+    DEFAULT_FILE_RECORD_TYPES,
+  );
+  const folderRecordTypes = parseCsv(
+    getArg('folderRecordTypes') || process.env.NS_FOLDER_RECORD_TYPES,
+    DEFAULT_FOLDER_RECORD_TYPES,
+  );
   const buildDir = path.resolve(getArg('dir') || process.env.NS_BUILD_DIR || DEFAULT_BUILD_DIR);
   const maxBatchBytes = parsePositiveInt(
     getArg('batchBytes') || process.env.NS_DEPLOY_BATCH_BYTES,
@@ -382,6 +630,16 @@ async function main() {
     throw new Error(`Build directory does not exist: ${buildDir}`);
   }
 
+  const homeSspDistPath = path.join(buildDir, 'index.html');
+  const homeSspOutputPath = path.join(buildDir, 'home.ssp');
+  if (fs.existsSync(homeSspDistPath)) {
+    generateHomeSsp({
+      distPath: homeSspDistPath,
+      outputPath: homeSspOutputPath,
+      basePath: sspBasePath,
+    });
+  }
+
   const privateKeyPem = privateKey.replace(/\\n/g, '\n').trim();
   const absFiles = collectFilesRecursively(buildDir);
   if (absFiles.length === 0) {
@@ -400,6 +658,17 @@ async function main() {
   const restletUrl = buildRestletUrl({ account, scriptId, deployId });
   console.log(`Using Restlet script=${scriptId}, deploy=${deployId}`);
   console.log(`Target folder id: ${targetFolderId}`);
+  console.log(`Clean target folder before deploy: ${cleanTarget ? 'yes' : 'no'}`);
+
+  if (cleanTarget) {
+    await cleanTargetFolder({
+      account,
+      token,
+      targetFolderId,
+      fileRecordTypes,
+      folderRecordTypes,
+    });
+  }
 
   const totalFiles = absFiles.length;
   const progress = createProgressTracker(totalFiles);
@@ -435,6 +704,23 @@ async function main() {
   }
 
   progress.finish();
+
+  if (homeSspFileId) {
+    if (!fs.existsSync(homeSspOutputPath)) {
+      throw new Error(`home.ssp not found at ${homeSspOutputPath}. Build output is incomplete.`);
+    }
+    const homeSspContent = fs.readFileSync(homeSspOutputPath, 'utf8');
+    await deployHomeSspByFileId({
+      account,
+      token,
+      restletUrl,
+      homeSspFileId,
+      homeSspContent,
+      setIsOnline,
+    });
+    console.log(`Updated home.ssp via file id ${homeSspFileId}.`);
+  }
+
   console.log('Deployment completed successfully.');
 }
 

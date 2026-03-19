@@ -5,26 +5,7 @@ const DIST_PATH = './dist/mercurion-overseas/browser/index.html';
 const OUTPUT_PATH = './dist/mercurion-overseas/browser/home.ssp';
 const BASE_PATH = '/angular/browser/';
 
-let html = fs.readFileSync(DIST_PATH, 'utf8');
-
-/*
----------------------------------------------------
-1. Fix base href explicitly
----------------------------------------------------
-*/
-
-html = html.replace(
-  /<base href="[^"]*">/,
-  `<base href="<%= session.getAbsoluteUrl2('${BASE_PATH}') %>">`,
-);
-
-/*
----------------------------------------------------
-2. Convert asset URLs
----------------------------------------------------
-*/
-
-function convertAssetUrls(content) {
+function convertAssetUrls(content, basePath) {
   return content.replace(/(src|href)="([^"]+)"/g, (match, attr, url) => {
     if (
       url.startsWith('http') ||
@@ -35,30 +16,35 @@ function convertAssetUrls(content) {
       return match;
     }
 
-    return `${attr}="<%= session.getAbsoluteUrl2('${BASE_PATH}${url}') %>"`;
+    return `${attr}="<%= session.getAbsoluteUrl2('${basePath}${url}') %>"`;
   });
 }
 
-html = convertAssetUrls(html);
+function generateHomeSsp(options = {}) {
+  const distPath = options.distPath || DIST_PATH;
+  const outputPath = options.outputPath || OUTPUT_PATH;
+  const basePath = options.basePath || BASE_PATH;
 
-/*
----------------------------------------------------
-3. Ensure output directory exists
----------------------------------------------------
-*/
+  let html = fs.readFileSync(distPath, 'utf8');
 
-const outputDir = path.dirname(OUTPUT_PATH);
+  html = html.replace(/<base href="[^"]*">/, '<base href="/">');
 
-if (!fs.existsSync(outputDir)) {
-  fs.mkdirSync(outputDir, { recursive: true });
+  html = convertAssetUrls(html, basePath);
+
+  const outputDir = path.dirname(outputPath);
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+
+  fs.writeFileSync(outputPath, html);
+  return html;
 }
 
-/*
----------------------------------------------------
-4. Write file
----------------------------------------------------
-*/
+module.exports = {
+  generateHomeSsp,
+};
 
-fs.writeFileSync(OUTPUT_PATH, html);
-
-console.log('home.ssp generated successfully');
+if (require.main === module) {
+  generateHomeSsp();
+  console.log('home.ssp generated successfully');
+}
