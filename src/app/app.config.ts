@@ -1,5 +1,5 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners, isDevMode } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withHashLocation } from '@angular/router';
 import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { provideHttpClient } from '@angular/common/http';
@@ -7,12 +7,18 @@ import { categoriesReducer } from '@appState/categories/categories.reducer';
 import { CategoriesEffects } from '@appState/categories/categories.effects';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { environment } from 'environments/environment';
+
+
+const routerConfig = environment.useHashRouting
+  ? provideRouter(routes, withHashLocation())
+  : provideRouter(routes);
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideHttpClient(),
-    provideRouter(routes),    
+    routerConfig,    
     provideStore({
       categories: categoriesReducer
     }),
