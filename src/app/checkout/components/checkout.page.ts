@@ -44,7 +44,7 @@ export class CheckoutPage {
     });
   }
 
-  nextStep() {
+  async nextStep() {
     this.submitted.set(true);
 
     if (this.step() === 'info') {
@@ -68,8 +68,7 @@ export class CheckoutPage {
     paymentFields.forEach((field) => this.form.get(field)?.markAsTouched());
     if (paymentFields.some((field) => this.form.get(field)?.invalid)) return;
 
-    localStorage.removeItem('cart');
-    this.cartStore.loadCart();
+    await this.cartStore.clearCart();
     this.router.navigateByUrl('/order-confirmation');
   }
 

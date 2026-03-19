@@ -30,6 +30,10 @@ export class Header {
     searchQuery = signal('');
     activeMenu = signal<string | null>(null);
 
+    constructor() {
+        this.cartStore.loadCart();
+    }
+
     handleSearch(event: Event) {
         event.preventDefault();
         const q = this.searchQuery().trim();

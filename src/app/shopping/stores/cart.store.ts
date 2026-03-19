@@ -1,24 +1,26 @@
 import { inject, computed } from '@angular/core';
 import { signalStore, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
+import { createEmptyCart } from '@shopping/models/cart.empty.model';
 import { Product } from '@shopping/models/product.model';
-import { CartItem } from '@shopping/models/cart-item.model';
-import { CartPersistence } from '@shopping/services/cart.persistence';
+import { LiveOrderModel } from '@shopping/models/liveorder.model';
+import { Option, PayloadLiveOrderLine } from '@shopping/models/payloads/payload.liveorder.line.model';
 import { CartApi } from '@shopping/services/cart.api';
+import { firstValueFrom } from 'rxjs';
 
 export interface CartState {
-  cart: CartItem[];
+  cart: LiveOrderModel;
   crossSellProducts: Product[];
 }
 
 export const CartStore = signalStore(
   { providedIn: 'root' },
   withState<CartState>({
-    cart: [],
+    cart: createEmptyCart(),
     crossSellProducts: [],
   }),
 
   withComputed((store) => {
-    const subtotal = computed(() => store.cart().reduce((sum, i) => sum + i.price * i.quantity, 0));
+    const subtotal = computed(() => store.cart().lines.reduce((sum, i) => sum + (i.total ?? i.rate * i.quantity), 0));
 
     const shipping = computed(() => (subtotal() > 100 ? 0 : 10));
 
@@ -26,7 +28,7 @@ export const CartStore = signalStore(
 
     const total = computed(() => subtotal() + shipping() + tax());
 
-    const cartCount = computed(() => store.cart().reduce((t, i) => t + i.quantity, 0));
+    const cartCount = computed(() => store.cart().lines.reduce((total, line) => total + (line.quantity || 0), 0));
 
     return {
       subtotal,
@@ -38,64 +40,146 @@ export const CartStore = signalStore(
   }),
 
   withMethods((store) => {
-    const persistence = inject(CartPersistence);
     const api = inject(CartApi);
+    let loadCartInFlight: Promise<void> | null = null;
+    const normalizeInternalId = (value: string): number | string => {
+      const numeric = Number(value);
+      return Number.isInteger(numeric) ? numeric : value;
+    };
+    const resolveOptionsFromCart = (productId: string): Option[] => {
+      const fromSameProduct = store.cart().lines.find((line) => `${line.item?.internalid ?? ''}` === productId)?.options;
+      if (fromSameProduct?.length) return fromSameProduct as Option[];
+      const fromAnyLine = store.cart().lines.find((line) => (line.options ?? []).length > 0)?.options;
+      return (fromAnyLine as Option[]) ?? [];
+    };
+    const buildAddPayload = (product: Product, quantity: number): PayloadLiveOrderLine[] => [
+      {
+        item: {
+          internalid: normalizeInternalId(product.id),
+          type: 'InvtPart',
+        },
+        quantity,
+        options: resolveOptionsFromCart(product.id),
+        location: '',
+        fulfillmentChoice: 'ship',
+        freeGift: false,
+      },
+    ];
+    const buildUpdatePayload = (lineId: string, itemId: string, quantity: number): PayloadLiveOrderLine => ({
+      item: {
+        internalid: normalizeInternalId(itemId),
+        type: 'InvtPart',
+      },
+      quantity,
+      internalid: lineId,
+      options: [],
+      location: '',
+      fulfillmentChoice: 'ship',
+      freeGift: false,
+    });
+    const hydrateCart = async () => {
+      const cart = await firstValueFrom(api.getCart());
+      patchState(store, { cart: cart ?? createEmptyCart() });
+    };
 
     return {
-      loadCart() {
-        patchState(store, {
-          cart: persistence.getCart(),
-        });
-      },
-
-      addItem(product: Product, quantity = 1) {
-        const cart = [...store.cart()];
-
-        const existingItem = cart.find((item) => item.id === product.id);
-
-        if (existingItem) {
-          existingItem.quantity += quantity;
-        } else {
-          cart.push({
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            category: product.sku || product.name,
-            quantity,
-          });
+      async loadCart() {
+        if (loadCartInFlight) {
+          await loadCartInFlight;
+          return;
         }
 
-        persistence.saveCart(cart);
-        patchState(store, { cart });
+        loadCartInFlight = (async () => {
+          await hydrateCart();
+        })();
+
+        try {
+          await loadCartInFlight;
+        } finally {
+          loadCartInFlight = null;
+        }
       },
 
-      removeItem(id: string) {
-        const cart = store.cart().filter((item) => item.id !== id);
+      async addItem(product: Product, quantity = 1) {
+        const previousCart = store.cart();
+        const existingItem = store.cart().lines.find((item) => `${item.item?.internalid ?? ''}` === product.id);
 
-        persistence.saveCart(cart);
-        patchState(store, { cart });
+        try {
+          if (existingItem?.internalid) {
+            await firstValueFrom(
+              api.updateQuantity(
+                existingItem.internalid,
+                buildUpdatePayload(existingItem.internalid, `${existingItem.item?.internalid ?? product.id}`, existingItem.quantity + quantity),
+              ),
+            );
+          } else {
+            await firstValueFrom(api.addItem(buildAddPayload(product, quantity)));
+          }
+          await hydrateCart();
+        } catch (error) {
+          console.error('Failed to add item to LiveOrder.Service.ss', error);
+          patchState(store, { cart: previousCart });
+        }
       },
 
-      updateQuantity(id: string, newQuantity: number) {
-        let cart = [...store.cart()];
+      async removeItem(id: string) {
+        const previousCart = store.cart();
+        const targetItem = store.cart().lines.find((item) => item.internalid === id);
 
-        const item = cart.find((cartItem) => cartItem.id === id);
+        try {
+          if (!targetItem?.internalid) {
+            throw new Error('Missing line internalid for removal.');
+          }
+          await firstValueFrom(api.removeItem(targetItem.internalid));
+          await hydrateCart();
+        } catch (error) {
+          console.error('Failed to remove item from LiveOrder.Service.ss', error);
+          patchState(store, { cart: previousCart });
+        }
+      },
+
+      async updateQuantity(id: string, newQuantity: number) {
+        const previousCart = store.cart();
+        const item = store.cart().lines.find((cartItem) => cartItem.internalid === id);
         if (!item) return;
 
-        if (newQuantity <= 0) {
-          cart = cart.filter((cartItem) => cartItem.id !== id);
-        } else {
-          item.quantity = newQuantity;
+        try {
+          if (newQuantity <= 0) {
+            if (!item.internalid) {
+              throw new Error('Missing line internalid for quantity update removal.');
+            }
+            await firstValueFrom(api.removeItem(item.internalid));
+          } else {
+            if (!item.internalid) {
+              throw new Error('Missing line internalid for quantity update.');
+            }
+            await firstValueFrom(
+              api.updateQuantity(item.internalid, buildUpdatePayload(item.internalid, `${item.item?.internalid ?? ''}`, newQuantity)),
+            );
+          }
+          await hydrateCart();
+        } catch (error) {
+          console.error('Failed to update item quantity in LiveOrder.Service.ss', error);
+          patchState(store, { cart: previousCart });
         }
+      },
 
-        persistence.saveCart(cart);
-        patchState(store, { cart });
+      async clearCart() {
+        const previousCart = store.cart();
+        patchState(store, { cart: createEmptyCart() });
+
+        try {
+          await firstValueFrom(api.clearCart());
+          await hydrateCart();
+        } catch (error) {
+          console.error('Failed to clear cart in LiveOrder.Service.ss', error);
+          patchState(store, { cart: previousCart });
+        }
       },
 
       loadCrossSell() {
         api.getCrossSellProducts().subscribe((products) => {
-          const cartIds = store.cart().map((item) => item.id);
+          const cartIds = store.cart().lines.map((item) => `${item.item?.internalid ?? ''}`).filter(Boolean);
 
           patchState(store, {
             crossSellProducts: products.filter((product) => !cartIds.includes(product.id)),

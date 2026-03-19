@@ -1,4 +1,4 @@
-import { Component, inject, effect } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ProductTile } from '../product-tile/product-tile';
@@ -15,10 +15,8 @@ export class Cart {
   store = inject(CartStore);
 
   constructor() {
-    effect(() => {
-      this.store.loadCart();
-      this.store.loadCrossSell();
-    });
+    this.store.loadCart();
+    this.store.loadCrossSell();
   }
 
 }
