@@ -1,6 +1,15 @@
 import { Routes, UrlMatchResult, UrlSegment } from '@angular/router';
 import { PRODUCT_URL_COMPONENT_SEGMENT_REGEX } from '@core/constants/route.constants';
 
+function homeSspEntryMatcher(segments: UrlSegment[]): UrlMatchResult | null {
+  if (segments.length === 0 || segments.length > 2) return null;
+
+  const lastSegment = segments[segments.length - 1];
+  if (lastSegment.path.toLowerCase() !== 'home.ssp') return null;
+
+  return { consumed: [...segments] };
+}
+
 function productUrlComponentMatcher(segments: UrlSegment[]): UrlMatchResult | null {
   if (segments.length !== 1) return null;
 
@@ -17,6 +26,10 @@ export const shoppingRoutes: Routes = [
   // HOME
   {
     path: '',
+    loadComponent: () => import('./components/home/home').then((m) => m.Home),
+  },
+  {
+    matcher: homeSspEntryMatcher,
     loadComponent: () => import('./components/home/home').then((m) => m.Home),
   },
 

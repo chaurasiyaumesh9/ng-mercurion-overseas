@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "build:ssp": "ng build && node scripts/generate-ssp.js",
-    "deploy:netsuite": "node scripts/deploy-netsuite.js",
+    "deploy:netsuite": "ng build && node scripts/deploy-netsuite.js",
     "serve:ssp": "ng serve --host 0.0.0.0 --port 4200",
     "ng": "ng",
     "start": "ng serve",
