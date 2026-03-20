@@ -43,7 +43,6 @@ const facetLabels: Record<string, string> = {
   style: 'Style',
   gender: 'Gender',
   custitem_ns_pr_rating: 'Customer Rating',
-  featured: 'Featured',
   custitem9: 'Gender',
   custitem4: 'Color',
   custitem6: 'Size'
@@ -53,7 +52,6 @@ const hiddenFacetFields = new Set([
   'custitem_deal_products',
   'category',
   'categoryIds',
-  'featured',
   'commercecategoryname',
   'custitem_ns_sc_ext_gw_isitem',
   'custitemtop_selling',

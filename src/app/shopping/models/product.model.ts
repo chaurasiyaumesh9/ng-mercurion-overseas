@@ -9,7 +9,6 @@ export interface Product {
   categoryIds: string[];
   inStock: boolean;
   quantityAvailable: number;
-  featured: boolean;
   brand: string;
     color: string;
     gender: string;

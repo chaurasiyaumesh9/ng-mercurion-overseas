@@ -15,7 +15,6 @@ export interface SearchProductsOptions {
     pageSize?: number;
     sort?: string;
     facets?: Map<string, Set<string>>;
-    featured?: boolean;
     custitem_deal_products?: boolean;
 }
 
@@ -101,7 +100,7 @@ export class ProductsApi {
             map((response) => {
                 const items = response.items || [];
                 const products = items.map((item) => this.mapSearchProductToProduct(item));
-                const mappedProducts = options.featured ? products.filter((p) => p.featured) : products;
+                const mappedProducts = products;
                 this.cacheProductMetadata(items, products);
 
                 return {
@@ -174,7 +173,6 @@ export class ProductsApi {
             categoryIds,
             inStock: item.isinstock ?? (item.quantityavailable ?? 0) > 0,
             quantityAvailable: item.quantityavailable ?? 0,
-            featured: !!item.custitem_ns_ib_show_badges,
             brand: item.brand ?? '',
             color: item.color ?? '',
             gender: item.gender ?? '',

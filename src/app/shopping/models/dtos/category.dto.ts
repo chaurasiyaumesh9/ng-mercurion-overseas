@@ -6,5 +6,4 @@ export interface CategoryDto {
   name?: string;
   parentIdPath?: string;
   sequencenumber?: string | number;
-  _debug_requestTime?: number;
 }
