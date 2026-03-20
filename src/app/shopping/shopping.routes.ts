@@ -5,7 +5,7 @@ function homeSspEntryMatcher(segments: UrlSegment[]): UrlMatchResult | null {
   if (segments.length === 0 || segments.length > 2) return null;
 
   const lastSegment = segments[segments.length - 1];
-  if (lastSegment.path.toLowerCase() !== 'home.ssp') return null;
+  if (lastSegment.path.toLowerCase() !== 'ng-shopping.ssp') return null;
 
   return { consumed: [...segments] };
 }
