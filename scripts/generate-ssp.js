@@ -27,9 +27,8 @@ function generateHomeSsp(options = {}) {
 
   let html = fs.readFileSync(distPath, 'utf8');
 
-  html = html.replace(/<base href="[^"]*">/, '<base href="/">');
-
   html = convertAssetUrls(html, basePath);
+  html = html.replace(/<base href="[^"]*">/, '<base href="/">');
 
   const outputDir = path.dirname(outputPath);
   if (!fs.existsSync(outputDir)) {

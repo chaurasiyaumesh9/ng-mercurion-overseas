@@ -402,6 +402,30 @@ function isInvalidSearchTypeError(error) {
   return message.includes('Invalid search type');
 }
 
+function parseNetSuiteErrorPayload(text) {
+  try {
+    return text ? JSON.parse(text) : null;
+  } catch {
+    return null;
+  }
+}
+
+function extractNetSuiteErrorInfo(text) {
+  const payload = parseNetSuiteErrorPayload(text);
+  const detailFromPayload = payload?.['o:errorDetails']?.[0]?.detail;
+  const detail = String(detailFromPayload || payload?.message || text || '');
+  const errorCode = String(payload?.['o:errorCode'] || '');
+  return { detail, errorCode };
+}
+
+function isMissingRecordTypeError(detail) {
+  return detail.includes("Record type '") && detail.includes('does not exist');
+}
+
+function isNonexistentIdError(errorCode, detail) {
+  return errorCode === 'NONEXISTENT_ID' || detail.includes('NONEXISTENT_ID');
+}
+
 async function suiteQlAllFirstSuccessful({ account, token, queries, limit = 1000 }) {
   let lastError = null;
   for (const query of queries) {
@@ -426,6 +450,8 @@ async function suiteQlSingleFirstSuccessful({ account, token, queries }) {
 
 async function deleteRecordByCandidates({ account, token, recordId, candidateTypes }) {
   let lastError = null;
+  let sawMissingRecordType = false;
+  let sawNonexistentId = false;
 
   for (const type of candidateTypes) {
     const endpoint = `https://${account}.suitetalk.api.netsuite.com/services/rest/record/v1/${type}/${recordId}`;
@@ -439,22 +465,38 @@ async function deleteRecordByCandidates({ account, token, recordId, candidateTyp
     });
 
     if (response.ok || response.status === 204) {
-      return;
+      return { status: 'deleted', recordType: type };
     }
 
     const text = await response.text();
-    const missingRecordType = text.includes("Record type '") && text.includes('does not exist');
+    const { detail, errorCode } = extractNetSuiteErrorInfo(text);
+    const missingRecordType = isMissingRecordTypeError(detail);
+    const nonexistentId = isNonexistentIdError(errorCode, detail);
+
+    if (nonexistentId) {
+      sawNonexistentId = true;
+      lastError = new Error(detail || text);
+      continue;
+    }
+
     if (missingRecordType) {
+      sawMissingRecordType = true;
       lastError = new Error(text);
       continue;
     }
 
-    throw new Error(`Delete ${type}/${recordId} failed (${response.status}): ${text}`);
+    throw new Error(`Delete ${type}/${recordId} failed (${response.status}): ${detail || text}`);
   }
 
-  throw new Error(
-    `No supported record type found to delete id ${recordId}. Tried: ${candidateTypes.join(', ')}. ${lastError?.message || ''}`,
-  );
+  if (sawNonexistentId) {
+    return { status: 'not_found' };
+  }
+
+  if (sawMissingRecordType) {
+    return { status: 'unsupported_record_type', detail: lastError?.message || '' };
+  }
+
+  throw new Error(`Unable to delete id ${recordId}. Tried: ${candidateTypes.join(', ')}.`);
 }
 
 async function cleanTargetFolder({
@@ -492,6 +534,8 @@ async function cleanTargetFolder({
   }
 
   let deletedFiles = 0;
+  let skippedFilesUnsupportedType = 0;
+  let skippedFilesNotFound = 0;
   for (const folder of folders) {
     const files = await suiteQlAllFirstSuccessful({
       account,
@@ -503,13 +547,19 @@ async function cleanTargetFolder({
     });
 
     for (const file of files) {
-      await deleteRecordByCandidates({
+      const result = await deleteRecordByCandidates({
         account,
         token,
         recordId: file.id,
         candidateTypes: fileRecordTypes,
       });
-      deletedFiles += 1;
+      if (result.status === 'deleted') {
+        deletedFiles += 1;
+      } else if (result.status === 'not_found') {
+        skippedFilesNotFound += 1;
+      } else if (result.status === 'unsupported_record_type') {
+        skippedFilesUnsupportedType += 1;
+      }
     }
   }
 
@@ -517,17 +567,41 @@ async function cleanTargetFolder({
     .filter((f) => f.id !== rootId)
     .sort((a, b) => b.level - a.level);
   let deletedFolders = 0;
+  let skippedFoldersUnsupportedType = 0;
+  let skippedFoldersNotFound = 0;
   for (const folder of childFoldersDeepFirst) {
-    await deleteRecordByCandidates({
+    const result = await deleteRecordByCandidates({
       account,
       token,
       recordId: folder.id,
       candidateTypes: folderRecordTypes,
     });
-    deletedFolders += 1;
+    if (result.status === 'deleted') {
+      deletedFolders += 1;
+    } else if (result.status === 'not_found') {
+      skippedFoldersNotFound += 1;
+    } else if (result.status === 'unsupported_record_type') {
+      skippedFoldersUnsupportedType += 1;
+    }
   }
 
-  console.log(`Cleaned target folder ${targetFolderId}: deleted ${deletedFiles} files, ${deletedFolders} subfolders.`);
+  console.log(
+    `Cleaned target folder ${targetFolderId}: deleted ${deletedFiles} files, ${deletedFolders} subfolders.`,
+  );
+  if (skippedFilesUnsupportedType || skippedFoldersUnsupportedType) {
+    console.warn(
+      [
+        'Cleanup skipped some records because REST record types were not supported for this account/role.',
+        `Skipped files (unsupported type): ${skippedFilesUnsupportedType}`,
+        `Skipped folders (unsupported type): ${skippedFoldersUnsupportedType}`,
+      ].join(' '),
+    );
+  }
+  if (skippedFilesNotFound || skippedFoldersNotFound) {
+    console.warn(
+      `Cleanup skipped missing records: files=${skippedFilesNotFound}, folders=${skippedFoldersNotFound}.`,
+    );
+  }
 }
 
 async function deployHomeSspByFileId({
