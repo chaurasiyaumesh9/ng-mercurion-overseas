@@ -4,7 +4,7 @@
   "scripts": {
     "build:ssp": "ng build && node scripts/generate-ssp.js",
     "deploy:ssp": "ng build && node scripts/deploy-netsuite.js",
-    "serve:ssp": "ng serve --host 0.0.0.0 --port 4200",
+    "local:ssp": "ng serve --host 0.0.0.0 --port 4200",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
