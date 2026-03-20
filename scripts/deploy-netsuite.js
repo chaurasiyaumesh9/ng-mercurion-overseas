@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
-const { generateHomeSsp } = require('./generate-ssp');
+const { generateSspFiles } = require('./generate-ssp');
 
 const DEFAULT_BUILD_DIR = path.resolve('dist/mercurion-overseas/browser');
 const DEFAULT_ENV_FILE = path.resolve('.env.netsuite');
@@ -12,8 +12,14 @@ const DEFAULT_BATCH_FILES = 100;
 const DEFAULT_SCRIPT_ID = 'customscript_sca_deployer';
 const DEFAULT_DEPLOY_ID = 'customdeploy_sca_deployer';
 const DEFAULT_CLEAN_TARGET = false;
+const DEFAULT_REQUIRE_FOLDER_ARG = false;
+const DEFAULT_DEPLOY_SUBFOLDER = 'fastcommerce';
 const DEFAULT_FILE_RECORD_TYPES = ['mediaitem', 'mediaItem', 'file'];
 const DEFAULT_FOLDER_RECORD_TYPES = ['folder', 'mediaitemfolder', 'mediaItemFolder'];
+const DEFAULT_NG_SHOPPING_FILE_NAME = 'ng-shopping.ssp';
+const DEFAULT_NG_SHOPPING_BASE_HREF = 'ng-shopping.ssp';
+const DEFAULT_NG_SHOPPING_LOCAL_FILE_NAME = 'ng-shopping-local.ssp';
+const DEFAULT_NG_SHOPPING_LOCAL_BASE_HREF = '/';
 
 const BINARY_MIME_TYPES = new Set([
   'application/x-autocad',
@@ -282,6 +288,37 @@ function chunkDeployFiles(files, maxBatchFiles, maxBatchBytes) {
   return batches;
 }
 
+function partitionDeployFilesBySsp(files, sspFileNames) {
+  const normalized = new Set(
+    (sspFileNames || [])
+      .map((name) => String(name || '').trim())
+      .filter(Boolean),
+  );
+
+  const sspFiles = [];
+  const buildFiles = [];
+  for (const file of files) {
+    const pathName = String(file?.path || '');
+    if (normalized.has(pathName)) {
+      sspFiles.push(file);
+    } else {
+      buildFiles.push(file);
+    }
+  }
+
+  return { sspFiles, buildFiles };
+}
+
+function applyPathPrefix(files, pathPrefix) {
+  const prefix = String(pathPrefix || '').trim().replace(/^\/+|\/+$/g, '');
+  if (!prefix) return files;
+
+  return files.map((file) => ({
+    ...file,
+    path: `${prefix}/${String(file.path || '').replace(/^\/+/, '')}`,
+  }));
+}
+
 function createProgressTracker(totalFiles) {
   let prepared = 0;
   let uploaded = 0;
@@ -350,11 +387,6 @@ async function postDeployBatch({ restletUrl, token, targetFolderId, files, batch
   }
 
   return parsed;
-}
-
-async function suiteQlSingle({ account, token, query }) {
-  const rows = await suiteQlAll({ account, token, query, limit: 1 });
-  return rows[0] || null;
 }
 
 async function suiteQlAll({ account, token, query, limit = 1000 }) {
@@ -441,11 +473,6 @@ async function suiteQlAllFirstSuccessful({ account, token, queries, limit = 1000
   }
 
   throw lastError || new Error(`All SuiteQL queries failed. Tried ${queries.length} candidate query forms.`);
-}
-
-async function suiteQlSingleFirstSuccessful({ account, token, queries }) {
-  const rows = await suiteQlAllFirstSuccessful({ account, token, queries, limit: 1 });
-  return rows[0] || null;
 }
 
 async function deleteRecordByCandidates({ account, token, recordId, candidateTypes }) {
@@ -604,49 +631,6 @@ async function cleanTargetFolder({
   }
 }
 
-async function deployHomeSspByFileId({
-  account,
-  token,
-  restletUrl,
-  homeSspFileId,
-  homeSspContent,
-  setIsOnline,
-}) {
-  const numericId = Number(homeSspFileId);
-  if (!Number.isInteger(numericId) || numericId <= 0) {
-    throw new Error(`Invalid NS_HOME_SSP_FILE_ID: ${homeSspFileId}`);
-  }
-
-  const row = await suiteQlSingleFirstSuccessful({
-    account,
-    token,
-    queries: [
-      `SELECT id, name, folder FROM file WHERE id = ${numericId}`,
-      `SELECT id, name, folder FROM mediaitem WHERE id = ${numericId}`,
-    ],
-  });
-
-  if (!row?.name || !row?.folder) {
-    throw new Error(`Could not find file metadata for home.ssp id ${numericId}.`);
-  }
-
-  await postDeployBatch({
-    restletUrl,
-    token,
-    targetFolderId: row.folder,
-    files: [
-      {
-        path: String(row.name),
-        type: 'text/html',
-        contents: homeSspContent,
-        setIsOnline,
-      },
-    ],
-    batchNo: 1,
-    totalBatches: 1,
-  });
-}
-
 async function main() {
   const envFile = path.resolve(getArg('envFile') || process.env.NS_ENV_FILE || DEFAULT_ENV_FILE);
   loadEnvFile(envFile);
@@ -659,8 +643,33 @@ async function main() {
     getArg('folderId') || process.env.NS_TARGET_FOLDER_ID || process.env.NS_FILECABINET_FOLDER_ID;
   const scriptId = getArg('scriptId') || process.env.NS_DEPLOY_SCRIPT_ID || DEFAULT_SCRIPT_ID;
   const deployId = getArg('deployId') || process.env.NS_DEPLOY_DEPLOY_ID || DEFAULT_DEPLOY_ID;
-  const homeSspFileId = getArg('homeSspFileId') || process.env.NS_HOME_SSP_FILE_ID || '';
-  const sspBasePath = getArg('sspBasePath') || process.env.NS_SSP_BASE_PATH || '/angular/browser/';
+  const sspBasePath = getArg('sspBasePath') || process.env.NS_SSP_BASE_PATH || '/fastcommerce/';
+  const deploySubfolder =
+    getArg('deploySubfolder') || process.env.NS_DEPLOY_SUBFOLDER || DEFAULT_DEPLOY_SUBFOLDER;
+  const preferRepoSspFiles = parseBoolean(
+    getArg('preferRepoSspFiles') || process.env.NS_PREFER_REPO_SSP_FILES,
+    true,
+  );
+  const requireFolderArg = parseBoolean(
+    getArg('requireFolderArg') || process.env.NS_REQUIRE_FOLDER_ARG,
+    DEFAULT_REQUIRE_FOLDER_ARG,
+  );
+  const ngShoppingFileName =
+    getArg('ngShoppingFileName') ||
+    process.env.NS_NG_SHOPPING_FILE_NAME ||
+    DEFAULT_NG_SHOPPING_FILE_NAME;
+  const ngShoppingBaseHref =
+    getArg('ngShoppingBaseHref') ||
+    process.env.NS_NG_SHOPPING_BASE_HREF ||
+    DEFAULT_NG_SHOPPING_BASE_HREF;
+  const ngShoppingLocalFileName =
+    getArg('ngShoppingLocalFileName') ||
+    process.env.NS_NG_SHOPPING_LOCAL_FILE_NAME ||
+    DEFAULT_NG_SHOPPING_LOCAL_FILE_NAME;
+  const ngShoppingLocalBaseHref =
+    getArg('ngShoppingLocalBaseHref') ||
+    process.env.NS_NG_SHOPPING_LOCAL_BASE_HREF ||
+    DEFAULT_NG_SHOPPING_LOCAL_BASE_HREF;
   const cleanTarget = parseBoolean(
     getArg('cleanTarget') || process.env.NS_CLEAN_TARGET_FOLDER,
     DEFAULT_CLEAN_TARGET,
@@ -686,6 +695,13 @@ async function main() {
     getArg('setIsOnline') || process.env.NS_SET_IS_ONLINE,
     true,
   );
+  const folderIdFromArg = getArg('folderId');
+
+  if (requireFolderArg && !folderIdFromArg) {
+    throw new Error(
+      'Missing --folderId=<target_folder_id>. This deploy command requires an explicit target folder.',
+    );
+  }
 
   if (!accountId || !clientId || !certificateId || !privateKey || !targetFolderId) {
     throw new Error(
@@ -704,14 +720,33 @@ async function main() {
     throw new Error(`Build directory does not exist: ${buildDir}`);
   }
 
-  const homeSspDistPath = path.join(buildDir, 'index.html');
-  const homeSspOutputPath = path.join(buildDir, 'home.ssp');
-  if (fs.existsSync(homeSspDistPath)) {
-    generateHomeSsp({
-      distPath: homeSspDistPath,
-      outputPath: homeSspOutputPath,
+  const indexHtmlPath = path.join(buildDir, 'index.html');
+  if (fs.existsSync(indexHtmlPath)) {
+    const generatedSspFiles = generateSspFiles({
+      distPath: indexHtmlPath,
+      outputDir: buildDir,
       basePath: sspBasePath,
+      preferRepoFiles: preferRepoSspFiles,
+      variants: [
+        {
+          name: ngShoppingFileName,
+          baseHref: ngShoppingBaseHref,
+          // Always regenerate from current index.html so hashed build assets stay in sync.
+          preferRepoFile: false,
+        },
+        {
+          name: ngShoppingLocalFileName,
+          baseHref: ngShoppingLocalBaseHref,
+          preferRepoFile: preferRepoSspFiles,
+        },
+      ],
     });
+    const generatedSummary = generatedSspFiles
+      .map((file) => `${file.name} [${file.source}] (base href: ${file.baseHref})`)
+      .join(', ');
+    console.log(`Generated SSP files: ${generatedSummary}`);
+  } else {
+    console.warn(`Skipping SSP generation. index.html not found at ${indexHtmlPath}.`);
   }
 
   const privateKeyPem = privateKey.replace(/\\n/g, '\n').trim();
@@ -731,17 +766,25 @@ async function main() {
 
   const restletUrl = buildRestletUrl({ account, scriptId, deployId });
   console.log(`Using Restlet script=${scriptId}, deploy=${deployId}`);
-  console.log(`Target folder id: ${targetFolderId}`);
+  console.log(`Parent folder id: ${targetFolderId}`);
+  console.log(`Deploy subfolder: ${deploySubfolder}`);
+  console.log(`Build files will be uploaded under "${deploySubfolder}/" in the parent folder.`);
   console.log(`Clean target folder before deploy: ${cleanTarget ? 'yes' : 'no'}`);
 
   if (cleanTarget) {
-    await cleanTargetFolder({
-      account,
-      token,
-      targetFolderId,
-      fileRecordTypes,
-      folderRecordTypes,
-    });
+    if (String(deploySubfolder || '').trim()) {
+      console.warn(
+        'Skipping cleanup because subfolder deploy mode is enabled. Set NS_DEPLOY_SUBFOLDER empty to clean root target folder.',
+      );
+    } else {
+      await cleanTargetFolder({
+        account,
+        token,
+        targetFolderId,
+        fileRecordTypes,
+        folderRecordTypes,
+      });
+    }
   }
 
   const totalFiles = absFiles.length;
@@ -755,45 +798,58 @@ async function main() {
     progress.setPrepared(i + 1);
   }
 
-  const batches = chunkDeployFiles(payloadFiles, maxBatchFiles, maxBatchBytes);
+  const { sspFiles, buildFiles } = partitionDeployFilesBySsp(payloadFiles, [
+    ngShoppingFileName,
+    ngShoppingLocalFileName,
+  ]);
+  const buildFilesInSubfolder = applyPathPrefix(buildFiles, deploySubfolder);
+  const sspBatches = chunkDeployFiles(sspFiles, maxBatchFiles, maxBatchBytes);
+  const buildBatches = chunkDeployFiles(buildFilesInSubfolder, maxBatchFiles, maxBatchBytes);
 
   console.log(
-    `Deploying ${totalFiles} files in ${batches.length} batch(es) from ${buildDir}...`,
+    [
+      `Deploying ${totalFiles} files from ${buildDir}:`,
+      `- SSP files to parent folder ${targetFolderId}: ${sspFiles.length} file(s) in ${sspBatches.length} batch(es)`,
+      `- Build files to subfolder path "${deploySubfolder}/" in parent folder ${targetFolderId}: ${buildFiles.length} file(s) in ${buildBatches.length} batch(es)`,
+    ].join('\n'),
   );
 
   let uploaded = 0;
-  for (let i = 0; i < batches.length; i++) {
-    const batch = batches[i];
+  for (let i = 0; i < sspBatches.length; i++) {
+    const batch = sspBatches[i];
     await postDeployBatch({
       restletUrl,
       token,
       targetFolderId,
       files: batch,
       batchNo: i + 1,
-      totalBatches: batches.length,
+      totalBatches: sspBatches.length,
     });
     uploaded += batch.length;
     progress.setUploaded(uploaded);
-    console.log(`Uploaded batch ${i + 1}/${batches.length} (${uploaded}/${totalFiles} files).`);
+    console.log(
+      `Uploaded SSP batch ${i + 1}/${sspBatches.length} (${uploaded}/${totalFiles} files).`,
+    );
+  }
+
+  for (let i = 0; i < buildBatches.length; i++) {
+    const batch = buildBatches[i];
+    await postDeployBatch({
+      restletUrl,
+      token,
+      targetFolderId,
+      files: batch,
+      batchNo: i + 1,
+      totalBatches: buildBatches.length,
+    });
+    uploaded += batch.length;
+    progress.setUploaded(uploaded);
+    console.log(
+      `Uploaded build batch ${i + 1}/${buildBatches.length} (${uploaded}/${totalFiles} files).`,
+    );
   }
 
   progress.finish();
-
-  if (homeSspFileId) {
-    if (!fs.existsSync(homeSspOutputPath)) {
-      throw new Error(`home.ssp not found at ${homeSspOutputPath}. Build output is incomplete.`);
-    }
-    const homeSspContent = fs.readFileSync(homeSspOutputPath, 'utf8');
-    await deployHomeSspByFileId({
-      account,
-      token,
-      restletUrl,
-      homeSspFileId,
-      homeSspContent,
-      setIsOnline,
-    });
-    console.log(`Updated home.ssp via file id ${homeSspFileId}.`);
-  }
 
   console.log('Deployment completed successfully.');
 }

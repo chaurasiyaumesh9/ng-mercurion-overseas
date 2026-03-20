@@ -60,12 +60,22 @@ For more information on using the Angular CLI, including detailed command refere
 
 ## NetSuite File Cabinet Deploy
 
-Deploy Angular build output from `dist/mercurion-overseas/browser` through the SCA deploy Restlet:
+Deploy Angular build output from `dist/mercurion-overseas/browser` through the SCA deploy Restlet.
+
+This flow deploys these files together in one command:
+
+- `ng-shopping.ssp`
+- `ng-shopping-local.ssp`
+- all files from the Angular `dist` bundle
+
+`ng-shopping.ssp` and `ng-shopping-local.ssp` are read from the repo folder `ssp/` (fallback: generated from `index.html` when files are missing).
+SSP files are uploaded to `NS_TARGET_FOLDER_ID`, while Angular build files are uploaded to `NS_TARGET_FOLDER_ID/fastcommerce` (auto-created if missing).
 
 ```bash
-npm run build
-npm run deploy:netsuite
+npm run deploy:ssp
 ```
+
+`NS_TARGET_FOLDER_ID` is read from `.env.netsuite`.
 
 Recommended setup:
 
@@ -83,7 +93,6 @@ NS_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----"
 NS_TARGET_FOLDER_ID=<target_folder_id>
 NS_DEPLOY_SCRIPT_ID=customscript_sca_deployer
 NS_DEPLOY_DEPLOY_ID=customdeploy_sca_deployer
-NS_HOME_SSP_FILE_ID=498674
 ```
 
 Optional variables:
@@ -93,7 +102,14 @@ NS_BUILD_DIR=dist/mercurion-overseas/browser
 NS_DEPLOY_BATCH_BYTES=4194304
 NS_DEPLOY_BATCH_FILES=100
 NS_SET_IS_ONLINE=true
-NS_SSP_BASE_PATH=/angular/browser/
+NS_SSP_BASE_PATH=/fastcommerce/
+NS_DEPLOY_SUBFOLDER=fastcommerce
+NS_PREFER_REPO_SSP_FILES=true
+NS_REQUIRE_FOLDER_ARG=true
+NS_NG_SHOPPING_FILE_NAME=ng-shopping.ssp
+NS_NG_SHOPPING_BASE_HREF=ng-shopping.ssp
+NS_NG_SHOPPING_LOCAL_FILE_NAME=ng-shopping-local.ssp
+NS_NG_SHOPPING_LOCAL_BASE_HREF=/
 NS_CLEAN_TARGET_FOLDER=true
 NS_FILE_RECORD_TYPES=mediaitem,mediaItem,file
 NS_FOLDER_RECORD_TYPES=folder,mediaitemfolder,mediaItemFolder
@@ -109,4 +125,14 @@ You can also pass values via CLI flags:
 
 ```bash
 node scripts/deploy-netsuite.js --account=... --clientId=... --certificateId=... --privateKey="..." --folderId=... --scriptId=... --deployId=...
+```
+
+Base href behavior for second-approach SSP deployment:
+
+```bash
+# Standalone ng-shopping.ssp access
+node scripts/deploy-netsuite.js --folderId=... --ngShoppingBaseHref=ng-shopping.ssp
+
+# Homepage touchpoint routing
+node scripts/deploy-netsuite.js --folderId=... --ngShoppingBaseHref=/
 ```
