@@ -3,12 +3,23 @@ const path = require('path');
 
 const DIST_PATH = './dist/mercurion-overseas/browser/index.html';
 const OUTPUT_DIR = './dist/mercurion-overseas/browser';
-const REPO_SSP_DIR = './ssp';
 const ASSET_BASE_PATH = '/fastcommerce/';
 const DEFAULT_SSP_VARIANTS = [
-  { name: 'ng-shopping.ssp', baseHref: 'ng-shopping.ssp' },
-  { name: 'ng-shopping-local.ssp', baseHref: '/' },
+  { name: 'ng-shopping.ssp', mode: 'generated', baseHref: '/' },
+  { name: 'ng-shopping-local.ssp', mode: 'static-local' },
 ];
+const LOCAL_SSP_STATIC_CONTENT = `<!doctype html>
+<html>
+<head>
+  <base href="/sca-dev-2019-2/ng-shopping-local.ssp">
+  <link rel="stylesheet" href="http://localhost:4200/styles.css">
+</head>
+<body>
+  <app-root></app-root>
+  <script type="module" src="http://localhost:4200/main.js"></script>
+</body>
+</html>
+`;
 
 function convertAssetUrls(content, basePath) {
   return content.replace(/(src|href)="([^"]+)"/g, (match, attr, url) => {
@@ -34,17 +45,14 @@ function ensureBaseHref(content, baseHref) {
   return content.replace('<head>', `<head>\n  <base href="${normalized}">`);
 }
 
-function tryReadFile(filePath) {
-  if (!fs.existsSync(filePath)) return null;
-  return fs.readFileSync(filePath, 'utf8');
+function normalizeStylesheetLinks(content) {
+  return content.replace(/\s+media="print"\s+onload="this\.media='all'"/g, '');
 }
 
 function generateSspFiles(options = {}) {
   const distPath = options.distPath || DIST_PATH;
   const outputDir = options.outputDir || OUTPUT_DIR;
-  const repoSspDir = options.repoSspDir || REPO_SSP_DIR;
   const basePath = options.basePath || ASSET_BASE_PATH;
-  const preferRepoFiles = options.preferRepoFiles !== false;
   const variants = Array.isArray(options.variants) && options.variants.length
     ? options.variants
     : DEFAULT_SSP_VARIANTS;
@@ -58,21 +66,15 @@ function generateSspFiles(options = {}) {
   const generatedFiles = [];
   for (const variant of variants) {
     if (!variant?.name) continue;
+    const mode = variant.mode || 'generated';
     const baseHref = variant.baseHref || '/';
     const outputPath = path.join(outputDir, variant.name);
-    const variantPreferRepo = variant.preferRepoFile ?? preferRepoFiles;
 
     let content = null;
-    let source = 'generated';
-    if (variantPreferRepo) {
-      const repoFilePath = path.resolve(repoSspDir, variant.name);
-      content = tryReadFile(repoFilePath);
-      if (content !== null) {
-        source = 'repo';
-      }
-    }
-
-    if (content === null) {
+    let source = mode;
+    if (mode === 'static-local') {
+      content = LOCAL_SSP_STATIC_CONTENT;
+    } else {
       if (assetResolvedHtml === null) {
         if (!fs.existsSync(distPath)) {
           throw new Error(`Unable to generate SSP file. index.html not found at: ${distPath}`);
@@ -83,9 +85,14 @@ function generateSspFiles(options = {}) {
       content = ensureBaseHref(assetResolvedHtml, baseHref);
     }
 
+    if (mode !== 'static-local') {
+      content = normalizeStylesheetLinks(content);
+    }
+
     fs.writeFileSync(outputPath, content);
     generatedFiles.push({
       name: variant.name,
+      mode,
       baseHref,
       outputPath,
       source,

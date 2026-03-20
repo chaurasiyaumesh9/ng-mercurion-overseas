@@ -68,7 +68,8 @@ This flow deploys these files together in one command:
 - `ng-shopping-local.ssp`
 - all files from the Angular `dist` bundle
 
-`ng-shopping.ssp` and `ng-shopping-local.ssp` are read from the repo folder `ssp/` (fallback: generated from `index.html` when files are missing).
+`ng-shopping.ssp` is generated from `dist/mercurion-overseas/browser/index.html` during deploy.
+`ng-shopping-local.ssp` is generated as a static local-dev template that points to `http://localhost:4200`.
 SSP files are uploaded to `NS_TARGET_FOLDER_ID`, while Angular build files are uploaded to `NS_TARGET_FOLDER_ID/fastcommerce` (auto-created if missing).
 
 ```bash
@@ -104,12 +105,10 @@ NS_DEPLOY_BATCH_FILES=100
 NS_SET_IS_ONLINE=true
 NS_SSP_BASE_PATH=/fastcommerce/
 NS_DEPLOY_SUBFOLDER=fastcommerce
-NS_PREFER_REPO_SSP_FILES=true
 NS_REQUIRE_FOLDER_ARG=true
 NS_NG_SHOPPING_FILE_NAME=ng-shopping.ssp
-NS_NG_SHOPPING_BASE_HREF=ng-shopping.ssp
+NS_NG_SHOPPING_BASE_HREF=/
 NS_NG_SHOPPING_LOCAL_FILE_NAME=ng-shopping-local.ssp
-NS_NG_SHOPPING_LOCAL_BASE_HREF=/
 NS_CLEAN_TARGET_FOLDER=true
 NS_FILE_RECORD_TYPES=mediaitem,mediaItem,file
 NS_FOLDER_RECORD_TYPES=folder,mediaitemfolder,mediaItemFolder
@@ -130,9 +129,7 @@ node scripts/deploy-netsuite.js --account=... --clientId=... --certificateId=...
 Base href behavior for second-approach SSP deployment:
 
 ```bash
-# Standalone ng-shopping.ssp access
-node scripts/deploy-netsuite.js --folderId=... --ngShoppingBaseHref=ng-shopping.ssp
-
 # Homepage touchpoint routing
 node scripts/deploy-netsuite.js --folderId=... --ngShoppingBaseHref=/
 ```
+

@@ -17,9 +17,8 @@ const DEFAULT_DEPLOY_SUBFOLDER = 'fastcommerce';
 const DEFAULT_FILE_RECORD_TYPES = ['mediaitem', 'mediaItem', 'file'];
 const DEFAULT_FOLDER_RECORD_TYPES = ['folder', 'mediaitemfolder', 'mediaItemFolder'];
 const DEFAULT_NG_SHOPPING_FILE_NAME = 'ng-shopping.ssp';
-const DEFAULT_NG_SHOPPING_BASE_HREF = 'ng-shopping.ssp';
+const DEFAULT_NG_SHOPPING_BASE_HREF = '/';
 const DEFAULT_NG_SHOPPING_LOCAL_FILE_NAME = 'ng-shopping-local.ssp';
-const DEFAULT_NG_SHOPPING_LOCAL_BASE_HREF = '/';
 
 const BINARY_MIME_TYPES = new Set([
   'application/x-autocad',
@@ -160,6 +159,7 @@ function getMimeType(fileName) {
     '.pdf': 'application/pdf',
     '.png': 'image/png',
     '.svg': 'image/svg+xml',
+    '.ssp': 'text/html',
     '.txt': 'text/plain',
     '.woff': 'application/font-woff',
     '.woff2': 'application/font-woff',
@@ -168,6 +168,10 @@ function getMimeType(fileName) {
   };
 
   return map[ext] || 'text/plain';
+}
+
+function hashText(value) {
+  return crypto.createHash('sha256').update(String(value || ''), 'utf8').digest('hex').slice(0, 12);
 }
 
 function buildClientAssertion({ clientId, certificateId, privateKeyPem, tokenEndpoint }) {
@@ -299,7 +303,8 @@ function partitionDeployFilesBySsp(files, sspFileNames) {
   const buildFiles = [];
   for (const file of files) {
     const pathName = String(file?.path || '');
-    if (normalized.has(pathName)) {
+    const isSsp = path.extname(pathName).toLowerCase() === '.ssp';
+    if (normalized.has(pathName) || isSsp) {
       sspFiles.push(file);
     } else {
       buildFiles.push(file);
@@ -646,10 +651,6 @@ async function main() {
   const sspBasePath = getArg('sspBasePath') || process.env.NS_SSP_BASE_PATH || '/fastcommerce/';
   const deploySubfolder =
     getArg('deploySubfolder') || process.env.NS_DEPLOY_SUBFOLDER || DEFAULT_DEPLOY_SUBFOLDER;
-  const preferRepoSspFiles = parseBoolean(
-    getArg('preferRepoSspFiles') || process.env.NS_PREFER_REPO_SSP_FILES,
-    true,
-  );
   const requireFolderArg = parseBoolean(
     getArg('requireFolderArg') || process.env.NS_REQUIRE_FOLDER_ARG,
     DEFAULT_REQUIRE_FOLDER_ARG,
@@ -666,10 +667,6 @@ async function main() {
     getArg('ngShoppingLocalFileName') ||
     process.env.NS_NG_SHOPPING_LOCAL_FILE_NAME ||
     DEFAULT_NG_SHOPPING_LOCAL_FILE_NAME;
-  const ngShoppingLocalBaseHref =
-    getArg('ngShoppingLocalBaseHref') ||
-    process.env.NS_NG_SHOPPING_LOCAL_BASE_HREF ||
-    DEFAULT_NG_SHOPPING_LOCAL_BASE_HREF;
   const cleanTarget = parseBoolean(
     getArg('cleanTarget') || process.env.NS_CLEAN_TARGET_FOLDER,
     DEFAULT_CLEAN_TARGET,
@@ -726,18 +723,15 @@ async function main() {
       distPath: indexHtmlPath,
       outputDir: buildDir,
       basePath: sspBasePath,
-      preferRepoFiles: preferRepoSspFiles,
       variants: [
         {
           name: ngShoppingFileName,
+          mode: 'generated',
           baseHref: ngShoppingBaseHref,
-          // Always regenerate from current index.html so hashed build assets stay in sync.
-          preferRepoFile: false,
         },
         {
           name: ngShoppingLocalFileName,
-          baseHref: ngShoppingLocalBaseHref,
-          preferRepoFile: preferRepoSspFiles,
+          mode: 'static-local',
         },
       ],
     });
@@ -802,6 +796,20 @@ async function main() {
     ngShoppingFileName,
     ngShoppingLocalFileName,
   ]);
+  const expectedSspNames = [ngShoppingFileName, ngShoppingLocalFileName];
+  const missingSspNames = expectedSspNames.filter(
+    (name) => !sspFiles.some((file) => String(file.path || '') === name),
+  );
+  if (missingSspNames.length > 0) {
+    throw new Error(`Expected SSP file(s) not found in build payload: ${missingSspNames.join(', ')}`);
+  }
+
+  for (const sspFile of sspFiles) {
+    console.log(
+      `Prepared SSP payload: ${sspFile.path} | type=${sspFile.type} | sha=${hashText(sspFile.contents)}`,
+    );
+  }
+
   const buildFilesInSubfolder = applyPathPrefix(buildFiles, deploySubfolder);
   const sspBatches = chunkDeployFiles(sspFiles, maxBatchFiles, maxBatchBytes);
   const buildBatches = chunkDeployFiles(buildFilesInSubfolder, maxBatchFiles, maxBatchBytes);
