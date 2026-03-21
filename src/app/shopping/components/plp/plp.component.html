@@ -1,0 +1,32 @@
+<div class="grid grid-cols-12 gap-6 p-4">
+  <!-- Sidebar -->
+  <div class="col-span-3">
+    <app-facet-sidebar [facets]="facets()"> </app-facet-sidebar>
+  </div>
+
+  <!-- Main Content -->
+  <div class="col-span-9 space-y-4">
+    <!-- Sort -->
+    <facet-sort></facet-sort>
+
+    <!-- Loading State -->
+    @if (loading()) {
+      <div class="text-center py-10">
+        <p class="text-gray-500">Loading products...</p>
+      </div>
+    } @else {
+      <!-- No Results -->
+      @if (items().length === 0) {
+        <div class="text-center py-10">
+          <p class="text-gray-500">No products found</p>
+        </div>
+      } @else {
+        <!-- Product Grid -->
+        <facet-item [items]="items()"> </facet-item>
+
+        <!-- Pagination -->
+        <facet-pagination [total]="total()"> </facet-pagination>
+      }
+    }
+  </div>
+</div>

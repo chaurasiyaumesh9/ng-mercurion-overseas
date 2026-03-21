@@ -1,0 +1,33 @@
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  @for (item of items; track item.internalid) {
+    <div class="border rounded-lg p-3 hover:shadow-md transition">
+      <!-- Image -->
+      <a [routerLink]="['/', item.urlcomponent]">
+        <img [src]="getImage(item)" class="w-full h-48 object-cover rounded" />
+      </a>
+
+      <!-- Info -->
+      <div class="mt-3 space-y-1">
+        <!-- Title -->
+        <a
+          [routerLink]="['/', item.urlcomponent]"
+          class="text-sm font-medium hover:underline block"
+        >
+          {{ item.displayname }}
+        </a>
+
+        <!-- SKU (optional, SCA style) -->
+        @if (item.itemid) {
+          <div class="text-xs text-gray-500">
+            {{ item.itemid }}
+          </div>
+        }
+
+        <!-- Price -->
+        @if (getPrice(item) !== null) {
+          <div class="text-lg font-semibold">₹{{ getPrice(item) }}</div>
+        }
+      </div>
+    </div>
+  }
+</div>

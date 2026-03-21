@@ -1,0 +1,49 @@
+@if (totalPages() > 1) {
+  <div class="flex items-center justify-center gap-2 mt-6">
+    <!-- Prev -->
+    <button
+      class="px-3 py-1 border rounded text-sm"
+      [disabled]="currentPage() === 1"
+      (click)="prev()"
+    >
+      Prev
+    </button>
+
+    <!-- First -->
+    @if (pages()[0] > 1) {
+      <button class="px-3 py-1 border rounded text-sm" (click)="goToPage(1)">1</button>
+
+      <span class="px-2">...</span>
+    }
+
+    <!-- Page Numbers -->
+    @for (page of pages(); track page) {
+      <button
+        class="px-3 py-1 border rounded text-sm"
+        [class.bg-blue-600]="page === currentPage()"
+        [class.text-white]="page === currentPage()"
+        (click)="goToPage(page)"
+      >
+        {{ page }}
+      </button>
+    }
+
+    <!-- Last -->
+    @if (pages()[pages().length - 1] < totalPages()) {
+      <span class="px-2">...</span>
+
+      <button class="px-3 py-1 border rounded text-sm" (click)="goToPage(totalPages())">
+        {{ totalPages() }}
+      </button>
+    }
+
+    <!-- Next -->
+    <button
+      class="px-3 py-1 border rounded text-sm"
+      [disabled]="currentPage() === totalPages()"
+      (click)="next()"
+    >
+      Next
+    </button>
+  </div>
+}

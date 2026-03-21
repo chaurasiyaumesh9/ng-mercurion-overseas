@@ -1,0 +1,48 @@
+<div class="space-y-6">
+  <!-- Clear All -->
+  @if (facets.length) {
+    <div class="flex justify-between items-center">
+      <h2 class="font-semibold text-lg">Filters</h2>
+
+      <button class="text-sm text-blue-600 hover:underline" (click)="clearAll()">Clear All</button>
+    </div>
+  }
+
+  <!-- Facets -->
+  @for (facet of facets; track facet.id) {
+    <div class="border-b pb-4">
+      <!-- Facet Title + Clear -->
+      <div class="flex justify-between items-center mb-2">
+        <h3 class="font-medium">
+          {{ facet.id }}
+        </h3>
+
+        <button class="text-xs text-gray-500 hover:underline" (click)="clearFacet(facet.id)">
+          Clear
+        </button>
+      </div>
+
+      <!-- Values -->
+      <div class="space-y-1">
+        @for (value of facet.values; track value.url) {
+          <div
+            class="flex justify-between items-center cursor-pointer text-sm"
+            (click)="applyFacet(value.url)"
+          >
+            <span
+              class="flex items-center gap-2"
+            >
+              <!-- Checkbox style -->
+              <span
+                class="w-3 h-3 border rounded-sm"
+              >
+              </span>
+
+              {{ value.url }}
+            </span>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>
