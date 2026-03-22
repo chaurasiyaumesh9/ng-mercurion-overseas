@@ -89,6 +89,11 @@ function generateSspFiles(options = {}) {
       content = normalizeStylesheetLinks(content);
     }
 
+    content = content + `<script>SC = {}; </script>`;
+    content = content + `<% var Configuration = require('Configuration'); %>`
+    content = content + `<script>SC.CONFIGURATION = <%= JSON.stringify(Configuration.get()) %></script>`;
+    content = content + `<script>SC.CATEGORIES = <%= JSON.stringify(require('Categories.Model').getCategoryTree(Configuration.get().categories.menuLevel, null, null, null, false, true)) %></script>`
+
     fs.writeFileSync(outputPath, content);
     generatedFiles.push({
       name: variant.name,
