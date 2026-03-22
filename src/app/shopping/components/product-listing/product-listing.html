@@ -28,13 +28,12 @@
         <div class="relative">
           <select
             class="h-10 appearance-none border border-gray-300 bg-white pl-3 pr-9 text-sm focus:border-gray-500 focus:outline-none"
-            [value]="store.pageSizeFromUrl()"
-            (change)="store.setPageSize(+$any($event.target).value)"
+            [value]="store.sortFromUrl()"
+            (change)="store.setSort($any($event.target).value)"
           >
-            <option value="12">Newest</option>
-            <option value="24">Popular</option>
-            <option value="48">Price: Low to High</option>
-            <option value="96">Price: High to Low</option>
+            @for (sortOption of store.sortOptions(); track sortOption.id) {
+              <option [value]="sortOption.id">{{ sortOption.name }}</option>
+            }
           </select>
           <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-gray-500">
             v

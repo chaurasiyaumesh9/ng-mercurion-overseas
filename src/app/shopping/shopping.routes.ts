@@ -1,5 +1,6 @@
 import { Routes, UrlMatchResult, UrlSegment } from '@angular/router';
 import { PRODUCT_URL_COMPONENT_SEGMENT_REGEX } from '@core/constants/route.constants';
+import { plpMatcher } from './product-listing.matchers';
 
 function homeSspEntryMatcher(segments: UrlSegment[]): UrlMatchResult | null {
   if (segments.length === 0 || segments.length > 2) return null;
@@ -33,6 +34,11 @@ export const shoppingRoutes: Routes = [
     loadComponent: () => import('./components/home/home').then((m) => m.Home),
   },
 
+  {
+    matcher: plpMatcher,
+    loadComponent: () => import('./components/product-listing/product-listing').then((m) => m.ProductListing),
+  },
+  
   // PRODUCT
   {
     matcher: productUrlComponentMatcher,
@@ -47,32 +53,32 @@ export const shoppingRoutes: Routes = [
   },
 
   // SEARCH + FACETS
-  {
-    path: 'search',
-    loadComponent: () =>
-      import('./components/product-listing/product-listing').then((m) => m.ProductListing),
-  },
-  {
-    path: 'search/**',
-    loadComponent: () =>
-      import('./components/product-listing/product-listing').then((m) => m.ProductListing),
-  },
+//   {
+//     path: 'search',
+//     loadComponent: () =>
+//       import('./components/product-listing/product-listing').then((m) => m.ProductListing),
+//   },
+//   {
+//     path: 'search/**',
+//     loadComponent: () =>
+//       import('./components/product-listing/product-listing').then((m) => m.ProductListing),
+//   },
 
-  // CATEGORY + FACETS
-  {
-    path: ':categorySlug',
-    loadComponent: () =>
-      import('./components/product-listing/product-listing').then((m) => m.ProductListing),
-  },
-  {
-    path: ':categorySlug/:subCategorySlug',
-    loadComponent: () =>
-      import('./components/product-listing/product-listing').then((m) => m.ProductListing),
-  },
-  {
-    path: ':categorySlug/:subCategorySlug/**',
-    loadComponent: () =>
-      import('./components/product-listing/product-listing').then((m) => m.ProductListing),
-  },
+//   // CATEGORY + FACETS
+//   {
+//     path: ':categorySlug',
+//     loadComponent: () =>
+//       import('./components/product-listing/product-listing').then((m) => m.ProductListing),
+//   },
+//   {
+//     path: ':categorySlug/:subCategorySlug',
+//     loadComponent: () =>
+//       import('./components/product-listing/product-listing').then((m) => m.ProductListing),
+//   },
+//   {
+//     path: ':categorySlug/:subCategorySlug/**',
+//     loadComponent: () =>
+//       import('./components/product-listing/product-listing').then((m) => m.ProductListing),
+//   },
 ];
 

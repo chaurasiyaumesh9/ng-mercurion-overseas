@@ -7,21 +7,7 @@ import { selectCategories } from '@appState/categories/categories.selectors';
 import { Breadcrumb } from './breadcrumb.model';
 import { ProductsApi } from '@shopping/services/products.api';
 import { PRODUCT_URL_COMPONENT_SEGMENT_REGEX } from '@core/constants/route.constants';
-import { Category } from '@shopping/models/category.model';
-
-function getSlugFromFullUrl(fullurl: string | undefined): string {
-  const path = (fullurl ?? '').split('?')[0] ?? '';
-  const trimmed = path.replace(/^\/+|\/+$/g, '');
-  if (!trimmed) return '';
-
-  const segments = trimmed.split('/').filter(Boolean);
-  return segments[segments.length - 1] ?? '';
-}
-
-function findCategoryBySlug(categories: Category[], slug: string | undefined): Category | null {
-  if (!slug) return null;
-  return categories.find((category) => getSlugFromFullUrl(category.fullurl) === slug) ?? null;
-}
+import { findBestCategoryPath } from '@shopping/utils/category-route.utils';
 
 export const BreadcrumbStore = signalStore(
   withProps(() => {
@@ -93,28 +79,19 @@ export const BreadcrumbStore = signalStore(
         return crumbs;
       }
 
-      // --------------------------------------------------
-      // CATEGORY + SUBCATEGORY
-      // --------------------------------------------------
       const categories = store.categories();
-      const category = findCategoryBySlug(categories, segments[0]);
+      const matchedCategoryPath = findBestCategoryPath(
+        categories,
+        segments.map((segment) => segment.toLowerCase()),
+      );
 
-      if (!category) return [];
+      if (!matchedCategoryPath.length) return [];
 
-      crumbs.push({
-        label: category.name,
-        url: category.fullurl,
-      });
-
-      if (segments.length > 1) {
-        const sub = findCategoryBySlug(category.categories ?? [], segments[1]);
-
-        if (sub) {
-          crumbs.push({
-            label: sub.name,
-            url: sub.fullurl,
-          });
-        }
+      for (const category of matchedCategoryPath) {
+        crumbs.push({
+          label: category.name,
+          url: category.fullurl,
+        });
       }
 
       return crumbs;
